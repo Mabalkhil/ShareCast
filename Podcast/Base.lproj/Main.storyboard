@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Podcast" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,6 +22,93 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="206" y="134"/>
+        </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="8vv-VN-bCI">
+            <objects>
+                <viewController id="5Lj-zo-mXa" customClass="MenuViewController" customModule="FirebaseApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DjM-C0-bcV"/>
+                        <viewControllerLayoutGuide type="bottom" id="QiE-Nv-Yuc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TwR-LW-YlD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firebase Demo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0C-2C-aMO">
+                                <rect key="frame" x="103.5" y="294.5" width="168" height="29"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Replicode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1n-TN-Kxh">
+                                <rect key="frame" x="130.5" y="331.5" width="114" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tB-Fs-SOJ" customClass="RoundedWhiteButton" customModule="FirebaseApp" customModuleProvider="target">
+                                <rect key="frame" x="24" y="499" width="327" height="64"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="U9P-wi-2wQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                <state key="normal" title="Log In">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZwY-Cs-SYW" customClass="RoundedWhiteButton" customModule="FirebaseApp" customModuleProvider="target">
+                                <rect key="frame" x="24" y="579" width="327" height="64"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="1bv-Ne-xyP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="firebaselogo" translatesAutoresizingMaskIntoConstraints="NO" id="K2E-ZY-HZQ">
+                                <rect key="frame" x="137.5" y="170.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="K2E-ZY-HZQ" secondAttribute="height" multiplier="1:1" id="Dds-E7-4Y2"/>
+                                    <constraint firstAttribute="height" constant="100" id="zRn-xY-77J"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="ZwY-Cs-SYW" secondAttribute="bottom" constant="24" id="1Ix-A2-euU"/>
+                            <constraint firstItem="K2E-ZY-HZQ" firstAttribute="centerX" secondItem="OaN-2H-IS0" secondAttribute="centerX" id="27K-K2-xzO"/>
+                            <constraint firstItem="ZwY-Cs-SYW" firstAttribute="top" secondItem="8tB-Fs-SOJ" secondAttribute="bottom" constant="16" id="7lC-7a-ind"/>
+                            <constraint firstItem="j1n-TN-Kxh" firstAttribute="centerX" secondItem="TwR-LW-YlD" secondAttribute="centerX" id="9KN-mR-DSw"/>
+                            <constraint firstItem="t0C-2C-aMO" firstAttribute="centerX" secondItem="TwR-LW-YlD" secondAttribute="centerX" id="AEj-u9-p23"/>
+                            <constraint firstItem="j1n-TN-Kxh" firstAttribute="centerY" secondItem="OaN-2H-IS0" secondAttribute="centerY" id="aCI-5T-Ji1"/>
+                            <constraint firstItem="j1n-TN-Kxh" firstAttribute="top" secondItem="t0C-2C-aMO" secondAttribute="bottom" constant="8" id="gFN-Kg-AgV"/>
+                            <constraint firstItem="t0C-2C-aMO" firstAttribute="top" secondItem="K2E-ZY-HZQ" secondAttribute="bottom" constant="24" id="hPa-y5-kVe"/>
+                            <constraint firstAttribute="trailing" secondItem="ZwY-Cs-SYW" secondAttribute="trailing" constant="24" id="oRJ-Cq-u5p"/>
+                            <constraint firstItem="8tB-Fs-SOJ" firstAttribute="leading" secondItem="TwR-LW-YlD" secondAttribute="leading" constant="24" id="ub8-EQ-IVM"/>
+                            <constraint firstItem="ZwY-Cs-SYW" firstAttribute="leading" secondItem="TwR-LW-YlD" secondAttribute="leading" constant="24" id="xev-H0-dGz"/>
+                            <constraint firstAttribute="trailing" secondItem="8tB-Fs-SOJ" secondAttribute="trailing" constant="24" id="zKP-T7-X6R"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OaN-2H-IS0"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ckB-lI-gjk">
+                        <barButtonItem key="backBarButtonItem" title=" " id="5sD-0Z-NG3"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="loginButton" destination="8tB-Fs-SOJ" id="PFV-X7-rOl"/>
+                        <outlet property="signupButton" destination="ZwY-Cs-SYW" id="HUC-3i-9Qi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="roS-ak-qwi" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2734" y="125"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="firebaselogo" width="16" height="16"/>
+    </resources>
 </document>
