@@ -19,7 +19,6 @@
 		FAFF82ED218CEB6400882A6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF82EC218CEB6400882A6A /* AppDelegate.swift */; };
 		FAFF82EF218CEB6400882A6A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF82EE218CEB6400882A6A /* ViewController.swift */; };
 		FAFF82F2218CEB6400882A6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFF82F0218CEB6400882A6A /* Main.storyboard */; };
-		FAFF82F5218CEB6400882A6A /* Podcast.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAFF82F3218CEB6400882A6A /* Podcast.xcdatamodeld */; };
 		FAFF82F7218CEB6C00882A6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAFF82F6218CEB6C00882A6A /* Assets.xcassets */; };
 		FAFF82FA218CEB6C00882A6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFF82F8218CEB6C00882A6A /* LaunchScreen.storyboard */; };
 		FAFF8305218CEB6D00882A6A /* PodcastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF8304218CEB6D00882A6A /* PodcastTests.swift */; };
@@ -62,7 +61,6 @@
 		FAFF82EC218CEB6400882A6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAFF82EE218CEB6400882A6A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FAFF82F1218CEB6400882A6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FAFF82F4218CEB6400882A6A /* Podcast.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Podcast.xcdatamodel; sourceTree = "<group>"; };
 		FAFF82F6218CEB6C00882A6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAFF82F9218CEB6C00882A6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAFF82FB218CEB6C00882A6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 				FAFF82F6218CEB6C00882A6A /* Assets.xcassets */,
 				FAFF82F8218CEB6C00882A6A /* LaunchScreen.storyboard */,
 				FAFF82FB218CEB6C00882A6A /* Info.plist */,
-				FAFF82F3218CEB6400882A6A /* Podcast.xcdatamodeld */,
 			);
 			path = Podcast;
 			sourceTree = "<group>";
@@ -410,7 +407,6 @@
 				FA49932D218DD04F0021CFA3 /* Podcast.swift in Sources */,
 				FAFF82ED218CEB6400882A6A /* AppDelegate.swift in Sources */,
 				FAFF831E218CEC4300882A6A /* MainTabController.swift in Sources */,
-				FAFF82F5218CEB6400882A6A /* Podcast.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,15 +582,18 @@
 			baseConfigurationReference = 6847BD8DB3712F94D9BA0552 /* Pods-Podcast.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2NJP2H88TQ;
+				DEVELOPMENT_TEAM = 6ABCB58568;
 				INFOPLIST_FILE = Podcast/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fm.sharecast.Podcast;
+				PRODUCT_BUNDLE_IDENTIFIER = fm.sharecast.Podcast1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -605,15 +604,18 @@
 			baseConfigurationReference = CF9AB54079E0B319EAB460DF /* Pods-Podcast.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2NJP2H88TQ;
+				DEVELOPMENT_TEAM = 6ABCB58568;
 				INFOPLIST_FILE = Podcast/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fm.sharecast.Podcast;
+				PRODUCT_BUNDLE_IDENTIFIER = fm.sharecast.Podcast1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -741,19 +743,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		FAFF82F3218CEB6400882A6A /* Podcast.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				FAFF82F4218CEB6400882A6A /* Podcast.xcdatamodel */,
-			);
-			currentVersion = FAFF82F4218CEB6400882A6A /* Podcast.xcdatamodel */;
-			path = Podcast.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = FAFF82E1218CEB6400882A6A /* Project object */;
 }
