@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>887433449783-1bqftfr9frdp2skla8ai18sihvc1s6kb.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.887433449783-1bqftfr9frdp2skla8ai18sihvc1s6kb</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAyindG4P8cv9p3GE1dHVOYy0xkRSqKJ88</string>
+	<key>GCM_SENDER_ID</key>
+	<string>887433449783</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>fm.sharecast.Podcast1</string>
+	<key>PROJECT_ID</key>
+	<string>sharecast-c780f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sharecast-c780f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:887433449783:ios:cf6d54e2084b0be5</string>
+	<key>DATABASE_URL</key>
+	<string>https://sharecast-c780f.firebaseio.com</string>
+</dict>
+</plist>

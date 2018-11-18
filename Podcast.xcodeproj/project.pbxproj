@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50420F7321A013140030CDB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50420F7221A013140030CDB4 /* GoogleService-Info.plist */; };
+		50420F7721A083F80030CDB4 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50420F7621A083F80030CDB4 /* EntryViewController.swift */; };
+		50420F7921A089170030CDB4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50420F7821A089170030CDB4 /* SignUpViewController.swift */; };
+		50420F7B21A1113E0030CDB4 /* HilperExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50420F7A21A1113E0030CDB4 /* HilperExt.swift */; };
+		50420F9F21A122040030CDB4 /* RoundedWhiteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50420F9E21A122040030CDB4 /* RoundedWhiteButton.swift */; };
+		50420FA221A12AF30030CDB4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50420FA121A12AF30030CDB4 /* SignInViewController.swift */; };
 		9C44940753D94BD0785C9298 /* Pods_Podcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96503F0C3DF9B89F68700CAB /* Pods_Podcast.framework */; };
 		FA1AEC8E219414BD000B0882 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1AEC8D219414BD000B0882 /* PodcastCell.xib */; };
 		FA397ED52195D86900D33617 /* EpisodesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA397ED42195D86900D33617 /* EpisodesController.swift */; };
@@ -21,8 +27,6 @@
 		FAFF82F2218CEB6400882A6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFF82F0218CEB6400882A6A /* Main.storyboard */; };
 		FAFF82F7218CEB6C00882A6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAFF82F6218CEB6C00882A6A /* Assets.xcassets */; };
 		FAFF82FA218CEB6C00882A6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFF82F8218CEB6C00882A6A /* LaunchScreen.storyboard */; };
-		FAFF8305218CEB6D00882A6A /* PodcastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF8304218CEB6D00882A6A /* PodcastTests.swift */; };
-		FAFF8310218CEB6D00882A6A /* PodcastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF830F218CEB6D00882A6A /* PodcastUITests.swift */; };
 		FAFF831E218CEC4300882A6A /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF831D218CEC4300882A6A /* MainTabController.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +48,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		50420F7221A013140030CDB4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Controllers/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		50420F7621A083F80030CDB4 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
+		50420F7821A089170030CDB4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		50420F7A21A1113E0030CDB4 /* HilperExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HilperExt.swift; sourceTree = "<group>"; };
+		50420F9E21A122040030CDB4 /* RoundedWhiteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedWhiteButton.swift; sourceTree = "<group>"; };
+		50420FA121A12AF30030CDB4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		6847BD8DB3712F94D9BA0552 /* Pods-Podcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Podcast/Pods-Podcast.debug.xcconfig"; sourceTree = "<group>"; };
 		9190023BC87AACCDD01077AB /* Pods_PodcastUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PodcastUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96503F0C3DF9B89F68700CAB /* Pods_Podcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Podcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,19 +67,15 @@
 		FA49932C218DD04F0021CFA3 /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		FA49932F218E2C190021CFA3 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		FA8F8F412194D4CA00301EF6 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
-		FAFF82E9218CEB6400882A6A /* Podcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAFF82E9218CEB6400882A6A /* Podcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Podcast.app; path = "/Users/mohammedabalkhail/Desktop/Swift/ShareCast/build/Debug-iphoneos/Podcast.app"; sourceTree = "<absolute>"; };
 		FAFF82EC218CEB6400882A6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAFF82EE218CEB6400882A6A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FAFF82F1218CEB6400882A6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAFF82F6218CEB6C00882A6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAFF82F9218CEB6C00882A6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAFF82FB218CEB6C00882A6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAFF8300218CEB6D00882A6A /* PodcastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FAFF8304218CEB6D00882A6A /* PodcastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastTests.swift; sourceTree = "<group>"; };
-		FAFF8306218CEB6D00882A6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAFF830B218CEB6D00882A6A /* PodcastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FAFF830F218CEB6D00882A6A /* PodcastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastUITests.swift; sourceTree = "<group>"; };
-		FAFF8311218CEB6D00882A6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAFF8300218CEB6D00882A6A /* PodcastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = PodcastTests.xctest; path = "/Users/mohammedabalkhail/Desktop/Swift/ShareCast/build/Debug-iphoneos/PodcastTests.xctest"; sourceTree = "<absolute>"; };
+		FAFF830B218CEB6D00882A6A /* PodcastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = PodcastUITests.xctest; path = "/Users/mohammedabalkhail/Desktop/Swift/ShareCast/build/Debug-iphoneos/PodcastUITests.xctest"; sourceTree = "<absolute>"; };
 		FAFF831D218CEC4300882A6A /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +114,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		50420F7C21A1114E0030CDB4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				50420F7A21A1113E0030CDB4 /* HilperExt.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		50420FA021A1229C0030CDB4 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				FAFF82F6218CEB6C00882A6A /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		50B99E38725A014450D57A4E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +145,7 @@
 			children = (
 				FA1AEC8D219414BD000B0882 /* PodcastCell.xib */,
 				FA8F8F412194D4CA00301EF6 /* PodcastCell.swift */,
+				50420F9E21A122040030CDB4 /* RoundedWhiteButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -134,6 +157,9 @@
 				FA499329218DCD3D0021CFA3 /* PodcastSearchController.swift */,
 				FAFF82EE218CEB6400882A6A /* ViewController.swift */,
 				FA397ED42195D86900D33617 /* EpisodesController.swift */,
+				50420F7621A083F80030CDB4 /* EntryViewController.swift */,
+				50420F7821A089170030CDB4 /* SignUpViewController.swift */,
+				50420FA121A12AF30030CDB4 /* SignInViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -160,56 +186,27 @@
 			isa = PBXGroup;
 			children = (
 				FAFF82EB218CEB6400882A6A /* Podcast */,
-				FAFF8303218CEB6D00882A6A /* PodcastTests */,
-				FAFF830E218CEB6D00882A6A /* PodcastUITests */,
-				FAFF82EA218CEB6400882A6A /* Products */,
 				2751A1839D3F986606B951A6 /* Pods */,
 				50B99E38725A014450D57A4E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		FAFF82EA218CEB6400882A6A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FAFF82E9218CEB6400882A6A /* Podcast.app */,
-				FAFF8300218CEB6D00882A6A /* PodcastTests.xctest */,
-				FAFF830B218CEB6D00882A6A /* PodcastUITests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		FAFF82EB218CEB6400882A6A /* Podcast */ = {
 			isa = PBXGroup;
 			children = (
+				50420FA021A1229C0030CDB4 /* Assets */,
+				50420F7C21A1114E0030CDB4 /* Extensions */,
 				FA49932E218E2BF30021CFA3 /* APIs */,
 				FA49932B218DD0330021CFA3 /* Models */,
 				FA1AEC8821940F92000B0882 /* Views */,
 				FA499328218DCD0D0021CFA3 /* Controllers */,
 				FAFF82EC218CEB6400882A6A /* AppDelegate.swift */,
 				FAFF82F0218CEB6400882A6A /* Main.storyboard */,
-				FAFF82F6218CEB6C00882A6A /* Assets.xcassets */,
 				FAFF82F8218CEB6C00882A6A /* LaunchScreen.storyboard */,
 				FAFF82FB218CEB6C00882A6A /* Info.plist */,
+				50420F7221A013140030CDB4 /* GoogleService-Info.plist */,
 			);
 			path = Podcast;
-			sourceTree = "<group>";
-		};
-		FAFF8303218CEB6D00882A6A /* PodcastTests */ = {
-			isa = PBXGroup;
-			children = (
-				FAFF8304218CEB6D00882A6A /* PodcastTests.swift */,
-				FAFF8306218CEB6D00882A6A /* Info.plist */,
-			);
-			path = PodcastTests;
-			sourceTree = "<group>";
-		};
-		FAFF830E218CEB6D00882A6A /* PodcastUITests */ = {
-			isa = PBXGroup;
-			children = (
-				FAFF830F218CEB6D00882A6A /* PodcastUITests.swift */,
-				FAFF8311218CEB6D00882A6A /* Info.plist */,
-			);
-			path = PodcastUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +221,7 @@
 				FAFF82E6218CEB6400882A6A /* Frameworks */,
 				FAFF82E7218CEB6400882A6A /* Resources */,
 				50FA32CE9C9358BE8A795FF3 /* [CP] Embed Pods Frameworks */,
+				9ABF65B1CD319BB91AD0084E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -302,7 +300,7 @@
 				Base,
 			);
 			mainGroup = FAFF82E0218CEB6400882A6A;
-			productRefGroup = FAFF82EA218CEB6400882A6A /* Products */;
+			productRefGroup = FAFF82E0218CEB6400882A6A;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -320,6 +318,7 @@
 			files = (
 				FAFF82FA218CEB6C00882A6A /* LaunchScreen.storyboard in Resources */,
 				FAFF82F7218CEB6C00882A6A /* Assets.xcassets in Resources */,
+				50420F7321A013140030CDB4 /* GoogleService-Info.plist in Resources */,
 				FA1AEC8E219414BD000B0882 /* PodcastCell.xib in Resources */,
 				FAFF82F2218CEB6400882A6A /* Main.storyboard in Resources */,
 			);
@@ -347,25 +346,89 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FeedKit/FeedKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FeedKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9ABF65B1CD319BB91AD0084E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAnonymousAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseFacebookAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebasePhoneAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseTwitterAuthUI.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAnonymousAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseFacebookAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseGoogleAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebasePhoneAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseTwitterAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6B23A841E5CD2B417D2ECBE /* [CP] Check Pods Manifest.lock */ = {
@@ -373,15 +436,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Podcast-checkManifestLockResult.txt",
 			);
@@ -403,10 +462,15 @@
 				FA8F8F422194D4CA00301EF6 /* PodcastCell.swift in Sources */,
 				FA397ED52195D86900D33617 /* EpisodesController.swift in Sources */,
 				FA397ED92195E68E00D33617 /* Episode.swift in Sources */,
+				50420F7921A089170030CDB4 /* SignUpViewController.swift in Sources */,
+				50420F7B21A1113E0030CDB4 /* HilperExt.swift in Sources */,
+				50420FA221A12AF30030CDB4 /* SignInViewController.swift in Sources */,
+				50420F7721A083F80030CDB4 /* EntryViewController.swift in Sources */,
 				FAFF82EF218CEB6400882A6A /* ViewController.swift in Sources */,
 				FA49932D218DD04F0021CFA3 /* Podcast.swift in Sources */,
 				FAFF82ED218CEB6400882A6A /* AppDelegate.swift in Sources */,
 				FAFF831E218CEC4300882A6A /* MainTabController.swift in Sources */,
+				50420F9F21A122040030CDB4 /* RoundedWhiteButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +478,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAFF8305218CEB6D00882A6A /* PodcastTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +485,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAFF8310218CEB6D00882A6A /* PodcastUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

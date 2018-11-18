@@ -8,18 +8,21 @@
 
 import UIKit
 import CoreData
+import Firebase
+
+let primaryColor = UIColor(red: 60/255, green: 133/255, blue: 198/255, alpha: 1)
+let secondaryColor = UIColor(red: 168/255, green: 153/255, blue: 153/255, alpha: 1)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    // configuration stuff 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        window = UIWindow()
-        window?.makeKeyAndVisible()
-        window?.rootViewController = MainTabBarController()
+
+        FirebaseApp.configure()
         
         return true
     }
