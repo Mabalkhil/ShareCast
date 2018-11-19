@@ -13,7 +13,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBar.tintColor = .red
+        tabBar.tintColor = .blue
         setupViewControllers()
         
         
@@ -29,10 +29,10 @@ class MainTabBarController: UITabBarController {
         
         
         viewControllers = [
-            searchNavController
+             searchNavController,
 //            ,
-//            favoritesNavController,
-//            downloadsController
+//             favoritesNavController,
+  //           downloadsController
         ]
     }
     //MARK:- Helper Function
