@@ -20,7 +20,7 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
         setupTableView()
         setupSearchBar()
-        
+
     }
     // Adding cells step.1: register a cell for tableview
     //MARK:- Setup Work
