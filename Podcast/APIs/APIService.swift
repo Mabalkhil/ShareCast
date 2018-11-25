@@ -8,9 +8,35 @@
 
 import Foundation
 import Alamofire
+import FeedKit
+
 class APIService {
     // Signleton Object
     static let shared = APIService()
+    
+    func fetchEpisodes(feedUrl: String, completionHandler: @escaping ([Episode]) -> ()){
+        
+        let secureFeedURL = feedUrl.contains("https") ? feedUrl: feedUrl.replacingOccurrences(of: "http", with: "https")
+        
+        guard let url = URL(string: secureFeedURL) else { return }
+        
+        let parser = FeedParser(URL: url)
+        
+        parser.parseAsync { (result) in
+            
+            if let err = result.error{
+                print("failed to parse XML", err)
+                return
+            }
+            
+            guard let feed = result.rssFeed else { return }
+            let episodes = feed.toEpisodes()
+            completionHandler(episodes)
+            
+            }
+        }
+        
+    
     
     func fetchPodcast(searchText: String, completionHandeler: @escaping ([Podcast]) -> ()) {
         print("searching for podcast")
