@@ -9,7 +9,10 @@
 import UIKit
 import AVKit
 
+
 class PlayerDetailsView: UIView {
+    
+    
     
     var episode: Episode! {
         didSet{
@@ -23,14 +26,42 @@ class PlayerDetailsView: UIView {
         }
     }
     
+    
+    fileprivate func observePlayerCurrentTime() {
+        let interval = CMTimeMake(value: 1, timescale: 2)
+        
+        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { (time) in
+           
+            
+            self.currentTimeLabel.text = time.toDisplayString()
+            let durationTime = self.player.currentItem?.duration
+            self.durationLabel.text = durationTime?.toDisplayString()
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        observePlayerCurrentTime()
+        
+        let time = CMTimeMake(value: 1, timescale: 3)
+        let times = [NSValue(time: time)]
+        
+        player.addBoundaryTimeObserver(forTimes: times, queue: .main){
+            
+        }
+        
+        
+    }
+    
+    
+    
     fileprivate func playEpisode(){
-        
-        
         guard let url = URL(string: episode.streamURL) else { return }
         let playerItem = AVPlayerItem(url: url)
+        
         player.replaceCurrentItem(with: playerItem)
         player.play()
-      
         
     }
     
@@ -39,6 +70,12 @@ class PlayerDetailsView: UIView {
         avPlayer.automaticallyWaitsToMinimizeStalling = false
         return avPlayer
     }()
+    
+//    let player: AVAudioPlayer = {
+//                let avPlayer = AVAudioPlayer()
+//                avPlayer.automaticallyWaitsToMinimizeStalling = false
+//                return avPlayer
+//            }
     
     
    
@@ -58,25 +95,120 @@ class PlayerDetailsView: UIView {
            player.pause()
             playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         }
-        //player.playImmediately(atRate: 1.5)
+        
     }
     
     
     @IBAction func handleDismiss(_ sender: Any) {
         self.removeFromSuperview()
+        self.player.pause()
     }
     
     @IBOutlet weak var episodeImageView: UIImageView!
     
     @IBOutlet weak var titleLabel: UILabel!{
         didSet{
-            
             titleLabel.numberOfLines = 2
         }
     }
     
     @IBOutlet weak var authorLabel: UILabel!
     
+    @IBOutlet weak var currentTimeSlider: UISlider!
+    
+    
+    @IBOutlet weak var durationLabel: UILabel!
+    
+    
+    @IBOutlet weak var currentTimeLabel: UILabel!
+    
+    
+    
+    
+    @IBOutlet weak var speedUpButton: UIButton!{
+        didSet{
+            speedUpButton.addTarget(self, action: #selector(handleSpeedUp), for: .touchUpInside)
+        }
+    }
+    
+    
+    @objc func handleSpeedUp(){
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        
+        alert.addAction(UIAlertAction(title: "X2", style: .default) { _ in
+            self.player.playImmediately(atRate: 2.0)
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        })
+        
+        alert.addAction(UIAlertAction(title: "X1.5", style: .default) { _ in
+            self.player.playImmediately(atRate: 1.5)
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        })
+        
+        alert.addAction(UIAlertAction(title: "X1", style: .default) { _ in
+            self.player.playImmediately(atRate: 1.0)
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        })
+        
+        alert.addAction(UIAlertAction(title: "X0.5", style: .default) { _ in
+            self.player.playImmediately(atRate: 0.5)
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        })
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+           // let alertWindow = UIWindow()
+            //alertWindow.windowLevel = UIWindow.Level.alert - 1;
+        })
+        
+        //let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindow.Level.alert + 1;
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    @IBOutlet weak var timeMarkButton: UIButton!{
+        didSet{
+            timeMarkButton.addTarget(self, action: #selector(handleTimeMark), for: .touchUpInside)
+        }
+    }
+    
+    
+    @objc func handleTimeMark(){
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        alert.addAction(UIAlertAction(title: "Minute 0:00", style: .default) { _ in
+            self.player.seek(to: CMTimeMakeWithSeconds(0, preferredTimescale: 1))
+        })
+        
+        alert.addAction(UIAlertAction(title: "Minute 1:00", style: .default) { _ in
+            self.player.seek(to: CMTimeMakeWithSeconds(60, preferredTimescale: 1))
+        })
+        
+        alert.addAction(UIAlertAction(title: "Minute 1:10", style: .default) { _ in
+            self.player.seek(to: CMTimeMakeWithSeconds(70, preferredTimescale: 1))
+        })
+        
+        alert.addAction(UIAlertAction(title: "Minute 2:30", style: .default) { _ in
+            self.player.seek(to: CMTimeMakeWithSeconds(150, preferredTimescale: 1))
+        })
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+           // alertWindow.windowLevel = UIWindow.Level.alert - 1;
+        })
+        
+        
+        //let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindow.Level.alert + 1;
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alert, animated: true)
+        
+    }
     
     
 }
