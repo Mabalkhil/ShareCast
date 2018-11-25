@@ -13,6 +13,7 @@
 		3723A1FB21A9D18400D5FAE9 /* RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A1FA21A9D18400D5FAE9 /* RSSFeed.swift */; };
 		3723A20121A9EC9000D5FAE9 /* playerDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A20021A9EC9000D5FAE9 /* playerDetailsView.swift */; };
 		3723A20321A9EDD600D5FAE9 /* PlayerDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3723A20221A9EDD600D5FAE9 /* PlayerDetailsView.xib */; };
+		3723A20521AB373A00D5FAE9 /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A20421AB373A00D5FAE9 /* CMTime.swift */; };
 		50420F7321A013140030CDB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50420F7221A013140030CDB4 /* GoogleService-Info.plist */; };
 		50420F7721A083F80030CDB4 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50420F7621A083F80030CDB4 /* EntryViewController.swift */; };
 		50420F7921A089170030CDB4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50420F7821A089170030CDB4 /* SignUpViewController.swift */; };
@@ -63,6 +64,7 @@
 		3723A1FA21A9D18400D5FAE9 /* RSSFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeed.swift; sourceTree = "<group>"; };
 		3723A20021A9EC9000D5FAE9 /* playerDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playerDetailsView.swift; sourceTree = "<group>"; };
 		3723A20221A9EDD600D5FAE9 /* PlayerDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerDetailsView.xib; sourceTree = "<group>"; };
+		3723A20421AB373A00D5FAE9 /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
 		50420F7221A013140030CDB4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Controllers/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50420F7621A083F80030CDB4 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		50420F7821A089170030CDB4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				50420F7A21A1113E0030CDB4 /* HilperExt.swift */,
 				3723A1F821A9CDD100D5FAE9 /* String.swift */,
 				3723A1FA21A9D18400D5FAE9 /* RSSFeed.swift */,
+				3723A20421AB373A00D5FAE9 /* CMTime.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				FAFF82ED218CEB6400882A6A /* AppDelegate.swift in Sources */,
 				3723A1F921A9CDD100D5FAE9 /* String.swift in Sources */,
 				FAFF831E218CEC4300882A6A /* MainTabController.swift in Sources */,
+				3723A20521AB373A00D5FAE9 /* CMTime.swift in Sources */,
 				50420F9F21A122040030CDB4 /* RoundedWhiteButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

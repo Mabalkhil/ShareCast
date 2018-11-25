@@ -79,14 +79,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="xiC-bi-Zbj">
-                            <rect key="frame" x="0.0" y="469" width="327" height="207"/>
+                            <rect key="frame" x="0.0" y="469" width="327" height="167"/>
                             <subviews>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fOb-La-6zC">
-                                    <rect key="frame" x="0.0" y="0.0" width="48.666666666666664" height="207"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="48.666666666666664" height="167"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kk9-dQ-dms">
-                                    <rect key="frame" x="48.666666666666671" y="0.0" width="44" height="207"/>
+                                    <rect key="frame" x="48.666666666666671" y="0.0" width="44" height="167"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="44" id="hIw-tV-g5m"/>
                                     </constraints>
@@ -94,11 +94,11 @@
                                     <state key="normal" image="backward"/>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sIz-E6-Gm4">
-                                    <rect key="frame" x="92.666666666666671" y="0.0" width="49.000000000000014" height="207"/>
+                                    <rect key="frame" x="92.666666666666671" y="0.0" width="49.000000000000014" height="167"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YvM-G5-ofk">
-                                    <rect key="frame" x="141.66666666666666" y="0.0" width="66" height="207"/>
+                                    <rect key="frame" x="141.66666666666666" y="0.0" width="66" height="167"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="66" id="4t3-W8-T83"/>
                                     </constraints>
@@ -106,11 +106,11 @@
                                     <state key="normal" image="play"/>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L9Z-DB-f6D">
-                                    <rect key="frame" x="207.66666666666666" y="0.0" width="26.666666666666657" height="207"/>
+                                    <rect key="frame" x="207.66666666666666" y="0.0" width="26.666666666666657" height="167"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nwc-q2-Dir">
-                                    <rect key="frame" x="234.33333333333331" y="0.0" width="44" height="207"/>
+                                    <rect key="frame" x="234.33333333333331" y="0.0" width="44" height="167"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="44" id="865-Pl-XBw"/>
                                     </constraints>
@@ -118,9 +118,33 @@
                                     <state key="normal" image="forward"/>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LUO-8a-uJs">
-                                    <rect key="frame" x="278.33333333333331" y="0.0" width="48.666666666666686" height="207"/>
+                                    <rect key="frame" x="278.33333333333331" y="0.0" width="48.666666666666686" height="167"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UKJ-H5-SWR">
+                            <rect key="frame" x="0.0" y="636" width="327" height="40"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yWE-eV-R0L">
+                                    <rect key="frame" x="0.0" y="0.0" width="109" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="DB9-CF-Zib"/>
+                                        <constraint firstAttribute="width" constant="30" id="rwa-om-60N"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="speedUp"/>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DDZ-9M-5Fv">
+                                    <rect key="frame" x="109" y="0.0" width="109" height="40"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ef8-JK-XFk">
+                                    <rect key="frame" x="218" y="0.0" width="109" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="22" id="ztY-AM-rpq"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="timeMark"/>
+                                </button>
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ino-Ap-w9Z">
@@ -159,8 +183,13 @@
             <viewLayoutGuide key="safeArea" id="bAv-D0-bom"/>
             <connections>
                 <outlet property="authorLabel" destination="HnD-Fj-YaP" id="jVS-Zb-caM"/>
+                <outlet property="currentTimeLabel" destination="eL6-tY-t52" id="lAK-v2-Zhf"/>
+                <outlet property="currentTimeSlider" destination="OI2-Mo-MdL" id="exV-K4-kJB"/>
+                <outlet property="durationLabel" destination="Cbf-2E-7uM" id="tnv-fW-hms"/>
                 <outlet property="episodeImageView" destination="Z0T-TY-JL9" id="RKg-Cs-GDu"/>
                 <outlet property="playPauseButton" destination="YvM-G5-ofk" id="k50-U6-b8o"/>
+                <outlet property="speedUpButton" destination="yWE-eV-R0L" id="F1I-bK-ZFX"/>
+                <outlet property="timeMarkButton" destination="Ef8-JK-XFk" id="yrh-9u-sPo"/>
                 <outlet property="titleLabel" destination="bFd-e1-8YD" id="ni1-pE-WN4"/>
             </connections>
             <point key="canvasLocation" x="265" y="-93"/>
@@ -173,5 +202,7 @@
         <image name="forward" width="37.5" height="37.5"/>
         <image name="lowVolume" width="37.5" height="37.5"/>
         <image name="play" width="37.5" height="37.5"/>
+        <image name="speedUp" width="37.5" height="37.5"/>
+        <image name="timeMark" width="37.5" height="37.5"/>
     </resources>
 </document>
