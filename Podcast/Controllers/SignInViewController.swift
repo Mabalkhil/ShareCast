@@ -73,6 +73,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         } else {
             continueButton.alpha = 0.5
             continueButton.isEnabled = false
+            
         }
     }
     

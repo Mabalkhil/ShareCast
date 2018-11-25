@@ -21,11 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //Firebase configuration
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        window = UIWindow()
-        window?.makeKeyAndVisible()
-        window?.rootViewController = MainTabBarController()
-       
-        FirebaseApp.configure()
+        //        window = UIWindow()
+        //        window?.makeKeyAndVisible()
+        //        window?.rootViewController = MainTabBarController()
+        //
+       FirebaseApp.configure()
         
         return true
     }
