@@ -12,8 +12,6 @@ import AVKit
 
 class PlayerDetailsView: UIView {
     
-    
-    
     var episode: Episode! {
         didSet{
             titleLabel.text = episode.title
@@ -21,18 +19,13 @@ class PlayerDetailsView: UIView {
             playEpisode()
            guard let url = URL(string: episode.imageUrl ?? "") else { return }
             episodeImageView.sd_setImage(with: url)
-            
-            
         }
     }
     
     
     fileprivate func observePlayerCurrentTime() {
         let interval = CMTimeMake(value: 1, timescale: 2)
-        
         player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { (time) in
-           
-            
             self.currentTimeLabel.text = time.toDisplayString()
             let durationTime = self.player.currentItem?.duration
             self.durationLabel.text = durationTime?.toDisplayString()
@@ -41,17 +34,12 @@ class PlayerDetailsView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         observePlayerCurrentTime()
-        
         let time = CMTimeMake(value: 1, timescale: 3)
         let times = [NSValue(time: time)]
-        
         player.addBoundaryTimeObserver(forTimes: times, queue: .main){
             
         }
-        
-        
     }
     
     
@@ -59,7 +47,6 @@ class PlayerDetailsView: UIView {
     fileprivate func playEpisode(){
         guard let url = URL(string: episode.streamURL) else { return }
         let playerItem = AVPlayerItem(url: url)
-        
         player.replaceCurrentItem(with: playerItem)
         player.play()
         
@@ -71,13 +58,6 @@ class PlayerDetailsView: UIView {
         return avPlayer
     }()
     
-//    let player: AVAudioPlayer = {
-//                let avPlayer = AVAudioPlayer()
-//                avPlayer.automaticallyWaitsToMinimizeStalling = false
-//                return avPlayer
-//            }
-    
-    
    
     @IBOutlet weak var playPauseButton: UIButton!{
         didSet{
@@ -87,7 +67,6 @@ class PlayerDetailsView: UIView {
     }
     
     @objc func handlePlayPause(){
-        
         if player.timeControlStatus == .paused{
             player.play()
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
@@ -137,6 +116,7 @@ class PlayerDetailsView: UIView {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let alertWindow = UIWindow(frame: UIScreen.main.bounds)
         
+        
         alert.addAction(UIAlertAction(title: "X2", style: .default) { _ in
             self.player.playImmediately(atRate: 2.0)
             self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
@@ -180,35 +160,36 @@ class PlayerDetailsView: UIView {
     @objc func handleTimeMark(){
         let alertWindow = UIWindow(frame: UIScreen.main.bounds)
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
-        alert.addAction(UIAlertAction(title: "Minute 0:00", style: .default) { _ in
-            self.player.seek(to: CMTimeMakeWithSeconds(0, preferredTimescale: 1))
-        })
-        
-        alert.addAction(UIAlertAction(title: "Minute 1:00", style: .default) { _ in
-            self.player.seek(to: CMTimeMakeWithSeconds(60, preferredTimescale: 1))
-        })
-        
-        alert.addAction(UIAlertAction(title: "Minute 1:10", style: .default) { _ in
-            self.player.seek(to: CMTimeMakeWithSeconds(70, preferredTimescale: 1))
-        })
-        
-        alert.addAction(UIAlertAction(title: "Minute 2:30", style: .default) { _ in
-            self.player.seek(to: CMTimeMakeWithSeconds(150, preferredTimescale: 1))
-        })
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
-           // alertWindow.windowLevel = UIWindow.Level.alert - 1;
-        })
-        
-        
-        //let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        if (episode.timeStampLables.count-1 > 0 ) {
+            for i in stride(from: 0, through: episode.timeStampLables.count-1, by: 1){
+                let title = episode.timeStampLables[i]
+                let time  = episode.timeStamps[i]
+                let timeInSecondsList = time.split(whereSeparator: { $0 == ":" || $0 == " " })//.map { Double($0)!}
+                var timeInSeconds:Double = 0
+                if (timeInSecondsList.count == 3 ) {
+                    let hours = (Double(timeInSecondsList[0]) ?? 0.0 ) * 3600
+                    let minutes = (Double(timeInSecondsList[1])  ?? 0.0) * 60
+                    let seconds = (Double( timeInSecondsList[2])  ?? 0.0)
+                    timeInSeconds = hours + minutes + seconds
+                }
+                else {
+                    let minutes = (Double(timeInSecondsList[0])  ?? 0.0) * 60
+                    let seconds = (Double( timeInSecondsList[1])  ?? 0.0)
+                    timeInSeconds =  minutes + seconds
+                }
+                alert.addAction(UIAlertAction(title: title , style: .default) { _ in
+                    self.player.seek(to: CMTimeMakeWithSeconds(timeInSeconds, preferredTimescale: 1))
+                })
+            }
+        }
+        else {
+            alert.addAction(UIAlertAction(title: "No time marks for this episode" , style: .default) { _ in
+                self.player.seek(to: CMTimeMakeWithSeconds(0, preferredTimescale: 1))
+            })
+        }
         alertWindow.rootViewController = UIViewController()
         alertWindow.windowLevel = UIWindow.Level.alert + 1;
         alertWindow.makeKeyAndVisible()
         alertWindow.rootViewController?.present(alert, animated: true)
-        
     }
-    
-    
 }

@@ -23,6 +23,8 @@ class EpisodesController: UITableViewController {
     
     fileprivate func fetchEpisode(){
         guard let feedURL = podcast?.feedUrl else { return }
+        print("The is the RSS")
+        print(feedURL)
         
         APIService.shared.fetchEpisodes(feedUrl: feedURL) { (episodes) in
             self.episodes = episodes
