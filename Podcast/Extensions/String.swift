@@ -14,4 +14,37 @@ extension String{
     
     return self.contains("https") ? self : self.replacingOccurrences(of: "http", with: "https")
     }
+    
+    func timeStamps() -> [String]
+    {
+        if let regex = try? NSRegularExpression(pattern: "[0-5]?:[0-5][0-59]:[0-59][0-59][^<a>]")
+        {
+            let string = self as NSString
+            
+            return regex.matches(in: self, options: [], range: NSRange(location: 0, length: string.length)).map {
+                string.substring(with: $0.range)
+            }
+        }
+        
+        return []
+    }
+    
+    
+    
+    func timeStampsLabled() -> [String]
+    {
+        if let regex = try? NSRegularExpression(pattern: "[0-5]?:[0-5][0-59]:[0-59][0-59]+\\s+[[\\w+|[-]|[<b>]|[<strong>]]+\\s+]*")
+        {
+            let string = self as NSString
+            
+            return regex.matches(in: self, options: [], range: NSRange(location: 0, length: string.length)).map {
+                string.substring(with: $0.range)
+            }
+        }
+        
+        return []
+    }
+    
+    
+    
 }
