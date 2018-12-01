@@ -3,6 +3,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target 'Podcast' do
+	pod 'ACBAVPlayer'
 	# almofire pods
     pod 'Alamofire', '~> 4.7'
     pod 'SDWebImage', '~> 4.0'
