@@ -34,11 +34,14 @@
                                 <constraint firstAttribute="width" secondItem="Z0T-TY-JL9" secondAttribute="height" id="Yj7-Ga-r7N"/>
                             </constraints>
                         </imageView>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="OI2-Mo-MdL">
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="OI2-Mo-MdL">
                             <rect key="frame" x="-2" y="371" width="331" height="37"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="36" id="Z6q-RH-Uzd"/>
                             </constraints>
+                            <connections>
+                                <action selector="handleCurrentTimeSliderChange:" destination="ZMC-Lm-Sz8" eventType="valueChanged" id="h85-gI-QOh"/>
+                            </connections>
                         </slider>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9FZ-cn-bCv">
                             <rect key="frame" x="0.0" y="407" width="327" height="22"/>
@@ -92,6 +95,9 @@
                                     </constraints>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" image="backward"/>
+                                    <connections>
+                                        <action selector="handleRewind:" destination="ZMC-Lm-Sz8" eventType="touchUpInside" id="Pnz-iL-z39"/>
+                                    </connections>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sIz-E6-Gm4">
                                     <rect key="frame" x="92.666666666666671" y="0.0" width="49.000000000000014" height="167"/>
@@ -116,6 +122,9 @@
                                     </constraints>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" image="forward"/>
+                                    <connections>
+                                        <action selector="handleFastForword:" destination="ZMC-Lm-Sz8" eventType="touchUpInside" id="L4x-by-rhs"/>
+                                    </connections>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LUO-8a-uJs">
                                     <rect key="frame" x="278.33333333333331" y="0.0" width="48.666666666666686" height="167"/>
@@ -136,6 +145,13 @@
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DDZ-9M-5Fv">
                                     <rect key="frame" x="109" y="0.0" width="109" height="40"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G18-nX-zIB">
+                                            <rect key="frame" x="-2" y="2" width="86" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="SmartSpeed"/>
+                                        </button>
+                                    </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ef8-JK-XFk">
@@ -161,6 +177,9 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="EZz-h2-0Yt"/>
                                     </constraints>
+                                    <connections>
+                                        <action selector="handleVolumeChange:" destination="ZMC-Lm-Sz8" eventType="valueChanged" id="EDW-78-YaQ"/>
+                                    </connections>
                                 </slider>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HighVolume" translatesAutoresizingMaskIntoConstraints="NO" id="9EU-uo-Sop">
                                     <rect key="frame" x="293" y="0.0" width="34" height="34"/>
@@ -188,6 +207,7 @@
                 <outlet property="durationLabel" destination="Cbf-2E-7uM" id="tnv-fW-hms"/>
                 <outlet property="episodeImageView" destination="Z0T-TY-JL9" id="RKg-Cs-GDu"/>
                 <outlet property="playPauseButton" destination="YvM-G5-ofk" id="k50-U6-b8o"/>
+                <outlet property="smartSpeedButton" destination="G18-nX-zIB" id="Wte-7N-VBI"/>
                 <outlet property="speedUpButton" destination="yWE-eV-R0L" id="F1I-bK-ZFX"/>
                 <outlet property="timeMarkButton" destination="Ef8-JK-XFk" id="yrh-9u-sPo"/>
                 <outlet property="titleLabel" destination="bFd-e1-8YD" id="ni1-pE-WN4"/>
@@ -196,13 +216,13 @@
         </view>
     </objects>
     <resources>
-        <image name="HighVolume" width="37.5" height="37.5"/>
+        <image name="HighVolume" width="25" height="25"/>
         <image name="appicon" width="60" height="60"/>
-        <image name="backward" width="37.5" height="37.5"/>
-        <image name="forward" width="37.5" height="37.5"/>
-        <image name="lowVolume" width="37.5" height="37.5"/>
-        <image name="play" width="37.5" height="37.5"/>
-        <image name="speedUp" width="37.5" height="37.5"/>
-        <image name="timeMark" width="37.5" height="37.5"/>
+        <image name="backward" width="25" height="25"/>
+        <image name="forward" width="25" height="25"/>
+        <image name="lowVolume" width="25" height="25"/>
+        <image name="play" width="25" height="25"/>
+        <image name="speedUp" width="50" height="50"/>
+        <image name="timeMark" width="50" height="50"/>
     </resources>
 </document>

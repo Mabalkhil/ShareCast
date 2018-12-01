@@ -1,0 +1,6 @@
+framework module ACBAVPlayer {
+  umbrella header "ACBAVPlayer-umbrella.h"
+
+  export *
+  module * { export * }
+}

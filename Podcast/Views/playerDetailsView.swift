@@ -8,7 +8,7 @@
 
 import UIKit
 import AVKit
-
+import ACBAVPlayer
 
 class PlayerDetailsView: UIView {
     
@@ -22,16 +22,29 @@ class PlayerDetailsView: UIView {
         }
     }
     
-    
+    //MARK:- Showing Progress
+    //this function for displaying the progress (time)
     fileprivate func observePlayerCurrentTime() {
         let interval = CMTimeMake(value: 1, timescale: 2)
         player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { (time) in
             self.currentTimeLabel.text = time.toDisplayString()
             let durationTime = self.player.currentItem?.duration
             self.durationLabel.text = durationTime?.toDisplayString()
+            self.updateCurrentTimeSlider()
         }
     }
     
+    
+    //this function for displaying the progress (slider)
+    fileprivate func updateCurrentTimeSlider() {
+        
+        let currentTimeSeconds = CMTimeGetSeconds(player.currentTime())
+        let durationSeconds = CMTimeGetSeconds(player.currentItem?.duration ?? CMTimeMake(value: 1,timescale: 1))
+        let percentage = currentTimeSeconds / durationSeconds
+        self.currentTimeSlider.value = Float(percentage)
+    }
+    
+    //??
     override func awakeFromNib() {
         super.awakeFromNib()
         observePlayerCurrentTime()
@@ -43,22 +56,27 @@ class PlayerDetailsView: UIView {
     }
     
     
-    
+    //this function to start playing when an episode is selected
     fileprivate func playEpisode(){
         guard let url = URL(string: episode.streamURL) else { return }
         let playerItem = AVPlayerItem(url: url)
+        
+        player.isMeteringEnabled = true
         player.replaceCurrentItem(with: playerItem)
         player.play()
         
     }
     
+    //MARK:- Player Declaration
+    //declaring the player
     let player: AVPlayer = {
         let avPlayer = AVPlayer()
         avPlayer.automaticallyWaitsToMinimizeStalling = false
         return avPlayer
     }()
     
-   
+    //MARK:- Play & Pause
+   //the pause button
     @IBOutlet weak var playPauseButton: UIButton!{
         didSet{
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
@@ -77,14 +95,58 @@ class PlayerDetailsView: UIView {
         
     }
     
+    //MARK:- Other Playing related stuff
     
+    //controlling playing by sliding the progress bar
+    @IBAction func handleCurrentTimeSliderChange(_ sender: Any) {
+        
+        let percentage = currentTimeSlider.value
+        guard let duration = player.currentItem?.duration else { return }
+        let durationInSeconds = CMTimeGetSeconds(duration)
+        let seekTimeInSeconds = Float64(percentage) * durationInSeconds
+        let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1)
+        player.seek(to: seekTime)
+        player.play()
+        
+    }
+    
+    //rewind button
+    @IBAction func handleRewind(_ sender: Any) {
+        
+        seekToCurrentTime(delta: -15)
+    }
+    
+    //forword button
+    @IBAction func handleFastForword(_ sender: Any) {
+        
+        seekToCurrentTime(delta: 15)
+        
+    }
+    
+    //rewinding and forwording episode by 15 seconds
+    fileprivate func seekToCurrentTime(delta: Int64){
+        
+        let fifteenSeconds = CMTimeMake(value: delta, timescale: 1)
+        let seekTime = CMTimeAdd(player.currentTime(), fifteenSeconds)
+        player.seek(to: seekTime)
+        
+    }
+    
+    //controlling volume
+    @IBAction func handleVolumeChange(_ sender: UISlider) {
+        player.volume = sender.value
+    }
+    
+    
+    
+    //Dismiss Button
     @IBAction func handleDismiss(_ sender: Any) {
         self.removeFromSuperview()
-        self.player.pause()
+        //self.player.pause()
+        player.stop()
     }
     
     @IBOutlet weak var episodeImageView: UIImageView!
-    
     @IBOutlet weak var titleLabel: UILabel!{
         didSet{
             titleLabel.numberOfLines = 2
@@ -92,17 +154,12 @@ class PlayerDetailsView: UIView {
     }
     
     @IBOutlet weak var authorLabel: UILabel!
-    
     @IBOutlet weak var currentTimeSlider: UISlider!
-    
-    
     @IBOutlet weak var durationLabel: UILabel!
-    
-    
     @IBOutlet weak var currentTimeLabel: UILabel!
     
     
-    
+    //MARK:- Voice Boost
     
     @IBOutlet weak var speedUpButton: UIButton!{
         didSet{
@@ -150,6 +207,8 @@ class PlayerDetailsView: UIView {
     }
     
     
+    //MARK:- Time Mark
+    
     @IBOutlet weak var timeMarkButton: UIButton!{
         didSet{
             timeMarkButton.addTarget(self, action: #selector(handleTimeMark), for: .touchUpInside)
@@ -183,13 +242,54 @@ class PlayerDetailsView: UIView {
             }
         }
         else {
-            alert.addAction(UIAlertAction(title: "No time marks for this episode" , style: .default) { _ in
-                self.player.seek(to: CMTimeMakeWithSeconds(0, preferredTimescale: 1))
-            })
+            alert.addAction(UIAlertAction(title: "No time marks for this episode" , style: .cancel))
         }
         alertWindow.rootViewController = UIViewController()
         alertWindow.windowLevel = UIWindow.Level.alert + 1;
         alertWindow.makeKeyAndVisible()
         alertWindow.rootViewController?.present(alert, animated: true)
     }
+    
+    
+    
+    //MARK:- Smart Speed
+    
+    let decibelThreshold = Float(-35)
+    let defaultPlaybackRate = 1
+    let sampleRate = 0.1
+    var skippedSeconds = 0.0
+    
+
+    //smart speed button
+    @IBOutlet weak var smartSpeedButton: UIButton!{
+        didSet{
+            smartSpeedButton.addTarget(self, action: #selector(callingTimer), for: .touchUpInside)
+                    }
+    }
+    
+    //calling findSilences function every 0.1 seconds
+    @objc func callingTimer() {
+        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(findSilences), userInfo: nil, repeats: true)
+    }
+    
+    //finding the silences in episode and increase speed to 3
+    //NOTE: it is still not working, the averagePower is always ZERO
+    @objc func findSilences() {
+        guard player.isPlaying == true else { return }
+        player.updateMeters()
+        
+        let averagePower = player.averagePower(forChannel: 0)
+        
+        //print(player.averagePowerInLinearForm(forChannel: 1))
+        if averagePower < decibelThreshold {
+            self.player.playImmediately(atRate: 3)
+            skippedSeconds += sampleRate - (sampleRate / 3)
+        } else {
+            self.player.playImmediately(atRate: 1)
+        }
+    }
+    
+    
+    
+    
 }
