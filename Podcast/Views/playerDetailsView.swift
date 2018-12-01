@@ -15,7 +15,7 @@ class PlayerDetailsView: UIView {
     var episode: Episode! {
         didSet{
             titleLabel.text = episode.title
-            authorLabel.text = episode.author
+         //   authorLabel.text = episode.author
             playEpisode()
            guard let url = URL(string: episode.imageUrl ?? "") else { return }
             episodeImageView.sd_setImage(with: url)
@@ -61,7 +61,7 @@ class PlayerDetailsView: UIView {
    
     @IBOutlet weak var playPauseButton: UIButton!{
         didSet{
-            playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            playPauseButton.setImage(#imageLiteral(resourceName: "Pause"), for: .normal)
             playPauseButton.addTarget(self, action: #selector(handlePlayPause), for: .touchUpInside)
         }
     }
@@ -69,19 +69,19 @@ class PlayerDetailsView: UIView {
     @objc func handlePlayPause(){
         if player.timeControlStatus == .paused{
             player.play()
-            playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            playPauseButton.setImage(#imageLiteral(resourceName: "Pause"), for: .normal)
         }else{
            player.pause()
-            playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            playPauseButton.setImage(#imageLiteral(resourceName: "Play"), for: .normal)
         }
         
     }
     
     
-    @IBAction func handleDismiss(_ sender: Any) {
-        self.removeFromSuperview()
-        self.player.pause()
-    }
+//    @IBAction func handleDismiss(_ sender: Any) {
+//        self.removeFromSuperview()
+//        self.player.pause()
+//    }
     
     @IBOutlet weak var episodeImageView: UIImageView!
     
@@ -91,7 +91,7 @@ class PlayerDetailsView: UIView {
         }
     }
     
-    @IBOutlet weak var authorLabel: UILabel!
+ //   @IBOutlet weak var authorLabel: UILabel!
     
     @IBOutlet weak var currentTimeSlider: UISlider!
     
@@ -150,11 +150,11 @@ class PlayerDetailsView: UIView {
     }
     
     
-    @IBOutlet weak var timeMarkButton: UIButton!{
-        didSet{
-            timeMarkButton.addTarget(self, action: #selector(handleTimeMark), for: .touchUpInside)
-        }
-    }
+//    @IBOutlet weak var timeMarkButton: UIButton!{
+//        didSet{
+//            timeMarkButton.addTarget(self, action: #selector(handleTimeMark), for: .touchUpInside)
+//        }
+//    }
     
     
     @objc func handleTimeMark(){
