@@ -28,6 +28,11 @@ class PodcastCell: UITableViewCell {
 //                    self.podcastImageView.image = UIImage(data: data)
 //                }
 //            }.resume()
+            podcastImageView.layer.borderWidth = 1
+            podcastImageView.layer.masksToBounds = false
+            podcastImageView.layer.cornerRadius = podcastImageView.frame.height/2
+            podcastImageView.clipsToBounds = true
+      
             podcastImageView.sd_setImage(with: url, completed: nil)
         }
     }
