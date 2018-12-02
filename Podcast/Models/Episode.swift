@@ -31,7 +31,7 @@ struct Episode {
         self.imageUrl = feedItem.iTunes?.iTunesImage?.attributes?.href
        // print("This is the feed")
        // let item = "I made this wonderful pic last #chRistmas... #instagram #nofilter #snow #fun" //feedItem.description
-        let feedDescription = feedItem.description as! String
+        let feedDescription = (feedItem.description as! String?) ?? ""
         self.timeStampLables = feedDescription.timeStampsLabled()
         self.timeStamps = feedDescription.timeStamps()
         print(timeStamps )

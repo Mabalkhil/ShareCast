@@ -94,7 +94,7 @@ class PlayerDetailsView: UIView {
             playPauseButton.setImage(#imageLiteral(resourceName: "PAUSE-1"), for: .normal)
         }else{
             player.pause()
-            playPauseButton.setImage(#imageLiteral(resourceName: "PLAY"), for: .normal)
+            playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
            
         }
         
@@ -110,8 +110,8 @@ class PlayerDetailsView: UIView {
         let durationInSeconds = CMTimeGetSeconds(duration)
         let seekTimeInSeconds = Float64(percentage) * durationInSeconds
         let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1)
-        player.seek(to: seekTime)
-        player.play()
+        self.player.seek(to: seekTime)
+        //player.play()
         
     }
     
@@ -254,6 +254,7 @@ class PlayerDetailsView: UIView {
                     self.player.seek(to: CMTimeMakeWithSeconds(timeInSeconds, preferredTimescale: 1))
                 })
             }
+            alert.addAction(UIAlertAction(title: "cancel" , style: .cancel))
         }
         else {
             alert.addAction(UIAlertAction(title: "No time marks for this episode" , style: .cancel))
