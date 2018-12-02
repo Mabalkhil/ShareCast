@@ -18,6 +18,7 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupTableView()
         setupSearchBar()
 
@@ -30,8 +31,10 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate {
         //tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         self.definesPresentationContext = true // This will add navigation header for every controller you move to
         tableView.tableFooterView = UIView() // removes table lines
+        self.tableView.backgroundColor =  UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
         let nib = UINib(nibName: "PodcastCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: cellId)
+       
     }
     // Adding cells step.2: Determain the number of raws
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,6 +62,7 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate {
         label.text = "Please Enter a search term"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.textColor = .white 
         return label
     }
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -80,6 +84,8 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate {
         //adding the searchbar
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+ 
+        searchController.searchBar.barStyle = .black
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
     }
@@ -96,7 +102,7 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate {
         }
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 132
+        return 120
     }
 
 }

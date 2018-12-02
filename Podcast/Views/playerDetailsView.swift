@@ -10,14 +10,18 @@ import UIKit
 import AVKit
 import ACBAVPlayer
 
+
+
 class PlayerDetailsView: UIView {
+
+    
     
     var episode: Episode! {
         didSet{
             titleLabel.text = episode.title
-            authorLabel.text = episode.author
+//            authorLabel.text = episode.author
             playEpisode()
-           guard let url = URL(string: episode.imageUrl ?? "") else { return }
+            guard let url = URL(string: episode.imageUrl ?? "") else { return }
             episodeImageView.sd_setImage(with: url)
         }
     }
@@ -76,10 +80,10 @@ class PlayerDetailsView: UIView {
     }()
     
     //MARK:- Play & Pause
-   //the pause button
+    //the pause button
     @IBOutlet weak var playPauseButton: UIButton!{
         didSet{
-            playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            playPauseButton.setImage(#imageLiteral(resourceName: "PAUSE-1"), for: .normal)
             playPauseButton.addTarget(self, action: #selector(handlePlayPause), for: .touchUpInside)
         }
     }
@@ -87,10 +91,11 @@ class PlayerDetailsView: UIView {
     @objc func handlePlayPause(){
         if player.timeControlStatus == .paused{
             player.play()
-            playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            playPauseButton.setImage(#imageLiteral(resourceName: "PAUSE-1"), for: .normal)
         }else{
-           player.pause()
-            playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            player.pause()
+            playPauseButton.setImage(#imageLiteral(resourceName: "PLAY"), for: .normal)
+           
         }
         
     }
@@ -150,16 +155,18 @@ class PlayerDetailsView: UIView {
     @IBOutlet weak var titleLabel: UILabel!{
         didSet{
             titleLabel.numberOfLines = 2
+            
         }
     }
     
-    @IBOutlet weak var authorLabel: UILabel!
+ //   @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var currentTimeSlider: UISlider!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var currentTimeLabel: UILabel!
     
     
     //MARK:- Voice Boost
+    @IBOutlet weak var speedUpLabel: UILabel!
     
     @IBOutlet weak var speedUpButton: UIButton!{
         didSet{
@@ -167,55 +174,62 @@ class PlayerDetailsView: UIView {
         }
     }
     
-    
+    var count = 1
     @objc func handleSpeedUp(){
         
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
-        
-        
-        alert.addAction(UIAlertAction(title: "X2", style: .default) { _ in
-            self.player.playImmediately(atRate: 2.0)
-            self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-        })
-        
-        alert.addAction(UIAlertAction(title: "X1.5", style: .default) { _ in
+       
+        if (count == 1){
             self.player.playImmediately(atRate: 1.5)
-            self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-        })
-        
-        alert.addAction(UIAlertAction(title: "X1", style: .default) { _ in
-            self.player.playImmediately(atRate: 1.0)
-            self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-        })
-        
-        alert.addAction(UIAlertAction(title: "X0.5", style: .default) { _ in
+            self.speedUpLabel.text = "1.5"
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "PAUSE-1"), for: .normal)
+            count = count + 1
+        }else if(count == 2){
+            self.player.playImmediately(atRate: 2.0)
+            self.speedUpLabel.text = "2.0"
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "PAUSE-1"), for: .normal)
+            count = count + 1
+        }else if(count == 3){
             self.player.playImmediately(atRate: 0.5)
-            self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-        })
+            self.speedUpLabel.text = "0.5"
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "PAUSE-1"), for: .normal)
+            count = 0
+        }else{
+            self.player.playImmediately(atRate: 1.0)
+            self.speedUpLabel.text = "1.0"
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "PAUSE-1"), for: .normal)
+            count = count + 1 
+        }
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
-           // let alertWindow = UIWindow()
-            //alertWindow.windowLevel = UIWindow.Level.alert - 1;
-        })
         
-        //let alertWindow = UIWindow(frame: UIScreen.main.bounds)
-        alertWindow.rootViewController = UIViewController()
-        alertWindow.windowLevel = UIWindow.Level.alert + 1;
-        alertWindow.makeKeyAndVisible()
-        alertWindow.rootViewController?.present(alert, animated: true, completion: nil)
+        
+        
+        
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+       
+        
     }
     
     
     //MARK:- Time Mark
+    
+
     
     @IBOutlet weak var timeMarkButton: UIButton!{
         didSet{
             timeMarkButton.addTarget(self, action: #selector(handleTimeMark), for: .touchUpInside)
         }
     }
-    
-    
+
+
     @objc func handleTimeMark(){
         let alertWindow = UIWindow(frame: UIScreen.main.bounds)
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -249,7 +263,7 @@ class PlayerDetailsView: UIView {
         alertWindow.makeKeyAndVisible()
         alertWindow.rootViewController?.present(alert, animated: true)
     }
-    
+
     
     
     //MARK:- Smart Speed
@@ -259,37 +273,37 @@ class PlayerDetailsView: UIView {
     let sampleRate = 0.1
     var skippedSeconds = 0.0
     
-
+    
     //smart speed button
-    @IBOutlet weak var smartSpeedButton: UIButton!{
-        didSet{
-            smartSpeedButton.addTarget(self, action: #selector(callingTimer), for: .touchUpInside)
-                    }
-    }
+//    @IBOutlet weak var smartSpeedButton: UIButton!{
+//        didSet{
+//            smartSpeedButton.addTarget(self, action: #selector(callingTimer), for: .touchUpInside)
+//        }
+//    }
+//
+//    //calling findSilences function every 0.1 seconds
+//    @objc func callingTimer() {
+//        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(findSilences), userInfo: nil, repeats: true)
+//    }
+//
+//    //finding the silences in episode and increase speed to 3
+//    //NOTE: it is still not working, the averagePower is always ZERO
+//    @objc func findSilences() {
+//        guard player.isPlaying == true else { return }
+//        player.updateMeters()
+//
+//        let averagePower = player.averagePower(forChannel: 0)
+//
+//        //print(player.averagePowerInLinearForm(forChannel: 1))
+//        if averagePower < decibelThreshold {
+//            self.player.playImmediately(atRate: 3)
+//            skippedSeconds += sampleRate - (sampleRate / 3)
+//        } else {
+//            self.player.playImmediately(atRate: 1)
+//        }
+//    }
     
-    //calling findSilences function every 0.1 seconds
-    @objc func callingTimer() {
-        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(findSilences), userInfo: nil, repeats: true)
-    }
     
-    //finding the silences in episode and increase speed to 3
-    //NOTE: it is still not working, the averagePower is always ZERO
-    @objc func findSilences() {
-        guard player.isPlaying == true else { return }
-        player.updateMeters()
-        
-        let averagePower = player.averagePower(forChannel: 0)
-        
-        //print(player.averagePowerInLinearForm(forChannel: 1))
-        if averagePower < decibelThreshold {
-            self.player.playImmediately(atRate: 3)
-            skippedSeconds += sampleRate - (sampleRate / 3)
-        } else {
-            self.player.playImmediately(atRate: 1)
-        }
-    }
-    
-    
-    
+   
     
 }

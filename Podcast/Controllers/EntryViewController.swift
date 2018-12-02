@@ -14,8 +14,6 @@ class EntryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // add background gardian color
-        view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
     
     
     }
@@ -33,7 +31,6 @@ class EntryViewController: UIViewController {
 
     @IBAction func skipToMainView(_ sender: Any) {
         let main = MainTabBarController()
-//        self.navigationController?.pushViewController(main, animated: true)
         self.present(main, animated: true, completion: nil)
        
     }

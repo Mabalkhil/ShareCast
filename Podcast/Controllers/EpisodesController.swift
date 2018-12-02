@@ -11,10 +11,13 @@ import FeedKit
 
 class EpisodesController: UITableViewController {
     
+    
+
     var podcast: Podcast?{
         didSet{
             navigationItem.title = podcast?.trackName
             fetchEpisode()
+            
         }
     }
     
@@ -42,6 +45,7 @@ class EpisodesController: UITableViewController {
     var episodes = [Episode]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.backgroundColor = UIColor(red: 77/255, green: 77/255, blue: 77/255, alpha: 1.0)
         setupTableView()
     }
     
