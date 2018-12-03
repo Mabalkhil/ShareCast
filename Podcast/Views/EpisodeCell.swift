@@ -36,7 +36,7 @@ class EpisodeCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!{
         didSet{
-            titleLabel.numberOfLines = 2
+            titleLabel.numberOfLines = -1
         }
     }
     
