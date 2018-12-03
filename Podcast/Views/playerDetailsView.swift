@@ -28,12 +28,16 @@ class PlayerDetailsView: UIView {
     
     //MARK:- Showing Progress
     //this function for displaying the progress (time)
+    //This function would be called every passing second
     fileprivate func observePlayerCurrentTime() {
         let interval = CMTimeMake(value: 1, timescale: 2)
         player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { (time) in
             self.currentTimeLabel.text = time.toDisplayString()
-            let durationTime = self.player.currentItem?.duration
-            self.durationLabel.text = durationTime?.toDisplayString()
+            var durationTime = self.player.currentItem?.duration
+            durationTime = CMTime(seconds: (self.player.currentItem?.duration.seconds ?? 0) - (time.seconds ?? 0), preferredTimescale: durationTime!.timescale)
+            
+            
+            self.durationLabel.text = "-"+(durationTime?.toDisplayString() ?? "--:--")
             self.updateCurrentTimeSlider()
         }
     }
