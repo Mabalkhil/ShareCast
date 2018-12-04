@@ -34,7 +34,7 @@ class PlayerDetailsView: UIView {
         player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { (time) in
             self.currentTimeLabel.text = time.toDisplayString()
             var durationTime = self.player.currentItem?.duration
-            durationTime = CMTime(seconds: (self.player.currentItem?.duration.seconds ?? 0) - (time.seconds ?? 0), preferredTimescale: durationTime!.timescale)
+            durationTime = CMTime(seconds: (self.player.currentItem?.duration.seconds ?? 0) - (time.seconds), preferredTimescale: durationTime?.timescale ?? 0)
             
             
             self.durationLabel.text = "-"+(durationTime?.toDisplayString() ?? "--:--")
@@ -280,33 +280,33 @@ class PlayerDetailsView: UIView {
     
     
     //smart speed button
-//    @IBOutlet weak var smartSpeedButton: UIButton!{
-//        didSet{
-//            smartSpeedButton.addTarget(self, action: #selector(callingTimer), for: .touchUpInside)
-//        }
-//    }
-//
-//    //calling findSilences function every 0.1 seconds
-//    @objc func callingTimer() {
-//        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(findSilences), userInfo: nil, repeats: true)
-//    }
-//
-//    //finding the silences in episode and increase speed to 3
-//    //NOTE: it is still not working, the averagePower is always ZERO
-//    @objc func findSilences() {
-//        guard player.isPlaying == true else { return }
-//        player.updateMeters()
-//
-//        let averagePower = player.averagePower(forChannel: 0)
-//
-//        //print(player.averagePowerInLinearForm(forChannel: 1))
-//        if averagePower < decibelThreshold {
-//            self.player.playImmediately(atRate: 3)
-//            skippedSeconds += sampleRate - (sampleRate / 3)
-//        } else {
-//            self.player.playImmediately(atRate: 1)
-//        }
-//    }
+    @IBOutlet weak var smartSpeedButton: UIButton!{
+        didSet{
+            smartSpeedButton.addTarget(self, action: #selector(callingTimer), for: .touchUpInside)
+        }
+    }
+
+    //calling findSilences function every 0.1 seconds
+    @objc func callingTimer() {
+        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(findSilences), userInfo: nil, repeats: true)
+    }
+
+    //finding the silences in episode and increase speed to 3
+    //NOTE: it is still not working, the averagePower is always ZERO
+    @objc func findSilences() {
+       guard player.isPlaying == true else { return }
+        player.updateMeters()
+
+        let averagePower = player.averagePower(forChannel: 0)
+
+        print(averagePower)
+        if averagePower < decibelThreshold {
+            self.player.playImmediately(atRate: 3)
+            skippedSeconds += sampleRate - (sampleRate / 3)
+        } else {
+            self.player.playImmediately(atRate: 1)
+        }
+    }
     
     
    
