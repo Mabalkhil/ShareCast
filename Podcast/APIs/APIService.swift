@@ -16,8 +16,6 @@ class APIService {
     
     func fetchEpisodes(feedUrl: String, completionHandler: @escaping ([Episode]) -> ()){
         
-        let secureFeedURL = feedUrl.contains("https") ? feedUrl: feedUrl.replacingOccurrences(of: "http", with: "https")
-        
         guard let url = URL(string: feedUrl) else { return }
         
         let parser = FeedParser(URL: url)
