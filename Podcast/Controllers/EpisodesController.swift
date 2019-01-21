@@ -10,7 +10,7 @@ import UIKit
 import FeedKit
 
 class EpisodesController: UITableViewController {
-    
+    var tableViewTest: UITableView!
     
 
     var podcast: Podcast?{
@@ -53,7 +53,7 @@ class EpisodesController: UITableViewController {
     
     fileprivate func setupTableView(){
         // tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        
+//        tableViewTest = UINib(nibName: "ChannelView", bundle: nil) as! UITableView
         let nib = UINib(nibName: "EpisodeCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: cellId)
         //tableView.tableFooterView = UIView() // remove table lines
