@@ -16,8 +16,8 @@ struct Episode {
     var imageUrl: String?
     let author: String
     let streamURL: String
-    let timeStampLables: [String]
-    let timeStamps: [String]
+    let timeStampLables: [String]?
+    let timeStamps: [String]?
     //let timeMark: List
     
     init(feedItem: RSSFeedItem){
@@ -27,18 +27,31 @@ struct Episode {
         self.describtion = feedItem.iTunes?.iTunesSubtitle ?? ""
             feedItem.description ?? ""
         self.author = feedItem.iTunes?.iTunesAuthor ?? ""
-        
         self.imageUrl = feedItem.iTunes?.iTunesImage?.attributes?.href
        // print("This is the feed")
        // let item = "I made this wonderful pic last #chRistmas... #instagram #nofilter #snow #fun" //feedItem.description
         let feedDescription = (feedItem.description as! String?) ?? ""
         self.timeStampLables = feedDescription.timeStampsLabled()
         self.timeStamps = feedDescription.timeStamps()
-        print(timeStamps )
-        print(timeStampLables )
-        print("-------------------")
+
        // print(test, separator: ".\n")
         
-        
     }
+    init(){
+        self.title = ""
+        self.pubDate = Date()
+        self.describtion = ""
+        self.author =  ""
+        self.imageUrl = ""
+        // print("This is the feed")
+        // let item = "I made this wonderful pic last #chRistmas... #instagram #nofilter #snow #fun" //feedItem.description
+        let feedDescription =  ""
+        self.timeStampLables = ["",""]
+        self.timeStamps = ["",""]
+        self.streamURL = ""
+    }
+   
+    
+    
+    
 }

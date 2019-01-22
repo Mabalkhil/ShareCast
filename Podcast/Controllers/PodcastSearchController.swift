@@ -71,10 +71,14 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate {
     }
     //MARK:- Selection actions
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let episodesController = EpisodesController()
+        let channelStoryboard = UIStoryboard(name: "Channel", bundle: Bundle.main)
+        guard let destinationViewController = channelStoryboard.instantiateInitialViewController() as?
+        ChannelController else {
+            return
+        }
         let podcast = self.podcasts[indexPath.row]
-        episodesController.podcast = podcast
-        navigationController?.pushViewController(episodesController, animated: true)
+        destinationViewController.podcast = podcast
+        navigationController?.pushViewController(destinationViewController, animated: true)
     }
     
     //MARK:- Setup Work
