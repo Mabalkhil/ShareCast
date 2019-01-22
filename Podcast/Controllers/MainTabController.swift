@@ -29,7 +29,7 @@ class MainTabBarController: UITabBarController {
         let searchNavController =
             generateNavigationController(for: PodcastSearchController(), title: "Discover" , image: #imageLiteral(resourceName: "Discover"))
         let chanellesController =
-            generateNavigationController(for: ViewController(), title: "Subscription", image: #imageLiteral(resourceName: "Chanelles"))
+            generateNavigationController(for: DownloadsController(), title: "Subscription", image: #imageLiteral(resourceName: "Chanelles"))
         let ProfileController =
             generateNavigationController(for: ViewController(), title: "Profile", image: #imageLiteral(resourceName: "Profile-1"))
         
