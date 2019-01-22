@@ -1,14 +1,11 @@
 //
-//  ViewController.swift
-//  Zoo App
-//
 //  Created by Mazen.A on 1/10/19.
 //  Copyright © 2019 Mazen.A. All rights reserved.
 //
 
 import UIKit
 
-class EpisodeViewController: UITableViewController, UITextViewDelegate {
+class EpisodeViewController: UITableViewController, UITextViewDelegate{
     
     @IBOutlet weak var tableViewComments: UITableView!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -18,49 +15,23 @@ class EpisodeViewController: UITableViewController, UITextViewDelegate {
     var comments = [CommentObj]()
     var episode = Episode()
     
-   
-    
-
-    
     override func viewDidLoad() {
-
         setAttributes()
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    // this piece of shit is to fix the episode description problem
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        guard let headerView = tableView.tableHeaderView else {
-            return
-        }
+        descriptionLabel.preferredMaxLayoutWidth = descriptionLabel.bounds.width
+        let headerView = tableViewComments.tableHeaderView!
         
-        // The table view header is created with the frame size set in
-        // the Storyboard. Calculate the new size and reset the header
-        // view to trigger the layout.
-        // Calculate the minimum height of the header view that allows
-        // the text label to fit its preferred width.
-        let size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        
-
-        
-        if headerView.frame.size.height != size.height {
-            headerView.frame.size.height = size.height
-            
-            // Need to set the header view property of the table view
-            // to trigger the new layout. Be careful to only do this
-            // once when the height changes or we get stuck in a layout loop.
-            tableView.tableHeaderView = headerView
-            
-            // Now that the table view header is sized correctly have
-            // the table view redo its layout so that the cells are
-            // correcly positioned for the new header size.
-            // This only seems to be necessary on iOS 9.
-            tableView.layoutIfNeeded()
-        
-        }
+       let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        var frame = headerView.frame
+        frame.size.height = height
+        headerView.frame = frame
         
     }
     
@@ -81,25 +52,6 @@ class EpisodeViewController: UITableViewController, UITextViewDelegate {
         return cellAnimal
     }
     
-    func resizeTextViewFrame() {
-        //descLabel.delegate = self
-        
-        let fixedWidth = descriptionLabel.frame.size.width
-        
-        let newSize: CGSize = descriptionLabel.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat(MAXFLOAT)))
-        
-        var newFrame = descriptionLabel.frame
-        
-        newFrame.size = CGSize(width: CGFloat(fmaxf(Float(newSize.width), Float(fixedWidth))), height: newSize.height)
-        
-        descriptionLabel.frame = newFrame
-    }
-    
-    func reloadTextView(){
-        descriptionLabel.text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."
-        resizeTextViewFrame()
-    }
-    
     func setAttributes(){
         descriptionLabel.text = episode.describtion
         titleLabel.text = episode.title
@@ -113,7 +65,4 @@ class EpisodeViewController: UITableViewController, UITextViewDelegate {
             destinationController.episode = self.episode
         }
     }
-    
-    
 }
-

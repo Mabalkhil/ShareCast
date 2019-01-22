@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F47A82D21F74DF300B194CD /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F47A82C21F74DF300B194CD /* Subscription.storyboard */; };
 		3723A1F521A9C66400D5FAE9 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A1F321A9C66400D5FAE9 /* EpisodeCell.swift */; };
 		3723A1F921A9CDD100D5FAE9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A1F821A9CDD100D5FAE9 /* String.swift */; };
 		3723A1FB21A9D18400D5FAE9 /* RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A1FA21A9D18400D5FAE9 /* RSSFeed.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F47A82C21F74DF300B194CD /* Subscription.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Subscription.storyboard; sourceTree = "<group>"; };
 		3723A1D421A9967000D5FAE9 /* Podcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3723A1D521A9967000D5FAE9 /* PodcastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3723A1D621A9967000D5FAE9 /* PodcastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +170,7 @@
 				FAFF82F0218CEB6400882A6A /* Main.storyboard */,
 				50533FE221EFA59E00D50698 /* Channel.storyboard */,
 				505B6C2721F5C74F002E392D /* Episode.storyboard */,
+				2F47A82C21F74DF300B194CD /* Subscription.storyboard */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F47A82D21F74DF300B194CD /* Subscription.storyboard in Resources */,
 				505B6C2B21F5C74F002E392D /* Episode.storyboard in Resources */,
 				FAFF82FA218CEB6C00882A6A /* LaunchScreen.storyboard in Resources */,
 				FAFF82F7218CEB6C00882A6A /* Assets.xcassets in Resources */,
