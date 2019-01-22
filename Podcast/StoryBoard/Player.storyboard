@@ -48,7 +48,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="ClD-jz-k7r" userLabel="NamesStack">
                                         <rect key="frame" x="0.0" y="60.5" width="350" height="55"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episode Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJN-4x-b6L" userLabel="EpisodeName">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episode Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SJN-4x-b6L" userLabel="EpisodeName">
                                                 <rect key="frame" x="0.0" y="0.0" width="350" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="gBI-Mw-0Gq"/>
@@ -90,7 +90,7 @@
                                             <constraint firstAttribute="width" constant="120" id="Cf3-Qo-v3l"/>
                                         </constraints>
                                         <inset key="contentEdgeInsets" minX="40" minY="40" maxX="40" maxY="40"/>
-                                        <state key="normal" image="try2"/>
+                                        <state key="normal" image="Backword-1"/>
                                         <connections>
                                             <action selector="handleRewind:" destination="o5c-Hq-P7e" eventType="touchUpInside" id="ZPr-uD-w6B"/>
                                         </connections>
@@ -102,7 +102,7 @@
                                             <constraint firstAttribute="width" constant="110" id="Dkr-HB-nf1"/>
                                         </constraints>
                                         <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
-                                        <state key="normal" title="Button" image="round-play-button"/>
+                                        <state key="normal" title="Button" image="PlayButton"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agN-O7-9lJ" userLabel="NextButton">
                                         <rect key="frame" x="230" y="30" width="120" height="120"/>
@@ -111,7 +111,7 @@
                                             <constraint firstAttribute="height" constant="120" id="iqY-AF-M5g"/>
                                         </constraints>
                                         <inset key="contentEdgeInsets" minX="40" minY="40" maxX="40" maxY="40"/>
-                                        <state key="normal" title="Button" image="try1"/>
+                                        <state key="normal" title="Button" image="Forword"/>
                                         <connections>
                                             <action selector="handleFastForword:" destination="o5c-Hq-P7e" eventType="touchUpInside" id="Qvc-fh-AYg"/>
                                         </connections>
@@ -134,7 +134,7 @@
                                                     <constraint firstAttribute="width" constant="30" id="Kyi-2Z-sNa"/>
                                                     <constraint firstAttribute="height" constant="30" id="iJR-9r-V05"/>
                                                 </constraints>
-                                                <state key="normal" image="SMART"/>
+                                                <state key="normal" image="SmartSpeed"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OFF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0Z-KV-VNc" userLabel="SSLabel">
                                                 <rect key="frame" x="0.0" y="30" width="30" height="17"/>
@@ -248,11 +248,11 @@
     </scenes>
     <resources>
         <image name="BOOSTTHING" width="70" height="70"/>
+        <image name="Backword-1" width="2067" height="1468"/>
         <image name="Dismiss" width="70" height="70"/>
-        <image name="SMART" width="90" height="90"/>
+        <image name="Forword" width="2067" height="1468"/>
+        <image name="PlayButton" width="480" height="480"/>
+        <image name="SmartSpeed" width="480" height="480"/>
         <image name="VOLUME" width="60" height="60"/>
-        <image name="round-play-button" width="384" height="384"/>
-        <image name="try1" width="496.07998657226562" height="352.32000732421875"/>
-        <image name="try2" width="496.07998657226562" height="375.3599853515625"/>
     </resources>
 </document>

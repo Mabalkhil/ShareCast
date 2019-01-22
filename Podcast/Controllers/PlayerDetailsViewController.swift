@@ -223,7 +223,7 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
     //the pause button
     @IBOutlet weak var playPauseButton: UIButton!{
         didSet{
-            playPauseButton.setImage(#imageLiteral(resourceName: "PAUSE-1"), for: .normal)
+            playPauseButton.setImage(#imageLiteral(resourceName: "PauseButton"), for: .normal)
             playPauseButton.addTarget(self, action: #selector(handlePlayPause), for: .touchUpInside)
         }
     }
@@ -231,10 +231,10 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
     @objc func handlePlayPause(){
         if player.timeControlStatus == .paused{
             player.play()
-            playPauseButton.setImage(#imageLiteral(resourceName: "PAUSE-1"), for: .normal)
+            playPauseButton.setImage(#imageLiteral(resourceName: "PauseButton"), for: .normal)
         }else{
             player.pause()
-            playPauseButton.setImage(#imageLiteral(resourceName: "round-play-button"), for: .normal)
+            playPauseButton.setImage(#imageLiteral(resourceName: "PlayButton"), for: .normal)
             
         }
         
@@ -346,11 +346,8 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
             setTable()
         }
         else {
-            frame.origin.x = scrollView.frame.size.width + 5
-            noMarksText.frame = frame
-            noMarksText.text = "No time marks for this episode"
-            noMarksText.textAlignment = .center
-            scrollView.addSubview(noMarksText)
+            scrollView.isScrollEnabled = false
+            pageControl.numberOfPages = 1
         }
     }
 

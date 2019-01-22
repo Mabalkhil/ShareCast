@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "tools-and-utensils.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icons8-skip-ahead-15-seconds-50.png",
       "scale" : "2x"
     },
     {
