@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Downloads Controller-->
         <scene sceneID="Ijc-uB-zEZ">
             <objects>
-                <tableViewController id="0o5-r1-dSW" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Download1" id="0o5-r1-dSW" customClass="DownloadsController" customModule="Podcast" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fLR-sf-l4v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,14 +113,14 @@
                             </subviews>
                         </stackView>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="KYy-Cx-LQd">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="KYy-Cx-LQd" userLabel="DownloadCell" customClass="DownloadEpisodeCell" customModule="Podcast" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="218" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KYy-Cx-LQd" id="1YI-SN-yBt" userLabel="Episode">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JeG-11-XqO">
+                                        <view contentMode="scaleToFill" restorationIdentifier="cell" translatesAutoresizingMaskIntoConstraints="NO" id="JeG-11-XqO">
                                             <rect key="frame" x="0.0" y="1" width="375" height="77.5"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1400x1400-eagles_podcast-logo" translatesAutoresizingMaskIntoConstraints="NO" id="cxA-ro-0Gv">
@@ -172,6 +172,10 @@
                                         <constraint firstItem="JeG-11-XqO" firstAttribute="top" secondItem="1YI-SN-yBt" secondAttribute="top" constant="1" id="t3w-mV-D4k"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="episodeImage" destination="cxA-ro-0Gv" id="7Yd-Ah-4hD"/>
+                                    <outlet property="episodeName" destination="0bN-hI-F8n" id="8Vq-t8-1KS"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -179,6 +183,9 @@
                             <outlet property="delegate" destination="0o5-r1-dSW" id="o5N-Kn-5LV"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="tablwViewDownload" destination="fLR-sf-l4v" id="LrZ-Cw-Dde"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXq-iE-5U8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -187,9 +194,9 @@
     </scenes>
     <resources>
         <image name="1400x1400-eagles_podcast-logo" width="1400" height="1400"/>
-        <image name="bookmark" width="512" height="512"/>
-        <image name="download" width="512" height="512"/>
-        <image name="playlist" width="480" height="480"/>
-        <image name="radio" width="512" height="512"/>
+        <image name="bookmark" width="384" height="384"/>
+        <image name="download" width="384" height="384"/>
+        <image name="playlist" width="384" height="384"/>
+        <image name="radio" width="384" height="384"/>
     </resources>
 </document>

@@ -12,6 +12,9 @@
 		3723A1FB21A9D18400D5FAE9 /* RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A1FA21A9D18400D5FAE9 /* RSSFeed.swift */; };
 		3723A20521AB373A00D5FAE9 /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A20421AB373A00D5FAE9 /* CMTime.swift */; };
 		3725E91F21F755A3009D3417 /* DownloadsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3725E91E21F755A3009D3417 /* DownloadsController.swift */; };
+		3725E92121F75EA0009D3417 /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3725E92021F75EA0009D3417 /* Subscription.storyboard */; };
+		3725E92721F9EC8B009D3417 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3725E92621F9EC8B009D3417 /* UserDefaults.swift */; };
+		3725E92D21F9F965009D3417 /* DownloadEpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3725E92C21F9F965009D3417 /* DownloadEpisodeCell.swift */; };
 		5036E73721EFBCFC00FA5E12 /* ChannelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036E73621EFBCFC00FA5E12 /* ChannelController.swift */; };
 		5036E73921EFC0D100FA5E12 /* ChannelHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036E73821EFC0D100FA5E12 /* ChannelHeaderView.swift */; };
 		5036E73B21F080E000FA5E12 /* ChennelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036E73A21F080E000FA5E12 /* ChennelTableViewCell.swift */; };
@@ -71,6 +74,9 @@
 		3723A1FA21A9D18400D5FAE9 /* RSSFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeed.swift; sourceTree = "<group>"; };
 		3723A20421AB373A00D5FAE9 /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
 		3725E91E21F755A3009D3417 /* DownloadsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsController.swift; sourceTree = "<group>"; };
+		3725E92021F75EA0009D3417 /* Subscription.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Subscription.storyboard; sourceTree = "<group>"; };
+		3725E92621F9EC8B009D3417 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		3725E92C21F9F965009D3417 /* DownloadEpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadEpisodeCell.swift; sourceTree = "<group>"; };
 		5036E73621EFBCFC00FA5E12 /* ChannelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelController.swift; sourceTree = "<group>"; };
 		5036E73821EFC0D100FA5E12 /* ChannelHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeaderView.swift; sourceTree = "<group>"; };
 		5036E73A21F080E000FA5E12 /* ChennelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChennelTableViewCell.swift; sourceTree = "<group>"; };
@@ -151,6 +157,7 @@
 				3723A1F821A9CDD100D5FAE9 /* String.swift */,
 				3723A1FA21A9D18400D5FAE9 /* RSSFeed.swift */,
 				3723A20421AB373A00D5FAE9 /* CMTime.swift */,
+				3725E92621F9EC8B009D3417 /* UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -166,6 +173,7 @@
 		50533FDD21EFA3F500D50698 /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
+				3725E92021F75EA0009D3417 /* Subscription.storyboard */,
 				505B6C3321F66A03002E392D /* Player.storyboard */,
 				FAFF82F0218CEB6400882A6A /* Main.storyboard */,
 				50533FE221EFA59E00D50698 /* Channel.storyboard */,
@@ -187,6 +195,7 @@
 		FA1AEC8821940F92000B0882 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3725E92C21F9F965009D3417 /* DownloadEpisodeCell.swift */,
 				505B6C2E21F6571E002E392D /* TimeMarkCell.swift */,
 				505B6C2521F5C74F002E392D /* CommentObj.swift */,
 				505B6C2421F5C74F002E392D /* Comment.swift */,
@@ -372,6 +381,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3725E92121F75EA0009D3417 /* Subscription.storyboard in Resources */,
 				505B6C2B21F5C74F002E392D /* Episode.storyboard in Resources */,
 				FAFF82FA218CEB6C00882A6A /* LaunchScreen.storyboard in Resources */,
 				FAFF82F7218CEB6C00882A6A /* Assets.xcassets in Resources */,
@@ -517,6 +527,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3725E92721F9EC8B009D3417 /* UserDefaults.swift in Sources */,
 				FA49932A218DCD3E0021CFA3 /* PodcastSearchController.swift in Sources */,
 				FA499330218E2C190021CFA3 /* APIService.swift in Sources */,
 				FA397ED72195E66D00D33617 /* SearchResults.swift in Sources */,
@@ -529,6 +540,7 @@
 				505B6C3121F6571E002E392D /* TimeMarkCell.swift in Sources */,
 				FA397ED92195E68E00D33617 /* Episode.swift in Sources */,
 				50420F7921A089170030CDB4 /* SignUpViewController.swift in Sources */,
+				3725E92D21F9F965009D3417 /* DownloadEpisodeCell.swift in Sources */,
 				3725E91F21F755A3009D3417 /* DownloadsController.swift in Sources */,
 				505B6C2821F5C74F002E392D /* Comment.swift in Sources */,
 				50420F7B21A1113E0030CDB4 /* HilperExt.swift in Sources */,

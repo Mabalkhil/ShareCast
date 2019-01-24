@@ -15,6 +15,10 @@ class EpisodeViewController: UITableViewController, UITextViewDelegate {
     @IBOutlet weak var episodeImage: UIImageView!
      @IBOutlet weak var titleLabel: UILabel!
     
+   
+    @IBOutlet weak var downloadButton: UIButton!
+    
+    
     var comments = [CommentObj]()
     var episode = Episode()
     
