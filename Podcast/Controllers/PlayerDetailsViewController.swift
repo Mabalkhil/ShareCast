@@ -340,8 +340,7 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
         print("abcd")
         
         print(self.episode)
-        //print(episode.timeStampLables ?? ["a","b"])
-        episode.timeStampLables = ["a","b"]
+       
         if (episode.timeStampLables!.count-1 > 0 ) {
             for i in stride(from: 0, through: episode.timeStampLables!.count-1, by: 1){
                 let title = episode.timeStampLables![i]

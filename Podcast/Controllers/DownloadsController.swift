@@ -49,13 +49,10 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
     
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
+        performSegue(withIdentifier: "abc", sender: nil)
        // print(self.episodes[indexPath.row])
         
-         //player.episode = self.episodes[indexPath.row]
-        player.setEpisode(episode: self.episodes[indexPath.row])
-        
-        present( UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "playerStoryBoard") as UIViewController, animated: true, completion: nil)
+       // present( UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "playerStoryBoard") as UIViewController, animated: true, completion: nil)
         
        //UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "PlayerStoryBoard")
         // UIApplication.mainTabBarController().max
@@ -75,6 +72,22 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         episodes.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
         UserDefaults.standard.deleteEpisode(episode: episode)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("a")
+        if segue.identifier == "abc" {
+            print("b")
+            if let indexPath = tablwViewDownload.indexPathForSelectedRow {
+                print("c")
+                let destination = segue.destination as! PlayerDetailsViewController
+                // dont assign value directly because the destinition view visual component not created yet
+                destination.episode = episodes[indexPath.row]
+                print(destination.episode.title)
+                
+            }
+        }
     }
     
     

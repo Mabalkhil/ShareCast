@@ -177,6 +177,7 @@
                                     <outlet property="episodeImage" destination="cxA-ro-0Gv" id="7Yd-Ah-4hD"/>
                                     <outlet property="episodeName" destination="0bN-hI-F8n" id="8Vq-t8-1KS"/>
                                     <outlet property="episodeSize" destination="kiV-Pa-ajp" id="OB2-Rr-K2x"/>
+                                    <segue destination="d4H-Jt-sHh" kind="show" identifier="abc" id="B4d-pp-TLn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -192,6 +193,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXq-iE-5U8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="144.80000000000001" y="134.48275862068968"/>
+        </scene>
+        <!--Player-->
+        <scene sceneID="Qk2-uI-GJ2">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="aa" storyboardName="Player" id="d4H-Jt-sHh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y0Z-Km-tni" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047" y="65"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="OIM-wp-deK">
+            <objects>
+                <viewControllerPlaceholder id="aPy-yQ-Ytd" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8WB-f6-nF1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
