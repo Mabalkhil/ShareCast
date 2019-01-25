@@ -195,6 +195,7 @@
                             <outlet property="delegate" destination="0o5-r1-dSW" id="o5N-Kn-5LV"/>
                         </connections>
                     </tableView>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="tablwViewDownload" destination="fLR-sf-l4v" id="LrZ-Cw-Dde"/>
                     </connections>

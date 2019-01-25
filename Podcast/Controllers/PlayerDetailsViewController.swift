@@ -71,7 +71,8 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
         playEpisode()
         guard let url = URL(string: episode.imageUrl ?? "") else { return }
         episodeImg.sd_setImage(with: url)
-       
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
         
     }
     
