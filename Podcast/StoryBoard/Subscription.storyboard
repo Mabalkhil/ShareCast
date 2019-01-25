@@ -94,6 +94,7 @@
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.32028031350000002" green="0.32054913039999999" blue="0.32032194730000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <accessibility key="accessibilityConfiguration" identifier="a2"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="rpV-6I-eVN" secondAttribute="trailing" constant="26" id="T0o-mW-aNN"/>
                                         <constraint firstAttribute="bottom" secondItem="rpV-6I-eVN" secondAttribute="bottom" constant="10" id="ZA8-PP-5va"/>
@@ -113,14 +114,14 @@
                             </subviews>
                         </stackView>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="KYy-Cx-LQd" userLabel="DownloadCell" customClass="DownloadEpisodeCell" customModule="Podcast" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell1" rowHeight="80" id="KYy-Cx-LQd" userLabel="DownloadCell" customClass="DownloadEpisodeCell" customModule="Podcast" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="218" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KYy-Cx-LQd" id="1YI-SN-yBt" userLabel="Episode">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell2" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KYy-Cx-LQd" id="1YI-SN-yBt" userLabel="Episode">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" restorationIdentifier="cell" translatesAutoresizingMaskIntoConstraints="NO" id="JeG-11-XqO">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JeG-11-XqO">
                                             <rect key="frame" x="0.0" y="1" width="375" height="77.5"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1400x1400-eagles_podcast-logo" translatesAutoresizingMaskIntoConstraints="NO" id="cxA-ro-0Gv">
@@ -175,6 +176,7 @@
                                 <connections>
                                     <outlet property="episodeImage" destination="cxA-ro-0Gv" id="7Yd-Ah-4hD"/>
                                     <outlet property="episodeName" destination="0bN-hI-F8n" id="8Vq-t8-1KS"/>
+                                    <outlet property="episodeSize" destination="kiV-Pa-ajp" id="OB2-Rr-K2x"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

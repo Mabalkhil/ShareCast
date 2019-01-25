@@ -16,7 +16,16 @@ class EpisodeViewController: UITableViewController, UITextViewDelegate {
      @IBOutlet weak var titleLabel: UILabel!
     
    
-    @IBOutlet weak var downloadButton: UIButton!
+    @IBOutlet weak var downloadButton: UIButton!{
+        didSet{
+            downloadButton.addTarget(self, action: #selector(downloadHandler), for: .touchUpInside)
+        }
+    }
+    
+    @objc func downloadHandler(){
+        UserDefaults.standard.downloadEpisode(episode: episode.self)
+        APIService.shared.downloadEpisode(episode: episode.self)
+    }
     
     
     var comments = [CommentObj]()

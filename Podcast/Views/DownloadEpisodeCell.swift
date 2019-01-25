@@ -13,11 +13,27 @@ class DownloadEpisodeCell: UITableViewCell {
     
     @IBOutlet weak var episodeImage: UIImageView!
     @IBOutlet weak var episodeName: UILabel!
+    @IBOutlet weak var episodeSize: UILabel!
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
     }
+    
+    var episode: Episode!{
+        
+        didSet{
+            
+            episodeName.text = episode.title
+            let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
+            episodeImage.sd_setImage(with: url)
+        }
+    }
+    
+    
     
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,11 +42,12 @@ class DownloadEpisodeCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setDownloadEpisode(comment:CommentObj){
+    func setDownloadEpisode(episode:Episode){
         
-        episodeName.text = comment.userRealName
+        episodeName.text = episode.title
+        episodeImage.image = UIImage(named: episode.imageUrl!)
         
-        episodeImage.image = UIImage(named: comment.userImage!)
+        //episodeSize.text = episode.size
         
     }
     

@@ -8,50 +8,65 @@
 
 import UIKit
 
-class DownloadsController: UITableViewController {
+class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tablwViewDownload: UITableView!
     
-    var list = [CommentObj]()
-    
-    
+    var episodes = UserDefaults.standard.downloadedEpisodes()
+    var myIndex = 0
     
     override func viewDidLoad() {
-      super.viewDidLoad()
      
+        tablwViewDownload.delegate = self
+        tablwViewDownload.dataSource = self
         
-       
-       //list.append(Episode(title: "b",pubDate: Date(),describtion:"a",imageUrl: "a",author:"a",streamURL:"a",timeStampLables:["aa","bb"],timeStamps:["aaa","bb"]))
-        
-        
-        list.append(CommentObj(realName:"abc",username:"sss",img:"sss",com:"ddd"))
-         list.append(CommentObj(realName:"abc",username:"sss",img:"sss",com:"ddd"))
-         list.append(CommentObj(realName:"abc",username:"sss",img:"sss",com:"ddd"))
-         list.append(CommentObj(realName:"abc",username:"sss",img:"sss",com:"ddd"))
-        
-        
+        super.viewDidLoad()
         
         
         //setupTableView()
     }
     
     
-    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       return episodes.count
+    }
     
    
     
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DownloadEpisodeCell
-
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! DownloadEpisodeCell
+        
+        cell.episode = self.episodes[indexPath.row]
+        
         return cell
     }
     
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        list.count
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        present( UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "playerStoryBoard") as UIViewController, animated: true, completion: nil)
+        
+       //UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "PlayerStoryBoard")
+        // UIApplication.mainTabBarController().max
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+         episodes = UserDefaults.standard.downloadedEpisodes()
+        tablwViewDownload.reloadData()
+        
+    }
+    
+    
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let episode = self.episodes[indexPath.row]
+        episodes.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        UserDefaults.standard.deleteEpisode(episode: episode)
+    }
     
     
     

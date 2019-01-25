@@ -61,6 +61,8 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        //view.removeConstraints(view.constraints)
         // Do any additional setup after loading the view.
         setScrollView()
         
@@ -394,6 +396,7 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
 //    }
     
     
+   
    
     
 }

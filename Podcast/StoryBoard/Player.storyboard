@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o5c-Hq-P7e">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o5c-Hq-P7e">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,7 +12,7 @@
         <!--Player Details View Controller-->
         <scene sceneID="kJV-ek-zye">
             <objects>
-                <viewController storyboardIdentifier="PlayerStoryBoard" id="o5c-Hq-P7e" customClass="PlayerDetailsViewController" customModule="Podcast" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="playerStoryBoard" id="o5c-Hq-P7e" customClass="PlayerDetailsViewController" customModule="Podcast" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ulp-kR-uvx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,8 +20,9 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FuR-lV-q4d" userLabel="Name&amp;SliderStack">
                                 <rect key="frame" x="8" y="470" width="350" height="115.5"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="oTM-sE-c6Z" userLabel="ProgressBar">
+                                    <slider opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" restorationIdentifier="a2" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="oTM-sE-c6Z" userLabel="ProgressBar">
                                         <rect key="frame" x="-2" y="0.0" width="354" height="31"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="a1"/>
                                         <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
@@ -33,12 +34,14 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0b-OS-7xf" userLabel="leftTime">
                                                 <rect key="frame" x="0.0" y="0.0" width="278.5" height="20.5"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="a11"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huF-SJ-IHn" userLabel="RightTime">
                                                 <rect key="frame" x="278.5" y="0.0" width="71.5" height="20.5"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="a10"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -50,6 +53,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episode Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJN-4x-b6L" userLabel="EpisodeName">
                                                 <rect key="frame" x="0.0" y="0.0" width="350" height="24"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="a2"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="gBI-Mw-0Gq"/>
                                                 </constraints>
@@ -59,6 +63,7 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5n-yc-jZJ" userLabel="ChannelName">
                                                 <rect key="frame" x="0.0" y="37" width="350" height="18"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="a3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="18" id="rbN-qk-JA4"/>
                                                 </constraints>
@@ -83,8 +88,9 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JlP-YJ-MeB" userLabel="PlayingButtons">
                                 <rect key="frame" x="8" y="605.5" width="350" height="180"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Bk-ea-rlf" userLabel="PreviousButton">
+                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="a3" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Bk-ea-rlf" userLabel="PreviousButton">
                                         <rect key="frame" x="0.0" y="30" width="120" height="120"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="q6"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="120" id="7hC-e1-Zdf"/>
                                             <constraint firstAttribute="width" constant="120" id="Cf3-Qo-v3l"/>
@@ -95,8 +101,9 @@
                                             <action selector="handleRewind:" destination="o5c-Hq-P7e" eventType="touchUpInside" id="ZPr-uD-w6B"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mm6-R8-4ax" userLabel="Play&amp;PauseButton">
+                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="a4" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mm6-R8-4ax" userLabel="Play&amp;PauseButton">
                                         <rect key="frame" x="120" y="35" width="110" height="110"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="a4"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="110" id="5l9-Oc-cnc"/>
                                             <constraint firstAttribute="width" constant="110" id="Dkr-HB-nf1"/>
@@ -106,6 +113,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agN-O7-9lJ" userLabel="NextButton">
                                         <rect key="frame" x="230" y="30" width="120" height="120"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="a5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="MAc-Wn-tbr"/>
                                             <constraint firstAttribute="height" constant="120" id="iqY-AF-M5g"/>
@@ -130,6 +138,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4z8-8G-r55" userLabel="SmartSpeedButton">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="a7"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="Kyi-2Z-sNa"/>
                                                     <constraint firstAttribute="height" constant="30" id="iJR-9r-V05"/>
@@ -138,6 +147,7 @@
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OFF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0Z-KV-VNc" userLabel="SSLabel">
                                                 <rect key="frame" x="0.0" y="30" width="30" height="17"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="a12"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -151,8 +161,9 @@
                                             <constraint firstAttribute="height" constant="20" id="vRN-Ai-F60"/>
                                         </constraints>
                                     </imageView>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="e3x-3G-alM" userLabel="VloumeSlider">
+                                    <slider opaque="NO" contentMode="scaleToFill" restorationIdentifier="a5" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="e3x-3G-alM" userLabel="VloumeSlider">
                                         <rect key="frame" x="88" y="11" width="214" height="31"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="a8"/>
                                         <connections>
                                             <action selector="handleVolumeChange:" destination="o5c-Hq-P7e" eventType="valueChanged" id="GCQ-Zz-p7r"/>
                                         </connections>
@@ -162,6 +173,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I4m-J1-BeM" userLabel="VoiceBoostButton">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="a9"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="abV-Ob-qte"/>
                                                     <constraint firstAttribute="height" constant="30" id="c7O-NZ-dHQ"/>
@@ -170,6 +182,7 @@
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOk-Ue-fGt" userLabel="BoostLabel">
                                                 <rect key="frame" x="0.0" y="30" width="30" height="20.5"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="a13"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -196,8 +209,8 @@
                                 <rect key="frame" x="8" y="403" width="350" height="37"/>
                                 <color key="backgroundColor" red="0.25490584970000002" green="0.2548948526" blue="0.25490233299999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </pageControl>
-                            <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g5C-JB-LyW">
-                                <rect key="frame" x="25" y="76" width="316" height="325"/>
+                            <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="a1" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g5C-JB-LyW">
+                                <rect key="frame" x="25.5" y="88" width="315" height="315"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="315" id="F5o-Gd-eVP"/>
                                     <constraint firstAttribute="height" constant="315" id="Yqq-9o-K8I"/>
