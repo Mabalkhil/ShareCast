@@ -16,7 +16,6 @@
 		3725E92721F9EC8B009D3417 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3725E92621F9EC8B009D3417 /* UserDefaults.swift */; };
 		3725E92D21F9F965009D3417 /* DownloadEpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3725E92C21F9F965009D3417 /* DownloadEpisodeCell.swift */; };
 		3725E92F21FA8781009D3417 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3725E92E21FA8781009D3417 /* UIApplication.swift */; };
-		3725E93121FA9315009D3417 /* NSLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3725E93021FA9315009D3417 /* NSLayoutConstraint.swift */; };
 		5036E73721EFBCFC00FA5E12 /* ChannelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036E73621EFBCFC00FA5E12 /* ChannelController.swift */; };
 		5036E73921EFC0D100FA5E12 /* ChannelHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036E73821EFC0D100FA5E12 /* ChannelHeaderView.swift */; };
 		5036E73B21F080E000FA5E12 /* ChennelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036E73A21F080E000FA5E12 /* ChennelTableViewCell.swift */; };
@@ -80,7 +79,6 @@
 		3725E92621F9EC8B009D3417 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		3725E92C21F9F965009D3417 /* DownloadEpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadEpisodeCell.swift; sourceTree = "<group>"; };
 		3725E92E21FA8781009D3417 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
-		3725E93021FA9315009D3417 /* NSLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraint.swift; sourceTree = "<group>"; };
 		5036E73621EFBCFC00FA5E12 /* ChannelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelController.swift; sourceTree = "<group>"; };
 		5036E73821EFC0D100FA5E12 /* ChannelHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeaderView.swift; sourceTree = "<group>"; };
 		5036E73A21F080E000FA5E12 /* ChennelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChennelTableViewCell.swift; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 				3723A20421AB373A00D5FAE9 /* CMTime.swift */,
 				3725E92621F9EC8B009D3417 /* UserDefaults.swift */,
 				3725E92E21FA8781009D3417 /* UIApplication.swift */,
-				3725E93021FA9315009D3417 /* NSLayoutConstraint.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -561,7 +558,6 @@
 				3723A1F921A9CDD100D5FAE9 /* String.swift in Sources */,
 				505B6C2921F5C74F002E392D /* CommentObj.swift in Sources */,
 				FAFF831E218CEC4300882A6A /* MainTabController.swift in Sources */,
-				3725E93121FA9315009D3417 /* NSLayoutConstraint.swift in Sources */,
 				3723A20521AB373A00D5FAE9 /* CMTime.swift in Sources */,
 				50420F9F21A122040030CDB4 /* RoundedWhiteButton.swift in Sources */,
 			);

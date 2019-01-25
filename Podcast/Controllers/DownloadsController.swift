@@ -14,6 +14,8 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var episodes = UserDefaults.standard.downloadedEpisodes()
     var myIndex = 0
+    var player: PlayerDetailsViewController!
+
     
     override func viewDidLoad() {
      
@@ -39,12 +41,19 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         
         cell.episode = self.episodes[indexPath.row]
         
+        //player.setEpisode(episode: self.episodes[indexPath.row])
+        
         return cell
     }
     
     
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        
+       // print(self.episodes[indexPath.row])
+        
+         //player.episode = self.episodes[indexPath.row]
+        player.setEpisode(episode: self.episodes[indexPath.row])
         
         present( UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "playerStoryBoard") as UIViewController, animated: true, completion: nil)
         
@@ -74,8 +83,6 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
     //MARK:- Setup
     
     fileprivate func setupTableView(){
-    
-        
     
 }
 

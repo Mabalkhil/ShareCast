@@ -16,7 +16,7 @@ struct Episode: Codable {
     var imageUrl: String?
     let author: String
     let streamURL: String
-    let timeStampLables: [String]?
+    var timeStampLables: [String]?
     let timeStamps: [String]?
     var fileUrl: String?
    // let size: String
@@ -49,8 +49,8 @@ struct Episode: Codable {
         // print("This is the feed")
         // let item = "I made this wonderful pic last #chRistmas... #instagram #nofilter #snow #fun" //feedItem.description
         let feedDescription =  ""
-        self.timeStampLables = ["",""]
-        self.timeStamps = ["",""]
+        self.timeStampLables = [" "," "]
+        self.timeStamps = [" "," "]
         self.streamURL = ""
         self.fileUrl = ""
     }

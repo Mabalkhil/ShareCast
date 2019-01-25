@@ -30,6 +30,7 @@ class DownloadEpisodeCell: UITableViewCell {
             episodeName.text = episode.title
             let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
             episodeImage.sd_setImage(with: url)
+            
         }
     }
     

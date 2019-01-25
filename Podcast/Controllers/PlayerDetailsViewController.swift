@@ -337,7 +337,11 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
     //MARK:- Time Mark
     //only handle if there is a time marks in an episode(Show table or don't)
     @objc func handleTimeMark(){
+        print("abcd")
         
+        print(self.episode)
+        //print(episode.timeStampLables ?? ["a","b"])
+        episode.timeStampLables = ["a","b"]
         if (episode.timeStampLables!.count-1 > 0 ) {
             for i in stride(from: 0, through: episode.timeStampLables!.count-1, by: 1){
                 let title = episode.timeStampLables![i]
@@ -353,7 +357,8 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
             noMarksText.text = "No time marks for this episode"
             noMarksText.textAlignment = .center
             scrollView.addSubview(noMarksText)
-        }
+        }//
+        
     }
 
     
@@ -395,6 +400,16 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
 //        }
 //    }
     
+    
+    func setEpisode(episode:Episode){
+        
+        episodeName.text = episode.title
+        channelName.text = episode.author
+        let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
+        episodeImg.sd_setImage(with: url)
+        self.episode.timeStampLables = ["a","b"]
+        
+    }
     
    
    
