@@ -186,7 +186,7 @@
                                     <outlet property="episodeName" destination="0bN-hI-F8n" id="8Vq-t8-1KS"/>
                                     <outlet property="episodeSize" destination="kiV-Pa-ajp" id="OB2-Rr-K2x"/>
                                     <outlet property="progressLabel" destination="Mp7-so-8ud" id="SeO-1E-9Bs"/>
-                                    <segue destination="d4H-Jt-sHh" kind="show" identifier="abc" id="B4d-pp-TLn"/>
+                                    <segue destination="d4H-Jt-sHh" kind="presentation" identifier="abc" id="RKw-Tl-0zj"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
