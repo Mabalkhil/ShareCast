@@ -14,7 +14,6 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var episodes = UserDefaults.standard.downloadedEpisodes()
     var myIndex = 0
-    var player: PlayerDetailsViewController!
 
     
     override func viewDidLoad() {
@@ -24,10 +23,46 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         
         super.viewDidLoad()
         
+        setupObservers()
         
         //setupTableView()
     }
     
+    fileprivate func setupObservers(){
+        
+        NotificationCenter.default.addObserver( self, selector: #selector(handleDownloadProgress), name: .downloadProgress, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDownloadComplete), name: .downloadComplete, object: nil)
+    }
+    
+    
+    @objc fileprivate func handleDownloadComplete(notification: Notification){
+        
+        guard let episodeDownloadComplete = notification.object as? APIService.EpisodeDownloadCompleteTuple else{ return }
+        
+        guard let index = self.episodes.index(where: { $0.title == episodeDownloadComplete.episodeTitle }) else { return }
+        self.episodes[index].fileUrl = episodeDownloadComplete.fileURL
+    }
+    
+    
+    @objc fileprivate func handleDownloadProgress(notification: Notification){
+        guard let userInfo = notification.userInfo as? [String: Any] else { return }
+        
+        guard let progress = userInfo["progress"] as? Double else { return }
+        guard let title = userInfo["title"] as? String else { return }
+        
+        guard let index = self.episodes.index(where: { $0.title == title }) else { return }
+        guard let cell = tablwViewDownload.cellForRow(at: IndexPath(row:index,section:0)) as? DownloadEpisodeCell else{ return }
+        
+        cell.progressLabel.text = "\(Int(progress * 100))% "
+        
+        cell.progressLabel.isHidden = false
+        
+        
+        if progress == 1{
+            cell.progressLabel.isHidden = true
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return episodes.count
@@ -41,7 +76,6 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         
         cell.episode = self.episodes[indexPath.row]
         
-        //player.setEpisode(episode: self.episodes[indexPath.row])
         
         return cell
     }
@@ -49,8 +83,13 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
     
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: "abc", sender: nil)
-       // print(self.episodes[indexPath.row])
+        if self.episodes[indexPath.row].fileUrl != nil{
+            
+           // performSegue(withIdentifier: "abc", sender: nil)
+        }
+        
+        
+        // print(self.episodes[indexPath.row])
         
        // present( UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "playerStoryBoard") as UIViewController, animated: true, completion: nil)
         
@@ -77,7 +116,7 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("a")
-        if segue.identifier == "abc" {
+       if segue.identifier == "abc" {
             print("b")
             if let indexPath = tablwViewDownload.indexPathForSelectedRow {
                 print("c")
@@ -87,7 +126,7 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
                 print(destination.episode.title)
                 
             }
-        }
+       }
     }
     
     

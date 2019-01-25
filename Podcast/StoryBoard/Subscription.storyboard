@@ -150,6 +150,12 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mp7-so-8ud">
+                                                    <rect key="frame" x="14" y="28" width="49" height="22"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.19128635529999999" green="0.1914627552" blue="0.19131368400000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
@@ -161,7 +167,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="kiV-Pa-ajp" secondAttribute="trailing" constant="17" id="UNA-hh-44A"/>
                                                 <constraint firstItem="cxA-ro-0Gv" firstAttribute="top" secondItem="JeG-11-XqO" secondAttribute="top" constant="16" id="Z4G-Ld-MNf"/>
                                                 <constraint firstItem="rMI-dw-a5p" firstAttribute="leading" secondItem="0bN-hI-F8n" secondAttribute="trailing" constant="5" id="hWk-w2-OjW"/>
+                                                <constraint firstItem="Mp7-so-8ud" firstAttribute="top" secondItem="cxA-ro-0Gv" secondAttribute="bottom" constant="-33.5" id="jMd-pI-lho"/>
                                                 <constraint firstAttribute="bottom" secondItem="cxA-ro-0Gv" secondAttribute="bottom" constant="16" id="jsG-TC-J8o"/>
+                                                <constraint firstItem="Mp7-so-8ud" firstAttribute="centerX" secondItem="cxA-ro-0Gv" secondAttribute="centerX" id="u9M-Lh-tKm"/>
                                                 <constraint firstItem="rMI-dw-a5p" firstAttribute="top" secondItem="JeG-11-XqO" secondAttribute="top" constant="15" id="yjR-kB-cAh"/>
                                             </constraints>
                                         </view>
@@ -177,6 +185,7 @@
                                     <outlet property="episodeImage" destination="cxA-ro-0Gv" id="7Yd-Ah-4hD"/>
                                     <outlet property="episodeName" destination="0bN-hI-F8n" id="8Vq-t8-1KS"/>
                                     <outlet property="episodeSize" destination="kiV-Pa-ajp" id="OB2-Rr-K2x"/>
+                                    <outlet property="progressLabel" destination="Mp7-so-8ud" id="SeO-1E-9Bs"/>
                                     <segue destination="d4H-Jt-sHh" kind="show" identifier="abc" id="B4d-pp-TLn"/>
                                 </connections>
                             </tableViewCell>

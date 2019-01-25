@@ -15,6 +15,7 @@ class DownloadEpisodeCell: UITableViewCell {
     @IBOutlet weak var episodeName: UILabel!
     @IBOutlet weak var episodeSize: UILabel!
     
+    @IBOutlet weak var progressLabel: UILabel!
     
     
     override func awakeFromNib() {
