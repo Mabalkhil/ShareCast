@@ -102,7 +102,7 @@
                                             <constraint firstAttribute="width" constant="110" id="Dkr-HB-nf1"/>
                                         </constraints>
                                         <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
-                                        <state key="normal" title="Button" image="PlayButton"/>
+                                        <state key="normal" title="Button" image="round-play-button"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agN-O7-9lJ" userLabel="NextButton">
                                         <rect key="frame" x="230" y="30" width="120" height="120"/>
@@ -134,7 +134,7 @@
                                                     <constraint firstAttribute="width" constant="30" id="Kyi-2Z-sNa"/>
                                                     <constraint firstAttribute="height" constant="30" id="iJR-9r-V05"/>
                                                 </constraints>
-                                                <state key="normal" image="SmartSpeed"/>
+                                                <state key="normal" image="SMART"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OFF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0Z-KV-VNc" userLabel="SSLabel">
                                                 <rect key="frame" x="0.0" y="30" width="30" height="17"/>
@@ -249,9 +249,9 @@
     <resources>
         <image name="BOOSTTHING" width="70" height="70"/>
         <image name="Dismiss" width="70" height="70"/>
-        <image name="PlayButton" width="480" height="480"/>
-        <image name="SmartSpeed" width="480" height="480"/>
+        <image name="SMART" width="90" height="90"/>
         <image name="VOLUME" width="60" height="60"/>
+        <image name="round-play-button" width="384" height="384"/>
         <image name="try1" width="496.07998657226562" height="352.32000732421875"/>
         <image name="try3" width="496.07998657226562" height="352.32000732421875"/>
     </resources>
