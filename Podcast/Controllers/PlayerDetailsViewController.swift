@@ -204,28 +204,13 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
     //this function to start playing when an episode is selected
     fileprivate func playEpisode(){
         
-        
-        
-        if episode.fileUrl == nil{
-            print("abcdef")
-            guard let url = URL(string: episode.streamURL) else { return }
-            let playerItem = AVPlayerItem(url: url)
-            
-            player.play()
-            player.isMeteringEnabled = true
-            player.replaceCurrentItem(with: playerItem)
-            player.play()
-        }
-        
-        
-        
-        if episode.fileUrl != nil{
-            
+       
+        if episode.fileUrl != ""{
+            print(episode.fileUrl)
             guard let fileURL = URL(string: episode.fileUrl ?? "") else{return}
             
            let fileName =  fileURL.lastPathComponent
             
-            print("ghijklmnop")
             guard var trueLocation = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else{ return }
             
             trueLocation.appendPathComponent(fileName)
@@ -237,8 +222,15 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
             player.isMeteringEnabled = true
             player.replaceCurrentItem(with: playerItem)
             player.play()
+        } else{
+            
+            guard let url = URL(string: episode.streamURL) else { return }
+            let playerItem = AVPlayerItem(url: url)
+            
+            player.isMeteringEnabled = true
+            player.replaceCurrentItem(with: playerItem)
+            player.play()
         }
-       
         
     }
     //##################################################################################################
