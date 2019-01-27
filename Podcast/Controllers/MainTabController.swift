@@ -7,18 +7,17 @@
 //
 // notes
 import UIKit
+import Firebase
 
 
 class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tabBar.tintColor = UIColor(red: 236/255, green: 98/277, blue: 95/255, alpha: 1.0)
         tabBar.barTintColor = UIColor(red: 47/255, green:47/255, blue:47/255, alpha: 1.0)
         setupViewControllers()
-        
-        
-        
+
     }
     //MARK: Setup Function
     fileprivate func setupViewControllers() {
@@ -30,8 +29,13 @@ class MainTabBarController: UITabBarController {
             generateNavigationController(for: PodcastSearchController(), title: "Discover" , image: #imageLiteral(resourceName: "Discover"))
         let chanellesController =
             generateNavigationController(for: ViewController(), title: "Subscription", image: #imageLiteral(resourceName: "Chanelles"))
+        let ProfileStoryRef = UIStoryboard(name: "Profile", bundle: Bundle.main)
+        guard let ProfileViewController = ProfileStoryRef.instantiateInitialViewController() as?
+            ProfileViewController else {
+                return
+        }
         let ProfileController =
-            generateNavigationController(for: ViewController(), title: "Profile", image: #imageLiteral(resourceName: "Profile-1"))
+            generateNavigationController(for: ProfileViewController, title: "Profile", image: #imageLiteral(resourceName: "Profile-1"))
         
         
         viewControllers = [

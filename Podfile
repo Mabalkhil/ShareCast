@@ -11,5 +11,8 @@ target 'Podcast' do
     pod 'FeedKit', '~> 8.0'
     # firbase pods
     pod 'Firebase/Core'
-    pod 'FirebaseUI'
+    pod 'Firebase/Database'
+    pod 'Firebase/Storage'
+    pod 'Firebase/Auth'
+
 end
