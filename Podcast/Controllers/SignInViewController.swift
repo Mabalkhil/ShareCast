@@ -93,7 +93,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         Auth.auth().signIn(withEmail: email, password: pass) { user, error in
             if error == nil && user != nil {
                 let mainView = MainTabBarController()
-                self.navigationController?.pushViewController(mainView, animated: true)
+                self.present(mainView,animated: true,completion: nil)
             } else {
                 let errorMsg = error!.localizedDescription
                 let alertController = UIAlertController(title: errorMsg, message: "", preferredStyle: .alert)

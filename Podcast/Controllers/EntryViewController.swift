@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import  Firebase
 
 class EntryViewController: UIViewController {
-
+    let hello = 123
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if Auth.auth().currentUser?.uid != nil {
+            self.dismiss(animated: true, completion: nil)
+            let EntryViewControllerrr = MainTabBarController()
+            self.present(EntryViewControllerrr,animated: true,completion: nil)
+         // self.navigationController?.pushViewController(EntryViewControllerrr, animated: true)
+         
+        }
     
     
     }
@@ -29,9 +36,5 @@ class EntryViewController: UIViewController {
     }
     */
 
-    @IBAction func skipToMainView(_ sender: Any) {
-        let main = MainTabBarController()
-        self.present(main, animated: true, completion: nil)
-       
-    }
+ 
 }

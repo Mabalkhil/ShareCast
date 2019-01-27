@@ -18,7 +18,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     
     var continueButton:RoundedWhiteButton!
     var activityView:UIActivityIndicatorView!
-    
+    let ref = Database.database().reference(fromURL: "https://sharecast-c780f.firebaseio.com/")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,34 +100,21 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
         
         Auth.auth().createUser(withEmail: email, password: pass) { user, error in
             if error == nil && user != nil {
-                print("User created!")
-                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                changeRequest?.displayName = username
-                changeRequest?.commitChanges { error in
-                    if error == nil {
-                        print("User display name changed!")
-                        let mainView = MainTabBarController()
-                        self.navigationController?.pushViewController(mainView, animated: true)
-                        
-                    } else {
-                        let errorMsg = error!.localizedDescription
-                        let alertController = UIAlertController(title: errorMsg, message: "", preferredStyle: .alert)
-                        let okAction = UIAlertAction(title: "Back", style: .cancel) { (action) in
-                            self.backTomain()
-                        }
-                        alertController.addAction(okAction)
-                        self.present(alertController,animated: true)
+                guard let uid = user?.user.uid else {
+                    return
+                }
+                let userRefrence = self.ref.child("users").child(uid)
+                let values = ["username" : username,"email": email,"profileImgaeURL": ""]
+                userRefrence.updateChildValues(values, withCompletionBlock: { (error, ref) in
+                    if let err = error {
+                        let alert = UIAlertController(title: err.localizedDescription, message: "", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                        alert.addAction(action)
+                        self.present(alert,animated: true,completion: nil)
                     }
-                }
-                
-            } else {
-                let errorMsg = error!.localizedDescription
-                let alertController = UIAlertController(title: errorMsg, message: "", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "Back", style: .cancel) { (action) in
-                    self.backTomain()
-                }
-                alertController.addAction(okAction)
-                self.present(alertController,animated: true)
+                })
+                let mainView = MainTabBarController()
+                self.present(mainView,animated: true,completion: nil)
             }
         }
         
