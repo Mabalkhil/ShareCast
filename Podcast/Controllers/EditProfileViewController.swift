@@ -36,7 +36,7 @@ class EditProfileViewController: UITableViewController {
         }
         // move to the main view
         let storyboard = UIStoryboard.init(name: "Main", bundle: Bundle.main)
-        let EntryViewController = storyboard.instantiateViewController(withIdentifier: "Entry")
+        let EntryViewController = storyboard.instantiateViewController(withIdentifier: "Entry") as! UINavigationController
         UIApplication.shared.keyWindow?.rootViewController = EntryViewController
         self.dismiss(animated: true, completion: nil)
         
