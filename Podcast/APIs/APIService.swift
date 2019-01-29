@@ -10,7 +10,15 @@ import Foundation
 import Alamofire
 import FeedKit
 
+extension NSNotification.Name{
+    
+    static let downloadProgress = NSNotification.Name("downloadProgress")
+    static let downloadComplete = NSNotification.Name("downloadComplete ")
+}
+
 class APIService {
+    
+    typealias EpisodeDownloadCompleteTuple = (fileURL: String, episodeTitle: String)
     // Signleton Object
     static let shared = APIService()
     
@@ -35,7 +43,40 @@ class APIService {
             
             }
         }
+    
+    
+    func downloadEpisode(episode: Episode){
         
+        let downloadRequest = DownloadRequest.suggestedDownloadDestination()
+        
+        Alamofire.download(episode.streamURL, to: downloadRequest).downloadProgress { (progress) in
+            print(progress.fractionCompleted)
+    
+            NotificationCenter.default.post(name: .downloadProgress, object: nil, userInfo: ["title": episode.title, "progress": progress.fractionCompleted ])
+            
+            }.response { (resp) in
+                print(resp.destinationURL?.absoluteString ?? "")
+        
+                let episodeDownloadComplete = EpisodeDownloadCompleteTuple(resp.destinationURL?.absoluteString ?? "", episode.title )
+                
+                NotificationCenter.default.post(name: .downloadComplete, object: episodeDownloadComplete, userInfo: nil)
+                
+        var downloadedEpisodes = UserDefaults.standard.downloadedEpisodes()
+        
+        guard let index = downloadedEpisodes.firstIndex(where: { $0.title == episode.title && $0.author == episode.author }) else{ return }
+        
+        downloadedEpisodes[index].fileUrl = resp.destinationURL?.absoluteString ?? ""
+                
+                do{
+                    
+                    let data = try JSONEncoder().encode(downloadedEpisodes)
+                    UserDefaults.standard.set(data, forKey: UserDefaults.downloadedEpisodeKey)
+                } catch let err{
+                    print("failed to encode with file url update ",err)
+                }
+      
+        }
+    }
     
     
     func fetchPodcast(searchText: String, completionHandeler: @escaping ([Podcast]) -> ()) {

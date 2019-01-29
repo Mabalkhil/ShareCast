@@ -9,15 +9,16 @@
 import Foundation
 import FeedKit
 
-struct Episode {
+struct Episode: Codable{
     let title: String
     let pubDate: Date
     let describtion: String
     var imageUrl: String?
     let author: String
     let streamURL: String
-    let timeStampLables: [String]?
+    var timeStampLables: [String]?
     let timeStamps: [String]?
+    var fileUrl: String?
     //let timeMark: List
     
     init(feedItem: RSSFeedItem){
@@ -33,7 +34,7 @@ struct Episode {
         let feedDescription = (feedItem.description as! String?) ?? ""
         self.timeStampLables = feedDescription.timeStampsLabled()
         self.timeStamps = feedDescription.timeStamps()
-
+        self.fileUrl = ""
        // print(test, separator: ".\n")
         
     }
@@ -49,6 +50,7 @@ struct Episode {
         self.timeStampLables = ["",""]
         self.timeStamps = ["",""]
         self.streamURL = ""
+        self.fileUrl = ""
     }
    
     

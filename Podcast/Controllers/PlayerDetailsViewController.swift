@@ -61,6 +61,8 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        //view.removeConstraints(view.constraints)
         // Do any additional setup after loading the view.
         setScrollView()
         
@@ -69,7 +71,8 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
         playEpisode()
         guard let url = URL(string: episode.imageUrl ?? "") else { return }
         episodeImg.sd_setImage(with: url)
-       
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
         
     }
     
@@ -200,12 +203,34 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
     
     //this function to start playing when an episode is selected
     fileprivate func playEpisode(){
-        guard let url = URL(string: episode.streamURL) else { return }
-        let playerItem = AVPlayerItem(url: url)
         
-        player.isMeteringEnabled = true
-        player.replaceCurrentItem(with: playerItem)
-        player.play()
+       
+        if episode.fileUrl != ""{
+            print(episode.fileUrl)
+            guard let fileURL = URL(string: episode.fileUrl ?? "") else{return}
+            
+           let fileName =  fileURL.lastPathComponent
+            
+            guard var trueLocation = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else{ return }
+            
+            trueLocation.appendPathComponent(fileName)
+            
+            //guard let url = URL(string: episode.fileUrl ?? "") else { return }
+            
+            let playerItem = AVPlayerItem(url: trueLocation)
+            
+            player.isMeteringEnabled = true
+            player.replaceCurrentItem(with: playerItem)
+            player.play()
+        } else{
+            
+            guard let url = URL(string: episode.streamURL) else { return }
+            let playerItem = AVPlayerItem(url: url)
+            
+            player.isMeteringEnabled = true
+            player.replaceCurrentItem(with: playerItem)
+            player.play()
+        }
         
     }
     //##################################################################################################
@@ -335,7 +360,6 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
     //MARK:- Time Mark
     //only handle if there is a time marks in an episode(Show table or don't)
     @objc func handleTimeMark(){
-        
         if (episode.timeStampLables!.count-1 > 0 ) {
             for i in stride(from: 0, through: episode.timeStampLables!.count-1, by: 1){
                 let title = episode.timeStampLables![i]
@@ -346,9 +370,13 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
             setTable()
         }
         else {
-            scrollView.isScrollEnabled = false
-            pageControl.numberOfPages = 1
+            frame.origin.x = scrollView.frame.size.width + 5
+            noMarksText.frame = frame
+            noMarksText.text = "No time marks for this episode"
+            noMarksText.textAlignment = .center
+            scrollView.addSubview(noMarksText)
         }
+        
     }
 
     
@@ -391,6 +419,17 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
 //    }
     
     
+    func setEpisode(episode:Episode){
+        
+        episodeName.text = episode.title
+        channelName.text = episode.author
+        let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
+        episodeImg.sd_setImage(with: url)
+        self.episode.timeStampLables = ["a","b"]
+        
+    }
+    
+   
    
     
 }
