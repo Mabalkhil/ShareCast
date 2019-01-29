@@ -9,7 +9,7 @@
 import Foundation
 import FeedKit
 
-struct Episode: Codable{
+struct Episode: Codable {
     let title: String
     let pubDate: Date
     let describtion: String
@@ -34,7 +34,7 @@ struct Episode: Codable{
         let feedDescription = (feedItem.description as! String?) ?? ""
         self.timeStampLables = feedDescription.timeStampsLabled()
         self.timeStamps = feedDescription.timeStamps()
-        self.fileUrl = ""
+        self.fileUrl = "" 
        // print(test, separator: ".\n")
         
     }

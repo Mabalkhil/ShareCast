@@ -12,7 +12,7 @@
         <!--Entry View Controller-->
         <scene sceneID="Olc-ct-YGn">
             <objects>
-                <viewController storyboardIdentifier="Entry" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nIr-nh-mvM" customClass="EntryViewController" customModule="Podcast" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="nIr-nh-mvM" customClass="EntryViewController" customModule="Podcast" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Udd-7f-VBt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -377,7 +377,7 @@
         <!--Navigation Controller-->
         <scene sceneID="eIa-dM-yzD">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="2HE-FO-8VT" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Entry" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="2HE-FO-8VT" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7Sc-I6-kgB">
                         <autoresizingMask key="autoresizingMask"/>

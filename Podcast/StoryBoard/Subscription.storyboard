@@ -222,9 +222,9 @@
     </scenes>
     <resources>
         <image name="1400x1400-eagles_podcast-logo" width="1400" height="1400"/>
-        <image name="bookmark" width="512" height="512"/>
-        <image name="download" width="512" height="512"/>
-        <image name="playlist" width="480" height="480"/>
-        <image name="radio" width="512" height="512"/>
+        <image name="bookmark" width="384" height="384"/>
+        <image name="download" width="384" height="384"/>
+        <image name="playlist" width="384" height="384"/>
+        <image name="radio" width="384" height="384"/>
     </resources>
 </document>

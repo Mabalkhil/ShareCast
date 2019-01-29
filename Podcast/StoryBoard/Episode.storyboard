@@ -249,7 +249,7 @@
                     </tableView>
                     <connections>
                         <outlet property="descriptionLabel" destination="saY-iS-7Z9" id="6x4-fh-3Rb"/>
-                        <outlet property="downloadButton" destination="nhE-GC-yra" id="lWG-TB-c37"/>
+                        <outlet property="downloadButton" destination="nhE-GC-yra" id="bh5-h5-qGL"/>
                         <outlet property="episodeImage" destination="p4B-fj-d1j" id="KRJ-3e-c59"/>
                         <outlet property="titleLabel" destination="bgx-BA-2FI" id="osl-Z8-xxd"/>
                     </connections>

@@ -19,7 +19,6 @@ class EpisodeViewController: UITableViewController, UITextViewDelegate {
     var episode = Episode()
     
    
-    
     @IBOutlet weak var downloadButton: UIButton!{
         didSet{
             downloadButton.addTarget(self, action: #selector(downloadHandler), for: .touchUpInside)
@@ -31,15 +30,20 @@ class EpisodeViewController: UITableViewController, UITextViewDelegate {
         APIService.shared.downloadEpisode(episode: episode.self)
     }
     
-    
     override func viewDidLoad() {
 
         setAttributes()
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+
+    
+    
+    
+    
     
     // this piece of shit is to fix the episode description problem
+   
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         

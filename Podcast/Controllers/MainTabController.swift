@@ -27,8 +27,10 @@ class MainTabBarController: UITabBarController {
             generateNavigationController(for: ViewController(), title: "Home" , image: #imageLiteral(resourceName: "Home-1"))
         let searchNavController =
             generateNavigationController(for: PodcastSearchController(), title: "Discover" , image: #imageLiteral(resourceName: "Discover"))
+        
         let chanellesController =
-             generateNavigationController(for: UIStoryboard(name: "Subscription", bundle: nil).instantiateViewController(withIdentifier: "Download1"), title: "Subscription", image: #imageLiteral(resourceName: "Chanelles"))
+            generateNavigationController(for: UIStoryboard(name: "Subscription", bundle: nil).instantiateViewController(withIdentifier: "Download1"), title: "Subscription", image: #imageLiteral(resourceName: "Chanelles"))
+        
         let ProfileStoryRef = UIStoryboard(name: "Profile", bundle: Bundle.main)
         guard let ProfileViewController = ProfileStoryRef.instantiateInitialViewController() as?
             ProfileViewController else {
