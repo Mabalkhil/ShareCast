@@ -85,16 +85,8 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if self.episodes[indexPath.row].fileUrl != nil{
             
-           //performSegue(withIdentifier: "abc", sender: nil)
         }
-        
-        
-        // print(self.episodes[indexPath.row])
-        
-       // present( UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "playerStoryBoard") as UIViewController, animated: true, completion: nil)
-        
-       //UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "PlayerStoryBoard")
-        // UIApplication.mainTabBarController().max
+    
     }
     
     
@@ -111,6 +103,7 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         episodes.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
         UserDefaults.standard.deleteEpisode(episode: episode)
+        APIService.shared.deleteEpisode(episode: episode)
     }
     
     

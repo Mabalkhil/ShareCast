@@ -111,7 +111,7 @@
                                             <constraint firstAttribute="height" constant="120" id="iqY-AF-M5g"/>
                                         </constraints>
                                         <inset key="contentEdgeInsets" minX="40" minY="40" maxX="40" maxY="40"/>
-                                        <state key="normal" title="Button" image="forword"/>
+                                        <state key="normal" title="Button" image="Forword"/>
                                         <connections>
                                             <action selector="handleFastForword:" destination="o5c-Hq-P7e" eventType="touchUpInside" id="Qvc-fh-AYg"/>
                                         </connections>
@@ -250,9 +250,9 @@
         <image name="BOOSTTHING" width="70" height="70"/>
         <image name="Backword-1" width="496.07998657226562" height="352.32000732421875"/>
         <image name="Dismiss" width="70" height="70"/>
+        <image name="Forword" width="496.07998657226562" height="352.32000732421875"/>
         <image name="PlayButton" width="384" height="384"/>
         <image name="SmartSpeed" width="384" height="384"/>
         <image name="VOLUME" width="60" height="60"/>
-        <image name="forword" width="496.07998657226562" height="352.32000732421875"/>
     </resources>
 </document>
