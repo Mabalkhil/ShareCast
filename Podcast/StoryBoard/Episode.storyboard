@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YKl-A7-hyP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YKl-A7-hyP">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -68,6 +68,7 @@
                                                         <constraint firstAttribute="height" constant="50" id="zZt-nd-Yd6"/>
                                                         <constraint firstAttribute="width" constant="50" id="zcl-OJ-gSY"/>
                                                     </constraints>
+                                                    <color key="tintColor" red="0.92456585170000005" green="0.38482528919999998" blue="0.3745569587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                     <state key="normal" title="Button" image="bookmark"/>
                                                 </button>
@@ -248,6 +249,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="bookmarkButton" destination="dJ0-mM-P6j" id="ciS-rK-1EN"/>
                         <outlet property="descriptionLabel" destination="saY-iS-7Z9" id="6x4-fh-3Rb"/>
                         <outlet property="downloadButton" destination="nhE-GC-yra" id="bh5-h5-qGL"/>
                         <outlet property="episodeImage" destination="p4B-fj-d1j" id="KRJ-3e-c59"/>
@@ -269,12 +271,12 @@
     </scenes>
     <resources>
         <image name="1400x1400-eagles_podcast-logo" width="1400" height="1400"/>
-        <image name="add-list" width="384" height="384"/>
-        <image name="bookmark" width="384" height="384"/>
-        <image name="download" width="384" height="384"/>
-        <image name="like" width="384" height="384"/>
-        <image name="reply-all" width="384" height="384"/>
-        <image name="send" width="409.60000610351562" height="409.60000610351562"/>
-        <image name="share" width="409.60000610351562" height="409.60000610351562"/>
+        <image name="add-list" width="512" height="512"/>
+        <image name="bookmark" width="512" height="512"/>
+        <image name="download" width="512" height="512"/>
+        <image name="like" width="480" height="480"/>
+        <image name="reply-all" width="512" height="512"/>
+        <image name="send" width="512" height="512"/>
+        <image name="share" width="512" height="512"/>
     </resources>
 </document>
