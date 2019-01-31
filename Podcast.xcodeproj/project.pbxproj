@@ -16,6 +16,9 @@
 		372BC4562201E667009514D4 /* Playlists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 372BC4532201E667009514D4 /* Playlists.storyboard */; };
 		372BC4572201E667009514D4 /* Playlist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 372BC4542201E667009514D4 /* Playlist.storyboard */; };
 		372BC4582201E667009514D4 /* Bookmark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 372BC4552201E667009514D4 /* Bookmark.storyboard */; };
+		375DD44C2201ECA700C2D698 /* CreatePlaylistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375DD44B2201ECA700C2D698 /* CreatePlaylistController.swift */; };
+		375DD44E2201ED8C00C2D698 /* PlaylistsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375DD44D2201ED8C00C2D698 /* PlaylistsCell.swift */; };
+		375DD4502201F27D00C2D698 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375DD44F2201F27D00C2D698 /* Playlist.swift */; };
 		5018A44B21FF7DCF007EE027 /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5018A44421FF7DCF007EE027 /* Subscription.storyboard */; };
 		5018A44E21FF7DCF007EE027 /* DownloadsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5018A44721FF7DCF007EE027 /* DownloadsController.swift */; };
 		5018A44F21FF7DCF007EE027 /* DownloadEpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5018A44821FF7DCF007EE027 /* DownloadEpisodeCell.swift */; };
@@ -85,6 +88,9 @@
 		372BC4532201E667009514D4 /* Playlists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Playlists.storyboard; sourceTree = "<group>"; };
 		372BC4542201E667009514D4 /* Playlist.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Playlist.storyboard; sourceTree = "<group>"; };
 		372BC4552201E667009514D4 /* Bookmark.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bookmark.storyboard; sourceTree = "<group>"; };
+		375DD44B2201ECA700C2D698 /* CreatePlaylistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistController.swift; sourceTree = "<group>"; };
+		375DD44D2201ED8C00C2D698 /* PlaylistsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsCell.swift; sourceTree = "<group>"; };
+		375DD44F2201F27D00C2D698 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		5018A44421FF7DCF007EE027 /* Subscription.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Subscription.storyboard; sourceTree = "<group>"; };
 		5018A44721FF7DCF007EE027 /* DownloadsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadsController.swift; sourceTree = "<group>"; };
 		5018A44821FF7DCF007EE027 /* DownloadEpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadEpisodeCell.swift; sourceTree = "<group>"; };
@@ -224,6 +230,7 @@
 				FA8F8F412194D4CA00301EF6 /* PodcastCell.swift */,
 				50420F9E21A122040030CDB4 /* RoundedWhiteButton.swift */,
 				506217D921FB26C20003F99F /* ProfileView.swift */,
+				375DD44D2201ED8C00C2D698 /* PlaylistsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -243,6 +250,7 @@
 				50420FA121A12AF30030CDB4 /* SignInViewController.swift */,
 				5036E73621EFBCFC00FA5E12 /* ChannelController.swift */,
 				502484AF21FCED3D00CA84F1 /* EditProfileViewController.swift */,
+				375DD44B2201ECA700C2D698 /* CreatePlaylistController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -253,6 +261,7 @@
 				FA49932C218DD04F0021CFA3 /* Podcast.swift */,
 				FA397ED62195E66D00D33617 /* SearchResults.swift */,
 				FA397ED82195E68E00D33617 /* Episode.swift */,
+				375DD44F2201F27D00C2D698 /* Playlist.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -506,6 +515,7 @@
 				FA397ED92195E68E00D33617 /* Episode.swift in Sources */,
 				506217DA21FB26C20003F99F /* ProfileView.swift in Sources */,
 				50420F7921A089170030CDB4 /* SignUpViewController.swift in Sources */,
+				375DD44C2201ECA700C2D698 /* CreatePlaylistController.swift in Sources */,
 				505B6C2821F5C74F002E392D /* Comment.swift in Sources */,
 				50420F7B21A1113E0030CDB4 /* HilperExt.swift in Sources */,
 				50420FA221A12AF30030CDB4 /* SignInViewController.swift in Sources */,
@@ -514,6 +524,7 @@
 				5018A45021FF7DCF007EE027 /* UserDefaults.swift in Sources */,
 				5036E73921EFC0D100FA5E12 /* ChannelHeaderView.swift in Sources */,
 				3725E9452200DBED009D3417 /* APIService.swift in Sources */,
+				375DD4502201F27D00C2D698 /* Playlist.swift in Sources */,
 				3723A1FB21A9D18400D5FAE9 /* RSSFeed.swift in Sources */,
 				FA49932D218DD04F0021CFA3 /* Podcast.swift in Sources */,
 				5018A44F21FF7DCF007EE027 /* DownloadEpisodeCell.swift in Sources */,
@@ -521,6 +532,7 @@
 				3723A1F921A9CDD100D5FAE9 /* String.swift in Sources */,
 				505B6C2921F5C74F002E392D /* CommentObj.swift in Sources */,
 				FAFF831E218CEC4300882A6A /* MainTabController.swift in Sources */,
+				375DD44E2201ED8C00C2D698 /* PlaylistsCell.swift in Sources */,
 				3723A20521AB373A00D5FAE9 /* CMTime.swift in Sources */,
 				50420F9F21A122040030CDB4 /* RoundedWhiteButton.swift in Sources */,
 			);

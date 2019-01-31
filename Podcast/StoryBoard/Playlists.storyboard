@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="esW-jG-ZfE">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Create Playlist Controller-->
         <scene sceneID="4RP-5T-09e">
             <objects>
-                <tableViewController storyboardIdentifier="Playlists" id="esW-jG-ZfE" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Playlists" id="esW-jG-ZfE" customClass="CreatePlaylistController" customModule="Podcast" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="m6b-mx-AoT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,26 +20,46 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bzv-ja-C4P" customClass="RoundedWhiteButton" customModule="Podcast" customModuleProvider="target">
-                                    <rect key="frame" x="82" y="25" width="250" height="50"/>
-                                    <color key="backgroundColor" red="0.86666666670000003" green="0.4205085039" blue="0.38821679349999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9U-VZ-psx">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Playlist name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EJ3-uc-Vge">
+                                            <rect key="frame" x="8" y="35" width="308" height="30"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bzv-ja-C4P" customClass="RoundedWhiteButton" customModule="Podcast" customModuleProvider="target">
+                                            <rect key="frame" x="331" y="33" width="75" height="35"/>
+                                            <color key="backgroundColor" red="0.86666666670000003" green="0.4205085039" blue="0.38821679349999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                            <state key="normal" title="Create">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="250" id="ntg-d9-4Hg"/>
-                                        <constraint firstAttribute="height" constant="50" id="rbx-gt-tTA"/>
+                                        <constraint firstItem="Bzv-ja-C4P" firstAttribute="leading" secondItem="EJ3-uc-Vge" secondAttribute="trailing" constant="15" id="1pl-HO-H2B"/>
+                                        <constraint firstAttribute="trailing" secondItem="Bzv-ja-C4P" secondAttribute="trailing" constant="8" id="4nf-Eq-Kou"/>
+                                        <constraint firstItem="EJ3-uc-Vge" firstAttribute="top" secondItem="Z9U-VZ-psx" secondAttribute="top" constant="35" id="DYC-pb-bfO"/>
+                                        <constraint firstAttribute="bottom" secondItem="Bzv-ja-C4P" secondAttribute="bottom" constant="32" id="H16-YE-l8S"/>
+                                        <constraint firstItem="EJ3-uc-Vge" firstAttribute="leading" secondItem="Z9U-VZ-psx" secondAttribute="leading" constant="8" id="Jfh-gi-sJX"/>
+                                        <constraint firstItem="Bzv-ja-C4P" firstAttribute="top" secondItem="Z9U-VZ-psx" secondAttribute="top" constant="33" id="suy-2L-h6L"/>
+                                        <constraint firstAttribute="bottom" secondItem="EJ3-uc-Vge" secondAttribute="bottom" constant="35" id="zF4-ga-e0Y"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                    <state key="normal" title="Create">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                </button>
+                                </view>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="Bzv-ja-C4P" firstAttribute="centerX" secondItem="XoO-4V-s9Q" secondAttribute="centerX" id="Hkj-T6-00E"/>
-                                <constraint firstItem="Bzv-ja-C4P" firstAttribute="centerY" secondItem="XoO-4V-s9Q" secondAttribute="centerY" id="Vae-VO-gky"/>
+                                <constraint firstItem="Z9U-VZ-psx" firstAttribute="top" secondItem="XoO-4V-s9Q" secondAttribute="top" id="1MJ-Vz-L51"/>
+                                <constraint firstItem="Z9U-VZ-psx" firstAttribute="leading" secondItem="XoO-4V-s9Q" secondAttribute="leading" id="PgM-zU-Wai"/>
+                                <constraint firstItem="Z9U-VZ-psx" firstAttribute="centerY" secondItem="XoO-4V-s9Q" secondAttribute="centerY" id="fM3-HK-ByM"/>
+                                <constraint firstAttribute="trailing" secondItem="Z9U-VZ-psx" secondAttribute="trailing" id="i9L-yq-q6j"/>
+                                <constraint firstItem="Z9U-VZ-psx" firstAttribute="centerX" secondItem="XoO-4V-s9Q" secondAttribute="centerX" id="miz-Hb-2jL"/>
+                                <constraint firstAttribute="bottom" secondItem="Z9U-VZ-psx" secondAttribute="bottom" id="xGt-by-dlD"/>
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="LOm-r2-YVi">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="playlistCell" rowHeight="100" id="LOm-r2-YVi" customClass="PlaylistsCell" customModule="Podcast" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="128" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LOm-r2-YVi" id="l38-x3-xyZ">
@@ -105,6 +125,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="numberOfEpisode" destination="HYO-2j-33d" id="2bk-L9-8z1"/>
+                                    <outlet property="playsitName" destination="D3s-qP-qAO" id="pZz-OK-goI"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -112,13 +136,18 @@
                             <outlet property="delegate" destination="esW-jG-ZfE" id="ZEu-QS-gos"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="createPlaylistButton" destination="Bzv-ja-C4P" id="GHC-ai-3D1"/>
+                        <outlet property="createPlaylistTable" destination="m6b-mx-AoT" id="Sd4-Q7-eyx"/>
+                        <outlet property="playlistTextField" destination="EJ3-uc-Vge" id="DDu-Y1-lMR"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X90-0U-uKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="157.59999999999999" y="164.16791604197903"/>
+            <point key="canvasLocation" x="155.07246376811597" y="164.0625"/>
         </scene>
     </scenes>
     <resources>
-        <image name="more" width="512" height="512"/>
+        <image name="more" width="384" height="384"/>
     </resources>
 </document>

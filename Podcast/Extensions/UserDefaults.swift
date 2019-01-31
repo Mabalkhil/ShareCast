@@ -11,6 +11,7 @@ import Foundation
 extension UserDefaults {
     
     static let downloadedEpisodeKey = "downloadedEpisodeKey"
+    static let playlistsKey = "playlistsKey"
     
     func downloadEpisode(episode: Episode){
         
@@ -53,6 +54,33 @@ extension UserDefaults {
     }
     
     
+    func playlistArray(playlist: Playlist) {
+   
+        do{
+            var playlists = playlistsArray()
+            
+            if playlists.isEmpty {
+                playlists.append(playlist)
+            } else {
+                if !playlists.contains(where: { $0.playlistName == playlist.playlistName}) {
+                    playlists.insert(playlist, at: 0)
+                }
+            }
+            
+            // episodes.append(episode)
+            let data = try JSONEncoder().encode(playlists)
+            UserDefaults.standard.set(data, forKey: UserDefaults.playlistsKey)
+            
+        }catch let encodeErr {
+            
+            print("Failed to encode playlist", encodeErr)
+            
+        }
+      
+    }
+    
+    
+    
     
     func  downloadedEpisodes() -> [Episode]{
         
@@ -62,6 +90,23 @@ extension UserDefaults {
             let episodes = try JSONDecoder().decode([Episode].self, from: episodesData)
             
             return episodes
+        }catch let decodeErr{
+            print("failed to decode:",decodeErr)
+        }
+        
+        return []
+    }
+    
+    
+    
+    func  playlistsArray() -> [Playlist]{
+        
+        guard let playlistsData = UserDefaults.standard.data(forKey: UserDefaults.playlistsKey) else { return []}
+        
+        do{
+            let playlists = try JSONDecoder().decode([Playlist].self, from: playlistsData)
+            
+            return playlists
         }catch let decodeErr{
             print("failed to decode:",decodeErr)
         }

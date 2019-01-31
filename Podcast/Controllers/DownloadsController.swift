@@ -64,6 +64,8 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return episodes.count
     }
