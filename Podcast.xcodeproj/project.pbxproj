@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29140E3E2202FDCD0060522E /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29140E3D2202FDCD0060522E /* Discover.storyboard */; };
+		29140E42220349000060522E /* DiscoverTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29140E41220349000060522E /* DiscoverTableCell.swift */; };
+		29140E44220352500060522E /* SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29140E43220352500060522E /* SearchDelegate.swift */; };
+		292111C322008B0E00B28DE2 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292111C222008B0E00B28DE2 /* CategoryCell.swift */; };
+		292111C522008D3A00B28DE2 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292111C422008D3A00B28DE2 /* Category.swift */; };
 		3723A1F521A9C66400D5FAE9 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A1F321A9C66400D5FAE9 /* EpisodeCell.swift */; };
 		3723A1F921A9CDD100D5FAE9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A1F821A9CDD100D5FAE9 /* String.swift */; };
 		3723A1FB21A9D18400D5FAE9 /* RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A1FA21A9D18400D5FAE9 /* RSSFeed.swift */; };
@@ -70,6 +75,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		29140E3D2202FDCD0060522E /* Discover.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
+		29140E41220349000060522E /* DiscoverTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableCell.swift; sourceTree = "<group>"; };
+		29140E43220352500060522E /* SearchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDelegate.swift; sourceTree = "<group>"; };
+		292111C222008B0E00B28DE2 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		292111C422008D3A00B28DE2 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		3723A1D421A9967000D5FAE9 /* Podcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3723A1D521A9967000D5FAE9 /* PodcastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3723A1D621A9967000D5FAE9 /* PodcastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +176,7 @@
 				3723A1F821A9CDD100D5FAE9 /* String.swift */,
 				3723A1FA21A9D18400D5FAE9 /* RSSFeed.swift */,
 				3723A20421AB373A00D5FAE9 /* CMTime.swift */,
+				29140E43220352500060522E /* SearchDelegate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -187,6 +198,7 @@
 				FAFF82F0218CEB6400882A6A /* Main.storyboard */,
 				50533FE221EFA59E00D50698 /* Channel.storyboard */,
 				505B6C2721F5C74F002E392D /* Episode.storyboard */,
+				29140E3D2202FDCD0060522E /* Discover.storyboard */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -215,6 +227,8 @@
 				FA8F8F412194D4CA00301EF6 /* PodcastCell.swift */,
 				50420F9E21A122040030CDB4 /* RoundedWhiteButton.swift */,
 				506217D921FB26C20003F99F /* ProfileView.swift */,
+				292111C222008B0E00B28DE2 /* CategoryCell.swift */,
+				29140E41220349000060522E /* DiscoverTableCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -244,6 +258,7 @@
 				FA49932C218DD04F0021CFA3 /* Podcast.swift */,
 				FA397ED62195E66D00D33617 /* SearchResults.swift */,
 				FA397ED82195E68E00D33617 /* Episode.swift */,
+				292111C422008D3A00B28DE2 /* Category.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -397,6 +412,7 @@
 				FAFF82FA218CEB6C00882A6A /* LaunchScreen.storyboard in Resources */,
 				FAFF82F7218CEB6C00882A6A /* Assets.xcassets in Resources */,
 				50420F7321A013140030CDB4 /* GoogleService-Info.plist in Resources */,
+				29140E3E2202FDCD0060522E /* Discover.storyboard in Resources */,
 				50533FE321EFA59E00D50698 /* Channel.storyboard in Resources */,
 				505B6C3421F66A03002E392D /* Player.storyboard in Resources */,
 				505B6C3F21FA06D9002E392D /* Profile.storyboard in Resources */,
@@ -481,6 +497,7 @@
 			files = (
 				502484B021FCED3D00CA84F1 /* EditProfileViewController.swift in Sources */,
 				FA49932A218DCD3E0021CFA3 /* PodcastSearchController.swift in Sources */,
+				29140E44220352500060522E /* SearchDelegate.swift in Sources */,
 				5018A44E21FF7DCF007EE027 /* DownloadsController.swift in Sources */,
 				FA397ED72195E66D00D33617 /* SearchResults.swift in Sources */,
 				50CB8D9021FF8842009607E8 /* APIService.swift in Sources */,
@@ -490,6 +507,7 @@
 				505B6C4121FA09D3002E392D /* ProfileViewController.swift in Sources */,
 				5036E73721EFBCFC00FA5E12 /* ChannelController.swift in Sources */,
 				50CB8D9221FF8879009607E8 /* PlayerDetailsViewController.swift in Sources */,
+				292111C522008D3A00B28DE2 /* Category.swift in Sources */,
 				3723A1F521A9C66400D5FAE9 /* EpisodeCell.swift in Sources */,
 				505B6C3121F6571E002E392D /* TimeMarkCell.swift in Sources */,
 				FA397ED92195E68E00D33617 /* Episode.swift in Sources */,
@@ -502,6 +520,7 @@
 				FAFF82EF218CEB6400882A6A /* ViewController.swift in Sources */,
 				5018A45021FF7DCF007EE027 /* UserDefaults.swift in Sources */,
 				5036E73921EFC0D100FA5E12 /* ChannelHeaderView.swift in Sources */,
+				29140E42220349000060522E /* DiscoverTableCell.swift in Sources */,
 				3723A1FB21A9D18400D5FAE9 /* RSSFeed.swift in Sources */,
 				FA49932D218DD04F0021CFA3 /* Podcast.swift in Sources */,
 				5018A44F21FF7DCF007EE027 /* DownloadEpisodeCell.swift in Sources */,
@@ -511,6 +530,7 @@
 				FAFF831E218CEC4300882A6A /* MainTabController.swift in Sources */,
 				3723A20521AB373A00D5FAE9 /* CMTime.swift in Sources */,
 				50420F9F21A122040030CDB4 /* RoundedWhiteButton.swift in Sources */,
+				292111C322008B0E00B28DE2 /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
