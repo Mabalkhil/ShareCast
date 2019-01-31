@@ -12,24 +12,22 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
     
     
     var playlists = UserDefaults.standard.playlistsArray()
+    var episodes: [Episode] = []
+
+    
     
     
     @IBOutlet var createPlaylistTable: UITableView!
     @IBOutlet weak var playlistTextField: UITextField!
     
- 
-  
-    
-    // playlistName
-   // numberOfEpisodes
-    
-    
+
     
     override func viewDidLoad() {
     
           super.viewDidLoad()
         createPlaylistTable.delegate = self
         createPlaylistTable.dataSource = self
+        
     }
     
     
@@ -46,7 +44,7 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
     @objc func addPlaylist(){
         
        var temp: Playlist
-         temp = Playlist(playlistName:playlistTextField.text!,numberOfEpisodes:"0")
+        temp = Playlist(playlistName:playlistTextField.text!,numberOfEpisodes:"0",episodes:episodes)
         playlists.append(temp)
         UserDefaults.standard.playlistArray(playlist: temp)
         
@@ -72,7 +70,7 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
      
         let cell = createPlaylistTable.dequeueReusableCell(withIdentifier: "playlistCell", for: indexPath) as! PlaylistsCell
         
-        cell.playlist = self.playlists[indexPath.row]
+        cell.playlists = self.playlists[indexPath.row]
         return cell
        
     }

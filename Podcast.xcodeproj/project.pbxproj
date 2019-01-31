@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		372023AE220373A300D0C555 /* PlaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372023AD220373A300D0C555 /* PlaylistCell.swift */; };
+		372023B0220374E900D0C555 /* addEpisodeToPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372023AF220374E900D0C555 /* addEpisodeToPlaylist.swift */; };
 		3723A1F521A9C66400D5FAE9 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A1F321A9C66400D5FAE9 /* EpisodeCell.swift */; };
 		3723A1F921A9CDD100D5FAE9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A1F821A9CDD100D5FAE9 /* String.swift */; };
 		3723A1FB21A9D18400D5FAE9 /* RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A1FA21A9D18400D5FAE9 /* RSSFeed.swift */; };
@@ -76,6 +78,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		372023AD220373A300D0C555 /* PlaylistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCell.swift; sourceTree = "<group>"; };
+		372023AF220374E900D0C555 /* addEpisodeToPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addEpisodeToPlaylist.swift; sourceTree = "<group>"; };
 		3723A1D421A9967000D5FAE9 /* Podcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3723A1D521A9967000D5FAE9 /* PodcastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3723A1D621A9967000D5FAE9 /* PodcastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +235,7 @@
 				50420F9E21A122040030CDB4 /* RoundedWhiteButton.swift */,
 				506217D921FB26C20003F99F /* ProfileView.swift */,
 				375DD44D2201ED8C00C2D698 /* PlaylistsCell.swift */,
+				372023AD220373A300D0C555 /* PlaylistCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 				5036E73621EFBCFC00FA5E12 /* ChannelController.swift */,
 				502484AF21FCED3D00CA84F1 /* EditProfileViewController.swift */,
 				375DD44B2201ECA700C2D698 /* CreatePlaylistController.swift */,
+				372023AF220374E900D0C555 /* addEpisodeToPlaylist.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -511,12 +517,14 @@
 				5036E73721EFBCFC00FA5E12 /* ChannelController.swift in Sources */,
 				3723A1F521A9C66400D5FAE9 /* EpisodeCell.swift in Sources */,
 				3725E9472200DBF7009D3417 /* PlayerDetailsViewController.swift in Sources */,
+				372023AE220373A300D0C555 /* PlaylistCell.swift in Sources */,
 				505B6C3121F6571E002E392D /* TimeMarkCell.swift in Sources */,
 				FA397ED92195E68E00D33617 /* Episode.swift in Sources */,
 				506217DA21FB26C20003F99F /* ProfileView.swift in Sources */,
 				50420F7921A089170030CDB4 /* SignUpViewController.swift in Sources */,
 				375DD44C2201ECA700C2D698 /* CreatePlaylistController.swift in Sources */,
 				505B6C2821F5C74F002E392D /* Comment.swift in Sources */,
+				372023B0220374E900D0C555 /* addEpisodeToPlaylist.swift in Sources */,
 				50420F7B21A1113E0030CDB4 /* HilperExt.swift in Sources */,
 				50420FA221A12AF30030CDB4 /* SignInViewController.swift in Sources */,
 				50420F7721A083F80030CDB4 /* EntryViewController.swift in Sources */,

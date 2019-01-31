@@ -54,6 +54,7 @@ extension UserDefaults {
     }
     
     
+    
     func playlistArray(playlist: Playlist) {
    
         do{
@@ -67,7 +68,6 @@ extension UserDefaults {
                 }
             }
             
-            // episodes.append(episode)
             let data = try JSONEncoder().encode(playlists)
             UserDefaults.standard.set(data, forKey: UserDefaults.playlistsKey)
             

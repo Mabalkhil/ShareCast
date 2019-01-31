@@ -23,12 +23,12 @@ class PlaylistsCell: UITableViewCell{
     
     
     
-    var playlist: Playlist!{
+    var playlists: Playlist!{
         
         didSet{
             
-            playsitName.text = playlist.playlistName
-            numberOfEpisode.text = playlist.numberOfEpisodes
+            playsitName.text = playlists.playlistName
+            numberOfEpisode.text = playlists.numberOfEpisodes
             
         }
     }

@@ -11,7 +11,7 @@ import Foundation
 struct Playlist: Codable{
     var playlistName: String?
     var numberOfEpisodes: String?
-   // var episodes: [Episode]?
+    var episodes: [Episode]?
 
 }
 
