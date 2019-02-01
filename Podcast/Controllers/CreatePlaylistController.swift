@@ -72,10 +72,11 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         let cell = createPlaylistTable.dequeueReusableCell(withIdentifier: "playlistCell", for: indexPath) as! PlaylistsCell
         
         cell.playlists = self.playlists[indexPath.row]
-        if check == false {
-            cell.playlists.episodes?.append(self.episode!)
-        }
-            
+        
+//        if check == false {
+//            cell.playlists.episodes?.append(self.episode!)
+//        }
+        
         return cell
     }
     
@@ -84,7 +85,7 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         var segue: String!
         if check == true {
             segue = "segue1"
-            //print("????????????????????????????????")
+            
              self.performSegue(withIdentifier: segue, sender: self)
         } else  {
             //print(self.episode)
