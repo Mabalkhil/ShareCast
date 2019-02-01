@@ -13,7 +13,8 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
     
     var playlists = UserDefaults.standard.playlistsArray()
     var episodes: [Episode] = []
-
+    var check = true
+    var episode: Episode? = nil
     
     
     
@@ -71,10 +72,44 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         let cell = createPlaylistTable.dequeueReusableCell(withIdentifier: "playlistCell", for: indexPath) as! PlaylistsCell
         
         cell.playlists = self.playlists[indexPath.row]
+        if check == false {
+            cell.playlists.episodes?.append(self.episode!)
+        }
+            
         return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var segue: String!
+        if check == true {
+            segue = "segue1"
+            //print("????????????????????????????????")
+             self.performSegue(withIdentifier: segue, sender: self)
+        } else  {
+            //print(self.episode)
+            self.playlists[indexPath.row].episodes?.append(self.episode!)
+            print(self.playlists[indexPath.row].episodes![0])
+            //UserDefaults.standard.episodeArray(episode: self.episode!)
+            print(self.playlists[indexPath.row].playlistName)
+            //print(self.playlists[indexPath.row].episodes!)
+            print("----------------------------------------")
+            self.dismiss(animated: true, completion: nil)
+        }
        
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segue1" {
+            if let indexPath = createPlaylistTable.indexPathForSelectedRow {
+                let destination = segue.destination as! addEpisodeToPlaylist
+                destination.playlistNameLabel?.text = playlists[indexPath.row].playlistName
+                //destination.playlist = playlists[indexPath.row]
+                //destination.episodes = playlists[indexPath.row].episodes!
+            }
+        }
+    }
     
     
 }

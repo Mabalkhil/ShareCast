@@ -128,7 +128,6 @@
                                 <connections>
                                     <outlet property="numberOfEpisode" destination="HYO-2j-33d" id="2bk-L9-8z1"/>
                                     <outlet property="playsitName" destination="D3s-qP-qAO" id="pZz-OK-goI"/>
-                                    <segue destination="aqG-VW-JfG" kind="show" identifier="toPlaylist" id="duQ-kT-OR7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -141,6 +140,7 @@
                         <outlet property="createPlaylistButton" destination="Bzv-ja-C4P" id="GHC-ai-3D1"/>
                         <outlet property="createPlaylistTable" destination="m6b-mx-AoT" id="Sd4-Q7-eyx"/>
                         <outlet property="playlistTextField" destination="EJ3-uc-Vge" id="DDu-Y1-lMR"/>
+                        <segue destination="aqG-VW-JfG" kind="show" identifier="segue1" id="c0d-Mz-O0m"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X90-0U-uKe" userLabel="First Responder" sceneMemberID="firstResponder"/>

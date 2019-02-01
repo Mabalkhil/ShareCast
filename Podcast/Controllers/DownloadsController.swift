@@ -78,7 +78,6 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         
         cell.episode = self.episodes[indexPath.row]
         
-        
         return cell
     }
     
@@ -116,12 +115,17 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
             if let indexPath = tablwViewDownload.indexPathForSelectedRow {
                 print("c")
                 let destination = segue.destination as! PlayerDetailsViewController
-                // dont assign value directly because the destinition view visual component not created yet
+       
                 destination.episode = episodes[indexPath.row]
                 print(destination.episode.title)
                 
             }
-       }
+       }else if segue.identifier == "playlistsView" {
+        
+        let destination = segue.destination as! CreatePlaylistController
+        destination.check = true
+        }
+        
     }
     
     

@@ -126,6 +126,11 @@ class EpisodeViewController: UITableViewController, UITextViewDelegate {
             let destinationController = segue.destination as! PlayerDetailsViewController
             destinationController.episode = self.episode
         }
+        else if segue.identifier == "addEpisodeToPlaylist"{
+            let destinationController = segue.destination as! CreatePlaylistController
+            destinationController.episode = self.episode
+            destinationController.check = false
+        }
     }
     
     

@@ -11,14 +11,21 @@ import UIKit
 class addEpisodeToPlaylist: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var addEpisodeToPlaylistTable: UITableView!
-    var episodes: [Episode] = []
+   // var playlist:Playlist? = nil
+    var episodes:[Episode]!
+    
+
+    @IBOutlet weak var playlistNameLabel: UILabel!
+    
+    
     
     override func viewDidLoad() {
-
         super.viewDidLoad()
         addEpisodeToPlaylistTable.delegate = self
         addEpisodeToPlaylistTable.dataSource = self
+       
     }
+    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,8 +37,22 @@ class addEpisodeToPlaylist: UIViewController, UITableViewDelegate, UITableViewDa
         
         cell.episode = self.episodes[indexPath.row]
         
-        
         return cell
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("a")
+        if segue.identifier == "playlistEpisode" {
+            print("b")
+            if let indexPath = addEpisodeToPlaylistTable.indexPathForSelectedRow {
+                print("c")
+                let destination = segue.destination as! PlayerDetailsViewController
+                // dont assign value directly because the destinition view visual component not created yet
+                destination.episode = episodes[indexPath.row]
+                print(destination.episode.title)
+            }
+        }
     }
     
     

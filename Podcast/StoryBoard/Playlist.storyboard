@@ -50,8 +50,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1w9-lB-nxu">
-                                            <rect key="frame" x="0.0" y="5" width="414" height="89.5"/>
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1w9-lB-nxu">
+                                            <rect key="frame" x="0.0" y="5" width="414" height="95"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1400x1400-eagles_podcast-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Yuf-0H-NSm">
                                                     <rect key="frame" x="6" y="6" width="77" height="77"/>
@@ -67,7 +67,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Episode name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pGw-gA-rIt">
-                                                    <rect key="frame" x="91" y="27" width="315" height="57.5"/>
+                                                    <rect key="frame" x="91" y="27" width="315" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -98,6 +98,7 @@
                                 <connections>
                                     <outlet property="episodeImage" destination="Yuf-0H-NSm" id="06c-fS-825"/>
                                     <outlet property="episodeNameLabel" destination="dGU-7Q-T6t" id="F74-Py-JWk"/>
+                                    <segue destination="zWY-vA-WPb" kind="showDetail" identifier="playlistEpisode" id="d8Z-IQ-3sc"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -108,11 +109,20 @@
                     </tableView>
                     <connections>
                         <outlet property="addEpisodeToPlaylistTable" destination="5b6-gn-341" id="baP-xC-VH3"/>
+                        <outlet property="playlistNameLabel" destination="GWy-3C-gVz" id="DHo-CR-OZy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EuK-SZ-VL5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-12" y="110.19490254872565"/>
+            <point key="canvasLocation" x="-13.043478260869566" y="109.82142857142857"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="ltO-CC-rIj">
+            <objects>
+                <viewControllerPlaceholder id="zWY-vA-WPb" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4uJ-FR-LI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="922" y="-5"/>
         </scene>
     </scenes>
     <resources>
