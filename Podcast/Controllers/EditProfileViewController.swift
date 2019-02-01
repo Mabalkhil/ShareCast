@@ -10,7 +10,11 @@ import UIKit
 import Firebase
 
 class EditProfileViewController: UITableViewController {
-
+    @IBOutlet weak var usernameText: UITextField!
+    @IBOutlet weak var lastNameText: UITextField!
+    @IBOutlet weak var firstNameText: UITextField!
+    let databaseReff = Database.database().reference().child("usersInfo")
+    let uid = Auth.auth().currentUser?.uid
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,6 +23,30 @@ class EditProfileViewController: UITableViewController {
     // MARK: - Table view data source
 
     @IBAction func SaveProfileChanges(_ sender: Any) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        guard let username = usernameText.text else { return }
+        guard let firstName = firstNameText.text else { return }
+        guard let lastName = lastNameText.text else { return }
+        
+        if usernameText.text != "" {
+            if username.isValidName{
+                 databaseReff.child(uid).updateChildValues(["username" : "@\(username)"])
+            }else{
+                let alert = UIAlertController(title: "Inalid username", message: "", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Try Again", style: .cancel, handler: nil)
+                alert.addAction(action)
+                self.present(alert,animated: true,completion: nil)
+            }
+        }
+        if firstNameText.text != "" {
+            databaseReff.child(uid).updateChildValues(["firstName" : firstName]) }
+        if lastNameText.text != "" {
+            databaseReff.child(uid).updateChildValues(["lastName" : lastName]) }
+        
+        self.dismiss(animated: true, completion: nil)
+  
     }
     @IBAction func backToProfile(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

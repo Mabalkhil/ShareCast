@@ -9,6 +9,12 @@
 import Foundation
 
 extension String{
+
+        var isValidName: Bool {
+            let RegEx = "^\\w{1,18}$"
+            let Test = NSPredicate(format:"SELF MATCHES %@", RegEx)
+            return Test.evaluate(with: self)
+        }
     
    func  toSecureHTTPS() -> String{
     

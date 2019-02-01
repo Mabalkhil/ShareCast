@@ -14,7 +14,10 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
-    @IBOutlet weak var back: UILabel!
+    @IBOutlet weak var firstNameText: UITextField!
+    @IBOutlet weak var lastnameText: UITextField!
+    @IBOutlet weak var confirmPass: UITextField!
+   // @IBOutlet weak var back: UILabel!
     
     var continueButton:RoundedWhiteButton!
     var activityView:UIActivityIndicatorView!
@@ -52,9 +55,9 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
         emailText.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         passwordText.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(backTomain))
-        back.isUserInteractionEnabled=true
-        back.addGestureRecognizer(tap)
+      //  let tap = UITapGestureRecognizer(target: self, action: #selector(backTomain))
+//        back.isUserInteractionEnabled= true
+//        back.addGestureRecognizer(tap)
         
     }
     
@@ -80,32 +83,46 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
         let username = usernameText.text
         let email = emailText.text
         let password = passwordText.text
-        let formFilled = username != nil && username != "" && email != nil && email != "" && password != nil && password != ""
+        let firstName = firstNameText.text
+        let lastName = lastnameText.text
+        let formFilled = username != nil && username != "" && email != nil && email != "" && password != nil && password != "" && firstName != nil && firstName != "" && lastName != nil && lastName != ""
         setContinueButton(enabled: formFilled)
     }
     
-    @objc func backTomain() {
-        self.navigationController?.popViewController(animated: true)
-    }
+//    @objc func backTomain() {
+//        self.navigationController?.popViewController(animated: true)
+//    }
     
     
     @objc func handleSignUp() {
         guard let username = usernameText.text else { return }
         guard let email = emailText.text else { return }
         guard let pass = passwordText.text else { return }
-        
+        guard let firstName = self.firstNameText.text else { return }
+        guard let lastName = self.lastnameText.text else { return }
+        guard let confirmPass = self.confirmPass.text else { return }
+        if pass != confirmPass || username.isValidName == false {
+            let notMatch = UIAlertController(title: "Username or Password Not Valid", message: "", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            notMatch.addAction(action)
+            self.present(notMatch,animated: true,completion: nil)
+        }else{
+        print("This will run also")
         setContinueButton(enabled: false)
         continueButton.setTitle("", for: .normal)
         activityView.startAnimating()
         
+   
+            
         Auth.auth().createUser(withEmail: email, password: pass) { user, error in
             if error == nil && user != nil {
                 guard let uid = user?.user.uid else {
                     return
                 }
-                let userRefrence = self.ref.child("users").child(uid)
-                let values = ["username" : username,"email": email,"profileImgaeURL": ""]
-                userRefrence.updateChildValues(values, withCompletionBlock: { (error, ref) in
+                let userInfoRefrence = self.ref.child("usersInfo").child(uid)
+                let values =
+                    ["email": email,"profileImgaeURL": "","firstName":firstName,"lastName":lastName,"username":"@\(username)"]
+                userInfoRefrence.updateChildValues(values, withCompletionBlock: { (error, ref) in
                     if let err = error {
                         let alert = UIAlertController(title: err.localizedDescription, message: "", preferredStyle: .alert)
                         let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
@@ -113,13 +130,11 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                         self.present(alert,animated: true,completion: nil)
                     }
                 })
+                
                 let mainView = MainTabBarController()
                 self.present(mainView,animated: true,completion: nil)
+                }
             }
         }
-        
-        
     }
-    
-
 }

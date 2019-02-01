@@ -30,7 +30,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         
     }
     func setUpProfilePic(){
-        reffDtatabase.child("users").child(uid!).observe(.value) { (snapshot) in
+        reffDtatabase.child("usersInfo").child(uid!).observe(.value) { (snapshot) in
             if let dictionary = snapshot.value as? [String:AnyObject]{
                 let profileUrl = dictionary["profileImgaeURL"] as? String
                 if profileUrl == "" {
@@ -82,7 +82,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
                 if let err = error {
                     print(err)
                 }else{
-self.self.reffDtatabase.child("users").child(self.uid!).updateChildValues(["profileImgaeURL":url?.absoluteString])
+self.self.reffDtatabase.child("usersInfo").child(self.uid!).updateChildValues(["profileImgaeURL":url?.absoluteString])
                 }
             })
         
