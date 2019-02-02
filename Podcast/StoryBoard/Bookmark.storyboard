@@ -74,7 +74,7 @@
                                     <outlet property="EpisodeDescription" destination="eUB-mr-AIe" id="iZI-mO-M21"/>
                                     <outlet property="EpisodeImage" destination="LSB-U6-amc" id="nkP-v9-tIZ"/>
                                     <outlet property="EpisodeName" destination="rKr-7h-FHm" id="crQ-Tb-9C4"/>
-                                    <segue destination="V9v-WU-rtO" kind="presentation" identifier="player" id="wr9-GZ-CY6"/>
+                                    <segue destination="V9v-WU-rtO" kind="showDetail" identifier="player" id="wr9-GZ-CY6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
