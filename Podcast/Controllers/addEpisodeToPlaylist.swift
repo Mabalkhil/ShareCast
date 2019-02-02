@@ -12,8 +12,8 @@ class addEpisodeToPlaylist: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet var addEpisodeToPlaylistTable: UITableView!
    // var playlist:Playlist? = nil
-    var episodes:[Episode]!
-    
+    var episodes: [Episode] = []
+    var playlistName: String = ""
 
     @IBOutlet weak var playlistNameLabel: UILabel!
     
@@ -23,6 +23,7 @@ class addEpisodeToPlaylist: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         addEpisodeToPlaylistTable.delegate = self
         addEpisodeToPlaylistTable.dataSource = self
+        playlistNameLabel.text = playlistName
        
     }
     

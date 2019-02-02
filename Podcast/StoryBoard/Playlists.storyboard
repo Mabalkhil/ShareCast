@@ -126,7 +126,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <outlet property="numberOfEpisode" destination="HYO-2j-33d" id="2bk-L9-8z1"/>
+                                    <outlet property="numberOfepisodeLabel" destination="HYO-2j-33d" id="DIR-Vo-Gfm"/>
                                     <outlet property="playsitName" destination="D3s-qP-qAO" id="pZz-OK-goI"/>
                                 </connections>
                             </tableViewCell>

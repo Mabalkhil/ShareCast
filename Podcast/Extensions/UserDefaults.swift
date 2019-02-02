@@ -81,10 +81,11 @@ extension UserDefaults {
     }
     
     
-    func episodeArray(episode: Episode) {
+    func episodeArray(episode: Episode,playlist: inout Playlist) {
         
         do{
             var playlistEpisodes = playlistEpisode()
+            playlist.episodes.append(episode)
             
             if playlistEpisodes.isEmpty {
                 playlistEpisodes.append(episode)

@@ -8,16 +8,18 @@
 
 import UIKit
 
+
+    var playlists = UserDefaults.standard.playlistsArray()
 class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     
-    var playlists = UserDefaults.standard.playlistsArray()
     var episodes: [Episode] = []
     var check = true
     var episode: Episode? = nil
+   //var playlist: Playlist? = nil
     
     
-    
+
     @IBOutlet var createPlaylistTable: UITableView!
     @IBOutlet weak var playlistTextField: UITextField!
     
@@ -28,6 +30,7 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
           super.viewDidLoad()
         createPlaylistTable.delegate = self
         createPlaylistTable.dataSource = self
+        
         
     }
     
@@ -71,11 +74,11 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
      
         let cell = createPlaylistTable.dequeueReusableCell(withIdentifier: "playlistCell", for: indexPath) as! PlaylistsCell
         
-        cell.playlists = self.playlists[indexPath.row]
+        cell.playlists = playlists[indexPath.row]
+        let x : Int = playlists[indexPath.row].episodes.count
+        var myString = String(x)
         
-//        if check == false {
-//            cell.playlists.episodes?.append(self.episode!)
-//        }
+      //  numberOfEpisodeLabel.text = myString
         
         return cell
     }
@@ -83,18 +86,19 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var segue: String!
+        
         if check == true {
             segue = "segue1"
-            
              self.performSegue(withIdentifier: segue, sender: self)
-        } else  {
-            //print(self.episode)
-            self.playlists[indexPath.row].episodes?.append(self.episode!)
-            print(self.playlists[indexPath.row].episodes![0])
-            //UserDefaults.standard.episodeArray(episode: self.episode!)
-            print(self.playlists[indexPath.row].playlistName)
-            //print(self.playlists[indexPath.row].episodes!)
+        } else {
             print("----------------------------------------")
+           // print(self.episode)
+          //self.playlists[indexPath.row].episodes?.append(self.episode!)
+            
+            playlists[indexPath.row].addTask(ep: self.episode!)
+            
+           print(playlists[indexPath.row].episodes)
+
             self.dismiss(animated: true, completion: nil)
         }
        
@@ -105,9 +109,9 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         if segue.identifier == "segue1" {
             if let indexPath = createPlaylistTable.indexPathForSelectedRow {
                 let destination = segue.destination as! addEpisodeToPlaylist
-                destination.playlistNameLabel?.text = playlists[indexPath.row].playlistName
-                //destination.playlist = playlists[indexPath.row]
-                //destination.episodes = playlists[indexPath.row].episodes!
+                destination.playlistName = playlists[indexPath.row].playlistName!
+                destination.episodes = playlists[indexPath.row].episodes
+                
             }
         }
     }

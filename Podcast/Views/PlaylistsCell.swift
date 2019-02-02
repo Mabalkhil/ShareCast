@@ -13,8 +13,7 @@ import UIKit
 class PlaylistsCell: UITableViewCell{
     
     @IBOutlet weak var playsitName: UILabel!
-    
-    @IBOutlet weak var numberOfEpisode: UILabel!
+    @IBOutlet weak var numberOfepisodeLabel: UILabel!
     
     
     override func awakeFromNib() {
@@ -28,8 +27,6 @@ class PlaylistsCell: UITableViewCell{
         didSet{
             
             playsitName.text = playlists.playlistName
-            numberOfEpisode.text = playlists.numberOfEpisodes
-            
         }
     }
     
