@@ -16,7 +16,6 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
     var episodes: [Episode] = []
     var check = true
     var episode: Episode? = nil
-   //var playlist: Playlist? = nil
     
     
 
@@ -75,10 +74,12 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         let cell = createPlaylistTable.dequeueReusableCell(withIdentifier: "playlistCell", for: indexPath) as! PlaylistsCell
         
         cell.playlists = playlists[indexPath.row]
+        
+     
         let x : Int = playlists[indexPath.row].episodes.count
         var myString = String(x)
-        
-      //  numberOfEpisodeLabel.text = myString
+
+        cell.playlists.numberOfEpisodes = myString
         
         return cell
     }
@@ -91,14 +92,10 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
             segue = "segue1"
              self.performSegue(withIdentifier: segue, sender: self)
         } else {
-            print("----------------------------------------")
-           // print(self.episode)
-          //self.playlists[indexPath.row].episodes?.append(self.episode!)
+            playlists[indexPath.row].addTask(ep: self.episode!,i: indexPath.row)
             
-            playlists[indexPath.row].addTask(ep: self.episode!)
+            UserDefaults.standard.playlistEpisode(episode: self.episode!, name: playlists[indexPath.row].playlistName!)
             
-           print(playlists[indexPath.row].episodes)
-
             self.dismiss(animated: true, completion: nil)
         }
        
@@ -110,8 +107,8 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
             if let indexPath = createPlaylistTable.indexPathForSelectedRow {
                 let destination = segue.destination as! addEpisodeToPlaylist
                 destination.playlistName = playlists[indexPath.row].playlistName!
-                destination.episodes = playlists[indexPath.row].episodes
-                
+                destination.episodes = UserDefaults.standard.playlistEpisodes(name: playlists[indexPath.row].playlistName!)
+                            
             }
         }
     }

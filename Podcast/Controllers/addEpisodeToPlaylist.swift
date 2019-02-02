@@ -12,9 +12,10 @@ class addEpisodeToPlaylist: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet var addEpisodeToPlaylistTable: UITableView!
    // var playlist:Playlist? = nil
+     //var episodes = UserDefaults.standard.playlistEpisode()
     var episodes: [Episode] = []
     var playlistName: String = ""
-
+    
     @IBOutlet weak var playlistNameLabel: UILabel!
     
     
@@ -23,22 +24,31 @@ class addEpisodeToPlaylist: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         addEpisodeToPlaylistTable.delegate = self
         addEpisodeToPlaylistTable.dataSource = self
-        playlistNameLabel.text = playlistName
-       
+        playlistNameLabel.text = playlistName        
     }
     
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //var episodes = UserDefaults.standard.playlistEpisodes(name: self.playlistName)
         return episodes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = addEpisodeToPlaylistTable.dequeueReusableCell(withIdentifier: "episodeCell", for: indexPath) as! PlaylistCell
-        
-        cell.episode = self.episodes[indexPath.row]
+        //var episodes = UserDefaults.standard.playlistEpisodes(name: self.playlistName)
+        cell.episode = episodes[indexPath.row]
         
         return cell
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let episode = self.episodes[indexPath.row]
+        episodes.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+       
     }
     
     

@@ -8,13 +8,16 @@
 
 import Foundation
 
+
 struct Playlist: Codable{
     var playlistName: String?
     var numberOfEpisodes: String?
     var episodes: [Episode]
-
-    mutating func addTask(ep: Episode){
+    
+    mutating func addTask(ep: Episode, i: Int){
         episodes.append(ep)
+        //UserDefaults.standard.deletePlaylistEpisode(episode: ep)
+        
     }
     
 }

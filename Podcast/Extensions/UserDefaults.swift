@@ -12,7 +12,7 @@ extension UserDefaults {
     
     static let downloadedEpisodeKey = "downloadedEpisodeKey"
     static let playlistsKey = "playlistsKey"
-    static let episodeKey = "episodeKey"
+    //static let episodeKey = "episodeKey"
     
     func downloadEpisode(episode: Episode){
         
@@ -55,6 +55,25 @@ extension UserDefaults {
     }
     
     
+//
+//    func deletePlaylistEpisode(episode: Episode) {
+//        let savedEpisodes = playlistEpisode()
+//        let filteredEpisodes = savedEpisodes.filter { (e) -> Bool in
+//            // you should use episode.collectionId to be safer with deletes
+//            return e.title != episode.title
+//        }
+//
+//        do {
+//            let data = try JSONEncoder().encode(filteredEpisodes)
+//            UserDefaults.standard.set(data, forKey: UserDefaults.downloadedEpisodeKey)
+//        } catch let encodeErr {
+//            print("Failed to encode episode:", encodeErr)
+//        }
+//    }
+//
+    
+    
+    
     
     func playlistArray(playlist: Playlist) {
    
@@ -81,30 +100,32 @@ extension UserDefaults {
     }
     
     
-    func episodeArray(episode: Episode,playlist: inout Playlist) {
+    
+    func playlistEpisode(episode: Episode,name: String){
         
         do{
-            var playlistEpisodes = playlistEpisode()
-            playlist.episodes.append(episode)
+            var episodes = playlistEpisodes(name: name)
             
-            if playlistEpisodes.isEmpty {
-                playlistEpisodes.append(episode)
+            if episodes.isEmpty {
+                episodes.append(episode)
             } else {
-                if !playlistEpisodes.contains(where: { $0.title == episode.title && $0.author == episode.author }) {
-                    playlistEpisodes.insert(episode, at: 0)
+                if !episodes.contains(where: { $0.title == episode.title && $0.author == episode.author }) {
+                    episodes.insert(episode, at: 0)
                 }
             }
             
-            let data = try JSONEncoder().encode(playlistEpisodes)
-            UserDefaults.standard.set(data, forKey: UserDefaults.episodeKey)
+
+            let data = try JSONEncoder().encode(episodes)
+            UserDefaults.standard.set(data, forKey: "savedArrayKey"+name)
             
         }catch let encodeErr {
             
-            print("Failed to encode playlist", encodeErr)
+            print("Failed to encode episode", encodeErr)
             
         }
-        
     }
+    
+
 
     
     
@@ -144,21 +165,24 @@ extension UserDefaults {
     
     
     
+
+
     
-    func  playlistEpisode() -> [Episode]{
+    func  playlistEpisodes(name: String) -> [Episode]{
         
-        guard let playlistEpisodeData = UserDefaults.standard.data(forKey: UserDefaults.episodeKey) else { return []}
+        guard let playlistEpisodesData = UserDefaults.standard.data(forKey: "savedArrayKey"+name) else { return []}
         
         do{
-            let playlistEpisode = try JSONDecoder().decode([Episode].self, from: playlistEpisodeData)
+            let episodes = try JSONDecoder().decode([Episode].self, from: playlistEpisodesData)
             
-            return playlistEpisode
+            return episodes
         }catch let decodeErr{
             print("failed to decode:",decodeErr)
         }
         
         return []
     }
+    
     
     
     
