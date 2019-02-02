@@ -87,6 +87,9 @@
                                             <state key="normal" title="Bookmarks">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="Su5-3e-C3i" kind="show" id="4dj-kC-U4K"/>
+                                            </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmark" translatesAutoresizingMaskIntoConstraints="NO" id="fVZ-Fz-d1m">
                                             <rect key="frame" x="15" y="5" width="40" height="40"/>
@@ -223,19 +226,28 @@
             </objects>
             <point key="canvasLocation" x="1047" y="65"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--Bookmark-->
+        <scene sceneID="lHi-L9-nxy">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Bookmarks" storyboardName="Bookmark" id="Su5-3e-C3i" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ICo-94-zac" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1122" y="-33"/>
+        </scene>
+        <!--Playlists-->
         <scene sceneID="OIM-wp-deK">
             <objects>
-                <viewControllerPlaceholder id="aPy-yQ-Ytd" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="Playlists" storyboardName="Playlists" referencedIdentifier="Playlists" id="aPy-yQ-Ytd" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8WB-f6-nF1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1058" y="13"/>
         </scene>
     </scenes>
     <resources>
         <image name="1400x1400-eagles_podcast-logo" width="1400" height="1400"/>
-        <image name="bookmark" width="384" height="384"/>
-        <image name="download" width="384" height="384"/>
-        <image name="playlist" width="384" height="384"/>
-        <image name="radio" width="384" height="384"/>
+        <image name="bookmark" width="512" height="512"/>
+        <image name="download" width="512" height="512"/>
+        <image name="playlist" width="480" height="480"/>
+        <image name="radio" width="512" height="512"/>
     </resources>
 </document>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iAH-kP-U4I">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -8,24 +8,24 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Bookmark Controller-->
         <scene sceneID="61z-EY-kH0">
             <objects>
-                <tableViewController id="iAH-kP-U4I" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Bookmark" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iAH-kP-U4I" customClass="BookmarkController" customModule="Podcast" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2LL-bT-4dj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="DFB-Kd-yBY">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookmarkCell" rowHeight="100" id="DFB-Kd-yBY" customClass="BookmarkCell" customModule="Podcast" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DFB-Kd-yBY" id="Tku-eF-7ff">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="BookmarkCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DFB-Kd-yBY" id="Tku-eF-7ff">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NtW-no-wYP">
-                                            <rect key="frame" x="0.0" y="5" width="414" height="89.5"/>
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NtW-no-wYP">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1400x1400-eagles_podcast-logo" translatesAutoresizingMaskIntoConstraints="NO" id="LSB-U6-amc">
                                                     <rect key="frame" x="6" y="6" width="77" height="77"/>
@@ -41,7 +41,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Episode name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUB-mr-AIe">
-                                                    <rect key="frame" x="91" y="27" width="318" height="57.5"/>
+                                                    <rect key="frame" x="91" y="27" width="318" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -66,10 +66,16 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="NtW-no-wYP" secondAttribute="trailing" id="3Qh-sX-1d8"/>
                                         <constraint firstItem="NtW-no-wYP" firstAttribute="leading" secondItem="Tku-eF-7ff" secondAttribute="leading" id="Rvy-sR-e41"/>
-                                        <constraint firstAttribute="bottom" secondItem="NtW-no-wYP" secondAttribute="bottom" constant="5" id="SX0-Y2-ntA"/>
-                                        <constraint firstItem="NtW-no-wYP" firstAttribute="top" secondItem="Tku-eF-7ff" secondAttribute="top" constant="5" id="tn4-QZ-O7h"/>
+                                        <constraint firstAttribute="bottom" secondItem="NtW-no-wYP" secondAttribute="bottom" id="SX0-Y2-ntA"/>
+                                        <constraint firstItem="NtW-no-wYP" firstAttribute="top" secondItem="Tku-eF-7ff" secondAttribute="top" id="tn4-QZ-O7h"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="EpisodeDescription" destination="eUB-mr-AIe" id="iZI-mO-M21"/>
+                                    <outlet property="EpisodeImage" destination="LSB-U6-amc" id="nkP-v9-tIZ"/>
+                                    <outlet property="EpisodeName" destination="rKr-7h-FHm" id="crQ-Tb-9C4"/>
+                                    <segue destination="V9v-WU-rtO" kind="presentation" identifier="player" id="wr9-GZ-CY6"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -77,10 +83,21 @@
                             <outlet property="delegate" destination="iAH-kP-U4I" id="O8p-PB-HKe"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="bookmarks" destination="2LL-bT-4dj" id="Jli-fF-20l"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mxu-8O-EQk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="92" y="142.57871064467767"/>
+            <point key="canvasLocation" x="91.304347826086968" y="141.96428571428569"/>
+        </scene>
+        <!--Player-->
+        <scene sceneID="584-r1-jbi">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Player" id="V9v-WU-rtO" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RQK-aN-mi4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="643" y="-86"/>
         </scene>
     </scenes>
     <resources>
