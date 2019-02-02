@@ -48,14 +48,25 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         
        var temp: Playlist
         temp = Playlist(playlistName:playlistTextField.text!,numberOfEpisodes:"0",episodes:episodes)
-        playlists.append(temp)
-        UserDefaults.standard.playlistArray(playlist: temp)
         
-        let indexPath = IndexPath(row: playlists.count-1, section: 0)
-   
-        createPlaylistTable.beginUpdates()
-        createPlaylistTable.insertRows(at: [indexPath], with: .automatic)
-        createPlaylistTable.endUpdates()
+        if playlists.isEmpty {
+            playlists.append(temp)
+            UserDefaults.standard.playlistArray(playlist: temp)
+             let indexPath = IndexPath(row: playlists.count-1, section: 0)
+            createPlaylistTable.beginUpdates()
+            createPlaylistTable.insertRows(at: [indexPath], with: .automatic)
+            createPlaylistTable.endUpdates()
+        } else {
+            if !playlists.contains(where: { $0.playlistName == temp.playlistName }) {
+                playlists.append(temp)
+                UserDefaults.standard.playlistArray(playlist: temp)
+                 let indexPath = IndexPath(row: playlists.count-1, section: 0)
+                createPlaylistTable.beginUpdates()
+                createPlaylistTable.insertRows(at: [indexPath], with: .automatic)
+                createPlaylistTable.endUpdates()
+            }
+        }
+        
         
         playlistTextField.text = ""
         view.endEditing(true)

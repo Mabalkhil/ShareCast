@@ -26,7 +26,6 @@ extension UserDefaults {
                 }
             }
             
-           // episodes.append(episode)
             let data = try JSONEncoder().encode(episodes)
             UserDefaults.standard.set(data, forKey: UserDefaults.downloadedEpisodeKey)
             
