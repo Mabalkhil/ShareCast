@@ -20,7 +20,7 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
     let resultTableView: UITableView! = UITableView()
     
     //list of categories from the API and variable to reuse collection cells
-    let categories = [Category]()
+    var categories = [Category]()
     var storedOffsets = [Int: CGFloat]()
     
     //delegate for the search table results
@@ -97,29 +97,40 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
         
     }
     
+    
+    
     // These two functions are for the defualt table which is the category table
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.categories.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryList", for: indexPath) as! DiscoverTableCell
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "category", for: indexPath) as! DiscoverTableCell
+        
+        cell.categoryTitle.text = categories[indexPath.row].title
+        cell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+        
         return cell
     }
     
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-        guard let tableViewCell = cell as? DiscoverTableCell else { return }
-        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
-        tableViewCell.categoryCollectionOffset = storedOffsets[indexPath.row] ?? 0
-    }
+//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//
+//        guard let tableViewCell = cell as? DiscoverTableCell else { return }
+//        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+//        tableViewCell.categoryCollectionOffset = storedOffsets[indexPath.row] ?? 0
+//    }
+//
+//   func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//
+//        guard let tableViewCell = cell as? DiscoverTableCell else { return }
+//
+//        storedOffsets[indexPath.row] = tableViewCell.categoryCollectionOffset
+//    }
     
-   func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-        guard let tableViewCell = cell as? DiscoverTableCell else { return }
-        
-        storedOffsets[indexPath.row] = tableViewCell.categoryCollectionOffset
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 160
     }
 
 }
@@ -131,21 +142,30 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
 extension PodcastSearchController: UICollectionViewDelegate, UICollectionViewDataSource{
 
    func setupCollectionView(){
+    
+        APIService.shared.fetchDiscover() { (categories) in
+            self.categories = categories
+            self.tableView.reloadData()
+        
+        }
+        for c in self.categories {
+            print("CAT="+c.title)
+        }
+    
         self.definesPresentationContext = true // This will add navigation header for every controller you move to
     }
 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
         return categories[collectionView.tag].podcasts.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "category", for: indexPath) as! CategoryCell
-
-        let podcast = podcasts[indexPath.row]
-        cell.podcast = podcast
+        
+        let category = categories[collectionView.tag].podcasts
+        cell.podcast = category[indexPath.row]
 
         return cell
     }
@@ -157,8 +177,8 @@ extension PodcastSearchController: UICollectionViewDelegate, UICollectionViewDat
             ChannelController else {
                 return
         }
-        let podcast = self.podcasts[indexPath.row]
-        destinationViewController.podcast = podcast
+        let category = categories[collectionView.tag].podcasts
+        destinationViewController.podcast = category[indexPath.row]
         navigationController?.pushViewController(destinationViewController, animated: true)
 
     }
