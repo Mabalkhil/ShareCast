@@ -43,13 +43,6 @@ class BookmarkController: UITableViewController {
             
             performSegue(withIdentifier: "player", sender: self)
         }
-        
-        
-        // print(self.episodes[indexPath.row])
-        
-//         present( UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "playerStoryBoard") as UIViewController, animated: true, completion: nil)
-//
-//        UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "PlayerStoryBoard")
     }
     
     

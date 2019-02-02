@@ -62,15 +62,15 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
         super.viewDidLoad()
         
         
-        //view.removeConstraints(view.constraints)
-        // Do any additional setup after loading the view.
-        setScrollView()
-        
-        //Innitializing episode and start playing it
-        episodeName?.text = episode.title
-        playEpisode()
-        guard let url = URL(string: episode.imageUrl ?? "") else { return }
-        episodeImg.sd_setImage(with: url)
+//        //view.removeConstraints(view.constraints)
+//        // Do any additional setup after loading the view.
+//        setScrollView()
+//
+//        //Innitializing episode and start playing it
+//        episodeName?.text = episode.title
+//        playEpisode()
+//        guard let url = URL(string: episode.imageUrl ?? "") else { return }
+//        episodeImg.sd_setImage(with: url)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         
@@ -313,7 +313,8 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
         
         self.player.pause()
         //player.stop()
-        self.dismiss(animated: true, completion: nil)
+        let app = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+        app?.minimizePlayerDetails()
     }
     //##################################################################################################
     
@@ -428,8 +429,5 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
         self.episode.timeStampLables = ["a","b"]
         
     }
-    
-   
-   
     
 }
