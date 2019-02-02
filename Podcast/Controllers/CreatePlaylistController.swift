@@ -48,14 +48,25 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         
        var temp: Playlist
         temp = Playlist(playlistName:playlistTextField.text!,numberOfEpisodes:"0",episodes:episodes)
-        playlists.append(temp)
-        UserDefaults.standard.playlistArray(playlist: temp)
         
-        let indexPath = IndexPath(row: playlists.count-1, section: 0)
-   
-        createPlaylistTable.beginUpdates()
-        createPlaylistTable.insertRows(at: [indexPath], with: .automatic)
-        createPlaylistTable.endUpdates()
+        if playlists.isEmpty {
+            playlists.append(temp)
+            UserDefaults.standard.playlistArray(playlist: temp)
+             let indexPath = IndexPath(row: playlists.count-1, section: 0)
+            createPlaylistTable.beginUpdates()
+            createPlaylistTable.insertRows(at: [indexPath], with: .automatic)
+            createPlaylistTable.endUpdates()
+        } else {
+            if !playlists.contains(where: { $0.playlistName == temp.playlistName }) {
+                playlists.append(temp)
+                UserDefaults.standard.playlistArray(playlist: temp)
+                 let indexPath = IndexPath(row: playlists.count-1, section: 0)
+                createPlaylistTable.beginUpdates()
+                createPlaylistTable.insertRows(at: [indexPath], with: .automatic)
+                createPlaylistTable.endUpdates()
+            }
+        }
+        
         
         playlistTextField.text = ""
         view.endEditing(true)
@@ -74,11 +85,8 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         let cell = createPlaylistTable.dequeueReusableCell(withIdentifier: "playlistCell", for: indexPath) as! PlaylistsCell
         
         cell.playlists = playlists[indexPath.row]
-        
-     
         let x : Int = playlists[indexPath.row].episodes.count
         var myString = String(x)
-
         cell.playlists.numberOfEpisodes = myString
         
         return cell
@@ -93,13 +101,19 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
              self.performSegue(withIdentifier: segue, sender: self)
         } else {
             playlists[indexPath.row].addTask(ep: self.episode!,i: indexPath.row)
-            
             UserDefaults.standard.playlistEpisode(episode: self.episode!, name: playlists[indexPath.row].playlistName!)
-            
             self.dismiss(animated: true, completion: nil)
         }
-       
     }
+    
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let playlist = playlists[indexPath.row]
+        playlists.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        UserDefaults.standard.deletePlaylist(playlist: playlist)
+    }
+    
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
