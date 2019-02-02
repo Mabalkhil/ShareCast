@@ -79,6 +79,45 @@ class APIService {
     }
     
     
+    func deleteEpisode(episode: Episode){
+        let fileNameToDelete = episode.title
+        var filePath = ""
+        
+        // Fine documents directory on device
+        let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
+        
+        if dirs.count > 0 {
+            let dir = dirs[0] //documents directory
+            filePath = dir.appendingFormat("/" + fileNameToDelete)
+           // print("Local path = \(filePath)")
+            
+        } else {
+            print("Could not find local directory to store file")
+            return
+        }
+        let parsed = episode.fileUrl!.replacingOccurrences(of: "file://", with: "")
+        let m = parsed.replacingOccurrences(of: ".mp3", with: "")
+        print(m)
+         print("------------------------------------")
+        print(episode.fileUrl!)
+        print("------------------------------------")
+        print(filePath)
+        
+        do {
+            let fileManager = FileManager.default
+                // Delete file
+                try fileManager.removeItem(atPath: m)
+            try fileManager.removeItem(atPath: filePath)
+            
+            
+        }
+        catch let error as NSError {
+            print("An error took place: \(error)")
+        }
+        
+    }
+    
+    
     func fetchPodcast(searchText: String, completionHandeler: @escaping ([Podcast]) -> ()) {
         print("searching for podcast")
         //iTunesAPI

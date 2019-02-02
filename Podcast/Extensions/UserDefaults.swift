@@ -11,6 +11,8 @@ import Foundation
 extension UserDefaults {
     
     static let downloadedEpisodeKey = "downloadedEpisodeKey"
+    static let playlistsKey = "playlistsKey"
+    //static let episodeKey = "episodeKey"
     
     func downloadEpisode(episode: Episode){
         
@@ -53,6 +55,81 @@ extension UserDefaults {
     }
     
     
+//
+//    func deletePlaylistEpisode(episode: Episode) {
+//        let savedEpisodes = playlistEpisode()
+//        let filteredEpisodes = savedEpisodes.filter { (e) -> Bool in
+//            // you should use episode.collectionId to be safer with deletes
+//            return e.title != episode.title
+//        }
+//
+//        do {
+//            let data = try JSONEncoder().encode(filteredEpisodes)
+//            UserDefaults.standard.set(data, forKey: UserDefaults.downloadedEpisodeKey)
+//        } catch let encodeErr {
+//            print("Failed to encode episode:", encodeErr)
+//        }
+//    }
+//
+    
+    
+    
+    
+    func playlistArray(playlist: Playlist) {
+   
+        do{
+            var playlists = playlistsArray()
+            
+            if playlists.isEmpty {
+                playlists.append(playlist)
+            } else {
+                if !playlists.contains(where: { $0.playlistName == playlist.playlistName}) {
+                    playlists.insert(playlist, at: 0)
+                }
+            }
+            
+            let data = try JSONEncoder().encode(playlists)
+            UserDefaults.standard.set(data, forKey: UserDefaults.playlistsKey)
+            
+        }catch let encodeErr {
+            
+            print("Failed to encode playlist", encodeErr)
+            
+        }
+      
+    }
+    
+    
+    
+    func playlistEpisode(episode: Episode,name: String){
+        
+        do{
+            var episodes = playlistEpisodes(name: name)
+            
+            if episodes.isEmpty {
+                episodes.append(episode)
+            } else {
+                if !episodes.contains(where: { $0.title == episode.title && $0.author == episode.author }) {
+                    episodes.insert(episode, at: 0)
+                }
+            }
+            
+
+            let data = try JSONEncoder().encode(episodes)
+            UserDefaults.standard.set(data, forKey: "savedArrayKey"+name)
+            
+        }catch let encodeErr {
+            
+            print("Failed to encode episode", encodeErr)
+            
+        }
+    }
+    
+
+
+    
+    
+    
     
     func  downloadedEpisodes() -> [Episode]{
         
@@ -68,6 +145,44 @@ extension UserDefaults {
         
         return []
     }
+    
+    
+    
+    func  playlistsArray() -> [Playlist]{
+        
+        guard let playlistsData = UserDefaults.standard.data(forKey: UserDefaults.playlistsKey) else { return []}
+        
+        do{
+            let playlists = try JSONDecoder().decode([Playlist].self, from: playlistsData)
+            
+            return playlists
+        }catch let decodeErr{
+            print("failed to decode:",decodeErr)
+        }
+        
+        return []
+    }
+    
+    
+    
+
+
+    
+    func  playlistEpisodes(name: String) -> [Episode]{
+        
+        guard let playlistEpisodesData = UserDefaults.standard.data(forKey: "savedArrayKey"+name) else { return []}
+        
+        do{
+            let episodes = try JSONDecoder().decode([Episode].self, from: playlistEpisodesData)
+            
+            return episodes
+        }catch let decodeErr{
+            print("failed to decode:",decodeErr)
+        }
+        
+        return []
+    }
+    
     
     
     

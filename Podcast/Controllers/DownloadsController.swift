@@ -64,6 +64,8 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return episodes.count
     }
@@ -76,7 +78,6 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         
         cell.episode = self.episodes[indexPath.row]
         
-        
         return cell
     }
     
@@ -85,16 +86,8 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if self.episodes[indexPath.row].fileUrl != nil{
             
-           //performSegue(withIdentifier: "abc", sender: nil)
         }
-        
-        
-        // print(self.episodes[indexPath.row])
-        
-       // present( UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "playerStoryBoard") as UIViewController, animated: true, completion: nil)
-        
-       //UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "PlayerStoryBoard")
-        // UIApplication.mainTabBarController().max
+    
     }
     
     
@@ -111,6 +104,7 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         episodes.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
         UserDefaults.standard.deleteEpisode(episode: episode)
+        APIService.shared.deleteEpisode(episode: episode)
     }
     
     
@@ -121,12 +115,17 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
             if let indexPath = tablwViewDownload.indexPathForSelectedRow {
                 print("c")
                 let destination = segue.destination as! PlayerDetailsViewController
-                // dont assign value directly because the destinition view visual component not created yet
+       
                 destination.episode = episodes[indexPath.row]
                 print(destination.episode.title)
                 
             }
-       }
+       }else if segue.identifier == "playlistsView" {
+        
+        let destination = segue.destination as! CreatePlaylistController
+        destination.check = true
+        }
+        
     }
     
     

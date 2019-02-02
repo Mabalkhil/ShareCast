@@ -334,22 +334,22 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
         if (count == 1){
             self.player.playImmediately(atRate: 1.5)
             self.speedUpLabel.text = "1.5"
-            self.playPauseButton.setImage(#imageLiteral(resourceName: "Pause"), for: .normal)
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "pause-round-button"), for: .normal)
             count = count + 1
         }else if(count == 2){
             self.player.playImmediately(atRate: 2.0)
             self.speedUpLabel.text = "2.0"
-            self.playPauseButton.setImage(#imageLiteral(resourceName: "Pause"), for: .normal)
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "pause-round-button"), for: .normal)
             count = count + 1
         }else if(count == 3){
             self.player.playImmediately(atRate: 0.5)
             self.speedUpLabel.text = "0.5"
-            self.playPauseButton.setImage(#imageLiteral(resourceName: "Pause"), for: .normal)
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "pause-round-button"), for: .normal)
             count = 0
         }else{
             self.player.playImmediately(atRate: 1.0)
             self.speedUpLabel.text = "1.0"
-            self.playPauseButton.setImage(#imageLiteral(resourceName: "Pause"), for: .normal)
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "pause-round-button"), for: .normal)
             count = count + 1
         }
         
