@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		372023AE220373A300D0C555 /* PlaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372023AD220373A300D0C555 /* PlaylistCell.swift */; };
 		372023B0220374E900D0C555 /* addEpisodeToPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372023AF220374E900D0C555 /* addEpisodeToPlaylist.swift */; };
+		2FC15E982201F4A600DF1FD4 /* BookmarkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC15E972201F4A600DF1FD4 /* BookmarkController.swift */; };
+		2FD789C62200E4D7006A47FE /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD789C52200E4D7006A47FE /* APIService.swift */; };
+		2FD789C82200E4EF006A47FE /* PlayerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD789C72200E4EE006A47FE /* PlayerDetailsViewController.swift */; };
+		2FD789CA2200E643006A47FE /* Bookmark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FD789C92200E643006A47FE /* Bookmark.storyboard */; };
+		2FD789CC2200E65C006A47FE /* Playlists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FD789CB2200E65B006A47FE /* Playlists.storyboard */; };
+		2FD789CE2200E66C006A47FE /* Playlist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FD789CD2200E66C006A47FE /* Playlist.storyboard */; };
+		2FE5C9992201FAEF00FCEE4E /* BookmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5C9982201FAEF00FCEE4E /* BookmarkCell.swift */; };
 		3723A1F521A9C66400D5FAE9 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A1F321A9C66400D5FAE9 /* EpisodeCell.swift */; };
 		3723A1F921A9CDD100D5FAE9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A1F821A9CDD100D5FAE9 /* String.swift */; };
 		3723A1FB21A9D18400D5FAE9 /* RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A1FA21A9D18400D5FAE9 /* RSSFeed.swift */; };
@@ -80,6 +87,13 @@
 /* Begin PBXFileReference section */
 		372023AD220373A300D0C555 /* PlaylistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCell.swift; sourceTree = "<group>"; };
 		372023AF220374E900D0C555 /* addEpisodeToPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addEpisodeToPlaylist.swift; sourceTree = "<group>"; };
+		2FC15E972201F4A600DF1FD4 /* BookmarkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkController.swift; sourceTree = "<group>"; };
+		2FD789C52200E4D7006A47FE /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		2FD789C72200E4EE006A47FE /* PlayerDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerDetailsViewController.swift; sourceTree = "<group>"; };
+		2FD789C92200E643006A47FE /* Bookmark.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Bookmark.storyboard; sourceTree = "<group>"; };
+		2FD789CB2200E65B006A47FE /* Playlists.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Playlists.storyboard; sourceTree = "<group>"; };
+		2FD789CD2200E66C006A47FE /* Playlist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Playlist.storyboard; sourceTree = "<group>"; };
+		2FE5C9982201FAEF00FCEE4E /* BookmarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCell.swift; sourceTree = "<group>"; };
 		3723A1D421A9967000D5FAE9 /* Podcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3723A1D521A9967000D5FAE9 /* PodcastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3723A1D621A9967000D5FAE9 /* PodcastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +220,9 @@
 				FAFF82F0218CEB6400882A6A /* Main.storyboard */,
 				50533FE221EFA59E00D50698 /* Channel.storyboard */,
 				505B6C2721F5C74F002E392D /* Episode.storyboard */,
+				2FD789C92200E643006A47FE /* Bookmark.storyboard */,
+				2FD789CB2200E65B006A47FE /* Playlists.storyboard */,
+				2FD789CD2200E66C006A47FE /* Playlist.storyboard */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -236,6 +253,7 @@
 				506217D921FB26C20003F99F /* ProfileView.swift */,
 				375DD44D2201ED8C00C2D698 /* PlaylistsCell.swift */,
 				372023AD220373A300D0C555 /* PlaylistCell.swift */,
+				2FE5C9982201FAEF00FCEE4E /* BookmarkCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -244,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				3725E9462200DBF7009D3417 /* PlayerDetailsViewController.swift */,
+				2FD789C72200E4EE006A47FE /* PlayerDetailsViewController.swift */,
 				5018A44721FF7DCF007EE027 /* DownloadsController.swift */,
 				505B6C4021FA09D3002E392D /* ProfileViewController.swift */,
 				505B6C2621F5C74F002E392D /* EpisodeViewController.swift */,
@@ -257,6 +276,7 @@
 				502484AF21FCED3D00CA84F1 /* EditProfileViewController.swift */,
 				375DD44B2201ECA700C2D698 /* CreatePlaylistController.swift */,
 				372023AF220374E900D0C555 /* addEpisodeToPlaylist.swift */,
+				2FC15E972201F4A600DF1FD4 /* BookmarkController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -276,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				3725E9442200DBED009D3417 /* APIService.swift */,
+				2FD789C52200E4D7006A47FE /* APIService.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -419,10 +440,12 @@
 				372BC4572201E667009514D4 /* Playlist.storyboard in Resources */,
 				372BC4562201E667009514D4 /* Playlists.storyboard in Resources */,
 				505B6C2B21F5C74F002E392D /* Episode.storyboard in Resources */,
+				2FD789CE2200E66C006A47FE /* Playlist.storyboard in Resources */,
 				5018A44B21FF7DCF007EE027 /* Subscription.storyboard in Resources */,
 				FAFF82FA218CEB6C00882A6A /* LaunchScreen.storyboard in Resources */,
 				FAFF82F7218CEB6C00882A6A /* Assets.xcassets in Resources */,
 				50420F7321A013140030CDB4 /* GoogleService-Info.plist in Resources */,
+				2FD789CA2200E643006A47FE /* Bookmark.storyboard in Resources */,
 				50533FE321EFA59E00D50698 /* Channel.storyboard in Resources */,
 				505B6C3421F66A03002E392D /* Player.storyboard in Resources */,
 				505B6C3F21FA06D9002E392D /* Profile.storyboard in Resources */,
@@ -510,17 +533,21 @@
 				FA49932A218DCD3E0021CFA3 /* PodcastSearchController.swift in Sources */,
 				5018A44E21FF7DCF007EE027 /* DownloadsController.swift in Sources */,
 				FA397ED72195E66D00D33617 /* SearchResults.swift in Sources */,
+				2FD789C62200E4D7006A47FE /* APIService.swift in Sources */,
 				505B6C2A21F5C74F002E392D /* EpisodeViewController.swift in Sources */,
 				FA8F8F422194D4CA00301EF6 /* PodcastCell.swift in Sources */,
 				5036E73B21F080E000FA5E12 /* ChennelTableViewCell.swift in Sources */,
 				505B6C4121FA09D3002E392D /* ProfileViewController.swift in Sources */,
 				5036E73721EFBCFC00FA5E12 /* ChannelController.swift in Sources */,
+				2FD789C82200E4EF006A47FE /* PlayerDetailsViewController.swift in Sources */,
 				3723A1F521A9C66400D5FAE9 /* EpisodeCell.swift in Sources */,
 				3725E9472200DBF7009D3417 /* PlayerDetailsViewController.swift in Sources */,
 				372023AE220373A300D0C555 /* PlaylistCell.swift in Sources */,
 				505B6C3121F6571E002E392D /* TimeMarkCell.swift in Sources */,
 				FA397ED92195E68E00D33617 /* Episode.swift in Sources */,
 				506217DA21FB26C20003F99F /* ProfileView.swift in Sources */,
+				2FE5C9992201FAEF00FCEE4E /* BookmarkCell.swift in Sources */,
+				2FC15E982201F4A600DF1FD4 /* BookmarkController.swift in Sources */,
 				50420F7921A089170030CDB4 /* SignUpViewController.swift in Sources */,
 				375DD44C2201ECA700C2D698 /* CreatePlaylistController.swift in Sources */,
 				505B6C2821F5C74F002E392D /* Comment.swift in Sources */,
