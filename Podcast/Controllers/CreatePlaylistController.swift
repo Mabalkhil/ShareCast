@@ -74,11 +74,8 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         let cell = createPlaylistTable.dequeueReusableCell(withIdentifier: "playlistCell", for: indexPath) as! PlaylistsCell
         
         cell.playlists = playlists[indexPath.row]
-        
-     
         let x : Int = playlists[indexPath.row].episodes.count
         var myString = String(x)
-
         cell.playlists.numberOfEpisodes = myString
         
         return cell
@@ -93,13 +90,19 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
              self.performSegue(withIdentifier: segue, sender: self)
         } else {
             playlists[indexPath.row].addTask(ep: self.episode!,i: indexPath.row)
-            
             UserDefaults.standard.playlistEpisode(episode: self.episode!, name: playlists[indexPath.row].playlistName!)
-            
             self.dismiss(animated: true, completion: nil)
         }
-       
     }
+    
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let playlist = playlists[indexPath.row]
+        playlists.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        UserDefaults.standard.deletePlaylist(playlist: playlist)
+    }
+    
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

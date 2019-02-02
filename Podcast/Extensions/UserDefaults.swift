@@ -12,7 +12,6 @@ extension UserDefaults {
     
     static let downloadedEpisodeKey = "downloadedEpisodeKey"
     static let playlistsKey = "playlistsKey"
-    //static let episodeKey = "episodeKey"
     
     func downloadEpisode(episode: Episode){
         
@@ -54,24 +53,38 @@ extension UserDefaults {
         }
     }
     
+  
     
-//
-//    func deletePlaylistEpisode(episode: Episode) {
-//        let savedEpisodes = playlistEpisode()
-//        let filteredEpisodes = savedEpisodes.filter { (e) -> Bool in
-//            // you should use episode.collectionId to be safer with deletes
-//            return e.title != episode.title
-//        }
-//
-//        do {
-//            let data = try JSONEncoder().encode(filteredEpisodes)
-//            UserDefaults.standard.set(data, forKey: UserDefaults.downloadedEpisodeKey)
-//        } catch let encodeErr {
-//            print("Failed to encode episode:", encodeErr)
-//        }
-//    }
-//
+    func deletePlaylistEpisode(episode: Episode, name: String) {
+        let savedEpisodes = playlistEpisodes(name: name)
+        let filteredEpisodes = savedEpisodes.filter { (e) -> Bool in
+            // you should use episode.collectionId to be safer with deletes
+            return e.title != episode.title
+        }
+        
+        do {
+            let data = try JSONEncoder().encode(filteredEpisodes)
+            UserDefaults.standard.set(data, forKey: "savedArrayKey"+name)
+        } catch let encodeErr {
+            print("Failed to encode episode:", encodeErr)
+        }
+    }
     
+    
+    func deletePlaylist(playlist: Playlist) {
+        let savedEpisodes = playlistsArray()
+        let filteredEpisodes = savedEpisodes.filter { (p) -> Bool in
+            // you should use episode.collectionId to be safer with deletes
+            return p.playlistName != playlist.playlistName
+        }
+        
+        do {
+            let data = try JSONEncoder().encode(filteredEpisodes)
+            UserDefaults.standard.set(data, forKey: UserDefaults.playlistsKey)
+        } catch let encodeErr {
+            print("Failed to encode episode:", encodeErr)
+        }
+    }
     
     
     

@@ -48,6 +48,7 @@ class addEpisodeToPlaylist: UIViewController, UITableViewDelegate, UITableViewDa
         let episode = self.episodes[indexPath.row]
         episodes.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
+        UserDefaults.standard.deletePlaylistEpisode(episode: episode, name: playlistName)
        
     }
     
