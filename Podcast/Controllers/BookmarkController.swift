@@ -41,16 +41,15 @@ class BookmarkController: UITableViewController {
         
         if self.bookedMarked[indexPath.row].fileUrl != nil{
             
-            //performSegue(withIdentifier: "abc", sender: nil)
+            performSegue(withIdentifier: "player", sender: self)
         }
         
         
         // print(self.episodes[indexPath.row])
         
-        // present( UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "playerStoryBoard") as UIViewController, animated: true, completion: nil)
-        
-        //UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "PlayerStoryBoard")
-        // UIApplication.mainTabBarController().max
+//         present( UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "playerStoryBoard") as UIViewController, animated: true, completion: nil)
+//
+//        UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "PlayerStoryBoard")
     }
     
     
