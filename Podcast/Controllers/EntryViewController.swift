@@ -10,22 +10,26 @@ import UIKit
 import  Firebase
 
 class EntryViewController: UIViewController {
-    let hello = 123
+    
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if Auth.auth().currentUser?.uid != nil {
+            let MainViewController = MainTabBarController()
             self.dismiss(animated: true, completion: nil)
-            let EntryViewControllerrr = MainTabBarController()
-            self.present(EntryViewControllerrr,animated: true,completion: nil)
-         // self.navigationController?.pushViewController(EntryViewControllerrr, animated: true)
-         
+            self.present(MainViewController,animated: true,completion: nil)
         }
     
     
     }
     
-
+    @IBAction func skipButton(_ sender: Any) {
+        let MainViewController = MainTabBarController()
+        self.dismiss(animated: true, completion: nil)
+        self.present(MainViewController,animated: true,completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

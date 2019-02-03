@@ -18,9 +18,12 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     let reffStor = Storage.storage().reference(forURL: "gs://sharecast-c780f.appspot.com").child("profile_Image")
     let reffDtatabase = Database.database().reference()
     let uid = Auth.auth().currentUser?.uid
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if uid != nil {
         setUpProfilePic()
+        }
         ProfileImage.layer.borderWidth = 1
         ProfileImage.layer.masksToBounds = false
         ProfileImage.layer.cornerRadius = ProfileImage.frame.height/2

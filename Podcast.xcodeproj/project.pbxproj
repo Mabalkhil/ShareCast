@@ -55,6 +55,7 @@
 		505B6C3F21FA06D9002E392D /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 505B6C3E21FA06D9002E392D /* Profile.storyboard */; };
 		505B6C4121FA09D3002E392D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B6C4021FA09D3002E392D /* ProfileViewController.swift */; };
 		506217DA21FB26C20003F99F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506217D921FB26C20003F99F /* ProfileView.swift */; };
+		5092F02E2206EEDE00B3F376 /* ResetPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */; };
 		9C44940753D94BD0785C9298 /* Pods_Podcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96503F0C3DF9B89F68700CAB /* Pods_Podcast.framework */; };
 		FA1AEC8E219414BD000B0882 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1AEC8D219414BD000B0882 /* PodcastCell.xib */; };
 		FA397ED72195E66D00D33617 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA397ED62195E66D00D33617 /* SearchResults.swift */; };
@@ -140,6 +141,7 @@
 		505B6C3E21FA06D9002E392D /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		505B6C4021FA09D3002E392D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		506217D921FB26C20003F99F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassViewController.swift; sourceTree = "<group>"; };
 		6847BD8DB3712F94D9BA0552 /* Pods-Podcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Podcast/Pods-Podcast.debug.xcconfig"; sourceTree = "<group>"; };
 		9190023BC87AACCDD01077AB /* Pods_PodcastUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PodcastUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96503F0C3DF9B89F68700CAB /* Pods_Podcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Podcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,6 +290,7 @@
 				375DD44B2201ECA700C2D698 /* CreatePlaylistController.swift */,
 				372023AF220374E900D0C555 /* addEpisodeToPlaylist.swift */,
 				2FC15E972201F4A600DF1FD4 /* BookmarkController.swift */,
+				5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				505B6C4121FA09D3002E392D /* ProfileViewController.swift in Sources */,
 				5036E73721EFBCFC00FA5E12 /* ChannelController.swift in Sources */,
 				2FD789C82200E4EF006A47FE /* PlayerDetailsViewController.swift in Sources */,
+				5092F02E2206EEDE00B3F376 /* ResetPassViewController.swift in Sources */,
 				292111C522008D3A00B28DE2 /* Category.swift in Sources */,
 				3723A1F521A9C66400D5FAE9 /* EpisodeCell.swift in Sources */,
 				3725E9472200DBF7009D3417 /* PlayerDetailsViewController.swift in Sources */,

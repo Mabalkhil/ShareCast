@@ -12,7 +12,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var back: UILabel!
+ //   @IBOutlet weak var back: UILabel!
     
     var continueButton:RoundedWhiteButton!
     var activityView:UIActivityIndicatorView!
@@ -49,9 +49,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         
         
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(backTomain))
-        back.isUserInteractionEnabled=true
-        back.addGestureRecognizer(tap)
+       // let tap = UITapGestureRecognizer(target: self, action: #selector(backTomain))
+       // back.isUserInteractionEnabled=true
+        //back.addGestureRecognizer(tap)
         //back.ta
         
     }

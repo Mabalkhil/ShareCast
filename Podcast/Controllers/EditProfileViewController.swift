@@ -13,6 +13,23 @@ class EditProfileViewController: UITableViewController {
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var lastNameText: UITextField!
     @IBOutlet weak var firstNameText: UITextField!
+    @IBOutlet weak var saveButton: UIButton! {
+        didSet {
+            let origImage = UIImage(named: "save");
+            let tintedImage = origImage?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+            saveButton.setImage(tintedImage, for: .normal)
+            saveButton.tintColor = UIColor.white
+        }
+    }
+    @IBOutlet weak var cancelButton: UIButton! {
+        didSet{
+            let origImage = UIImage(named: "close");
+            let tintedImage = origImage?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+            cancelButton.setImage(tintedImage, for: .normal)
+            cancelButton.tintColor = UIColor.white
+        }
+    }
+    
     let databaseReff = Database.database().reference().child("usersInfo")
     let uid = Auth.auth().currentUser?.uid
     override func viewDidLoad() {
