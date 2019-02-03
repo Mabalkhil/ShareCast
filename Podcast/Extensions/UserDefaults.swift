@@ -11,6 +11,8 @@ import Foundation
 extension UserDefaults {
     
     static let downloadedEpisodeKey = "downloadedEpisodeKey"
+    static let playlistsKey = "playlistsKey"
+    static let bookmarkedEpisodeKey = "bookmarkedEpisodeKey"
     
     func downloadEpisode(episode: Episode){
         
@@ -25,7 +27,6 @@ extension UserDefaults {
                 }
             }
             
-           // episodes.append(episode)
             let data = try JSONEncoder().encode(episodes)
             UserDefaults.standard.set(data, forKey: UserDefaults.downloadedEpisodeKey)
             
@@ -52,6 +53,95 @@ extension UserDefaults {
         }
     }
     
+  
+    
+    func deletePlaylistEpisode(episode: Episode, name: String) {
+        let savedEpisodes = playlistEpisodes(name: name)
+        let filteredEpisodes = savedEpisodes.filter { (e) -> Bool in
+            // you should use episode.collectionId to be safer with deletes
+            return e.title != episode.title
+        }
+        
+        do {
+            let data = try JSONEncoder().encode(filteredEpisodes)
+            UserDefaults.standard.set(data, forKey: "savedArrayKey"+name)
+        } catch let encodeErr {
+            print("Failed to encode episode:", encodeErr)
+        }
+    }
+    
+    
+    func deletePlaylist(playlist: Playlist) {
+        let savedEpisodes = playlistsArray()
+        let filteredEpisodes = savedEpisodes.filter { (p) -> Bool in
+            // you should use episode.collectionId to be safer with deletes
+            return p.playlistName != playlist.playlistName
+        }
+        
+        do {
+            let data = try JSONEncoder().encode(filteredEpisodes)
+            UserDefaults.standard.set(data, forKey: UserDefaults.playlistsKey)
+        } catch let encodeErr {
+            print("Failed to encode episode:", encodeErr)
+        }
+    }
+    
+    
+    
+    func playlistArray(playlist: Playlist) {
+   
+        do{
+            var playlists = playlistsArray()
+            
+            if playlists.isEmpty {
+                playlists.append(playlist)
+            } else {
+                if !playlists.contains(where: { $0.playlistName == playlist.playlistName}) {
+                    playlists.insert(playlist, at: 0)
+                }
+            }
+            
+            let data = try JSONEncoder().encode(playlists)
+            UserDefaults.standard.set(data, forKey: UserDefaults.playlistsKey)
+            
+        }catch let encodeErr {
+            
+            print("Failed to encode playlist", encodeErr)
+            
+        }
+      
+    }
+    
+    
+    
+    func playlistEpisode(episode: Episode,name: String){
+        
+        do{
+            var episodes = playlistEpisodes(name: name)
+            
+            if episodes.isEmpty {
+                episodes.append(episode)
+            } else {
+                if !episodes.contains(where: { $0.title == episode.title && $0.author == episode.author }) {
+                    episodes.insert(episode, at: 0)
+                }
+            }
+            
+
+            let data = try JSONEncoder().encode(episodes)
+            UserDefaults.standard.set(data, forKey: "savedArrayKey"+name)
+            
+        }catch let encodeErr {
+            
+            print("Failed to encode episode", encodeErr)
+            
+        }
+    }
+    
+
+
+    
+    
     
     
     func  downloadedEpisodes() -> [Episode]{
@@ -69,8 +159,95 @@ extension UserDefaults {
         return []
     }
     
+    func addBookmark(episode: Episode){
+        do{
+            var episodes = bookmarkedEpisodes()
+            
+            if episodes.isEmpty {
+                episodes.append(episode)
+            } else {
+                if !episodes.contains(where: { $0.title == episode.title && $0.author == episode.author }) {
+                    episodes.insert(episode, at: 0)
+                }
+            }
+            
+            let data = try JSONEncoder().encode(episodes)
+            UserDefaults.standard.set(data, forKey: UserDefaults.bookmarkedEpisodeKey)
+            
+        }catch let encodeErr {
+            
+            print("Failed to encode episode", encodeErr)
+            
+        }
+        
+    }
+    func bookmarkedEpisodes() -> [Episode]{
+        guard let episodesData = UserDefaults.standard.data(forKey: UserDefaults.bookmarkedEpisodeKey) else { return []}
+        
+        do{
+            let episodes = try JSONDecoder().decode([Episode].self, from: episodesData)
+            
+            return episodes
+        }catch let decodeErr{
+            print("failed to decode:",decodeErr)
+        }
+        
+        return []
+    }
     
     
+    func  playlistsArray() -> [Playlist]{
+        
+        guard let playlistsData = UserDefaults.standard.data(forKey: UserDefaults.playlistsKey) else { return []}
+        
+        do{
+            let playlists = try JSONDecoder().decode([Playlist].self, from: playlistsData)
+            
+            return playlists
+        }catch let decodeErr{
+            print("failed to decode:",decodeErr)
+        }
+        
+        return []
+    }
+    
+    
+    
+
+
+    
+    func  playlistEpisodes(name: String) -> [Episode]{
+        
+        guard let playlistEpisodesData = UserDefaults.standard.data(forKey: "savedArrayKey"+name) else { return []}
+        
+        do{
+            let episodes = try JSONDecoder().decode([Episode].self, from: playlistEpisodesData)
+            
+            return episodes
+        }catch let decodeErr{
+            print("failed to decode:",decodeErr)
+        }
+        
+        return []
+    }
+    
+    
+    
+    
+    func deleteBookmarkedEpisode(episode: Episode) {
+        let savedEpisodes = bookmarkedEpisodes()
+        let filteredEpisodes = savedEpisodes.filter { (e) -> Bool in
+            // you should use episode.collectionId to be safer with deletes
+            return e.title != episode.title
+        }
+        
+        do {
+            let data = try JSONEncoder().encode(filteredEpisodes)
+            UserDefaults.standard.set(data, forKey: UserDefaults.bookmarkedEpisodeKey)
+        } catch let encodeErr {
+            print("Failed to encode episode:", encodeErr)
+        }
+    }
     
     
 }

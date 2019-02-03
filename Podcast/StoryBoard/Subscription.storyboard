@@ -12,7 +12,7 @@
         <scene sceneID="Ijc-uB-zEZ">
             <objects>
                 <tableViewController storyboardIdentifier="Download1" id="0o5-r1-dSW" customClass="DownloadsController" customModule="Podcast" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fLR-sf-l4v">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fLR-sf-l4v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.32028031350000002" green="0.32054913039999999" blue="0.32032194730000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -56,6 +56,9 @@
                                             <state key="normal" title="Playlists">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="mD0-SI-anx" kind="show" identifier="playlistsView" id="jyT-0x-KLK"/>
+                                            </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playlist" translatesAutoresizingMaskIntoConstraints="NO" id="zmb-sU-tKT">
                                             <rect key="frame" x="15" y="5" width="40" height="40"/>
@@ -84,6 +87,9 @@
                                             <state key="normal" title="Bookmarks">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="Su5-3e-C3i" kind="show" id="4dj-kC-U4K"/>
+                                            </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmark" translatesAutoresizingMaskIntoConstraints="NO" id="fVZ-Fz-d1m">
                                             <rect key="frame" x="15" y="5" width="40" height="40"/>
@@ -118,7 +124,7 @@
                                 <rect key="frame" x="0.0" y="218" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell2" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KYy-Cx-LQd" id="1YI-SN-yBt" userLabel="Episode">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JeG-11-XqO">
@@ -204,6 +210,14 @@
             </objects>
             <point key="canvasLocation" x="144.80000000000001" y="134.48275862068968"/>
         </scene>
+        <!--Playlists-->
+        <scene sceneID="yXr-ii-hYG">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Playlists" id="mD0-SI-anx" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IRg-L8-VV6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="850" y="-76"/>
+        </scene>
         <!--Player-->
         <scene sceneID="Qk2-uI-GJ2">
             <objects>
@@ -212,19 +226,28 @@
             </objects>
             <point key="canvasLocation" x="1047" y="65"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--Bookmark-->
+        <scene sceneID="lHi-L9-nxy">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Bookmarks" storyboardName="Bookmark" id="Su5-3e-C3i" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ICo-94-zac" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1122" y="-33"/>
+        </scene>
+        <!--Playlists-->
         <scene sceneID="OIM-wp-deK">
             <objects>
-                <viewControllerPlaceholder id="aPy-yQ-Ytd" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="Playlists" storyboardName="Playlists" referencedIdentifier="Playlists" id="aPy-yQ-Ytd" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8WB-f6-nF1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1058" y="13"/>
         </scene>
     </scenes>
     <resources>
         <image name="1400x1400-eagles_podcast-logo" width="1400" height="1400"/>
-        <image name="bookmark" width="384" height="384"/>
-        <image name="download" width="384" height="384"/>
-        <image name="playlist" width="384" height="384"/>
-        <image name="radio" width="384" height="384"/>
+        <image name="bookmark" width="512" height="512"/>
+        <image name="download" width="512" height="512"/>
+        <image name="playlist" width="480" height="480"/>
+        <image name="radio" width="512" height="512"/>
     </resources>
 </document>

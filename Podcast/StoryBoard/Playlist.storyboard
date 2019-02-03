@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="naB-Cm-rnI">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Add Episode To Playlist-->
+        <scene sceneID="LTD-4j-qAw">
+            <objects>
+                <tableViewController id="naB-Cm-rnI" customClass="addEpisodeToPlaylist" customModule="Podcast" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5b6-gn-341">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="7So-tk-d4G" userLabel="Header">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlist Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWy-3C-gVz">
+                                    <rect key="frame" x="146" y="38" width="122" height="24"/>
+                                    <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="20"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0d-Vm-n3j">
+                                    <rect key="frame" x="379" y="72" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="bSh-co-0QS"/>
+                                        <constraint firstAttribute="width" constant="20" id="bTs-Cj-4RR"/>
+                                    </constraints>
+                                    <state key="normal" image="more"/>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="GWy-3C-gVz" firstAttribute="centerX" secondItem="7So-tk-d4G" secondAttribute="centerX" id="6GU-Ho-Zs7"/>
+                                <constraint firstItem="GWy-3C-gVz" firstAttribute="centerY" secondItem="7So-tk-d4G" secondAttribute="centerY" id="7Wg-Py-Ass"/>
+                                <constraint firstAttribute="bottom" secondItem="w0d-Vm-n3j" secondAttribute="bottom" constant="8" id="kGg-cw-Smc"/>
+                                <constraint firstAttribute="trailing" secondItem="w0d-Vm-n3j" secondAttribute="trailing" constant="15" id="wVp-qX-R0a"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="episodeCell" rowHeight="100" id="hdB-hr-sUf" customClass="PlaylistCell" customModule="Podcast" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="128" width="414" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hdB-hr-sUf" id="Q0Y-b9-oAW">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1w9-lB-nxu">
+                                            <rect key="frame" x="0.0" y="5" width="414" height="95"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1400x1400-eagles_podcast-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Yuf-0H-NSm">
+                                                    <rect key="frame" x="6" y="6" width="77" height="77"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="77" id="a57-DZ-u6r"/>
+                                                        <constraint firstAttribute="height" constant="77" id="sJP-hz-xDu"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episode name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGU-7Q-T6t">
+                                                    <rect key="frame" x="91" y="8" width="315" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Episode name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pGw-gA-rIt">
+                                                    <rect key="frame" x="91" y="27" width="315" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.19128635529999999" green="0.1914627552" blue="0.19131368400000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="pGw-gA-rIt" secondAttribute="bottom" constant="5" id="7SI-td-vWU"/>
+                                                <constraint firstItem="Yuf-0H-NSm" firstAttribute="top" secondItem="1w9-lB-nxu" secondAttribute="top" constant="6" id="Aqc-Zp-hD7"/>
+                                                <constraint firstItem="pGw-gA-rIt" firstAttribute="top" secondItem="dGU-7Q-T6t" secondAttribute="bottom" constant="1" id="BzI-yk-IZ8"/>
+                                                <constraint firstItem="dGU-7Q-T6t" firstAttribute="top" secondItem="1w9-lB-nxu" secondAttribute="top" constant="8" id="IhJ-bB-dR6"/>
+                                                <constraint firstItem="pGw-gA-rIt" firstAttribute="leading" secondItem="Yuf-0H-NSm" secondAttribute="trailing" constant="8" id="Knh-GU-yow"/>
+                                                <constraint firstAttribute="bottom" secondItem="Yuf-0H-NSm" secondAttribute="bottom" constant="6.5" id="LnA-9h-xKA"/>
+                                                <constraint firstItem="Yuf-0H-NSm" firstAttribute="leading" secondItem="1w9-lB-nxu" secondAttribute="leading" constant="6" id="Ryp-P7-yyz"/>
+                                                <constraint firstItem="dGU-7Q-T6t" firstAttribute="leading" secondItem="Yuf-0H-NSm" secondAttribute="trailing" constant="8" id="Tzd-dt-4iO"/>
+                                                <constraint firstAttribute="trailing" secondItem="dGU-7Q-T6t" secondAttribute="trailing" constant="8" id="gTq-p1-jog"/>
+                                                <constraint firstAttribute="trailing" secondItem="pGw-gA-rIt" secondAttribute="trailing" constant="8" id="qgp-zP-LSm"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="1w9-lB-nxu" secondAttribute="bottom" constant="5" id="KBp-xS-2Cj"/>
+                                        <constraint firstItem="1w9-lB-nxu" firstAttribute="top" secondItem="Q0Y-b9-oAW" secondAttribute="top" constant="5" id="Tf7-H0-v9J"/>
+                                        <constraint firstAttribute="trailing" secondItem="1w9-lB-nxu" secondAttribute="trailing" id="exw-qR-zMV"/>
+                                        <constraint firstItem="1w9-lB-nxu" firstAttribute="leading" secondItem="Q0Y-b9-oAW" secondAttribute="leading" id="u7n-WA-4bN"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="episodeImage" destination="Yuf-0H-NSm" id="06c-fS-825"/>
+                                    <outlet property="episodeNameLabel" destination="dGU-7Q-T6t" id="F74-Py-JWk"/>
+                                    <segue destination="zWY-vA-WPb" kind="showDetail" identifier="playlistEpisode" id="d8Z-IQ-3sc"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="naB-Cm-rnI" id="pXB-BF-2en"/>
+                            <outlet property="delegate" destination="naB-Cm-rnI" id="08z-oQ-BCp"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="addEpisodeToPlaylistTable" destination="5b6-gn-341" id="baP-xC-VH3"/>
+                        <outlet property="playlistNameLabel" destination="GWy-3C-gVz" id="DHo-CR-OZy"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EuK-SZ-VL5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-13.043478260869566" y="109.82142857142857"/>
+        </scene>
+        <!--Player-->
+        <scene sceneID="ltO-CC-rIj">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Player" id="zWY-vA-WPb" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4uJ-FR-LI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="922" y="-5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="1400x1400-eagles_podcast-logo" width="1400" height="1400"/>
+        <image name="more" width="384" height="384"/>
+    </resources>
+</document>
