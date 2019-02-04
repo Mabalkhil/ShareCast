@@ -83,7 +83,7 @@
                                                     <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                     <state key="normal" title="Button" image="add-list"/>
                                                     <connections>
-                                                        <segue destination="wut-sd-zjZ" kind="showDetail" identifier="addEpisodeToPlaylist" id="0Vm-b1-J4s"/>
+                                                        <segue destination="wut-sd-zjZ" kind="show" identifier="addEpisodeToPlaylist" id="0Vm-b1-J4s"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g3K-x2-iHv">
@@ -282,12 +282,12 @@
     </scenes>
     <resources>
         <image name="1400x1400-eagles_podcast-logo" width="1400" height="1400"/>
-        <image name="add-list" width="512" height="512"/>
-        <image name="bookmark" width="512" height="512"/>
-        <image name="download" width="512" height="512"/>
-        <image name="like" width="480" height="480"/>
-        <image name="reply-all" width="512" height="512"/>
-        <image name="send" width="512" height="512"/>
-        <image name="share" width="512" height="512"/>
+        <image name="add-list" width="384" height="384"/>
+        <image name="bookmark" width="384" height="384"/>
+        <image name="download" width="384" height="384"/>
+        <image name="like" width="384" height="384"/>
+        <image name="reply-all" width="384" height="384"/>
+        <image name="send" width="409.60000610351562" height="409.60000610351562"/>
+        <image name="share" width="409.60000610351562" height="409.60000610351562"/>
     </resources>
 </document>
