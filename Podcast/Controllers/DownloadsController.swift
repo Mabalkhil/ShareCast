@@ -104,7 +104,6 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         episodes.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
         UserDefaults.standard.deleteEpisode(episode: episode)
-        APIService.shared.deleteEpisode(episode: episode)
     }
     
     

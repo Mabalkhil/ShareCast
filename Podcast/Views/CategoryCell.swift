@@ -19,7 +19,7 @@ class CategoryCell: UICollectionViewCell {
             guard let url = URL(string : podcast.artworkUrl600 ?? "") else {return}
             podcastImage.layer.borderWidth = 1
             podcastImage.layer.masksToBounds = false
-            podcastImage.layer.cornerRadius = podcastImage.frame.height/2
+            podcastImage.layer.cornerRadius = podcastImage.frame.height/3
             podcastImage.clipsToBounds = true
             
             podcastImage.sd_setImage(with: url, completed: nil)
