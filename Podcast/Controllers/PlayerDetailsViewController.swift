@@ -18,6 +18,14 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
+    
+    
+    @IBOutlet weak var shitStack3: UIStackView!
+    @IBOutlet weak var shitStack2: UIStackView!
+    @IBOutlet weak var shitStack: UIStackView!
+    @IBOutlet weak var smallPlayer: UIView!
+    @IBOutlet weak var fucker: UIButton!
+    
     //names outlets
     @IBOutlet weak var episodeName: UILabel!
     @IBOutlet weak var channelName: UILabel!
@@ -192,12 +200,20 @@ class PlayerDetailsViewController: UIViewController, UIScrollViewDelegate, UITab
     //??
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handelTapMaximize)))
+        
         observePlayerCurrentTime()
         let time = CMTimeMake(value: 1, timescale: 3)
         let times = [NSValue(time: time)]
         player.addBoundaryTimeObserver(forTimes: times, queue: .main){
             
         }
+    }
+    
+    @objc func handelTapMaximize() {
+        let app = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+        app?.maximizePlayerDetails()
     }
     
     

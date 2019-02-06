@@ -21,7 +21,7 @@ class MainTabBarController: UITabBarController {
         
         setUpPlayerDetailsview()
         
-        perform(#selector(minimizePlayerDetails), with: nil, afterDelay: 2)
+//        perform(#selector(minimizePlayerDetails), with: nil, afterDelay: 2)
         perform(#selector(maximizePlayerDetails), with: nil, afterDelay: 5)
     }
     
@@ -32,41 +32,63 @@ class MainTabBarController: UITabBarController {
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
+            self.tabBar.transform = .identity
         })
+        
+        self.playerDetailsview.smallPlayer.alpha = 1
+        self.playerDetailsview.shitStack.alpha = 0
+        self.playerDetailsview.shitStack2.alpha = 0
+        self.playerDetailsview.shitStack3.alpha = 0
+        self.playerDetailsview.scrollView.alpha = 0
+        self.playerDetailsview.fucker.alpha = 0
+        self.playerDetailsview.pageControl.alpha = 0
     }
     
+    // this method will take the episode from anywhere
     @objc func maximizePlayerDetails(){
         
         MaximumSize.isActive = true
+        MaximumSize.constant = 0
         MinimumSize.isActive = false
+        
+        // if episode != nil {do the thing here}
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
+            
+            self.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
         })
+        self.playerDetailsview.smallPlayer.alpha = 0
+        self.playerDetailsview.shitStack.alpha = 1
+        self.playerDetailsview.shitStack2.alpha = 1
+        self.playerDetailsview.shitStack3.alpha = 1
+        self.playerDetailsview.scrollView.alpha = 1
+        self.playerDetailsview.fucker.alpha = 1
+        self.playerDetailsview.pageControl.alpha = 1
     }
     
     var MaximumSize:NSLayoutConstraint! = nil
     var MinimumSize:NSLayoutConstraint! = nil
-    let playerDetailsview = UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "PlayerStoryBoard").view
+    let playerDetailsview = UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "PlayerStoryBoard") as! PlayerDetailsViewController
     
     //MARK: Setup Function
     
     fileprivate func setUpPlayerDetailsview(){
         
-        view.insertSubview(playerDetailsview!, belowSubview: tabBar)
+        view.insertSubview(playerDetailsview.view!, belowSubview: tabBar)
         
-        playerDetailsview?.translatesAutoresizingMaskIntoConstraints = false
+        playerDetailsview.view?.translatesAutoresizingMaskIntoConstraints = false
         
         
-        MaximumSize = playerDetailsview?.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height)
+        MaximumSize = playerDetailsview.view?.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height)
         MaximumSize.isActive = true
         
-        MinimumSize = playerDetailsview?.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -64)
-        MinimumSize.isActive = false
+        MinimumSize = playerDetailsview.view?.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -65)
+//        MinimumSize.isActive = true
         
-        playerDetailsview?.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        playerDetailsview?.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        playerDetailsview?.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        playerDetailsview.view?.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        playerDetailsview.view?.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        playerDetailsview.view?.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
     fileprivate func setupViewControllers() {
