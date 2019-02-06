@@ -28,6 +28,15 @@ class addEpisodeToPlaylist: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        episodes = UserDefaults.standard.downloadedEpisodes()
+        addEpisodeToPlaylistTable.reloadData()
+        // Hide the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //var episodes = UserDefaults.standard.playlistEpisodes(name: self.playlistName)
@@ -44,6 +53,13 @@ class addEpisodeToPlaylist: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.episodes[indexPath.row].fileUrl != nil{
+            clickToPlay()
+        }
+    }
+        
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let episode = self.episodes[indexPath.row]
         episodes.remove(at: indexPath.row)
@@ -53,20 +69,10 @@ class addEpisodeToPlaylist: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("a")
-        if segue.identifier == "playlistEpisode" {
-            print("b")
-            if let indexPath = addEpisodeToPlaylistTable.indexPathForSelectedRow {
-                print("c")
-                let destination = segue.destination as! PlayerDetailsViewController
-                // dont assign value directly because the destinition view visual component not created yet
-                destination.episode = episodes[indexPath.row]
-                print(destination.episode.title)
-            }
-        }
+    private func clickToPlay() {
+        let indexPath = addEpisodeToPlaylistTable.indexPathForSelectedRow
+        PlayerDetailsViewController.shared.setEpisode(episode: self.episodes[(indexPath?.row ?? nil)!])
     }
-    
     
    
     

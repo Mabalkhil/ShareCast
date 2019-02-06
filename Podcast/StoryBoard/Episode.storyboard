@@ -40,9 +40,7 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="KIB-4A-J49" kind="popoverPresentation" identifier="player" popoverAnchorView="wUm-m7-tZK" id="bTI-ZL-RnD">
-                                                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                        </segue>
+                                                        <action selector="clickToPlay:" destination="YKl-A7-hyP" eventType="touchUpInside" id="qni-Jf-lG7"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -270,14 +268,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Saa-5W-yTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="992" y="-485"/>
-        </scene>
-        <!--Player-->
-        <scene sceneID="b1M-xA-pJ4">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Player" id="KIB-4A-J49" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bop-yC-Sdc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="974" y="-246"/>
         </scene>
     </scenes>
     <resources>

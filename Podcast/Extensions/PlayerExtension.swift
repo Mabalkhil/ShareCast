@@ -21,11 +21,8 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
     //setting scroll view
     func setScrollView() {
         pageControl.numberOfPages = 2
-        
         frame.origin.x = scrollView.frame.size.width * 0
         frame.size = scrollView.frame.size
-        
-        
         //episodeImg.frame = frame
         episodeImg.frame.origin.x = 0
         episodeImg.frame.size.width = self.view.frame.width

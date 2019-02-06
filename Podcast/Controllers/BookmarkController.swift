@@ -17,7 +17,6 @@ class BookmarkController: UITableViewController {
     
     
     override func viewDidLoad() {
-        
         bookmarks.delegate = self
         bookmarks.dataSource = self
         super.viewDidLoad()
@@ -30,26 +29,15 @@ class BookmarkController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookmarkCell", for: indexPath) as! BookmarkCell
-        
         cell.setAttributes(episode: self.bookedMarked[indexPath.row])
-        
         return cell
     }
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         if self.bookedMarked[indexPath.row].fileUrl != nil{
-            
-            performSegue(withIdentifier: "player", sender: self)
+            clickToPlay()
         }
-        
-        
-        // print(self.episodes[indexPath.row])
-        
-//         present( UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "playerStoryBoard") as UIViewController, animated: true, completion: nil)
-//
-//        UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "PlayerStoryBoard")
     }
     
     
@@ -57,9 +45,10 @@ class BookmarkController: UITableViewController {
         super.viewWillAppear(animated)
         bookedMarked = UserDefaults.standard.bookmarkedEpisodes()
         bookmarks.reloadData()
-        
+        // Hide the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.tabBarController?.tabBar.isHidden = false
     }
-    
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let episode = self.bookedMarked[indexPath.row]
@@ -69,16 +58,8 @@ class BookmarkController: UITableViewController {
     }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       
-        if segue.identifier == "player" {
-            if let indexPath = bookmarks.indexPathForSelectedRow {
-                let destination = segue.destination as! PlayerDetailsViewController
-                // dont assign value directly because the destinition view visual component not created yet
-                destination.episode = bookedMarked[indexPath.row]
-                print(destination.episode.title)
-                
-            }
-        }
+    private func clickToPlay() {
+        let indexPath = bookmarks.indexPathForSelectedRow
+        PlayerDetailsViewController.shared.setEpisode(episode: self.bookedMarked[(indexPath?.row ?? nil)!])
     }
 }

@@ -17,7 +17,7 @@ struct Episode: Codable {
     let author: String
     let streamURL: String
     var timeStampLables: [String]?
-    let timeStamps: [String]?
+    var timeStamps: [String]?
     var fileUrl: String?
     //let timeMark: List
     
