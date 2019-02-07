@@ -74,7 +74,6 @@
                                     <outlet property="EpisodeDescription" destination="eUB-mr-AIe" id="iZI-mO-M21"/>
                                     <outlet property="EpisodeImage" destination="LSB-U6-amc" id="nkP-v9-tIZ"/>
                                     <outlet property="EpisodeName" destination="rKr-7h-FHm" id="crQ-Tb-9C4"/>
-                                    <segue destination="V9v-WU-rtO" kind="showDetail" identifier="player" id="wr9-GZ-CY6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -90,14 +89,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mxu-8O-EQk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="91.304347826086968" y="141.96428571428569"/>
-        </scene>
-        <!--Player-->
-        <scene sceneID="584-r1-jbi">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Player" id="V9v-WU-rtO" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RQK-aN-mi4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="643" y="-86"/>
         </scene>
     </scenes>
     <resources>

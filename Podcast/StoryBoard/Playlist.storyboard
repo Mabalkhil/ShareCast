@@ -98,7 +98,6 @@
                                 <connections>
                                     <outlet property="episodeImage" destination="Yuf-0H-NSm" id="06c-fS-825"/>
                                     <outlet property="episodeNameLabel" destination="dGU-7Q-T6t" id="F74-Py-JWk"/>
-                                    <segue destination="zWY-vA-WPb" kind="showDetail" identifier="playlistEpisode" id="d8Z-IQ-3sc"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -115,14 +114,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EuK-SZ-VL5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-13.043478260869566" y="109.82142857142857"/>
-        </scene>
-        <!--Player-->
-        <scene sceneID="ltO-CC-rIj">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Player" id="zWY-vA-WPb" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4uJ-FR-LI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="922" y="-5"/>
         </scene>
     </scenes>
     <resources>
