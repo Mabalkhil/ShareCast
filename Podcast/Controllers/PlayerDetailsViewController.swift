@@ -9,13 +9,18 @@
 import UIKit
 import AVKit
 import ACBAVPlayer
+import AVFoundation
 
+var right: Float = 0
+var left: Float = 0
 
-class PlayerDetailsViewController: UIViewController {
+class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate {
 
+     var tapProcessor: MYAudioTapProcessor!
     // create instance of the same class to make it singlton, we just need to add a private constructer to avoid ceating a new object
     static var shared = UIStoryboard(name: "Player", bundle: Bundle.main).instantiateViewController(withIdentifier: "PlayerStoryBoard") as! PlayerDetailsViewController
     
+   var isPlaying = false
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -95,7 +100,13 @@ class PlayerDetailsViewController: UIViewController {
         }
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBar.isHidden = true
+        
+
     }
+
+        
+        
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -164,16 +175,19 @@ class PlayerDetailsViewController: UIViewController {
             let fileName =  fileURL.lastPathComponent
             guard var trueLocation = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else{ return }
             trueLocation.appendPathComponent(fileName)
-            let playerItem = AVPlayerItem(url: trueLocation)
+           let playerItem = AVPlayerItem(url: trueLocation)
+            playerItem.addObserver(self, forKeyPath: "tracks", options: NSKeyValueObservingOptions.new, context:  nil);
             player.isMeteringEnabled = true
             player.replaceCurrentItem(with: playerItem)
             player.play()
+            isPlaying = true
         } else{
             guard let url = URL(string: episode.streamURL) else { return }
             let playerItem = AVPlayerItem(url: url)
             player.isMeteringEnabled = true
             player.replaceCurrentItem(with: playerItem)
             player.play()
+            isPlaying = true
         }
     }
 
@@ -192,9 +206,11 @@ class PlayerDetailsViewController: UIViewController {
         if player.timeControlStatus == .paused{
             player.play()
             playPauseButton.setImage(#imageLiteral(resourceName: "PauseButton"), for: .normal)
+            isPlaying = true
         }else{
             player.pause()
             playPauseButton.setImage(#imageLiteral(resourceName: "PlayButton"), for: .normal)
+            isPlaying = false
         }
     }
     
@@ -278,6 +294,7 @@ class PlayerDetailsViewController: UIViewController {
     }
     
     
+    
     //MARK:- Time Mark
     //only handle if there is a time marks in an episode(Show table or don't)
     @objc func handleTimeMark(){
@@ -319,4 +336,97 @@ class PlayerDetailsViewController: UIViewController {
             app?.maximizePlayerDetails()
         }
     }
+    
+    
+    
+    
+    
+        //MARK:- Smart Speed
+
+
+override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    if (object as? AVPlayerItem == player.currentItem && keyPath == "tracks"){
+        if let playerItem: AVPlayerItem = player.currentItem {
+            if let tracks = playerItem.asset.tracks as? [AVAssetTrack] {
+                tapProcessor = MYAudioTapProcessor(avPlayerItem: playerItem)
+                playerItem.audioMix = tapProcessor.audioMix
+                tapProcessor.delegate = self
+            }
+        }
+    }
+}
+
+    func audioTabProcessor(_ audioTabProcessor: MYAudioTapProcessor!, hasNewLeftChannelValue leftChannelValue:Float, rightChannelValue: Float) {
+        
+        right = rightChannelValue
+        left = leftChannelValue
+    //print("volume: \(leftChannelValue) : \(rightChannelValue)")
+}
+
+@IBAction func compressorSwitchChanged(_ sender: UISwitch) {
+    tapProcessor.compressorEnabled  = sender.isOn
+}
+
+
+override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+}
+    
+    
+
+    
+        let decibelThreshold = Float(0.0004)
+        var decibelValuer: Float = 0
+        var decibelValuel: Float = 0
+        let defaultPlaybackRate = 1
+        let sampleRate = 0.1
+        var skippedSeconds = 0.0
+        var averagePower:Float = 0
+        var aaveragePower:Float = 0
+    
+    //smart speed button
+        @IBOutlet weak var smartSpeedButton: UIButton!{
+            didSet{
+                smartSpeedButton.addTarget(self, action: #selector(callingTimer), for: .touchUpInside)
+            }
+        }
+    
+        //calling findSilences function every 0.1 seconds
+        @objc func callingTimer() {
+            Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(findSilences), userInfo: nil, repeats: true)
+        }
+    
+        //finding the silences in episode and increase speed to 2
+        //NOTE: it is still not working, the averagePower is always ZERO
+        @objc func findSilences() {
+            guard isPlaying == true else { return }
+            self.player.updateMeters()
+             aaveragePower = self.player.averagePower(forChannel: 0)
+            self.player.updateMeters()
+                    print(aaveragePower)
+           //decibelValuer = 20.0 * log10(right)
+            //decibelValuel = 20.0 * log10(left)
+            
+            //averagePower = (decibelValuel + decibelValuer)/2
+            //print(averagePower)
+            //print("volume: \(decibelValuer) : \(decibelValuel)")
+           // print("volume: \(right) : \(left)")
+            
+            //print(player.averagePowerInLinearForm(forChannel: 1))
+
+            if left < decibelThreshold && player.rate != 2 && left != Float(0){
+                print("a")
+                player.rate = 2
+                skippedSeconds += sampleRate - (sampleRate / 2)
+            } else if player.rate != 1 && left > decibelThreshold && left != Float(0) {
+
+                    print("b")
+                    player.rate = 1
+
+            }
+            
+        }
+    
+    
 }

@@ -389,6 +389,7 @@
                         <outlet property="smallPlayerImg" destination="g1W-vA-cAp" id="87w-rg-cTs"/>
                         <outlet property="smallPlayerLabel" destination="qGZ-cC-34i" id="lER-eK-1Wh"/>
                         <outlet property="smallPlayerPlay" destination="ddK-7K-SzW" id="WV7-7Q-LfN"/>
+                        <outlet property="smartSpeedButton" destination="geN-lj-qru" id="Jbg-2R-IDk"/>
                         <outlet property="speedUpButton" destination="xea-e9-sby" id="KsC-W4-xzj"/>
                         <outlet property="speedUpLabel" destination="zzs-7s-CpS" id="HBK-QO-mgZ"/>
                         <outlet property="volumeSlider" destination="PGQ-Yh-yc2" id="1TG-Hz-mN4"/>
