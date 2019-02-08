@@ -11,8 +11,8 @@ import AVKit
 import ACBAVPlayer
 import AVFoundation
 
-var right: Float = 0
-var left: Float = 0
+var right: Float = 100
+var left: Float = 100
 
 class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate {
 
@@ -376,9 +376,9 @@ override func didReceiveMemoryWarning() {
     
 
     
-        let decibelThreshold = Float(0.0004)
-        var decibelValuer: Float = 0
-        var decibelValuel: Float = 0
+        let decibelThreshold = Float(0.0005)
+        var decibelValuer: Float = 100
+        var decibelValuel: Float = 100
         let defaultPlaybackRate = 1
         let sampleRate = 0.1
         var skippedSeconds = 0.0
@@ -394,32 +394,31 @@ override func didReceiveMemoryWarning() {
     
         //calling findSilences function every 0.1 seconds
         @objc func callingTimer() {
-            Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(findSilences), userInfo: nil, repeats: true)
+            Timer.scheduledTimer(timeInterval: 0.0, target: self, selector: #selector(findSilences), userInfo: nil, repeats: true)
         }
     
         //finding the silences in episode and increase speed to 2
         //NOTE: it is still not working, the averagePower is always ZERO
         @objc func findSilences() {
             guard isPlaying == true else { return }
-            self.player.updateMeters()
-             aaveragePower = self.player.averagePower(forChannel: 0)
-            self.player.updateMeters()
-                    print(aaveragePower)
+            player.updateMeters()
+             aaveragePower = player.averagePower(forChannel: 0)
+                   // print(aaveragePower)
            //decibelValuer = 20.0 * log10(right)
             //decibelValuel = 20.0 * log10(left)
             
             //averagePower = (decibelValuel + decibelValuer)/2
             //print(averagePower)
             //print("volume: \(decibelValuer) : \(decibelValuel)")
-           // print("volume: \(right) : \(left)")
+           print("volume: \(right) : \(left)")
             
             //print(player.averagePowerInLinearForm(forChannel: 1))
-
+//
             if left < decibelThreshold && player.rate != 2 && left != Float(0){
                 print("a")
                 player.rate = 2
                 skippedSeconds += sampleRate - (sampleRate / 2)
-            } else if player.rate != 1 && left > decibelThreshold && left != Float(0) {
+            } else if player.rate != 1 && left > decibelThreshold && left != Float(0){
 
                     print("b")
                     player.rate = 1
