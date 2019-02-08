@@ -20,7 +20,8 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
     // create instance of the same class to make it singlton, we just need to add a private constructer to avoid ceating a new object
     static var shared = UIStoryboard(name: "Player", bundle: Bundle.main).instantiateViewController(withIdentifier: "PlayerStoryBoard") as! PlayerDetailsViewController
     
-   var isPlaying = false
+    var isPlaying = false
+    var smartSpeedToggle = false
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -181,6 +182,7 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
             player.replaceCurrentItem(with: playerItem)
             player.play()
             isPlaying = true
+            smartSpeedButton.isEnabled = true
         } else{
             guard let url = URL(string: episode.streamURL) else { return }
             let playerItem = AVPlayerItem(url: url)
@@ -188,6 +190,7 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
             player.replaceCurrentItem(with: playerItem)
             player.play()
             isPlaying = true
+            smartSpeedButton.isEnabled = false
         }
     }
 
@@ -376,7 +379,7 @@ override func didReceiveMemoryWarning() {
     
 
     
-        let decibelThreshold = Float(0.0005)
+        let decibelThreshold = Float(0.00035)
         var decibelValuer: Float = 100
         var decibelValuel: Float = 100
         let defaultPlaybackRate = 1
@@ -388,32 +391,51 @@ override func didReceiveMemoryWarning() {
     //smart speed button
         @IBOutlet weak var smartSpeedButton: UIButton!{
             didSet{
-                smartSpeedButton.addTarget(self, action: #selector(callingTimer), for: .touchUpInside)
+                smartSpeedButton.addTarget(self, action: #selector(toggleSmartSpeed), for: .touchUpInside)
             }
         }
     
+    @objc func toggleSmartSpeed(){
+        
+        if smartSpeedToggle == false{
+            smartSpeedToggle = true
+            SSLabel.text = "ON"
+            callingTimer()
+        }else{
+            smartSpeedToggle = false
+            SSLabel.text = "OFF"
+        }
+        
+        
+    }
+    
+    
+    
         //calling findSilences function every 0.1 seconds
         @objc func callingTimer() {
-            Timer.scheduledTimer(timeInterval: 0.0, target: self, selector: #selector(findSilences), userInfo: nil, repeats: true)
+            if smartSpeedToggle == true{
+            Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(findSilences), userInfo: nil, repeats: true)
+            }
         }
     
         //finding the silences in episode and increase speed to 2
         //NOTE: it is still not working, the averagePower is always ZERO
         @objc func findSilences() {
             guard isPlaying == true else { return }
+            if smartSpeedToggle == true{
             player.updateMeters()
-             aaveragePower = player.averagePower(forChannel: 0)
+            //aaveragePower = player.averagePower(forChannel: 0)
                    // print(aaveragePower)
            //decibelValuer = 20.0 * log10(right)
-            //decibelValuel = 20.0 * log10(left)
+            decibelValuel = 20.0 * log10(left)
             
             //averagePower = (decibelValuel + decibelValuer)/2
             //print(averagePower)
             //print("volume: \(decibelValuer) : \(decibelValuel)")
-           print("volume: \(right) : \(left)")
-            
+          // print("volume: \(right) : \(left)")
+    
             //print(player.averagePowerInLinearForm(forChannel: 1))
-//
+
             if left < decibelThreshold && player.rate != 2 && left != Float(0){
                 print("a")
                 player.rate = 2
@@ -425,7 +447,13 @@ override func didReceiveMemoryWarning() {
 
             }
             
+            }else{
+                player.rate = 1
+              //  Timer.Stop
+            }
+            
         }
+    
     
     
 }
