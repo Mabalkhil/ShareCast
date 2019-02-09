@@ -22,6 +22,7 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
     
     var isPlaying = false
     var smartSpeedToggle = false
+    var timerTest : Timer?
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -414,27 +415,20 @@ override func didReceiveMemoryWarning() {
         //calling findSilences function every 0.1 seconds
         @objc func callingTimer() {
             if smartSpeedToggle == true{
-            Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(findSilences), userInfo: nil, repeats: true)
+                
+           timerTest = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(findSilences), userInfo: nil, repeats: true)
             }
         }
     
         //finding the silences in episode and increase speed to 2
-        //NOTE: it is still not working, the averagePower is always ZERO
+
         @objc func findSilences() {
             guard isPlaying == true else { return }
             if smartSpeedToggle == true{
             player.updateMeters()
-            //aaveragePower = player.averagePower(forChannel: 0)
-                   // print(aaveragePower)
-           //decibelValuer = 20.0 * log10(right)
+
             decibelValuel = 20.0 * log10(left)
             
-            //averagePower = (decibelValuel + decibelValuer)/2
-            //print(averagePower)
-            //print("volume: \(decibelValuer) : \(decibelValuel)")
-          // print("volume: \(right) : \(left)")
-    
-            //print(player.averagePowerInLinearForm(forChannel: 1))
 
             if left < decibelThreshold && player.rate != 2 && left != Float(0){
                 print("a")
@@ -448,8 +442,9 @@ override func didReceiveMemoryWarning() {
             }
             
             }else{
+                print("false")
                 player.rate = 1
-              //  Timer.Stop
+                timerTest!.invalidate()
             }
             
         }

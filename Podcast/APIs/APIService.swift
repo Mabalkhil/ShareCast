@@ -105,22 +105,10 @@ class APIService {
         do {
             let fileManager = FileManager.default
             // Delete file
-            //try fileManager.removeItem(atPath: m)
             try fileManager.removeItem(atPath: filePath)
-          // try fileManager.removeItem(atPath: episode.fileUrl!)
-            //try fileManager.removeItem(at: URL.init(fileURLWithPath: m))
-            //try fileManager.removeItem(at: URL.init(fileURLWithPath: parsed))
-            //let url1 = URL(string: episode.fileUrl!)
-           // let url2 = URL(string: filePath)
-//           print(fileManager.fileExists(atPath: episode.fileUrl!))
-//           print(fileManager.fileExists(atPath: m))
-//            print(fileManager.fileExists(atPath: parsed))
-//            print(fileManager.fileExists(atPath: filePath))
-            //print(fileManager.fileExists(atPath: (url1?.path)!))
 
-            
-            
-            
+             print(fileManager.fileExists(atPath: episode.fileUrl!))
+
         }
         catch let error as NSError {
             print("An error took place: \(error)")
