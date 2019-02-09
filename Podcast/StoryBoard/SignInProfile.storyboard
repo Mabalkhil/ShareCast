@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="k2I-y5-9Gu">
+            <objects>
+                <viewController id="ftC-zy-VC4" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gKh-n1-stf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="28F-Yj-C3H">
+                                <rect key="frame" x="10" y="587" width="355" height="50"/>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="To take full advantage of the features of ShareCaste Please signing in" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIk-dl-C11">
+                                <rect key="frame" x="10" y="242" width="355" height="179"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="unR-mC-aDK">
+                                <rect key="frame" x="112" y="84" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="7AP-eh-0Nq"/>
+                                    <constraint firstAttribute="width" constant="50" id="9bm-H3-UeB"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xSn-cn-A06" customClass="RoundedWhiteButton" customModule="Podcast" customModuleProvider="target">
+                                <rect key="frame" x="71" y="489" width="233" height="50"/>
+                                <color key="backgroundColor" red="0.86666666670000003" green="0.4205085039" blue="0.38821679349999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="CIv-xj-hJG"/>
+                                    <constraint firstAttribute="width" constant="250" id="b8s-3d-7EY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <state key="normal" title="Sign In">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.23491570349999999" green="0.24697417020000001" blue="0.25531390310000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="prV-xf-00P" firstAttribute="trailing" secondItem="eIk-dl-C11" secondAttribute="trailing" constant="10" id="1dV-EX-iOo"/>
+                            <constraint firstAttribute="trailing" secondItem="xSn-cn-A06" secondAttribute="trailing" constant="10" id="4qQ-tF-0Wd"/>
+                            <constraint firstItem="xSn-cn-A06" firstAttribute="leading" secondItem="prV-xf-00P" secondAttribute="leading" constant="71" id="7cT-Wt-AtH"/>
+                            <constraint firstItem="prV-xf-00P" firstAttribute="trailing" secondItem="28F-Yj-C3H" secondAttribute="trailing" constant="10" id="UTo-CI-cKr"/>
+                            <constraint firstItem="eIk-dl-C11" firstAttribute="leading" secondItem="prV-xf-00P" secondAttribute="leading" constant="10" id="WuC-WU-3CW"/>
+                            <constraint firstItem="prV-xf-00P" firstAttribute="trailing" secondItem="xSn-cn-A06" secondAttribute="trailing" constant="71" id="Xe8-6g-DGz"/>
+                            <constraint firstItem="prV-xf-00P" firstAttribute="bottom" secondItem="28F-Yj-C3H" secondAttribute="bottom" constant="30" id="ciJ-VQ-fa8"/>
+                            <constraint firstItem="28F-Yj-C3H" firstAttribute="leading" secondItem="prV-xf-00P" secondAttribute="leading" constant="10" id="hW9-tJ-9A1"/>
+                            <constraint firstAttribute="bottom" secondItem="xSn-cn-A06" secondAttribute="bottom" constant="128" id="s5j-a1-4Bh"/>
+                            <constraint firstItem="prV-xf-00P" firstAttribute="trailing" secondItem="unR-mC-aDK" secondAttribute="trailing" constant="30" id="yOP-Ti-lcK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="prV-xf-00P"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Olk-h8-6r6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="128.80000000000001" y="106.59670164917542"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Logo" width="1000" height="1000"/>
+    </resources>
+</document>

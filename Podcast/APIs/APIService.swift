@@ -78,15 +78,13 @@ class APIService {
     }
     
     
-    func fetchPodcast(searchText: String, attribute : String = "None", completionHandeler: @escaping ([Podcast]) -> ()) {
+    func fetchPodcast(searchText: String, completionHandeler: @escaping ([Podcast]) -> ()) {
         print("searching for podcast, term = " + searchText )
         //iTunesAPI
         let url = "https://itunes.apple.com/search"
         //Parameters for the API
-        var parameters = ["term":searchText, "media":"podcast"]
-        if(attribute != "None"){
-            parameters["attribute"] = attribute
-        }
+        let parameters = ["term":searchText, "media":"podcast"]
+        
         
         Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseData { (dataResponse) in
             
@@ -105,37 +103,7 @@ class APIService {
         }
     }
     
-    //    func fetchDiscover(completionHandeler: @escaping ([Category]) -> ()) {
-    //        //iTunesAPI
-    //        // The golbal variable categories is for this method, it was defined there to be used in line1 125
-    //        // Ideally the variable should be defiende inside the function, but there's a referencing problem
-    //        //This is a dictiory that will be used to link the genreId/Category ID, with the its name
-    //        let categoriesDict = ["News & Politices": "1311", "Comedy": "1303", "Science & Medicine": "1315",
-    //                          "Technology": "1318", "Business": "1321", "Games & Hubbies": "1323", "Society & Culture": "1324"]
-    //        // This list of categories will be sent to the DiscoverController to be displayed overthere
-    //
-    //        for (name, id) in categoriesDict {
-    //            // This list of categories will be sent to the DiscoverController to be displayed overthere
-    //            //Here we specify that the search attribute is for the genreIndex
-    //            //So we can use the ids in the categories dict to look for podcasts
-    //            fetchPodcast(searchText: name) { (podcasts) in
-    //
-    //                // After getting a list of podcasts from the search of the genreIndex, we constuct
-    //                // a catogry with the name of the catorgry that we searched for and the returned searhc resluts
-    //                let cate = Category(title: name, podcasts:podcasts)
-    //                print(name)
-    //                // we append all the categories in the loop to the golbal varibal categories
-    //                self.categories += [cate]
-    //
-    //            }
-    //        }
-    //        //fetchPodcast(searchText: id, attribute : "genreIndex")
-    //        print(self.categories.count)
-    //        completionHandeler(self.categories)
-    //
-    //
-    //
-    //    }
+ 
     
     
     func fetchDiscover(completionHandeler: @escaping ([Category]) -> ()) {

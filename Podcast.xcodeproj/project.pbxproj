@@ -61,9 +61,11 @@
 		FA1AEC8E219414BD000B0882 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1AEC8D219414BD000B0882 /* PodcastCell.xib */; };
 		FA397ED72195E66D00D33617 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA397ED62195E66D00D33617 /* SearchResults.swift */; };
 		FA397ED92195E68E00D33617 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA397ED82195E68E00D33617 /* Episode.swift */; };
+		FA43AF30220C585800DCCCBC /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43AF2F220C585800DCCCBC /* SubscriptionViewController.swift */; };
 		FA49932A218DCD3E0021CFA3 /* PodcastSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA499329218DCD3D0021CFA3 /* PodcastSearchController.swift */; };
 		FA49932D218DD04F0021CFA3 /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49932C218DD04F0021CFA3 /* Podcast.swift */; };
 		FA8F8F422194D4CA00301EF6 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F8F412194D4CA00301EF6 /* PodcastCell.swift */; };
+		FAF87F11220B5B5C00E06FEE /* SignInProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF87F10220B5B5C00E06FEE /* SignInProfile.storyboard */; };
 		FAFF82ED218CEB6400882A6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF82EC218CEB6400882A6A /* AppDelegate.swift */; };
 		FAFF82EF218CEB6400882A6A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF82EE218CEB6400882A6A /* ViewController.swift */; };
 		FAFF82F2218CEB6400882A6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFF82F0218CEB6400882A6A /* Main.storyboard */; };
@@ -152,9 +154,11 @@
 		FA1AEC8D219414BD000B0882 /* PodcastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
 		FA397ED62195E66D00D33617 /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		FA397ED82195E68E00D33617 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		FA43AF2F220C585800DCCCBC /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
 		FA499329218DCD3D0021CFA3 /* PodcastSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastSearchController.swift; sourceTree = "<group>"; };
 		FA49932C218DD04F0021CFA3 /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		FA8F8F412194D4CA00301EF6 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
+		FAF87F10220B5B5C00E06FEE /* SignInProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInProfile.storyboard; sourceTree = "<group>"; };
 		FAFF82EC218CEB6400882A6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAFF82EE218CEB6400882A6A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FAFF82F1218CEB6400882A6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 				2FD789CB2200E65B006A47FE /* Playlists.storyboard */,
 				2FD789CD2200E66C006A47FE /* Playlist.storyboard */,
 				29140E3D2202FDCD0060522E /* Discover.storyboard */,
+				FAF87F10220B5B5C00E06FEE /* SignInProfile.storyboard */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 				372023AF220374E900D0C555 /* addEpisodeToPlaylist.swift */,
 				2FC15E972201F4A600DF1FD4 /* BookmarkController.swift */,
 				5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */,
+				FA43AF2F220C585800DCCCBC /* SubscriptionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -470,6 +476,7 @@
 				372BC4582201E667009514D4 /* Bookmark.storyboard in Resources */,
 				FA1AEC8E219414BD000B0882 /* PodcastCell.xib in Resources */,
 				FAFF82F2218CEB6400882A6A /* Main.storyboard in Resources */,
+				FAF87F11220B5B5C00E06FEE /* SignInProfile.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +592,7 @@
 				3723A1FB21A9D18400D5FAE9 /* RSSFeed.swift in Sources */,
 				FA49932D218DD04F0021CFA3 /* Podcast.swift in Sources */,
 				5018A44F21FF7DCF007EE027 /* DownloadEpisodeCell.swift in Sources */,
+				FA43AF30220C585800DCCCBC /* SubscriptionViewController.swift in Sources */,
 				FAFF82ED218CEB6400882A6A /* AppDelegate.swift in Sources */,
 				3723A1F921A9CDD100D5FAE9 /* String.swift in Sources */,
 				505B6C2921F5C74F002E392D /* CommentObj.swift in Sources */,

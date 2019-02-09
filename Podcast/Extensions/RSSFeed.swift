@@ -26,4 +26,12 @@ extension RSSFeed {
         
     return episodes
     }
+    func toPodcast() -> Podcast {
+        var podcast : Podcast!
+        podcast.artworkUrl600 = iTunes?.iTunesImage?.attributes?.href
+        podcast.artistName = 
+        
+        
+        return podcast
+    }
 }

@@ -12,7 +12,7 @@
         <!--Entry View Controller-->
         <scene sceneID="Olc-ct-YGn">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="nIr-nh-mvM" customClass="EntryViewController" customModule="Podcast" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EntryView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nIr-nh-mvM" customClass="EntryViewController" customModule="Podcast" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Udd-7f-VBt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -551,6 +551,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OSQ-wB-ikq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1831" y="-620"/>
+        </scene>
+        <!--Profile Signin View Controller-->
+        <scene sceneID="OmN-JY-h2O">
+            <objects>
+                <viewController storyboardIdentifier="ProfileSigninView" id="Ysg-90-mtK" customClass="ProfileSigninViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q38-Zw-Sbw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To take full advantage of the features of ShareCaste Please signing in" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEC-CL-wHb">
+                                <rect key="frame" x="37.666666666666657" y="317" width="300" height="43"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Btn-fp-vOe">
+                                <rect key="frame" x="47.666666666666657" y="118" width="280" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="Zg9-9w-0qR"/>
+                                    <constraint firstAttribute="width" constant="280" id="zA1-gI-wns"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gKK-ZC-Wrj" customClass="RoundedWhiteButton" customModule="Podcast" customModuleProvider="target">
+                                <rect key="frame" x="71.333333333333314" y="564.33333333333337" width="233" height="41"/>
+                                <color key="backgroundColor" red="0.86666666670000003" green="0.4205085039" blue="0.38821679349999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="233" id="nfx-vg-gqa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <state key="normal" title="Sign In">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="2HE-FO-8VT" kind="show" id="704-V5-mZb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.32152998447418213" green="0.32159090042114258" blue="0.32152613997459412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="QEC-CL-wHb" firstAttribute="top" secondItem="Btn-fp-vOe" secondAttribute="bottom" constant="39" id="2zC-oa-gh4"/>
+                            <constraint firstItem="QEC-CL-wHb" firstAttribute="leading" secondItem="wce-wf-3Hc" secondAttribute="leading" constant="37.670000000000002" id="6NE-uZ-9hF"/>
+                            <constraint firstItem="Btn-fp-vOe" firstAttribute="centerX" secondItem="q38-Zw-Sbw" secondAttribute="centerX" id="6NK-Hv-k32"/>
+                            <constraint firstItem="Btn-fp-vOe" firstAttribute="top" secondItem="wce-wf-3Hc" secondAttribute="top" constant="74" id="PUn-xf-mmA"/>
+                            <constraint firstItem="gKK-ZC-Wrj" firstAttribute="top" secondItem="QEC-CL-wHb" secondAttribute="bottom" constant="204.33333333333331" id="bkc-HL-l4I"/>
+                            <constraint firstItem="wce-wf-3Hc" firstAttribute="trailing" secondItem="QEC-CL-wHb" secondAttribute="trailing" constant="37.329999999999998" id="nPs-RC-3gc"/>
+                            <constraint firstItem="gKK-ZC-Wrj" firstAttribute="centerX" secondItem="QEC-CL-wHb" secondAttribute="centerX" id="w3b-f6-30N"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wce-wf-3Hc"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IZg-Ub-jL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1831" y="-1429"/>
         </scene>
     </scenes>
     <resources>

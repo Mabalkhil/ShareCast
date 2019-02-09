@@ -31,19 +31,43 @@ class MainTabBarController: UITabBarController {
         let chanellesController =
             generateNavigationController(for: UIStoryboard(name: "Subscription", bundle: nil).instantiateViewController(withIdentifier: "Download1"), title: "Subscription", image: #imageLiteral(resourceName: "Chanelles"))
         
-        let ProfileStoryRef = UIStoryboard(name: "Profile", bundle: Bundle.main)
-        guard let ProfileViewController = ProfileStoryRef.instantiateInitialViewController() as?
-            ProfileViewController else {
-                return
+        
+        
+        
+
+        
+        
+        var ProfileController : UIViewController?
+        if(Auth.auth().currentUser?.uid != nil){
+            let ProfileStoryRef = UIStoryboard(name: "Profile", bundle: Bundle.main)
+            guard let ProfileViewController = ProfileStoryRef.instantiateInitialViewController() as?
+                ProfileViewController else {
+                    return
+            }
+             ProfileController =
+                generateNavigationController(for: ProfileViewController, title: "Profile", image: #imageLiteral(resourceName: "Profile-1"))
         }
-        let ProfileController =
-            generateNavigationController(for: ProfileViewController, title: "Profile", image: #imageLiteral(resourceName: "Profile-1"))
+        else{
+            let MainStoryRef = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let EntryViewController = MainStoryRef.instantiateViewController(withIdentifier: "ProfileSigninView")
+             ProfileController =
+                generateNavigationController(for: EntryViewController, title: "Profile", image: #imageLiteral(resourceName: "Profile-1"))
+        }
+        
         
         
         viewControllers = [
             homeNavController,searchNavController,chanellesController , ProfileController
-        ]
+            ] as! [UIViewController]
+    
+        
+    
     }
+    
+    
+    
+    
+    
     //MARK:- Helper Function
     
     fileprivate func generateNavigationController
