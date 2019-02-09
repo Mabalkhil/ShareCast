@@ -22,6 +22,7 @@ class APIService {
     // Signleton Object
     static let shared = APIService()
     var categories = [Category]()
+    
     func fetchEpisodes(feedUrl: String, completionHandler: @escaping ([Episode]) -> ()){
         
         
@@ -42,6 +43,33 @@ class APIService {
             
         }
     }
+    
+    
+    func fetchChannels(feedUrls: [String], completionHandler: @escaping ([Podcast]) -> ()){
+        var podcasts = [Podcast]()
+        for feedUrl in feedUrls{
+            guard let url = URL(string: feedUrl) else { return }
+            let parser = FeedParser(URL: url)
+            parser.parseAsync { (result) in
+                
+                if let err = result.error{
+                    print("failed to parse XML", err)
+                    return
+                }
+                
+                guard let feed = result.rssFeed else { return }
+                
+                podcasts.append(feed.toChannels())
+                if(podcasts.count == feedUrls.count){
+                    completionHandler(podcasts)
+                }
+                
+                
+            }
+        }
+        
+    }
+
     
     
     func downloadEpisode(episode: Episode){
