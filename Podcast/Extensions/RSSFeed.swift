@@ -24,13 +24,16 @@ extension RSSFeed {
             episodes.append(episode)
         })
         
-    return episodes
+        return episodes
     }
-    func toPodcast() -> Podcast {
-        var podcast : Podcast!
+    
+    func toChannle () -> Podcast {
+        var podcast = Podcast()
+        podcast.artistName = iTunes?.iTunesAuthor
         podcast.artworkUrl600 = iTunes?.iTunesImage?.attributes?.href
-        podcast.artistName = 
-        
+        podcast.feedUrl = iTunes?.iTunesNewFeedURL
+        podcast.trackCount = items?.count
+        podcast.trackName = title
         
         return podcast
     }
