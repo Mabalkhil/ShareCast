@@ -14,7 +14,15 @@ class EpisodeViewController: UITableViewController, UITextViewDelegate {
     @IBOutlet weak var tableViewComments: UITableView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var episodeImage: UIImageView!
-     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    var comments = [CommentObj]()
+    var episode = Episode()
+    
+    
+    // this function will change the episode and start the player - YAY!
+    @IBAction private func clickToPlay(_ sender: UIButton) {
+        PlayerDetailsViewController.shared.setEpisode(episode: self.episode)
+    }
     
     @IBOutlet weak var bookmarkButton: UIButton!{
         didSet{
@@ -28,8 +36,7 @@ class EpisodeViewController: UITableViewController, UITextViewDelegate {
         }
     }
     
-    var comments = [CommentObj]()
-    var episode = Episode()
+
     
     override func viewDidLoad() {
         setAttributes()
@@ -60,7 +67,6 @@ class EpisodeViewController: UITableViewController, UITextViewDelegate {
     
     @objc func bookmarkAddingHandler(){
         // Checking if the button has highlighted image or not to run the correct operation
-        
         if bookmarkButton.currentImage.hashValue == UIImage(named: "bookmark").hashValue{
             UserDefaults.standard.addBookmark(episode: episode)
             bookmarkButton.setImage(UIImage(named: "bookmark_highlight"), for: .normal)
@@ -70,18 +76,11 @@ class EpisodeViewController: UITableViewController, UITextViewDelegate {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "player" {
-            let destinationController = segue.destination as! PlayerDetailsViewController
-            destinationController.episode = self.episode
-        }
-        else if segue.identifier == "addEpisodeToPlaylist"{
-            let destinationController = segue.destination as! CreatePlaylistController
-            destinationController.episode = self.episode
-            destinationController.check = false
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Hide the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.tabBarController?.tabBar.isHidden = false
     }
-    
-    
 }
 

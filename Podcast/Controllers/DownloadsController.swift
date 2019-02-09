@@ -17,27 +17,19 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
 
     
     override func viewDidLoad() {
-     
         tablwViewDownload.delegate = self
         tablwViewDownload.dataSource = self
-        
         super.viewDidLoad()
-        
         setupObservers()
-        
-        //setupTableView()
     }
     
     fileprivate func setupObservers(){
-        
         NotificationCenter.default.addObserver( self, selector: #selector(handleDownloadProgress), name: .downloadProgress, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(handleDownloadComplete), name: .downloadComplete, object: nil)
     }
     
     
     @objc fileprivate func handleDownloadComplete(notification: Notification){
-        
         guard let episodeDownloadComplete = notification.object as? APIService.EpisodeDownloadCompleteTuple else{ return }
         
         guard let index = self.episodes.index(where: { $0.title == episodeDownloadComplete.episodeTitle }) else { return }
@@ -53,49 +45,39 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         
         guard let index = self.episodes.index(where: { $0.title == title }) else { return }
         guard let cell = tablwViewDownload.cellForRow(at: IndexPath(row:index,section:0)) as? DownloadEpisodeCell else{ return }
-        
         cell.progressLabel.text = "\(Int(progress * 100))% "
-        
         cell.progressLabel.isHidden = false
-        
-        
         if progress == 1{
             cell.progressLabel.isHidden = true
         }
     }
     
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return episodes.count
     }
     
-   
-    
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! DownloadEpisodeCell
-        
         cell.episode = self.episodes[indexPath.row]
-        
         return cell
     }
     
     
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         if self.episodes[indexPath.row].fileUrl != nil{
-            
+            clickToPlay() // Start playing the selected episode 
         }
-    
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-         episodes = UserDefaults.standard.downloadedEpisodes()
+        episodes = UserDefaults.standard.downloadedEpisodes()
         tablwViewDownload.reloadData()
-        
+        // Hide the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     
@@ -106,34 +88,9 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         UserDefaults.standard.deleteEpisode(episode: episode)
     }
     
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("a")
-       if segue.identifier == "abc" {
-            print("b")
-            if let indexPath = tablwViewDownload.indexPathForSelectedRow {
-                print("c")
-                let destination = segue.destination as! PlayerDetailsViewController
-       
-                destination.episode = episodes[indexPath.row]
-                print(destination.episode.title)
-                
-            }
-       }else if segue.identifier == "playlistsView" {
-        
-        let destination = segue.destination as! CreatePlaylistController
-        destination.check = true
-        }
-        
+    private func clickToPlay() {
+        let indexPath = tablwViewDownload.indexPathForSelectedRow
+        PlayerDetailsViewController.shared.setEpisode(episode: self.episodes[(indexPath?.row ?? nil)!])
     }
     
-    
-    
-    
-    //MARK:- Setup
-    
-    fileprivate func setupTableView(){
-    
-}
-
 }
