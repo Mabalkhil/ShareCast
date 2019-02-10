@@ -20,8 +20,10 @@ class EntryViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
             self.present(MainViewController,animated: true,completion: nil)
         }
+    }
     
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent;
     }
     
     @IBAction func skipButton(_ sender: Any) {

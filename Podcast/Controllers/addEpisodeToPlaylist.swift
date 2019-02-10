@@ -27,6 +27,9 @@ class addEpisodeToPlaylist: UIViewController, UITableViewDelegate, UITableViewDa
         playlistNameLabel.text = playlistName        
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent;
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

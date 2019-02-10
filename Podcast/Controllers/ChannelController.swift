@@ -44,6 +44,11 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
         fetchEpisode()
         
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent;
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
     

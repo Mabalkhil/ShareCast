@@ -47,9 +47,14 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
             smallPlayerPlay.addTarget(self, action: #selector(handlePlayPause), for: .touchUpInside)
         }
     }
+    
+    // for UI to work on every device
+    @IBOutlet weak var topPartofStack: UIView!
+    
+    
     @IBOutlet weak var smallPlayerLabel: UILabel!
     
-    @IBOutlet weak var bigPlayer: UIView!
+    @IBOutlet weak var bigPlayer: UIStackView!
     
     @IBOutlet weak var smallPlayer: UIView!
     //
@@ -84,7 +89,9 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        setScrollView()
+        
+        setUpViews()
+        
         if episode != nil {
             let durationTime = Double(self.player.currentItem?.duration.seconds ?? 0)
             if (durationTime > 0.0) {
@@ -102,13 +109,11 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
         }
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBar.isHidden = true
-        
-
     }
 
-        
-        
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent;
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -317,7 +322,9 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
             }
         }
     }
-
+    
+    // MARK:- we need to copy viwedidload to here, since this is the new starting point :)
+    
     func setEpisode(episode:Episode){
         // if the episode is not playing right now do the followings
         // stop the current one, update the episode info, play the new one
@@ -334,6 +341,7 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
             self.episode.timeStampLables = ["a","b"]
             self.episode.timeStamps = ["a","b"]
             app?.maximizePlayerDetails()
+            setScrollView()
             playEpisode()
         }
         else {
@@ -341,7 +349,23 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
         }
     }
     
+    func setUpViews() {
+        currentTimeSlider.setThumbImage(UIImage(named: "thumb"), for: .normal)
+        let screenSize: CGRect = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        scrollView.frame = CGRect(x: 0.0, y: 0.0, width: screenWidth, height: screenHeight/2.0)
+    }
     
+    func addBlurEffect(img: UIImageView)
+    {
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = img.bounds
+        
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // for supporting device rotation
+        img.addSubview(blurEffectView)
+    }
     
     
     

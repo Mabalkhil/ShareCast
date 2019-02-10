@@ -53,6 +53,10 @@ class EpisodeViewController: UITableViewController, UITextViewDelegate {
         
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent;
+    }
+    
     func setAttributes(){
         descriptionLabel.text = episode.describtion
         titleLabel.text = episode.title

@@ -61,6 +61,10 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
         
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent;
+    }
+    
     /**
      Enables or Disables the **continueButton**.
      */
