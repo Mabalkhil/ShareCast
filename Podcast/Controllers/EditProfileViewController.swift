@@ -36,6 +36,10 @@ class EditProfileViewController: UITableViewController {
         super.viewDidLoad()
 
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent;
+    }
 
     // MARK: - Table view data source
 

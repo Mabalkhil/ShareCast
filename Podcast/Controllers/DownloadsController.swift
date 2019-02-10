@@ -23,6 +23,11 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         setupObservers()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent;
+    }
+    
+    
     fileprivate func setupObservers(){
         NotificationCenter.default.addObserver( self, selector: #selector(handleDownloadProgress), name: .downloadProgress, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleDownloadComplete), name: .downloadComplete, object: nil)

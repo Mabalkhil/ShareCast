@@ -33,6 +33,10 @@ class ResetPassViewController: UIViewController {
      
  
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent;
+    }
 
     @IBAction func resetPass(sender: UIButton){
         guard let email = emailField.text, email != "" else {
