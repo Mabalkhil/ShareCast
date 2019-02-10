@@ -33,6 +33,8 @@
 		375DD44E2201ED8C00C2D698 /* PlaylistsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375DD44D2201ED8C00C2D698 /* PlaylistsCell.swift */; };
 		375DD4502201F27D00C2D698 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375DD44F2201F27D00C2D698 /* Playlist.swift */; };
 		50092B9C22109BA800A05D06 /* ChannelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092B9B22109BA800A05D06 /* ChannelController.swift */; };
+		50092B9E2210AD5000A05D06 /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092B9D2210AD5000A05D06 /* SubscriptionViewController.swift */; };
+		50092BA02210AD9D00A05D06 /* subscriptions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50092B9F2210AD9D00A05D06 /* subscriptions.storyboard */; };
 		5018A44B21FF7DCF007EE027 /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5018A44421FF7DCF007EE027 /* Subscription.storyboard */; };
 		5018A44E21FF7DCF007EE027 /* DownloadsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5018A44721FF7DCF007EE027 /* DownloadsController.swift */; };
 		5018A44F21FF7DCF007EE027 /* DownloadEpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5018A44821FF7DCF007EE027 /* DownloadEpisodeCell.swift */; };
@@ -123,6 +125,8 @@
 		375DD44D2201ED8C00C2D698 /* PlaylistsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsCell.swift; sourceTree = "<group>"; };
 		375DD44F2201F27D00C2D698 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		50092B9B22109BA800A05D06 /* ChannelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelController.swift; sourceTree = "<group>"; };
+		50092B9D2210AD5000A05D06 /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
+		50092B9F2210AD9D00A05D06 /* subscriptions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = subscriptions.storyboard; sourceTree = "<group>"; };
 		5018A44421FF7DCF007EE027 /* Subscription.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Subscription.storyboard; sourceTree = "<group>"; };
 		5018A44721FF7DCF007EE027 /* DownloadsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadsController.swift; sourceTree = "<group>"; };
 		5018A44821FF7DCF007EE027 /* DownloadEpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadEpisodeCell.swift; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 				2FD789CB2200E65B006A47FE /* Playlists.storyboard */,
 				2FD789CD2200E66C006A47FE /* Playlist.storyboard */,
 				29140E3D2202FDCD0060522E /* Discover.storyboard */,
+				50092B9F2210AD9D00A05D06 /* subscriptions.storyboard */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -308,6 +313,7 @@
 				372023AF220374E900D0C555 /* addEpisodeToPlaylist.swift */,
 				2FC15E972201F4A600DF1FD4 /* BookmarkController.swift */,
 				5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */,
+				50092B9D2210AD5000A05D06 /* SubscriptionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -473,6 +479,7 @@
 				372BC4572201E667009514D4 /* Playlist.storyboard in Resources */,
 				372BC4562201E667009514D4 /* Playlists.storyboard in Resources */,
 				505B6C2B21F5C74F002E392D /* Episode.storyboard in Resources */,
+				50092BA02210AD9D00A05D06 /* subscriptions.storyboard in Resources */,
 				2FD789CE2200E66C006A47FE /* Playlist.storyboard in Resources */,
 				5018A44B21FF7DCF007EE027 /* Subscription.storyboard in Resources */,
 				FAFF82FA218CEB6C00882A6A /* LaunchScreen.storyboard in Resources */,
@@ -593,6 +600,7 @@
 				50092B9C22109BA800A05D06 /* ChannelController.swift in Sources */,
 				50420FA221A12AF30030CDB4 /* SignInViewController.swift in Sources */,
 				50420F7721A083F80030CDB4 /* EntryViewController.swift in Sources */,
+				50092B9E2210AD5000A05D06 /* SubscriptionViewController.swift in Sources */,
 				FAFF82EF218CEB6400882A6A /* ViewController.swift in Sources */,
 				5018A45021FF7DCF007EE027 /* UserDefaults.swift in Sources */,
 				5036E73921EFC0D100FA5E12 /* ChannelHeaderView.swift in Sources */,

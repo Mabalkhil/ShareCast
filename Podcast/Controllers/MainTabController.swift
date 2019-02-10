@@ -22,11 +22,6 @@ class MainTabBarController: UITabBarController {
         setupViewControllers()
         setUpPlayerDetailsview()
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return UIStatusBarStyle.lightContent;
-    }
-    
     //MARK: Setup Function
     fileprivate func setupViewControllers() {
         let homeNavController =
@@ -37,29 +32,44 @@ class MainTabBarController: UITabBarController {
         let chanellesController =
             generateNavigationController(for: UIStoryboard(name: "Subscription", bundle: nil).instantiateViewController(withIdentifier: "Download1"), title: "Subscription", image: #imageLiteral(resourceName: "Chanelles"))
         
-        let ProfileStoryRef = UIStoryboard(name: "Profile", bundle: Bundle.main)
-        guard let ProfileViewController = ProfileStoryRef.instantiateInitialViewController() as?
-            ProfileViewController else {
-                return
+        var ProfileController : UIViewController?
+        if(Auth.auth().currentUser?.uid != nil){
+            let ProfileStoryRef = UIStoryboard(name: "Profile", bundle: Bundle.main)
+            guard let ProfileViewController = ProfileStoryRef.instantiateInitialViewController() as?
+                ProfileViewController else {
+                    return
+            }
+            ProfileController =
+                generateNavigationController(for: ProfileViewController, title: "Profile", image: #imageLiteral(resourceName: "Profile-1"))
         }
-        let ProfileController =
-            generateNavigationController(for: ProfileViewController, title: "Profile", image: #imageLiteral(resourceName: "Profile-1"))
+        else{
+            let MainStoryRef = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let EntryViewController = MainStoryRef.instantiateViewController(withIdentifier: "ProfileSigninView")
+            ProfileController =
+                generateNavigationController(for: EntryViewController, title: "Profile", image: #imageLiteral(resourceName: "Profile-1"))
+        }
+        
         
         
         viewControllers = [
             homeNavController,searchNavController,chanellesController , ProfileController
-        ]
+            ] as! [UIViewController]
     }
+    
+    
+    
+    
+    
     //MARK:- Helper Function
     fileprivate func generateNavigationController
-    (for rootViewController: UIViewController ,title: String, image: UIImage)-> UIViewController {
-    let navController =
-    UINavigationController(rootViewController: rootViewController)
+        (for rootViewController: UIViewController ,title: String, image: UIImage)-> UIViewController {
+        let navController =
+            UINavigationController(rootViewController: rootViewController)
         rootViewController.navigationItem.title = title
         navController.navigationBar.barTintColor = UIColor(red: 47/255, green:47/255, blue:47/255, alpha: 1.0)
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navController.tabBarItem.image = image
-    return navController
+        return navController
     }
     
     @objc func minimizePlayerDetails(){
@@ -69,8 +79,8 @@ class MainTabBarController: UITabBarController {
             self.view.layoutIfNeeded()
             self.tabBar.transform = .identity
         })
-        self.playerDetailsview.smallPlayer.isHidden = false
-        self.playerDetailsview.bigPlayer.isHidden = true
+        self.playerDetailsview.smallPlayer.alpha = 1
+        self.playerDetailsview.bigPlayer.alpha = 0
     }
     
     // this method will take the episode from anywhere
@@ -82,9 +92,9 @@ class MainTabBarController: UITabBarController {
             self.view.layoutIfNeeded()
             self.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
         })
-
-        self.playerDetailsview.smallPlayer.isHidden = true
-        self.playerDetailsview.bigPlayer.isHidden = false
+        
+        self.playerDetailsview.smallPlayer.alpha = 0
+        self.playerDetailsview.bigPlayer.alpha = 1
         
     }
     
@@ -97,6 +107,5 @@ class MainTabBarController: UITabBarController {
         playerDetailsview.view?.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         playerDetailsview.view?.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         playerDetailsview.view?.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        self.playerDetailsview.bigPlayer.isHidden = true
     }
 }

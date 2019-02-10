@@ -552,6 +552,59 @@
             </objects>
             <point key="canvasLocation" x="1831" y="-620"/>
         </scene>
+        <!--Profile Signin View Controller-->
+        <scene sceneID="PNj-ha-5mD">
+            <objects>
+                <viewController storyboardIdentifier="ProfileSigninView" id="Ink-Y1-HA6" customClass="ProfileSigninViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0cT-3H-bUQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To take full advantage of the features of ShareCaste Please signing in" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4l-qc-dfj">
+                                <rect key="frame" x="37.666666666666657" y="317" width="300" height="43"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="jKT-vX-SGc">
+                                <rect key="frame" x="47.666666666666657" y="118" width="280" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="a64-Zz-0fK"/>
+                                    <constraint firstAttribute="height" constant="160" id="kAw-UL-ose"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zWu-pt-LZo" customClass="RoundedWhiteButton" customModule="Podcast" customModuleProvider="target">
+                                <rect key="frame" x="71.333333333333314" y="564.33333333333337" width="233" height="41"/>
+                                <color key="backgroundColor" red="0.86666666670000003" green="0.4205085039" blue="0.38821679349999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="233" id="Jck-Lz-lyr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <state key="normal" title="Sign In">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="2HE-FO-8VT" kind="show" id="fNN-aB-glO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.32152998449999998" green="0.32159090039999999" blue="0.32152614000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="A4l-qc-dfj" firstAttribute="top" secondItem="jKT-vX-SGc" secondAttribute="bottom" constant="39" id="0n2-sN-d9b"/>
+                            <constraint firstItem="zWu-pt-LZo" firstAttribute="centerX" secondItem="A4l-qc-dfj" secondAttribute="centerX" id="C4Q-0J-9km"/>
+                            <constraint firstItem="3yv-sX-8SS" firstAttribute="trailing" secondItem="A4l-qc-dfj" secondAttribute="trailing" constant="37.329999999999998" id="D5Z-fH-PLd"/>
+                            <constraint firstItem="jKT-vX-SGc" firstAttribute="top" secondItem="3yv-sX-8SS" secondAttribute="top" constant="74" id="Gy5-io-4Gg"/>
+                            <constraint firstItem="A4l-qc-dfj" firstAttribute="leading" secondItem="3yv-sX-8SS" secondAttribute="leading" constant="37.670000000000002" id="VrT-hj-buU"/>
+                            <constraint firstItem="jKT-vX-SGc" firstAttribute="centerX" secondItem="0cT-3H-bUQ" secondAttribute="centerX" id="ZIl-Kg-DPQ"/>
+                            <constraint firstItem="zWu-pt-LZo" firstAttribute="top" secondItem="A4l-qc-dfj" secondAttribute="bottom" constant="204.33333333333331" id="aZz-hp-vDL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3yv-sX-8SS"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ywh-Ip-hcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1831" y="-1429"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Logo" width="1000" height="1000"/>
