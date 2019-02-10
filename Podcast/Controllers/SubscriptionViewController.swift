@@ -5,24 +5,28 @@ class SubscriptionViewController: UITableViewController {
     
     @IBOutlet var subscriptions: UITableView!
     
-    var subscriptionsList = [Podcast]() //FETCHSUB //UserDefaults.standard.bookmarkedEpisodes()
-    
+     //FETCHSUB //UserDefaults.standard.bookmarkedEpisodes()
+    var subscriptionsList : [Podcast] = [Podcast(trackName: "BOBO", artistName: "BABA", artworkUrl600: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/ce/67/b2/ce67b29f-d606-345d-654e-f84d71454b85/source/600x600bb.jpg", trackCount: 50, feedUrl: "https://fnjan.fireside.fm/rss")]
     //For testing this is list of feed urls
     var feedUrls = ["https://spitballers.libsyn.com/comedypodcast","https://rss.art19.com/comedy-bang-bang",
                     "https://feeds.megaphone.fm/the-daily-show"]
     
- 
     
     var myIndex = 0
     
     
     override func viewDidLoad() {
+        setupTable()
+        
+        super.viewDidLoad()
+    }
+    
+    
+    fileprivate func setupTable(){
         subscriptions.delegate = self
         subscriptions.dataSource = self
-        APIService.shared.fetchChannels(feedUrls: feedUrls) { (podcasts) in
-            self.subscriptionsList = podcasts
-        }
-        super.viewDidLoad()
+        let nib = UINib(nibName: "PodcastCell", bundle: nil)
+        subscriptions.register(nib, forCellReuseIdentifier: "cellId")
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,7 +56,10 @@ class SubscriptionViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        subscriptionsList = [Podcast]() //FETCHSUB UserDefaults.standard.bookmarkedEpisodes()
+//        APIService.shared.fetchChannels(feedUrls: feedUrls) { (podcasts) in
+//            self.subscriptionsList = podcasts
+//        }
+        
         subscriptions.reloadData()
         
     }

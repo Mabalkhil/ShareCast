@@ -14,4 +14,14 @@ struct Podcast: Decodable{
     var artworkUrl600: String?
     var trackCount: Int?
     var feedUrl: String?
+    
+    init(trackName: String?, artistName: String?, artworkUrl600: String?, trackCount: Int, feedUrl: String?) {
+        self.trackName = trackName
+        self.artistName = artistName
+        self.artworkUrl600 = artworkUrl600
+        self.trackCount = trackCount
+        self.feedUrl = feedUrl
+    }
+    
+    
 }

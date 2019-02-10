@@ -11,13 +11,8 @@ extension RSSFeed {
     
     
     func toChannle () -> Podcast {
-        var podcast = Podcast()
-        podcast.artistName = iTunes?.iTunesAuthor
-        podcast.artworkUrl600 = iTunes?.iTunesImage?.attributes?.href
-        podcast.feedUrl = iTunes?.iTunesNewFeedURL
-        podcast.trackCount = items?.count
-        podcast.trackName = title
-        
+        var podcast = Podcast(trackName: title, artistName: iTunes?.iTunesAuthor, artworkUrl600: iTunes?.iTunesImage?.attributes?.href, trackCount: items?.count ?? 0, feedUrl: iTunes?.iTunesNewFeedURL)
+
         return podcast
     }
     

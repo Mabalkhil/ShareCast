@@ -28,6 +28,9 @@
                                             <state key="normal" title="Channels">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="aPy-yQ-Ytd" kind="show" id="iVd-rl-rNK"/>
+                                            </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radio" translatesAutoresizingMaskIntoConstraints="NO" id="10O-uO-fM6">
                                             <rect key="frame" x="15" y="5" width="40" height="40"/>
@@ -225,10 +228,10 @@
             </objects>
             <point key="canvasLocation" x="1122" y="-33"/>
         </scene>
-        <!--Playlists-->
+        <!--SubscriptionsList-->
         <scene sceneID="OIM-wp-deK">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Playlists" storyboardName="Playlists" referencedIdentifier="Playlists" id="aPy-yQ-Ytd" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="SubscriptionsList" storyboardName="SubscriptionsList" referencedIdentifier="SubscriptionsList" id="aPy-yQ-Ytd" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8WB-f6-nF1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1058" y="13"/>

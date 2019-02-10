@@ -34,7 +34,6 @@
 		375DD4502201F27D00C2D698 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375DD44F2201F27D00C2D698 /* Playlist.swift */; };
 		50092B9C22109BA800A05D06 /* ChannelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092B9B22109BA800A05D06 /* ChannelController.swift */; };
 		50092B9E2210AD5000A05D06 /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092B9D2210AD5000A05D06 /* SubscriptionViewController.swift */; };
-		50092BA02210AD9D00A05D06 /* subscriptions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50092B9F2210AD9D00A05D06 /* subscriptions.storyboard */; };
 		5018A44B21FF7DCF007EE027 /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5018A44421FF7DCF007EE027 /* Subscription.storyboard */; };
 		5018A44E21FF7DCF007EE027 /* DownloadsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5018A44721FF7DCF007EE027 /* DownloadsController.swift */; };
 		5018A44F21FF7DCF007EE027 /* DownloadEpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5018A44821FF7DCF007EE027 /* DownloadEpisodeCell.swift */; };
@@ -67,6 +66,7 @@
 		FA49932A218DCD3E0021CFA3 /* PodcastSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA499329218DCD3D0021CFA3 /* PodcastSearchController.swift */; };
 		FA49932D218DD04F0021CFA3 /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49932C218DD04F0021CFA3 /* Podcast.swift */; };
 		FA8F8F422194D4CA00301EF6 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F8F412194D4CA00301EF6 /* PodcastCell.swift */; };
+		FAC40D752210B7CA0099379B /* SubscriptionsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAC40D742210B7CA0099379B /* SubscriptionsList.storyboard */; };
 		FAFF82ED218CEB6400882A6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF82EC218CEB6400882A6A /* AppDelegate.swift */; };
 		FAFF82EF218CEB6400882A6A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF82EE218CEB6400882A6A /* ViewController.swift */; };
 		FAFF82F2218CEB6400882A6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFF82F0218CEB6400882A6A /* Main.storyboard */; };
@@ -126,7 +126,6 @@
 		375DD44F2201F27D00C2D698 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		50092B9B22109BA800A05D06 /* ChannelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelController.swift; sourceTree = "<group>"; };
 		50092B9D2210AD5000A05D06 /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
-		50092B9F2210AD9D00A05D06 /* subscriptions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = subscriptions.storyboard; sourceTree = "<group>"; };
 		5018A44421FF7DCF007EE027 /* Subscription.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Subscription.storyboard; sourceTree = "<group>"; };
 		5018A44721FF7DCF007EE027 /* DownloadsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadsController.swift; sourceTree = "<group>"; };
 		5018A44821FF7DCF007EE027 /* DownloadEpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadEpisodeCell.swift; sourceTree = "<group>"; };
@@ -163,6 +162,7 @@
 		FA499329218DCD3D0021CFA3 /* PodcastSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastSearchController.swift; sourceTree = "<group>"; };
 		FA49932C218DD04F0021CFA3 /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		FA8F8F412194D4CA00301EF6 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
+		FAC40D742210B7CA0099379B /* SubscriptionsList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubscriptionsList.storyboard; sourceTree = "<group>"; };
 		FAFF82EC218CEB6400882A6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAFF82EE218CEB6400882A6A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FAFF82F1218CEB6400882A6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 				2FD789CB2200E65B006A47FE /* Playlists.storyboard */,
 				2FD789CD2200E66C006A47FE /* Playlist.storyboard */,
 				29140E3D2202FDCD0060522E /* Discover.storyboard */,
-				50092B9F2210AD9D00A05D06 /* subscriptions.storyboard */,
+				FAC40D742210B7CA0099379B /* SubscriptionsList.storyboard */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -478,8 +478,8 @@
 			files = (
 				372BC4572201E667009514D4 /* Playlist.storyboard in Resources */,
 				372BC4562201E667009514D4 /* Playlists.storyboard in Resources */,
+				FAC40D752210B7CA0099379B /* SubscriptionsList.storyboard in Resources */,
 				505B6C2B21F5C74F002E392D /* Episode.storyboard in Resources */,
-				50092BA02210AD9D00A05D06 /* subscriptions.storyboard in Resources */,
 				2FD789CE2200E66C006A47FE /* Playlist.storyboard in Resources */,
 				5018A44B21FF7DCF007EE027 /* Subscription.storyboard in Resources */,
 				FAFF82FA218CEB6C00882A6A /* LaunchScreen.storyboard in Resources */,
