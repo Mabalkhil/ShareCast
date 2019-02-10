@@ -311,8 +311,11 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
             if (episode.timeStampLables!.count-1 > 0 ) {
                 for i in stride(from: 0, through: episode.timeStampLables!.count-1, by: 1){
                     let title = episode.timeStampLables![i]
-                    let time  = episode.timeStamps![i]
-                    self.marks.append(Mark.init(time: time, desc: title))
+                    if episode.timeStamps!.count > i {
+                        let time  = episode.timeStamps![i]
+                        self.marks.append(Mark.init(time: time, desc: title))
+                    }
+                    
                 }
                 setTable()
             }
@@ -334,12 +337,13 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
         if (self.episode == nil || episode.title != self.episode.title) {
             player.stop()
             self.episode = episode
+            self.marks.removeAll() // remove all time marks from before 
             episodeName?.text = episode.title
             channelName?.text = episode.author
             let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
             episodeImg.sd_setImage(with: url)
             self.episode.timeStampLables = ["a","b"]
-            self.episode.timeStamps = ["a","b"]
+           // self.episode.timeStamps = ["a","b"]
             app?.maximizePlayerDetails()
             setScrollView()
             playEpisode()
