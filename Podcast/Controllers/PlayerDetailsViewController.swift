@@ -43,7 +43,6 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
     @IBOutlet weak var smallPlayerImg: UIImageView!
     @IBOutlet weak var smallPlayerPlay: UIButton!{
         didSet{
-            smallPlayerPlay.setImage(#imageLiteral(resourceName: "PauseButton"), for: .normal)
             smallPlayerPlay.addTarget(self, action: #selector(handlePlayPause), for: .touchUpInside)
         }
     }
@@ -214,10 +213,12 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
     @objc func handlePlayPause(){
         if player.timeControlStatus == .paused{
             player.play()
+            smallPlayerPlay.setImage(#imageLiteral(resourceName: "PauseButton"), for: .normal)
             playPauseButton.setImage(#imageLiteral(resourceName: "PauseButton"), for: .normal)
             isPlaying = true
         }else{
             player.pause()
+            smallPlayerPlay.setImage(#imageLiteral(resourceName: "PlayButton"), for: .normal)
             playPauseButton.setImage(#imageLiteral(resourceName: "PlayButton"), for: .normal)
             isPlaying = false
         }
@@ -262,7 +263,7 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
     @IBAction func handleDismiss(_ sender: Any) {
         smallPlayerImg.image = episodeImg.image
         smallPlayerLabel.text = episodeName.text
-        smallPlayerPlay = playPauseButton
+        smallPlayerPlay.imageView?.image = playPauseButton.imageView?.image
         let app = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
         app?.minimizePlayerDetails()
     }
@@ -346,6 +347,8 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
            // self.episode.timeStamps = ["a","b"]
             app?.maximizePlayerDetails()
             setScrollView()
+            smallPlayerPlay.setImage(#imageLiteral(resourceName: "PauseButton"), for: .normal)
+            playPauseButton.setImage(#imageLiteral(resourceName: "PauseButton"), for: .normal)
             playEpisode()
         }
         else {
@@ -429,10 +432,12 @@ override func didReceiveMemoryWarning() {
         if smartSpeedToggle == false{
             smartSpeedToggle = true
             SSLabel.text = "ON"
+            smartSpeedButton.setImage(#imageLiteral(resourceName: "ActiveSmartSpeed"), for: .normal)
             callingTimer()
         }else{
             smartSpeedToggle = false
             SSLabel.text = "OFF"
+            smartSpeedButton.setImage(#imageLiteral(resourceName: "SmartSpeed"), for: .normal)
         }
         
         
