@@ -35,6 +35,10 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent;
+    }
+    
     
     
     @IBOutlet weak var createPlaylistButton: RoundedWhiteButton!{

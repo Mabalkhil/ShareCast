@@ -36,6 +36,10 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
 
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent;
+    }
+    
     
     //MARK:- Setup Work
     //MARK:- UISearchController

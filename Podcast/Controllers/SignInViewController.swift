@@ -56,6 +56,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent;
+    }
+    
 
     @objc func textFieldChanged(_ target:UITextField) {
         let email = emailField.text

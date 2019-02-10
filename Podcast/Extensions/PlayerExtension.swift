@@ -20,7 +20,7 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
     
     //setting scroll view
     func setScrollView() {
-        pageControl.numberOfPages = 2
+        pageControl.numberOfPages = 1
         frame.origin.x = scrollView.frame.size.width * 0
         frame.size = scrollView.frame.size
         //episodeImg.frame = frame
@@ -28,9 +28,7 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
         episodeImg.frame.size.width = self.view.frame.width
         episodeImg.frame.size.height = scrollView.frame.size.height
         scrollView.addSubview(episodeImg)
-        
         handleTimeMark()
-        
         
         scrollView.delegate = self
         //scrollView.isScrollEnabled = false
@@ -43,11 +41,14 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
         
         scrollView.contentSize = CGSize(width: self.view.frame.width * 2, height: scrollView.frame.size.height)
         
-        frame.origin.x = self.view.frame.width + 5
+        frame.origin.x = self.view.frame.width
         //frame.size = scrollView.frame.size
         
         myTableView = UITableView(frame: frame)
-        myTableView.backgroundColor = #colorLiteral(red: 0.2548794746, green: 0.254914552, blue: 0.2548675537, alpha: 1)
+        myTableView.backgroundColor = UIColor.white.withAlphaComponent(0.0)
+        let copyedView = episodeImg.copyView() as UIImageView
+        addBlurEffect(img: copyedView)
+        myTableView.backgroundView = copyedView
         myTableView.delegate = self
         myTableView.dataSource = self
         myTableView.register(TimeMarkCell.self, forCellReuseIdentifier: "TimeMarkCell")
@@ -78,7 +79,7 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = #colorLiteral(red: 0.2548794746, green: 0.254914552, blue: 0.2548675537, alpha: 1)
+        cell.backgroundColor = UIColor.white.withAlphaComponent(0.0)
     }
     
     //Handing the selected time mark
@@ -102,5 +103,12 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
         
         self.player.seek(to: CMTimeMakeWithSeconds(timeInSeconds, preferredTimescale: 1))
         
+    }
+}
+
+extension UIView
+{
+    func copyView<T: UIView>() -> T {
+        return NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: self)) as! T
     }
 }
