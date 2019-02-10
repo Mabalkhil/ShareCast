@@ -32,12 +32,12 @@
 		375DD44C2201ECA700C2D698 /* CreatePlaylistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375DD44B2201ECA700C2D698 /* CreatePlaylistController.swift */; };
 		375DD44E2201ED8C00C2D698 /* PlaylistsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375DD44D2201ED8C00C2D698 /* PlaylistsCell.swift */; };
 		375DD4502201F27D00C2D698 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375DD44F2201F27D00C2D698 /* Playlist.swift */; };
+		50092B9C22109BA800A05D06 /* ChannelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092B9B22109BA800A05D06 /* ChannelController.swift */; };
 		5018A44B21FF7DCF007EE027 /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5018A44421FF7DCF007EE027 /* Subscription.storyboard */; };
 		5018A44E21FF7DCF007EE027 /* DownloadsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5018A44721FF7DCF007EE027 /* DownloadsController.swift */; };
 		5018A44F21FF7DCF007EE027 /* DownloadEpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5018A44821FF7DCF007EE027 /* DownloadEpisodeCell.swift */; };
 		5018A45021FF7DCF007EE027 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5018A44921FF7DCF007EE027 /* UserDefaults.swift */; };
 		502484B021FCED3D00CA84F1 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502484AF21FCED3D00CA84F1 /* EditProfileViewController.swift */; };
-		5036E73721EFBCFC00FA5E12 /* ChannelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036E73621EFBCFC00FA5E12 /* ChannelController.swift */; };
 		5036E73921EFC0D100FA5E12 /* ChannelHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036E73821EFC0D100FA5E12 /* ChannelHeaderView.swift */; };
 		5036E73B21F080E000FA5E12 /* ChennelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036E73A21F080E000FA5E12 /* ChennelTableViewCell.swift */; };
 		50420F7321A013140030CDB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50420F7221A013140030CDB4 /* GoogleService-Info.plist */; };
@@ -122,12 +122,12 @@
 		375DD44B2201ECA700C2D698 /* CreatePlaylistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistController.swift; sourceTree = "<group>"; };
 		375DD44D2201ED8C00C2D698 /* PlaylistsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsCell.swift; sourceTree = "<group>"; };
 		375DD44F2201F27D00C2D698 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		50092B9B22109BA800A05D06 /* ChannelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelController.swift; sourceTree = "<group>"; };
 		5018A44421FF7DCF007EE027 /* Subscription.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Subscription.storyboard; sourceTree = "<group>"; };
 		5018A44721FF7DCF007EE027 /* DownloadsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadsController.swift; sourceTree = "<group>"; };
 		5018A44821FF7DCF007EE027 /* DownloadEpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadEpisodeCell.swift; sourceTree = "<group>"; };
 		5018A44921FF7DCF007EE027 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		502484AF21FCED3D00CA84F1 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		5036E73621EFBCFC00FA5E12 /* ChannelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelController.swift; sourceTree = "<group>"; };
 		5036E73821EFC0D100FA5E12 /* ChannelHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeaderView.swift; sourceTree = "<group>"; };
 		5036E73A21F080E000FA5E12 /* ChennelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChennelTableViewCell.swift; sourceTree = "<group>"; };
 		50420F7221A013140030CDB4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Controllers/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -292,6 +292,7 @@
 		FA499328218DCD0D0021CFA3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				50092B9B22109BA800A05D06 /* ChannelController.swift */,
 				2FD789C72200E4EE006A47FE /* PlayerDetailsViewController.swift */,
 				5018A44721FF7DCF007EE027 /* DownloadsController.swift */,
 				505B6C4021FA09D3002E392D /* ProfileViewController.swift */,
@@ -302,7 +303,6 @@
 				50420F7621A083F80030CDB4 /* EntryViewController.swift */,
 				50420F7821A089170030CDB4 /* SignUpViewController.swift */,
 				50420FA121A12AF30030CDB4 /* SignInViewController.swift */,
-				5036E73621EFBCFC00FA5E12 /* ChannelController.swift */,
 				502484AF21FCED3D00CA84F1 /* EditProfileViewController.swift */,
 				375DD44B2201ECA700C2D698 /* CreatePlaylistController.swift */,
 				372023AF220374E900D0C555 /* addEpisodeToPlaylist.swift */,
@@ -573,7 +573,6 @@
 				FA8F8F422194D4CA00301EF6 /* PodcastCell.swift in Sources */,
 				5036E73B21F080E000FA5E12 /* ChennelTableViewCell.swift in Sources */,
 				505B6C4121FA09D3002E392D /* ProfileViewController.swift in Sources */,
-				5036E73721EFBCFC00FA5E12 /* ChannelController.swift in Sources */,
 				2FD789C82200E4EF006A47FE /* PlayerDetailsViewController.swift in Sources */,
 				5092F02E2206EEDE00B3F376 /* ResetPassViewController.swift in Sources */,
 				292111C522008D3A00B28DE2 /* Category.swift in Sources */,
@@ -591,6 +590,7 @@
 				505B6C2821F5C74F002E392D /* Comment.swift in Sources */,
 				372023B0220374E900D0C555 /* addEpisodeToPlaylist.swift in Sources */,
 				50420F7B21A1113E0030CDB4 /* HilperExt.swift in Sources */,
+				50092B9C22109BA800A05D06 /* ChannelController.swift in Sources */,
 				50420FA221A12AF30030CDB4 /* SignInViewController.swift in Sources */,
 				50420F7721A083F80030CDB4 /* EntryViewController.swift in Sources */,
 				FAFF82EF218CEB6400882A6A /* ViewController.swift in Sources */,

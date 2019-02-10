@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Firebase
 
 class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDataSource{
     
-
+    // Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerView: ChannelHeaderView!
     
@@ -22,6 +23,10 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
             fetchEpisode()
         }
     }
+    var firebaseReff = Auth.auth().currentUser
+    var firebaseSubReff = Database.database().reference().child("usersInfo")
+    var alert: UIAlertController!
+    var alertAction: UIAlertAction!
     
     
     fileprivate func fetchEpisode(){
@@ -37,11 +42,37 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
         }
     }
     
+    func checkUserSubscriptions(){
+        guard let uid = firebaseReff?.uid else {
+            self.headerView.SubButton.setTitle("Subscribe", for: .normal)
+            return
+        }
+        self.firebaseSubReff.child(uid).child("Subscription").observeSingleEvent(of: .value) { (snapshot) in
+            var exist = false
+            for case let rest as DataSnapshot in snapshot.children {
+                let url = rest.value as! String
+                if url == self.podcast?.feedUrl {
+                    exist = true
+                    print(1)
+                    break
+                }
+            }
+            if exist {
+                self.headerView.SubButton.setTitle("Unsubscribe", for: .normal)
+            } else {
+                self.headerView.SubButton.setTitle("Subscribe", for: .normal)
+            }
+        }
+    }
+    
+    
     var episodes = [Episode]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkUserSubscriptions()
         fetchEpisode()
+       
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -98,5 +129,50 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
             }
         }
     }
+    
+    @IBAction func SubscribePressed(_ sender: Any) {
+        // unregister user
+        guard  let uid = firebaseReff?.uid else {
+           self.alert = UIAlertController(title: "Not Register", message: "You have to register to get this feature", preferredStyle: .alert)
+         self.alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            self.alert.addAction( self.alertAction)
+           present(self.alert,animated: true,completion: nil)
+            return
+        }
+        //
+         guard var chanelTitle = podcast?.trackName  else{
+            return
+        }
+            chanelTitle = chanelTitle.replacingOccurrences(of: ".", with: " ")
+            chanelTitle =  chanelTitle.replacingOccurrences(of: "]", with: " ")
+            chanelTitle =  chanelTitle.replacingOccurrences(of: "[", with: " ")
+            chanelTitle = chanelTitle.replacingOccurrences(of: "#", with: " ")
+            chanelTitle = chanelTitle.replacingOccurrences(of: "$", with: " ")
+        
+        guard let chanellUrl = podcast?.feedUrl else {
+            return
+        }
+        if headerView.SubButton.currentTitle! == "Subscribe" {
+            print("Look Here\(chanelTitle)")
+            firebaseSubReff.child(uid).child("Subscription").updateChildValues([chanelTitle : chanellUrl])
+            headerView.SubButton.setTitle("Unsubscribe", for: .normal)
+        }else {
+            self.alert = UIAlertController(title: "Are you sure you want to Unsubscribe", message: "", preferredStyle: .alert)
+            let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                self.firebaseSubReff.child(uid).child("Subscription").child(chanelTitle).removeValue()
+                self.headerView.SubButton.setTitle("Subscribe", for: .normal)
+                return
+            })
+            self.alertAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+            self.alert.addAction(self.alertAction)
+             self.alert.addAction(yesAction)
+            present(self.alert,animated: true,completion: nil)
+            return
+
+        }
+        
+    }
+    
+    
     
 }
