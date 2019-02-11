@@ -119,6 +119,8 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
     }
     
     
+    
+    
 //    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
 //
 //        guard let tableViewCell = cell as? DiscoverTableCell else { return }

@@ -6,7 +6,11 @@ class SubscriptionViewController: UITableViewController {
     @IBOutlet var subscriptions: UITableView!
     
      //FETCHSUB //UserDefaults.standard.bookmarkedEpisodes()
-    var subscriptionsList : [Podcast] = [Podcast(trackName: "BOBO", artistName: "BABA", artworkUrl600: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/ce/67/b2/ce67b29f-d606-345d-654e-f84d71454b85/source/600x600bb.jpg", trackCount: 50, feedUrl: "https://fnjan.fireside.fm/rss")]
+    var subscriptionsList : [Podcast] =
+        [   Podcast(trackName: "فنجان", artistName: "ثمانية", artworkUrl600: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/ce/67/b2/ce67b29f-d606-345d-654e-f84d71454b85/source/600x600bb.jpg", trackCount: 50, feedUrl: "https://fnjan.fireside.fm/rss"),
+            Podcast(trackName: "ثمانية ¾ مع سعود العود", artistName: "ثمانية", artworkUrl600: "https://is4-ssl.mzstatic.com/image/thumb/Music118/v4/23/f0/0c/23f00ca4-1fb1-6769-c527-3d6b4f4ef83e/source/600x600bb.jpg", trackCount: 50, feedUrl: "https://thmanyah34.fireside.fm/rss"),
+            Podcast(trackName: "Radiolab", artistName: "WNPR", artworkUrl600: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/42/8a/28/428a28a2-ebcb-da74-3b73-1def5509f6b4/source/600x600bb.jpg", trackCount: 50, feedUrl: "http://feeds.wnyc.org/radiolab")
+    ]
     //For testing this is list of feed urls
     var feedUrls = ["https://spitballers.libsyn.com/comedypodcast","https://rss.art19.com/comedy-bang-bang",
                     "https://feeds.megaphone.fm/the-daily-show"]
@@ -72,6 +76,10 @@ class SubscriptionViewController: UITableViewController {
         //FETCHSUB here should be the unsubscribe part
         //        UserDefaults.standard.deleteBookmarkedEpisode(episode: episode)
         
+    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 160.0;//Choose your custom row height
     }
     
     
