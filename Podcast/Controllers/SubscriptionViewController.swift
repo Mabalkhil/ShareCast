@@ -47,15 +47,15 @@ class SubscriptionViewController: UITableViewController {
     }
     
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if self.subscriptionsList[indexPath.row].feedUrl != nil{
-            
-            performSegue(withIdentifier: "player", sender: self)
-        }
-        
-        
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//        if self.subscriptionsList[indexPath.row].feedUrl != nil{
+//            
+//            performSegue(withIdentifier: "player", sender: self)
+//        }
+//        
+//        
+//    }
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,6 +83,8 @@ class SubscriptionViewController: UITableViewController {
     }
     
     
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //
         //        if segue.identifier == "player" {
@@ -95,4 +97,30 @@ class SubscriptionViewController: UITableViewController {
         //            }
         //        }
     }
+    
+    
+//    func tableView(_ tableView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//
+//        let channelStoryboard = UIStoryboard(name: "Channel", bundle: Bundle.main)
+//        guard let destinationViewController = channelStoryboard.instantiateInitialViewController() as?
+//            ChannelController else {
+//                return
+//        }
+//        let category = categories[collectionView.tag].podcasts
+//        destinationViewController.podcast = category[indexPath.row]
+//        navigationController?.pushViewController(destinationViewController, animated: true)
+//
+//    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let channelStoryboard = UIStoryboard(name: "Channel", bundle: Bundle.main)
+        guard let destinationViewController = channelStoryboard.instantiateInitialViewController() as?
+                    ChannelController else {
+                        return
+                }
+        destinationViewController.podcast = subscriptionsList[indexPath.row]
+        navigationController?.pushViewController(destinationViewController, animated: true)
+        
+    }
+
 }
