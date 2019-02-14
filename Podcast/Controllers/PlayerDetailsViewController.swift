@@ -469,8 +469,7 @@ override func didReceiveMemoryWarning() {
 
             }
             
-            }else{
-                print("false")
+            }else{ 
                 player.rate = 1
                 timerTest!.invalidate()
             }
