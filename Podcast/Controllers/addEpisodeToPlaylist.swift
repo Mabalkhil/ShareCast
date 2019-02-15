@@ -17,9 +17,6 @@ class addEpisodeToPlaylist: UIViewController, UITableViewDelegate, UITableViewDa
     var playlistName: String = ""
     
     @IBOutlet weak var playlistNameLabel: UILabel!
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         addEpisodeToPlaylistTable.delegate = self
@@ -33,7 +30,7 @@ class addEpisodeToPlaylist: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        episodes = UserDefaults.standard.downloadedEpisodes()
+        //episodes = UserDefaults.standard.playlistEpisodes(name: playlistName)
         addEpisodeToPlaylistTable.reloadData()
         // Hide the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(false, animated: false)

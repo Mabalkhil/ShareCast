@@ -261,10 +261,10 @@
             </objects>
             <point key="canvasLocation" x="34.782608695652179" y="-246.42857142857142"/>
         </scene>
-        <!--Playlists-->
+        <!--ListOfPlaylists-->
         <scene sceneID="abn-WR-57S">
             <objects>
-                <viewControllerPlaceholder storyboardName="Playlists" id="wut-sd-zjZ" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="ListOfPlaylists" referencedIdentifier="ListOfPlaylists" id="wut-sd-zjZ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Saa-5W-yTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="992" y="-485"/>

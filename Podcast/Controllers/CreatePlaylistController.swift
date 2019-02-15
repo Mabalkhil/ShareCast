@@ -39,16 +39,12 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         return UIStatusBarStyle.lightContent;
     }
     
-    
-    
     @IBOutlet weak var createPlaylistButton: RoundedWhiteButton!{
         
         didSet{
            createPlaylistButton.addTarget(self, action: #selector(addPlaylist), for: .touchUpInside)
         }
     }
-    
-    
     
     @objc func addPlaylist(){
         
@@ -73,14 +69,10 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         
-        
         playlistTextField.text = ""
         view.endEditing(true)
         
-        
     }
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return playlists.count
@@ -92,7 +84,7 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         
         cell.playlists = playlists[indexPath.row]
         let x : Int = playlists[indexPath.row].episodes.count
-        var myString = String(x)
+        let myString = String(x)
         cell.playlists.numberOfEpisodes = myString
         
         return cell
@@ -101,17 +93,14 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var segue: String!
-        
         if check == true {
-            segue = "segue1"
-             self.performSegue(withIdentifier: segue, sender: self)
+            segue = "fromPlaylistsToPlaylist"
         } else {
             playlists[indexPath.row].addTask(ep: self.episode!,i: indexPath.row)
             UserDefaults.standard.playlistEpisode(episode: self.episode!, name: playlists[indexPath.row].playlistName!)
             self.dismiss(animated: true, completion: nil)
         }
     }
-    
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let playlist = playlists[indexPath.row]
@@ -120,18 +109,13 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         UserDefaults.standard.deletePlaylist(playlist: playlist)
     }
     
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segue1" {
+        if segue.identifier == "fromPlaylistsToPlaylist" {
             if let indexPath = createPlaylistTable.indexPathForSelectedRow {
                 let destination = segue.destination as! addEpisodeToPlaylist
                 destination.playlistName = playlists[indexPath.row].playlistName!
                 destination.episodes = UserDefaults.standard.playlistEpisodes(name: playlists[indexPath.row].playlistName!)
-                            
             }
         }
     }
-    
-    
 }
