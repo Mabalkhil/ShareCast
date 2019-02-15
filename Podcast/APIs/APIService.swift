@@ -9,11 +9,14 @@ import Foundation
 import Alamofire
 import FeedKit
 
+
 extension NSNotification.Name{
     
     static let downloadProgress = NSNotification.Name("downloadProgress")
     static let downloadComplete = NSNotification.Name("downloadComplete ")
 }
+
+    var episodeDeletedIndex: Int = 0
 
 class APIService {
     
@@ -82,7 +85,6 @@ class APIService {
             
             }.response { (resp) in
                 print(resp.destinationURL?.absoluteString ?? "")
-                
                 let episodeDownloadComplete = EpisodeDownloadCompleteTuple(resp.destinationURL?.absoluteString ?? "", episode.title )
                 
                 NotificationCenter.default.post(name: .downloadComplete, object: episodeDownloadComplete, userInfo: nil)
@@ -91,6 +93,8 @@ class APIService {
                 
                 guard let index = downloadedEpisodes.firstIndex(where: { $0.title == episode.title && $0.author == episode.author }) else{ return }
                 
+                print("---------------------------------------")
+                print(index)
                 downloadedEpisodes[index].fileUrl = resp.destinationURL?.absoluteString ?? ""
                 
                 do{
@@ -109,39 +113,26 @@ class APIService {
     
     
     func deleteEpisode(episode: Episode){
-        let fileNameToDelete = episode.title
-        var filePath = ""
         
-        // Fine documents directory on device
-        let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
-        
-        if dirs.count > 0 {
-            let dir = dirs[0] //documents directory
-            filePath = dir.appendingFormat("/" + fileNameToDelete)
-            // print("Local path = \(filePath)")
-            
-        } else {
-            print("Could not find local directory to store file")
-            return
-        }
-        let parsed = episode.fileUrl!.replacingOccurrences(of: "file://", with: "")
-        let m = parsed.replacingOccurrences(of: ".mp3", with: "")
-        print("------------------------------------")
-        //print(episode.fileUrl!)
-        print("------------------------------------")
-        // print(filePath)
+        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         
         do {
-            let fileManager = FileManager.default
-            // Delete file
-            try fileManager.removeItem(atPath: filePath)
+            let fileURLs = try FileManager.default.contentsOfDirectory(at: documentsUrl,includingPropertiesForKeys: nil,options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
             
-            print(fileManager.fileExists(atPath: episode.fileUrl!))
             
-        }
-        catch let error as NSError {
-            print("An error took place: \(error)")
-        }
+            
+           
+        
+           // print(fileURLs[episodeDeletedIndex])
+            
+//            print(episode.fileUrl!)
+            
+//            for fileURL in fileURLs {
+//                if fileURL. == episode.title {
+//                    try FileManager.default.removeItem(at: fileURL)
+//                }
+//            }
+        } catch  { print(error) }
         
     }
     
