@@ -79,8 +79,8 @@ class MainTabBarController: UITabBarController {
             self.view.layoutIfNeeded()
             self.tabBar.transform = .identity
         })
-        self.playerDetailsview.smallPlayer.alpha = 1
-        self.playerDetailsview.bigPlayer.alpha = 0
+        self.playerDetailsview.smallPlayer.isHidden = false
+        self.playerDetailsview.bigPlayer.isHidden = true
     }
     
     // this method will take the episode from anywhere
@@ -93,8 +93,8 @@ class MainTabBarController: UITabBarController {
             self.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
         })
         
-        self.playerDetailsview.smallPlayer.alpha = 0
-        self.playerDetailsview.bigPlayer.alpha = 1
+        self.playerDetailsview.smallPlayer.isHidden = true
+        self.playerDetailsview.bigPlayer.isHidden = false
         
     }
     
@@ -107,5 +107,6 @@ class MainTabBarController: UITabBarController {
         playerDetailsview.view?.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         playerDetailsview.view?.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         playerDetailsview.view?.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        self.playerDetailsview.bigPlayer.isHidden = true
     }
 }
