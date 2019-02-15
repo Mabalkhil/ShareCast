@@ -10,13 +10,36 @@ import Alamofire
 import FeedKit
 
 
+
+
+extension String {
+    func index(from: Int) -> Index {
+        return self.index(startIndex, offsetBy: from)
+    }
+    
+    func substring(from: Int) -> String {
+        let fromIndex = index(from: from)
+        return substring(from: fromIndex)
+    }
+    
+    func substring(to: Int) -> String {
+        let toIndex = index(from: to)
+        return substring(to: toIndex)
+    }
+    
+    func substring(with r: Range<Int>) -> String {
+        let startIndex = index(from: r.lowerBound)
+        let endIndex = index(from: r.upperBound)
+        return substring(with: startIndex..<endIndex)
+    }
+}
+
 extension NSNotification.Name{
     
     static let downloadProgress = NSNotification.Name("downloadProgress")
     static let downloadComplete = NSNotification.Name("downloadComplete ")
 }
 
-    var episodeDeletedIndex: Int = 0
 
 class APIService {
     
@@ -93,8 +116,6 @@ class APIService {
                 
                 guard let index = downloadedEpisodes.firstIndex(where: { $0.title == episode.title && $0.author == episode.author }) else{ return }
                 
-                print("---------------------------------------")
-                print(index)
                 downloadedEpisodes[index].fileUrl = resp.destinationURL?.absoluteString ?? ""
                 
                 do{
@@ -115,26 +136,28 @@ class APIService {
     func deleteEpisode(episode: Episode){
         
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileNameToDelete = episode.fileUrl!.substring(from: 183)
+        var filePath:URL
+        let fileName = "/" + fileNameToDelete
         
         do {
             let fileURLs = try FileManager.default.contentsOfDirectory(at: documentsUrl,includingPropertiesForKeys: nil,options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
             
-            
-            
-           
-        
-           // print(fileURLs[episodeDeletedIndex])
-            
-//            print(episode.fileUrl!)
-            
-//            for fileURL in fileURLs {
-//                if fileURL. == episode.title {
-//                    try FileManager.default.removeItem(at: fileURL)
-//                }
-//            }
+            if fileURLs.count > 0 {
+                let dir = fileURLs[0].absoluteString.substring(to: 182)
+                filePath = URL(string: dir + fileName)!
+                
+            } else {
+                print("Could not find local directory to store file")
+                return
+            }
+
+                try FileManager.default.removeItem(at:filePath)
+          
         } catch  { print(error) }
         
     }
+    
     
     
     func fetchPodcast(searchText: String, completionHandeler: @escaping ([Podcast]) -> ()) {
