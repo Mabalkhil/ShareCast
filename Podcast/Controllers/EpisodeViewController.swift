@@ -84,6 +84,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             self.playlistsCV.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 200)
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.tabBarController?.tabBar.isHidden = false
+            PlayerDetailsViewController.shared.view.isHidden = false
         }, completion: nil)
     }
     
@@ -96,14 +97,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         self.view.addSubview(blackView)
         self.view.addSubview(playlistsCV)
         
-        var cvHeight: CGFloat
-        
-        if (PlayerDetailsViewController.shared.smallPlayer.isHidden){
-            cvHeight = CGFloat(50 * playlists.count) + (self.tabBarController?.tabBar.frame.height)!
-        }else {
-            cvHeight = CGFloat(50 * playlists.count) + (self.tabBarController?.tabBar.frame.height)! + PlayerDetailsViewController.shared.smallPlayer.frame.height
-        }
-        
+        let cvHeight = CGFloat(50 * playlists.count) + (self.tabBarController?.tabBar.frame.height)!
         let y = self.view.frame.height - cvHeight
         playlistsCV.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: cvHeight)
         blackView.frame = self.view.bounds
@@ -113,6 +107,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             self.playlistsCV.frame = CGRect(x: 0, y: y, width: self.view.frame.width, height: cvHeight)
             self.navigationController?.setNavigationBarHidden(true, animated: true)
             self.tabBarController?.tabBar.isHidden = true
+            PlayerDetailsViewController.shared.view.isHidden = true
         }, completion: nil)
     }
     
