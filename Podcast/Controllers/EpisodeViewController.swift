@@ -67,6 +67,7 @@ class EpisodeViewController: UITableViewController, UITextViewDelegate {
     @objc func downloadHandler(){
         UserDefaults.standard.downloadEpisode(episode: episode.self)
         APIService.shared.downloadEpisode(episode: episode.self)
+        //downloadButton.setImage(#imageLiteral(resourceName: "download_Done"), for: .normal)
     }
     
     @objc func bookmarkAddingHandler(){

@@ -134,18 +134,16 @@ class APIService {
     
     
     func deleteEpisode(episode: Episode){
+        var filePath:URL
         
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileNameToDelete = episode.fileUrl!.substring(from: 183)
-        var filePath:URL
-        let fileName = "/" + fileNameToDelete
         
         do {
             let fileURLs = try FileManager.default.contentsOfDirectory(at: documentsUrl,includingPropertiesForKeys: nil,options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
             
             if fileURLs.count > 0 {
-                let dir = fileURLs[0].absoluteString.substring(to: 182)
-                filePath = URL(string: dir + fileName)!
+                
+                filePath = URL(string: episode.fileUrl!)!
                 
             } else {
                 print("Could not find local directory to store file")
