@@ -58,7 +58,11 @@ class APIService {
                 
                 guard let feed = result.rssFeed else { return }
                 
-                podcasts.append(feed.toChannle())
+                var podcast = feed.toChannle()
+                podcast.feedUrl = feedUrl
+                
+                podcasts.append(podcast)
+                
                 if(podcasts.count == feedUrls.count){
                     completionHandler(podcasts)
                 }

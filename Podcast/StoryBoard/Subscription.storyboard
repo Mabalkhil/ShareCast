@@ -28,6 +28,9 @@
                                             <state key="normal" title="Channels">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="axQ-p6-UpI" kind="show" id="ZJh-8B-KVX"/>
+                                            </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radio" translatesAutoresizingMaskIntoConstraints="NO" id="10O-uO-fM6">
                                             <rect key="frame" x="15" y="5" width="40" height="40"/>
@@ -232,6 +235,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8WB-f6-nF1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1058" y="13"/>
+        </scene>
+        <!--Subscriptions View Controller-->
+        <scene sceneID="gJh-0u-rJk">
+            <objects>
+                <tableViewController storyboardIdentifier="subscriptions" useStoryboardIdentifierAsRestorationIdentifier="YES" id="axQ-p6-UpI" customClass="SubscriptionsViewController" customModule="Podcast" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ePw-Re-gXM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="axQ-p6-UpI" id="d22-CL-yHh"/>
+                            <outlet property="delegate" destination="axQ-p6-UpI" id="ZEa-Am-nq6"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="xTI-Tm-DUk" kind="show" identifier="showChannel" id="wo4-nF-7dO"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cAq-wc-8Vc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="145" y="959"/>
+        </scene>
+        <!--Channel-->
+        <scene sceneID="9km-Zz-Wn8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Channel" id="xTI-Tm-DUk" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YyF-Dp-Zo6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1309" y="958"/>
         </scene>
     </scenes>
     <resources>

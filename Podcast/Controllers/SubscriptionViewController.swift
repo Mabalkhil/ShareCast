@@ -58,26 +58,14 @@ class SubscriptionViewController: UITableViewController {
     }
     
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let podcast = self.subscriptionsList[indexPath.row]
-        subscriptionsList.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .automatic)
-        //FETCHSUB here should be the unsubscribe part
-        //        UserDefaults.standard.deleteBookmarkedEpisode(episode: episode)
-        
-    }
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        let podcast = self.subscriptionsList[indexPath.row]
+//        subscriptionsList.remove(at: indexPath.row)
+//        tableView.deleteRows(at: [indexPath], with: .automatic)
+//        //FETCHSUB here should be the unsubscribe part
+//        //        UserDefaults.standard.deleteBookmarkedEpisode(episode: episode)
+//
+//    }
     
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //
-        //        if segue.identifier == "player" {
-        //            if let indexPath = subscriptions.indexPathForSelectedRow {
-        //                let destination = segue.destination as! PlayerDetailsViewController
-        //                // dont assign value directly because the destinition view visual component not created yet
-        //                destination.episode = subscriptionsList[indexPath.row]
-        //                print(destination.episode.title)
-        //
-        //            }
-        //        }
-    }
+
 }

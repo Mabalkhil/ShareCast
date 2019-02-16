@@ -43,6 +43,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         
         emailField.delegate = self
         passwordField.delegate = self
+
         
         emailField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         passwordField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
