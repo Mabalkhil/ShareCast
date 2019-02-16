@@ -91,8 +91,7 @@ class SubscriptionsViewController: UITableViewController {
             let apiObject = APIService.init()
             apiObject.fetchChannels(feedUrls: url, completionHandler: { (podcast) in
                 self.channels = podcast
-                print("sooooommthing here \(self.channels[0].artistName)" )
-                 print("sooooommthing here \(self.channels[1].artistName)" )
+                
                 DispatchQueue.main.async {
                 self.tableView.reloadData()
                 }
