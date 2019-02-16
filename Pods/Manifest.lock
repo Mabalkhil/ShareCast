@@ -70,9 +70,6 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
   - leveldb-library (1.20)
-  - MarqueeLabel (3.2.0):
-    - MarqueeLabel/ObjC (= 3.2.0)
-  - MarqueeLabel/ObjC (3.2.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -90,7 +87,6 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
-  - MarqueeLabel
   - SDWebImage (~> 4.0)
 
 SPEC REPOS:
@@ -110,7 +106,6 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - leveldb-library
-    - MarqueeLabel
     - nanopb
     - SDWebImage
 
@@ -130,10 +125,9 @@ SPEC CHECKSUMS:
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
-  MarqueeLabel: 440a502b91a9179bd98f9fff00ba1150650a1c0e
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
 
-PODFILE CHECKSUM: 22a2261e5aba024e5208b9057a028eba647a0eab
+PODFILE CHECKSUM: 19f207903d66c5153cdd9a0eeb1a21fc9bed0662
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.5.3
