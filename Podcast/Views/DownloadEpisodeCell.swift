@@ -12,29 +12,22 @@ class DownloadEpisodeCell: UITableViewCell {
     
     @IBOutlet weak var episodeImage: UIImageView!
     @IBOutlet weak var episodeName: UILabel!
-    @IBOutlet weak var episodeSize: UILabel!
-    @IBOutlet weak var progressLabel: UILabel!
-    
+    @IBOutlet weak var outterView: UIView!
+    @IBOutlet weak var downloadProgress: UIProgressView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
-    var episode: Episode!{
-        didSet{
-            episodeName.text = episode.title
-            let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
-            episodeImage.sd_setImage(with: url)
-        }
-    }
-    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
     func setDownloadEpisode(episode:Episode){
+        self.episodeImage.layer.cornerRadius = 20
+        self.episodeImage.clipsToBounds = true
         episodeName.text = episode.title
-        episodeImage.image = UIImage(named: episode.imageUrl!)
+        let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
+        episodeImage.sd_setImage(with: url)
     }
 }

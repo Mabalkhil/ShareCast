@@ -9,6 +9,7 @@ target 'Podcast' do
     pod 'Alamofire', '~> 4.7'
     pod 'SDWebImage', '~> 4.0'
     pod 'FeedKit', '~> 8.0'
+    pod 'MarqueeLabel'
     # firbase pods
     pod 'Firebase/Core'
     pod 'Firebase/Database'

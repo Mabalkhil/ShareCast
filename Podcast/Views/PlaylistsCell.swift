@@ -25,9 +25,8 @@ class PlaylistsCell: UITableViewCell{
     var playlists: Playlist!{
         
         didSet{
-            
             playsitName.text = playlists.playlistName
-            numberOfepisodeLabel.text = playlists.numberOfEpisodes
+            numberOfepisodeLabel.text = String(playlists.episodes.count)
         }
     }
     

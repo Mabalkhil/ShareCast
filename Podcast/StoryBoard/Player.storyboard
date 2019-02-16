@@ -421,13 +421,13 @@
     </scenes>
     <resources>
         <image name="BOOSTTHING" width="70" height="70"/>
-        <image name="Backword-1" width="2067" height="1468"/>
+        <image name="Backword-1" width="496.07998657226562" height="352.32000732421875"/>
         <image name="CoolStuff" width="1080" height="196"/>
         <image name="Dismiss" width="70" height="70"/>
-        <image name="Forword" width="2067" height="1468"/>
-        <image name="PlayButton" width="480" height="480"/>
-        <image name="SmartSpeed" width="480" height="480"/>
+        <image name="Forword" width="496.07998657226562" height="352.32000732421875"/>
+        <image name="PlayButton" width="384" height="384"/>
+        <image name="SmartSpeed" width="384" height="384"/>
         <image name="VOLUME" width="60" height="60"/>
-        <image name="like" width="480" height="480"/>
+        <image name="like" width="384" height="384"/>
     </resources>
 </document>

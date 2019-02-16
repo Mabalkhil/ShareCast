@@ -22,10 +22,6 @@ class ViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return UIStatusBarStyle.lightContent;
-    }
 
 }
 

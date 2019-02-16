@@ -25,6 +25,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         window?.rootViewController = MainTabBarController()
+        
+        UIApplication.shared.statusBarStyle = .lightContent
+        
+        var navigationBarAppearace = UINavigationBar.appearance()
+        navigationBarAppearace.tintColor = UIColor.white
+        //navigationBarAppearace.barTintColor = UIColor.white
+        
+        // change navigation item title color
+        navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        
         return true
     }
 

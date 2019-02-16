@@ -17,6 +17,7 @@
 		2FD789C62200E4D7006A47FE /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD789C52200E4D7006A47FE /* APIService.swift */; };
 		2FD789C82200E4EF006A47FE /* PlayerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD789C72200E4EE006A47FE /* PlayerDetailsViewController.swift */; };
 		2FE5C9992201FAEF00FCEE4E /* BookmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5C9982201FAEF00FCEE4E /* BookmarkCell.swift */; };
+		2FF0D74622175C7700F40025 /* playlistCellAddingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF0D74522175C7700F40025 /* playlistCellAddingCVC.swift */; };
 		3701CEDE220D294000684E18 /* MYAudioTapProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3701CEDB220D293F00684E18 /* MYAudioTapProcessor.m */; };
 		372023AE220373A300D0C555 /* PlaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372023AD220373A300D0C555 /* PlaylistCell.swift */; };
 		372023B0220374E900D0C555 /* addEpisodeToPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372023AF220374E900D0C555 /* addEpisodeToPlaylist.swift */; };
@@ -98,6 +99,7 @@
 		2FD789C52200E4D7006A47FE /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		2FD789C72200E4EE006A47FE /* PlayerDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerDetailsViewController.swift; sourceTree = "<group>"; };
 		2FE5C9982201FAEF00FCEE4E /* BookmarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCell.swift; sourceTree = "<group>"; };
+		2FF0D74522175C7700F40025 /* playlistCellAddingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playlistCellAddingCVC.swift; sourceTree = "<group>"; };
 		3701CEDB220D293F00684E18 /* MYAudioTapProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYAudioTapProcessor.m; sourceTree = "<group>"; };
 		3701CEDC220D294000684E18 /* Podcast-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Podcast-Bridging-Header.h"; sourceTree = "<group>"; };
 		3701CEDD220D294000684E18 /* MYAudioTapProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYAudioTapProcessor.h; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				2FE5C9982201FAEF00FCEE4E /* BookmarkCell.swift */,
 				292111C222008B0E00B28DE2 /* CategoryCell.swift */,
 				29140E41220349000060522E /* DiscoverTableCell.swift */,
+				2FF0D74522175C7700F40025 /* playlistCellAddingCVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				3723A1F521A9C66400D5FAE9 /* EpisodeCell.swift in Sources */,
 				372023AE220373A300D0C555 /* PlaylistCell.swift in Sources */,
 				505B6C3121F6571E002E392D /* TimeMarkCell.swift in Sources */,
+				2FF0D74622175C7700F40025 /* playlistCellAddingCVC.swift in Sources */,
 				FA397ED92195E68E00D33617 /* Episode.swift in Sources */,
 				3701CEDE220D294000684E18 /* MYAudioTapProcessor.m in Sources */,
 				506217DA21FB26C20003F99F /* ProfileView.swift in Sources */,

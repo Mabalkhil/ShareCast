@@ -11,7 +11,7 @@
 import UIKit
 
 
-    var playlists = UserDefaults.standard.playlistsArray()
+var playlists = UserDefaults.standard.playlistsArray()
 class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     
@@ -23,20 +23,22 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBOutlet var createPlaylistTable: UITableView!
     @IBOutlet weak var playlistTextField: UITextField!
+    @IBOutlet var emptyView: UIView!
     
-
     
     override func viewDidLoad() {
     
-          super.viewDidLoad()
+        super.viewDidLoad()
         createPlaylistTable.delegate = self
         createPlaylistTable.dataSource = self
+        if (playlists.count == 0){
+            createPlaylistTable.backgroundView = emptyView
+        }else {
+            createPlaylistTable.backgroundView = UIView()
+        }
         
-        
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return UIStatusBarStyle.lightContent;
+        playlistTextField.attributedPlaceholder = NSAttributedString(string: "Playlist name",
+                                                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
     }
     
     @IBOutlet weak var createPlaylistButton: RoundedWhiteButton!{
@@ -47,9 +49,8 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @objc func addPlaylist(){
-        
-       var temp: Playlist
-        temp = Playlist(playlistName:playlistTextField.text!,numberOfEpisodes:"0",episodes:episodes)
+        var temp: Playlist
+        temp = Playlist(name:playlistTextField.text!,epis_list:episodes)
         
         if playlists.isEmpty {
             playlists.append(temp)
@@ -70,8 +71,8 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         playlistTextField.text = ""
+        viewDidLoad()
         view.endEditing(true)
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,10 +84,10 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         let cell = createPlaylistTable.dequeueReusableCell(withIdentifier: "playlistCell", for: indexPath) as! PlaylistsCell
         
         cell.playlists = playlists[indexPath.row]
-        let x : Int = playlists[indexPath.row].episodes.count
+        let episodes = UserDefaults.standard.playlistEpisodes(name: playlists[indexPath.row].playlistName!)
+        let x : Int = episodes.count
         let myString = String(x)
-        cell.playlists.numberOfEpisodes = myString
-        
+        cell.numberOfepisodeLabel.text = myString + " Episodes"
         return cell
     }
     
@@ -95,10 +96,6 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         var segue: String!
         if check == true {
             segue = "fromPlaylistsToPlaylist"
-        } else {
-            playlists[indexPath.row].addTask(ep: self.episode!,i: indexPath.row)
-            UserDefaults.standard.playlistEpisode(episode: self.episode!, name: playlists[indexPath.row].playlistName!)
-            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -107,6 +104,7 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         playlists.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
         UserDefaults.standard.deletePlaylist(playlist: playlist)
+        viewDidLoad()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -22,10 +22,6 @@ class EntryViewController: UIViewController {
         }
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return UIStatusBarStyle.lightContent;
-    }
-    
     @IBAction func skipButton(_ sender: Any) {
         let MainViewController = MainTabBarController()
         self.dismiss(animated: true, completion: nil)
