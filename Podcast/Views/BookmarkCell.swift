@@ -26,6 +26,8 @@ class BookmarkCell: UITableViewCell {
     }
     
     func setAttributes(episode: Episode){
+        self.EpisodeImage.layer.cornerRadius = 20
+        self.EpisodeImage.clipsToBounds = true
         EpisodeName.text = episode.title
         EpisodeDescription.text = episode.describtion
         let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")

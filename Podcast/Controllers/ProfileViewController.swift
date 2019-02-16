@@ -33,10 +33,6 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return UIStatusBarStyle.lightContent;
-    }
-    
     func setUpProfilePic(){
         reffDtatabase.child("usersInfo").child(uid!).observe(.value) { (snapshot) in
             if let dictionary = snapshot.value as? [String:AnyObject]{

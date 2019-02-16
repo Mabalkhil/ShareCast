@@ -8,9 +8,10 @@
 
 import UIKit
 
-class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     @IBOutlet var tablwViewDownload: UITableView!
+    @IBOutlet var emptyView: UIView!
     
     var episodes = UserDefaults.standard.downloadedEpisodes()
     var myIndex = 0
@@ -20,13 +21,13 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         tablwViewDownload.delegate = self
         tablwViewDownload.dataSource = self
         super.viewDidLoad()
+        if (episodes.count == 0){
+            tablwViewDownload.backgroundView = emptyView
+        }else {
+            tablwViewDownload.backgroundView = UIView()
+        }
         setupObservers()
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return UIStatusBarStyle.lightContent;
-    }
-    
     
     fileprivate func setupObservers(){
         NotificationCenter.default.addObserver( self, selector: #selector(handleDownloadProgress), name: .downloadProgress, object: nil)
@@ -50,10 +51,10 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         
         guard let index = self.episodes.index(where: { $0.title == title }) else { return }
         guard let cell = tablwViewDownload.cellForRow(at: IndexPath(row:index,section:0)) as? DownloadEpisodeCell else{ return }
-        cell.progressLabel.text = "\(Int(progress * 100))% "
-        cell.progressLabel.isHidden = false
+        cell.downloadProgress.progress = Float(progress)
+        cell.downloadProgress.isHidden = false
         if progress == 1{
-            cell.progressLabel.isHidden = true
+            cell.downloadProgress.isHidden = true
         }
     }
     
@@ -64,9 +65,10 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! DownloadEpisodeCell
-        cell.episode = self.episodes[indexPath.row]
+        cell.setDownloadEpisode(episode: self.episodes[indexPath.row])
         return cell
     }
+    
     
     
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -80,6 +82,7 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewWillAppear(animated)
         episodes = UserDefaults.standard.downloadedEpisodes()
         tablwViewDownload.reloadData()
+        viewDidLoad()
         // Hide the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.tabBarController?.tabBar.isHidden = false
@@ -92,6 +95,7 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.deleteRows(at: [indexPath], with: .automatic)
         UserDefaults.standard.deleteEpisode(episode: episode)
         APIService.shared.deleteEpisode(episode: episode)
+        viewDidLoad()
     }
     
     private func clickToPlay() {

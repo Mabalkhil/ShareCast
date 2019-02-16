@@ -72,12 +72,6 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
         super.viewDidLoad()
         checkUserSubscriptions()
         fetchEpisode()
-       
-        
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return UIStatusBarStyle.lightContent;
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,11 +86,11 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
         headerView.chennelImage.sd_setImage(with: url, completed: nil)
         headerView.nameLabel.text = podcast?.trackName
         headerView.typeLabel.text = podcast?.artistName
-      
         
-     //   headerView.headerImageView.image = UIImage(named: restaurant.image)
- 
-        
+        headerView.SubButton.layer.borderWidth = 2.0;
+        headerView.SubButton.layer.borderColor = UIColor.white.cgColor
+        headerView.SubButton.layer.cornerRadius = 5
+        headerView.SubButton.clipsToBounds = true
     }
     
      func numberOfSections(in tableView: UITableView) -> Int {
@@ -113,13 +107,7 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChennelTableViewCell
         let episode = episodes[indexPath.row]
         cell.episode = episode
-      
-       
         return cell
-    }
-  
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
     }
 
     // when a segue triggred  and before the visual transition occure

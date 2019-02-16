@@ -11,15 +11,13 @@ import UIKit
 class addEpisodeToPlaylist: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var addEpisodeToPlaylistTable: UITableView!
-   // var playlist:Playlist? = nil
-     //var episodes = UserDefaults.standard.playlistEpisode()
+    @IBOutlet var emptyView: UIView!
+    @IBOutlet weak var optionsButton: UIButton!
+    
     var episodes: [Episode] = []
     var playlistName: String = ""
     
     @IBOutlet weak var playlistNameLabel: UILabel!
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         addEpisodeToPlaylistTable.delegate = self
@@ -27,14 +25,16 @@ class addEpisodeToPlaylist: UIViewController, UITableViewDelegate, UITableViewDa
         playlistNameLabel.text = playlistName        
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return UIStatusBarStyle.lightContent;
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        episodes = UserDefaults.standard.downloadedEpisodes()
+        //episodes = UserDefaults.standard.playlistEpisodes(name: playlistName)
         addEpisodeToPlaylistTable.reloadData()
+        
+        // if list is empty show the empty view
+        if (episodes.count == 0){
+            addEpisodeToPlaylistTable.backgroundView = emptyView
+            optionsButton.isHidden = true
+        }
         // Hide the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.tabBarController?.tabBar.isHidden = false

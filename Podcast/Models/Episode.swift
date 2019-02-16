@@ -19,6 +19,7 @@ struct Episode: Codable {
     var timeStampLables: [String]?
     var timeStamps: [String]?
     var fileUrl: String?
+    var time:Double?
     //let timeMark: List
     
     init(feedItem: RSSFeedItem){
@@ -34,7 +35,8 @@ struct Episode: Codable {
         let feedDescription = (feedItem.description as! String?) ?? ""
         self.timeStampLables = feedDescription.timeStampsLabled()
         self.timeStamps = feedDescription.timeStamps()
-        self.fileUrl = "" 
+        self.fileUrl = ""
+        self.time = feedItem.iTunes?.iTunesDuration
        // print(test, separator: ".\n")
         
     }

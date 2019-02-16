@@ -12,11 +12,7 @@ class ChennelTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel : UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var durationLabel: UILabel! {
-        didSet{
-            durationLabel.text = "00:00:00"
-        }
-    }
+    @IBOutlet weak var durationLabel: UILabel!
     
     var episode: Episode!{
         
@@ -24,6 +20,14 @@ class ChennelTableViewCell: UITableViewCell {
             
             titleLabel.text = episode.title
             descriptionLabel.text = episode.describtion
+            
+            let seconds = episode.time
+            //print(millis!)
+            var rem_seconds = (seconds!).truncatingRemainder(dividingBy: 3600).truncatingRemainder(dividingBy: 60)
+            var minutes = (seconds!/(60)).truncatingRemainder(dividingBy: 60)
+            //minutes = Int(minutes)
+            var hours = (seconds!/(60*60)).truncatingRemainder(dividingBy: 24)
+            durationLabel.text = String(format:"%02d:%02d:%02d",Int(hours), Int(minutes), Int(rem_seconds))
 //            let dateFormatter = DateFormatter()
 //            dateFormatter.dateFormat = "dd MMM, yyyy"
 //            durationLabel.text = dateFormatter.string(from: episode.pubDate)

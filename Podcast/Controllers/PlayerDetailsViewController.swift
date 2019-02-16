@@ -109,10 +109,6 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBar.isHidden = true
     }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return UIStatusBarStyle.lightContent;
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

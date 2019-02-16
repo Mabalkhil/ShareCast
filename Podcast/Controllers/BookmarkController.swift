@@ -11,6 +11,7 @@ import UIKit
 class BookmarkController: UITableViewController {
     
     @IBOutlet var bookmarks: UITableView!
+    @IBOutlet var emptyView: UIView!
     
     var bookedMarked = UserDefaults.standard.bookmarkedEpisodes()
     var myIndex = 0
@@ -19,11 +20,12 @@ class BookmarkController: UITableViewController {
     override func viewDidLoad() {
         bookmarks.delegate = self
         bookmarks.dataSource = self
+        if (bookedMarked.count == 0){
+            bookmarks.backgroundView = emptyView
+        }else {
+            bookmarks.backgroundView = UIView()
+        }
         super.viewDidLoad()
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return UIStatusBarStyle.lightContent;
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,6 +61,7 @@ class BookmarkController: UITableViewController {
         bookedMarked.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
         UserDefaults.standard.deleteBookmarkedEpisode(episode: episode)
+        viewDidLoad()
     }
     
     
