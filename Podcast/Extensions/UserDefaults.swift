@@ -54,7 +54,7 @@ extension UserDefaults {
     }
     
   
-    
+    // delete an episode inside a playlist
     func deletePlaylistEpisode(episode: Episode, name: String) {
         let savedEpisodes = playlistEpisodes(name: name)
         let filteredEpisodes = savedEpisodes.filter { (e) -> Bool in
@@ -71,6 +71,7 @@ extension UserDefaults {
     }
     
     
+    // delete a playlist
     func deletePlaylist(playlist: Playlist) {
         let savedEpisodes = playlistsArray()
         let filteredEpisodes = savedEpisodes.filter { (p) -> Bool in
@@ -88,6 +89,7 @@ extension UserDefaults {
     
     
     
+    // adding a new playlist inside the playlists array
     func playlistArray(playlist: Playlist) {
    
         do{
@@ -113,7 +115,7 @@ extension UserDefaults {
     }
     
     
-    
+     // adding a new episode inside a playlist
     func playlistEpisode(episode: Episode,name: String){
         
         do{
@@ -196,6 +198,7 @@ extension UserDefaults {
     }
     
     
+    // array of playlists
     func  playlistsArray() -> [Playlist]{
         
         guard let playlistsData = UserDefaults.standard.data(forKey: UserDefaults.playlistsKey) else { return []}
@@ -215,7 +218,7 @@ extension UserDefaults {
     
 
 
-    
+    // episodes inside a playlist
     func  playlistEpisodes(name: String) -> [Episode]{
         
         guard let playlistEpisodesData = UserDefaults.standard.data(forKey: "savedArrayKey"+name) else { return []}

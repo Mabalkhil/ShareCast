@@ -9,11 +9,37 @@ import Foundation
 import Alamofire
 import FeedKit
 
+
+
+
+extension String {
+    func index(from: Int) -> Index {
+        return self.index(startIndex, offsetBy: from)
+    }
+    
+    func substring(from: Int) -> String {
+        let fromIndex = index(from: from)
+        return substring(from: fromIndex)
+    }
+    
+    func substring(to: Int) -> String {
+        let toIndex = index(from: to)
+        return substring(to: toIndex)
+    }
+    
+    func substring(with r: Range<Int>) -> String {
+        let startIndex = index(from: r.lowerBound)
+        let endIndex = index(from: r.upperBound)
+        return substring(with: startIndex..<endIndex)
+    }
+}
+
 extension NSNotification.Name{
     
     static let downloadProgress = NSNotification.Name("downloadProgress")
     static let downloadComplete = NSNotification.Name("downloadComplete ")
 }
+
 
 class APIService {
     
@@ -82,7 +108,6 @@ class APIService {
             
             }.response { (resp) in
                 print(resp.destinationURL?.absoluteString ?? "")
-                
                 let episodeDownloadComplete = EpisodeDownloadCompleteTuple(resp.destinationURL?.absoluteString ?? "", episode.title )
                 
                 NotificationCenter.default.post(name: .downloadComplete, object: episodeDownloadComplete, userInfo: nil)
@@ -109,41 +134,28 @@ class APIService {
     
     
     func deleteEpisode(episode: Episode){
-        let fileNameToDelete = episode.title
-        var filePath = ""
+        var filePath:URL
         
-        // Fine documents directory on device
-        let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
-        
-        if dirs.count > 0 {
-            let dir = dirs[0] //documents directory
-            filePath = dir.appendingFormat("/" + fileNameToDelete)
-            // print("Local path = \(filePath)")
-            
-        } else {
-            print("Could not find local directory to store file")
-            return
-        }
-        let parsed = episode.fileUrl!.replacingOccurrences(of: "file://", with: "")
-        let m = parsed.replacingOccurrences(of: ".mp3", with: "")
-        print("------------------------------------")
-        //print(episode.fileUrl!)
-        print("------------------------------------")
-        // print(filePath)
+        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         
         do {
-            let fileManager = FileManager.default
-            // Delete file
-            try fileManager.removeItem(atPath: filePath)
+            let fileURLs = try FileManager.default.contentsOfDirectory(at: documentsUrl,includingPropertiesForKeys: nil,options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
             
-            print(fileManager.fileExists(atPath: episode.fileUrl!))
-            
-        }
-        catch let error as NSError {
-            print("An error took place: \(error)")
-        }
+            if fileURLs.count > 0 {
+                
+                filePath = URL(string: episode.fileUrl!)!
+                
+            } else {
+                print("Could not find local directory to store file")
+                return
+            }
+
+                try FileManager.default.removeItem(at:filePath)
+          
+        } catch  { print(error) }
         
     }
+    
     
     
     func fetchPodcast(searchText: String, completionHandeler: @escaping ([Podcast]) -> ()) {
