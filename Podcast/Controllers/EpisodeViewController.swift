@@ -96,7 +96,14 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         self.view.addSubview(blackView)
         self.view.addSubview(playlistsCV)
         
-        let cvHeight = CGFloat(50 * playlists.count) + (self.tabBarController?.tabBar.frame.height)!
+        var cvHeight: CGFloat
+        
+        if (PlayerDetailsViewController.shared.smallPlayer.isHidden){
+            cvHeight = CGFloat(50 * playlists.count) + (self.tabBarController?.tabBar.frame.height)!
+        }else {
+            cvHeight = CGFloat(50 * playlists.count) + (self.tabBarController?.tabBar.frame.height)! + PlayerDetailsViewController.shared.smallPlayer.frame.height
+        }
+        
         let y = self.view.frame.height - cvHeight
         playlistsCV.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: cvHeight)
         blackView.frame = self.view.bounds
