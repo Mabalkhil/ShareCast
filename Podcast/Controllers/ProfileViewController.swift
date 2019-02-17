@@ -25,6 +25,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         setUpProfilePic()
         }
         ProfileImage.layer.borderWidth = 1
+        ProfileImage.layer.borderColor = UIColor.white.cgColor
         ProfileImage.layer.masksToBounds = false
         ProfileImage.layer.cornerRadius = ProfileImage.frame.height/2
         ProfileImage.clipsToBounds = true
