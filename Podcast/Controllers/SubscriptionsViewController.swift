@@ -15,10 +15,7 @@ class SubscriptionsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchUserSubs()
-        let nib = UINib(nibName: "PodcastCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "cellId")
-        tableView.delegate = self
-        tableView.dataSource = self
+        setupTable()
         
         
     }
@@ -28,7 +25,12 @@ class SubscriptionsViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
+    func setupTable(){
+        let nib = UINib(nibName: "PodcastCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "cellId")
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -78,9 +80,7 @@ class SubscriptionsViewController: UITableViewController {
     }
         
     func fetchUserSubs(){
-        guard let currUser = Auth.auth().currentUser?.uid else {
-            return
-        }
+        guard let currUser = Auth.auth().currentUser?.uid else {return}
         print(currUser)
         var url = [String]()
          reff.child("usersInfo").child(currUser).child("Subscription").observeSingleEvent(of: .value) { (snapshot) in
@@ -91,8 +91,8 @@ class SubscriptionsViewController: UITableViewController {
             let apiObject = APIService.init()
             apiObject.fetchChannels(feedUrls: url, completionHandler: { (podcast) in
                 self.channels = podcast
-                print("sooooommthing here \(self.channels[0].artistName)" )
-                 print("sooooommthing here \(self.channels[1].artistName)" )
+//                print("sooooommthing here \(self.channels[0].artistName)" )
+//                 print("sooooommthing here \(self.channels[1].artistName)" )
                 DispatchQueue.main.async {
                 self.tableView.reloadData()
                 }
