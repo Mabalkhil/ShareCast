@@ -46,20 +46,4 @@
   request.providerAccessToken = _token;
 }
 
-#pragma mark - NSSecureCoding
-
-+ (BOOL)supportsSecureCoding {
-  return YES;
-}
-
-- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
-  NSString *token = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"token"];
-  self = [self initWithToken:token];
-  return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-  [aCoder encodeObject:self.token forKey:@"token"];
-}
-
 @end

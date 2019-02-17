@@ -14,11 +14,6 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
-
-#import "FIRStorageDownloadTask.h"
-
-@class FIRStorageReference;
 @class GTMSessionFetcherService;
 
 NS_ASSUME_NONNULL_BEGIN

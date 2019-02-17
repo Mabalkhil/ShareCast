@@ -18,8 +18,6 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
     var episodes: [Episode] = []
     var check = true
     var episode: Episode? = nil
-    var alert: UIAlertController!
-    var alertAction: UIAlertAction!
     
     
 
@@ -52,40 +50,27 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
     
     @objc func addPlaylist(){
         var temp: Playlist
-        let playlistName = playlistTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        playlistTextField.text = ""
+        temp = Playlist(name:playlistTextField.text!,epis_list:episodes)
         
-        
-        
-        temp = Playlist(name:playlistName,epis_list:episodes)
-        if !playlistName.isEmpty{
-            if playlists.isEmpty {
+        if playlists.isEmpty {
+            playlists.append(temp)
+            UserDefaults.standard.playlistArray(playlist: temp)
+             let indexPath = IndexPath(row: playlists.count-1, section: 0)
+            createPlaylistTable.beginUpdates()
+            createPlaylistTable.insertRows(at: [indexPath], with: .automatic)
+            createPlaylistTable.endUpdates()
+        } else {
+            if !playlists.contains(where: { $0.playlistName == temp.playlistName }) {
                 playlists.append(temp)
                 UserDefaults.standard.playlistArray(playlist: temp)
                  let indexPath = IndexPath(row: playlists.count-1, section: 0)
                 createPlaylistTable.beginUpdates()
                 createPlaylistTable.insertRows(at: [indexPath], with: .automatic)
                 createPlaylistTable.endUpdates()
-            } else {
-                if !playlists.contains(where: { $0.playlistName == temp.playlistName }) {
-                    playlists.append(temp)
-                    UserDefaults.standard.playlistArray(playlist: temp)
-                     let indexPath = IndexPath(row: playlists.count-1, section: 0)
-                    createPlaylistTable.beginUpdates()
-                    createPlaylistTable.insertRows(at: [indexPath], with: .automatic)
-                    createPlaylistTable.endUpdates()
-                }
-                else {
-                    self.alert = UIAlertController(title: "Playlist Exist",
-                                                   message: "There is all ready a playlist with name '\(playlistName)'. Pleas Choose a unique name",
-                                                   preferredStyle: .alert)
-                    self.alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    self.alert.addAction( self.alertAction)
-                    present(self.alert,animated: true,completion: nil)
-                }
             }
         }
         
+        playlistTextField.text = ""
         viewDidLoad()
         view.endEditing(true)
     }

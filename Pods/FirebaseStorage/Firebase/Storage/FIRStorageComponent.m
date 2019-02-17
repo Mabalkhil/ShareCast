@@ -20,8 +20,8 @@
 #import <FirebaseCore/FIRAppInternal.h>
 #import <FirebaseCore/FIRComponent.h>
 #import <FirebaseCore/FIRComponentContainer.h>
+#import <FirebaseCore/FIRComponentRegistrant.h>
 #import <FirebaseCore/FIRDependency.h>
-#import <FirebaseCore/FIRLibrary.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -32,8 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
                        auth:(nullable id<FIRAuthInterop>)auth;
 @end
 
-@interface FIRStorageComponent () <FIRLibrary>
-/// Internal initializer.
+@interface FIRStorageComponent () <FIRComponentRegistrant>
+/// Internal intializer.
 - (instancetype)initWithApp:(FIRApp *)app;
 @end
 
@@ -52,16 +52,14 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Lifecycle
 
 + (void)load {
-  [FIRApp registerInternalLibrary:(Class<FIRLibrary>)self
-                         withName:@"fire-str"
-                      withVersion:[NSString stringWithUTF8String:FIRStorageVersionString]];
+  [FIRComponentContainer registerAsComponentRegistrant:self];
 }
 
 #pragma mark - FIRComponentRegistrant
 
 + (nonnull NSArray<FIRComponent *> *)componentsToRegister {
-  FIRDependency *authDep = [FIRDependency dependencyWithProtocol:@protocol(FIRAuthInterop)
-                                                      isRequired:NO];
+  FIRDependency *authDep =
+      [FIRDependency dependencyWithProtocol:@protocol(FIRAuthInterop) isRequired:NO];
   FIRComponentCreationBlock creationBlock =
       ^id _Nullable(FIRComponentContainer *container, BOOL *isCacheable) {
     return [[FIRStorageComponent alloc] initWithApp:container.app];

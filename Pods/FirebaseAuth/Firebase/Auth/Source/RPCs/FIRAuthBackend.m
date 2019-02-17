@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-#import "FIRAuthBackend.h"
+#import <Foundation/Foundation.h>
 
-#import <GTMSessionFetcher/GTMSessionFetcher.h>
-#import <GTMSessionFetcher/GTMSessionFetcherService.h>
+#import "FIRAuthBackend.h"
 
 #import "FIRAuthErrorUtils.h"
 #import "FIRAuthGlobalWorkQueue.h"
@@ -30,8 +29,6 @@
 #import "FIRDeleteAccountResponse.h"
 #import "FIRGetAccountInfoRequest.h"
 #import "FIRGetAccountInfoResponse.h"
-#import "FIRSignInWithGameCenterRequest.h"
-#import "FIRSignInWithGameCenterResponse.h"
 #import "FIRGetOOBConfirmationCodeRequest.h"
 #import "FIRGetOOBConfirmationCodeResponse.h"
 #import "FIRGetProjectConfigRequest.h"
@@ -58,6 +55,8 @@
 #import "FIREmailLinkSignInResponse.h"
 #import "FIRVerifyPhoneNumberRequest.h"
 #import "FIRVerifyPhoneNumberResponse.h"
+#import <GTMSessionFetcher/GTMSessionFetcher.h>
+#import <GTMSessionFetcher/GTMSessionFetcherService.h>
 
 #if TARGET_OS_IOS
 #import "../AuthProviders/Phone/FIRPhoneAuthCredential_Internal.h"
@@ -285,12 +284,6 @@ static NSString *const kMissingAndroidPackageNameErrorMessage = @"MISSING_ANDROI
  */
 static NSString *const kUnauthorizedDomainErrorMessage = @"UNAUTHORIZED_DOMAIN";
 
-/** @var kInvalidDynamicLinkDomainErrorMessage
- @brief This is the error message the server will respond with if the dynamic link domain provided
- in the request is invalid.
- */
-static NSString *const kInvalidDynamicLinkDomainErrorMessage = @"INVALID_DYNAMIC_LINK_DOMAIN";
-
 /** @var kInvalidContinueURIErrorMessage
     @brief This is the error message the server will respond with if the continue URL provided in
         the request is invalid.
@@ -468,11 +461,6 @@ static id<FIRAuthBackendImplementation> gBackendImplementation;
 
 + (void)deleteAccount:(FIRDeleteAccountRequest *)request callback:(FIRDeleteCallBack)callback {
   [[self implementation] deleteAccount:request callback:callback];
-}
-
-+ (void)signInWithGameCenter:(FIRSignInWithGameCenterRequest *)request
-                    callback:(FIRSignInWithGameCenterResponseCallback)callback {
-  [[self implementation] signInWithGameCenter:request callback:callback];
 }
 
 #if TARGET_OS_IOS
@@ -767,22 +755,6 @@ static id<FIRAuthBackendImplementation> gBackendImplementation;
   }];
 }
 
-- (void)signInWithGameCenter:(FIRSignInWithGameCenterRequest *)request
-                    callback:(FIRSignInWithGameCenterResponseCallback)callback {
-  FIRSignInWithGameCenterResponse *response = [[FIRSignInWithGameCenterResponse alloc] init];
-  [self postWithRequest:request response:response callback:^(NSError *error) {
-    if (error) {
-      if (callback) {
-        callback(nil, error);
-      }
-    } else {
-      if (callback) {
-        callback(response, nil);
-      }
-    }
-  }];
-}
-
 #pragma mark - Generic RPC handling methods
 
 /** @fn postWithRequest:response:callback:
@@ -1070,10 +1042,6 @@ static id<FIRAuthBackendImplementation> gBackendImplementation;
 
   if ([shortErrorMessage isEqualToString:kInvalidContinueURIErrorMessage]) {
     return [FIRAuthErrorUtils invalidContinueURIErrorWithMessage:serverDetailErrorMessage];
-  }
-
-  if ([shortErrorMessage isEqualToString:kInvalidDynamicLinkDomainErrorMessage]) {
-    return [FIRAuthErrorUtils invalidDynamicLinkDomainErrorWithMessage:serverDetailErrorMessage];
   }
 
   if ([shortErrorMessage isEqualToString:kMissingContinueURIErrorMessage]) {

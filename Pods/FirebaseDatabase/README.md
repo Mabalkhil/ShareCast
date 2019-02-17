@@ -2,8 +2,7 @@
 
 This repository contains a subset of the Firebase iOS SDK source. It currently
 includes FirebaseCore, FirebaseAuth, FirebaseDatabase, FirebaseFirestore,
-FirebaseFunctions, FirebaseInAppMessagingDisplay, FirebaseMessaging and
-FirebaseStorage.
+FirebaseFunctions, FirebaseMessaging and FirebaseStorage.
 
 The repository also includes GoogleUtilities source. The
 [GoogleUtilities](GoogleUtilities/README.md) pod is
@@ -60,13 +59,8 @@ pod 'FirebaseMessaging', :path => '/path/to/firebase-ios-sdk'
 
 ### Carthage (iOS only)
 
-Instructions for the experimental Carthage distribution are at
+An experimental Carthage distribution is now available. See
 [Carthage](Carthage.md).
-
-### Rome
-
-Instructions for installing binary frameworks via
-[Rome](https://github.com/CocoaPods/Rome) are at [Rome](Rome.md).
 
 ## Development
 
@@ -83,14 +77,6 @@ $ open Firebase.xcworkspace
 Firestore and Functions have self contained Xcode projects. See
 [Firestore/README.md](Firestore/README.md) and
 [Functions/README.md](Functions/README.md).
-
-### Code Formatting
-
-Travis will verify that any code changes are done in a style compliant way. Install
-`clang-format` and `swiftformat`.
-This command will get the right `clang-format` version:
-
-`brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/773cb75d360b58f32048f5964038d09825a507c8/Formula/clang-format.rb`
 
 ### Running Unit Tests
 
@@ -119,7 +105,7 @@ See the sections below for any special instructions for those components.
 ### Firebase Auth
 
 If you're doing specific Firebase Auth development, see
-[the Auth Sample README](Example/Auth/README.md) for instructions about
+[AuthSamples/README.md](AuthSamples/README.md) for instructions about
 building and running the FirebaseAuth pod along with various samples and tests.
 
 ### Firebase Database

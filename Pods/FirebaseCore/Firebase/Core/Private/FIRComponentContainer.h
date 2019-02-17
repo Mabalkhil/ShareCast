@@ -16,7 +16,6 @@
 #import <Foundation/Foundation.h>
 
 #import "FIRComponentType.h"
-#import "FIRLibrary.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -38,6 +37,10 @@ NS_SWIFT_NAME(FirebaseComponentContainer)
 
 /// Unavailable. Use the `container` property on `FIRApp`.
 - (instancetype)init NS_UNAVAILABLE;
+
+/// Register a class to provide components for the interoperability system. The class should conform
+/// to `FIRComponentRegistrant` and provide an array of `FIRComponent` objects.
++ (void)registerAsComponentRegistrant:(Class)klass;
 
 @end
 

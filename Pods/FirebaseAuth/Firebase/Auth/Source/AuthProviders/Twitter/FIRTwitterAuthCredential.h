@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** @class FIRTwitterAuthCredential
     @brief Internal implementation of FIRAuthCredential for Twitter credentials.
  */
-@interface FIRTwitterAuthCredential : FIRAuthCredential <NSSecureCoding>
+@interface FIRTwitterAuthCredential : FIRAuthCredential
 
 /** @property token
     @brief The Twitter OAuth token.

@@ -24,7 +24,6 @@
 #import "FirebaseAuthVersion.h"
 #import "FIREmailAuthProvider.h"
 #import "FIRFacebookAuthProvider.h"
-#import "FIRGameCenterAuthProvider.h"
 #import "FIRGitHubAuthProvider.h"
 #import "FIRGoogleAuthProvider.h"
 #import "FIROAuthProvider.h"

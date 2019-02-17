@@ -14,14 +14,10 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
-
-#import "FIRStorageObservableTask.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
-@class FIRStorageReference;
 @class FIRStorageTaskSnapshot;
+
 @class GTMSessionFetcherService;
 
 @interface FIRStorageObservableTask ()
