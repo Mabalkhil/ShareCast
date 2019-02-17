@@ -36,12 +36,6 @@ class SearchDelegate: NSObject, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PodcastCell
         let podcast = podcasts[indexPath.row]
         cell.podcast = podcast
-        
-        //OMITTED
-        //
-        //        cell.textLabel?.text = "\(podcast.trackName ?? "") \n \(podcast.artistName ?? "")"
-        //        cell.textLabel?.numberOfLines = -1 // for infinte number of lines
-        //        cell.imageView?.image = #imageLiteral(resourceName: "appicon")
         return cell
     }
     //MARK:- Header settings

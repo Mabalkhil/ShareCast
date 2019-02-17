@@ -19,8 +19,9 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
     ////// Episode Stuff
     var podcast: Podcast?{
         didSet{
-            navigationItem.title = podcast?.trackName
             fetchEpisode()
+            navigationItem.title = podcast?.trackName
+          
         }
     }
     var firebaseReff = Auth.auth().currentUser
@@ -30,10 +31,10 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
     
     
     fileprivate func fetchEpisode(){
-        guard let feedURL = podcast?.feedUrl else { return }
-        print("The is the RSS")
-        print(feedURL)
-        
+        guard let feedURL = podcast?.feedUrl else {
+            return
+        }
+        print("looooooooooook heeeeerrrr\(feedURL)")
         APIService.shared.fetchEpisodes(feedUrl: feedURL) { (episodes) in
             self.episodes = episodes
             DispatchQueue.main.async {
@@ -70,22 +71,29 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkUserSubscriptions()
-        fetchEpisode()
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent;
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
     
          //Configure the table view
-        tableView.delegate = self
-        tableView.dataSource = self
+         checkUserSubscriptions()
 
-        // Configure header view
+        print("HHHHHHEEEEEERRRRRREEE \(podcast?.feedUrl)")
         guard let url = URL(string : podcast?.artworkUrl600 ?? "") else {return}
         headerView.chennelImage.sd_setImage(with: url, completed: nil)
         headerView.nameLabel.text = podcast?.trackName
         headerView.typeLabel.text = podcast?.artistName
+        
+        
+     //   headerView.headerImageView.image = UIImage(named: restaurant.image)
+ 
         
         headerView.SubButton.layer.borderWidth = 2.0;
         headerView.SubButton.layer.borderColor = UIColor.white.cgColor

@@ -115,21 +115,7 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
         return cell
     }
     
-    
-//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//
-//        guard let tableViewCell = cell as? DiscoverTableCell else { return }
-//        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
-//        tableViewCell.categoryCollectionOffset = storedOffsets[indexPath.row] ?? 0
-//    }
-//
-//   func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//
-//        guard let tableViewCell = cell as? DiscoverTableCell else { return }
-//
-//        storedOffsets[indexPath.row] = tableViewCell.categoryCollectionOffset
-//    }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 160
     }
