@@ -380,7 +380,7 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
         let width = smallPlayer.frame.width
         let height = smallPlayer.frame.height
         
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.smallPlayer.frame = CGRect(x: offScreen, y: y, width: width, height: height)
             self.player.pause()
         }, completion: nil)
