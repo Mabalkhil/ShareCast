@@ -20,7 +20,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="6Op-Gm-PcK">
                                 <rect key="frame" x="47.666666666666657" y="208" width="280" height="231"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="mfe-bf-BRc">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Share_cast_logo" translatesAutoresizingMaskIntoConstraints="NO" id="mfe-bf-BRc">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="160"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="160" id="8gA-6G-tIs"/>
@@ -608,6 +608,7 @@
     </scenes>
     <resources>
         <image name="Logo" width="1000" height="1000"/>
+        <image name="Share_cast_logo" width="950.8800048828125" height="929.52001953125"/>
         <image name="close" width="16" height="16"/>
     </resources>
 </document>

@@ -103,7 +103,7 @@ class MainTabBarController: UITabBarController {
         playerDetailsview.view?.translatesAutoresizingMaskIntoConstraints = false
         MaximumSize = playerDetailsview.view?.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height)
         MaximumSize.isActive = true
-        MinimumSize = playerDetailsview.view?.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -65)
+        MinimumSize = playerDetailsview.view?.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -75)
         playerDetailsview.view?.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         playerDetailsview.view?.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         playerDetailsview.view?.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true

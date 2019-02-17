@@ -24,7 +24,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appicon" translatesAutoresizingMaskIntoConstraints="NO" id="A1L-dC-omw" userLabel="Header image">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1400x1400-eagles_podcast-logo" translatesAutoresizingMaskIntoConstraints="NO" id="A1L-dC-omw" userLabel="Header image">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="effect" translatesAutoresizingMaskIntoConstraints="NO" id="oI4-aI-jzF">
@@ -255,8 +255,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="1400x1400-eagles_podcast-logo" width="1400" height="1400"/>
         <image name="alarm" width="384" height="384"/>
-        <image name="appicon" width="60" height="60"/>
         <image name="effect" width="1000" height="1000"/>
         <image name="enter" width="384" height="384"/>
         <image name="time" width="409.60000610351562" height="409.60000610351562"/>

@@ -61,7 +61,7 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
     
     var episodeImg: UIImageView = {
         let img = UIImageView()
-        img.image = #imageLiteral(resourceName: "appicon")
+        img.image = #imageLiteral(resourceName: "1400x1400-eagles_podcast-logo")
         return img
     }()
     
@@ -358,6 +358,32 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
         scrollView.frame = CGRect(x: 0.0, y: 0.0, width: screenWidth, height: screenHeight/2.0)
+        
+        // small player settings
+        smallPlayer.layer.cornerRadius = smallPlayer.frame.height/2
+        smallPlayer.clipsToBounds = true
+        smallPlayerImg.layer.borderWidth = 2.0;
+        smallPlayerImg.layer.borderColor = UIColor.white.cgColor
+        smallPlayerImg.layer.cornerRadius = smallPlayerImg.frame.height/2
+        smallPlayerImg.clipsToBounds = true
+        
+        // swipe to remove the player
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(dismissSmallPlayer))
+        swipeLeft.direction = .left
+        smallPlayer.addGestureRecognizer(swipeLeft)
+        //(UISwipeGestureRecognizer(target: self, action: #selector(dismissSmallPlayer)).direction = .left)
+    }
+    
+    @objc func dismissSmallPlayer() {
+        let offScreen = -smallPlayer.frame.width
+        let y = smallPlayer.frame.minX
+        let width = smallPlayer.frame.width
+        let height = smallPlayer.frame.height
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.smallPlayer.frame = CGRect(x: offScreen, y: y, width: width, height: height)
+            self.player.pause()
+        }, completion: nil)
     }
     
     func addBlurEffect(img: UIImageView)
