@@ -122,7 +122,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uCa-pw-zfk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="620" y="-621"/>
+            <point key="canvasLocation" x="3004" y="-1131"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="ayp-92-A6C">
@@ -536,7 +536,7 @@
         <!--Navigation Controller-->
         <scene sceneID="eIa-dM-yzD">
             <objects>
-                <navigationController storyboardIdentifier="Entry" automaticallyAdjustsScrollViewInsets="NO" id="2HE-FO-8VT" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Entry" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2HE-FO-8VT" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7Sc-I6-kgB">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>

@@ -19,8 +19,7 @@ class SubscriptionsViewController: UITableViewController {
         tableView.register(nib, forCellReuseIdentifier: "cellId")
         tableView.delegate = self
         tableView.dataSource = self
-        
-        
+    
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,30 +38,17 @@ class SubscriptionsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showChannel", sender: nil)
       
-//        let channelStoryboard = UIStoryboard(name: "Channel", bundle: Bundle.main)
-//        guard let destinationViewController = channelStoryboard.instantiateInitialViewController() as?
-//            ChannelController else {
-//                return
-//        }
-//        let podcast = self.channels[indexPath.row]
-//        destinationViewController.podcast = podcast
-//        navigationController?.pushViewController(destinationViewController, animated: true)
+        let channelStoryboard = UIStoryboard(name: "Channel", bundle: Bundle.main)
+        guard let destinationViewController = channelStoryboard.instantiateInitialViewController() as?
+            ChannelController else {
+                return
+        }
+        let podcast = self.channels[indexPath.row]
+        destinationViewController.podcast = podcast
+        navigationController?.pushViewController(destinationViewController, animated: true)
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showChannel" {
-            
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let destination = segue.destination as! ChannelController
-                // dont assign value directly because the destinition view visual component not created yet
-                destination.podcast = self.channels[indexPath.row]
-              
-                
-            }
-        }
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows

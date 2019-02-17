@@ -15,6 +15,7 @@ class EntryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("look here")
         if Auth.auth().currentUser?.uid != nil {
             let MainViewController = MainTabBarController()
             self.dismiss(animated: true, completion: nil)
