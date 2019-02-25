@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -21,6 +22,12 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     var episode = Episode()
     let blackView = UIView()
     var playlists = UserDefaults.standard.playlistsArray()
+    
+    var fireStoreDatabaseRef = Firestore.firestore()
+    var databaseRef = DatabaseReference.init()
+    var userID:String?
+    var username:String?
+    var userImage:String?
     
     // this function will change the episode and start the player - YAY!
     @IBAction private func clickToPlay(_ sender: UIButton) {
@@ -45,6 +52,12 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }
     }
     
+    @IBOutlet weak var rePostButton: UIButton!{
+        didSet{
+            rePostButton.addTarget(self, action: #selector(repostHandler), for: .touchUpInside)
+        }
+    }
+    
     override func viewDidLoad() {
         setAttributes()
         super.viewDidLoad()
@@ -53,6 +66,8 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         playlistsCV.dataSource = self
         let index = playlists.count
         playlists.insert(Playlist(name: "Cancel", epis_list: []), at: index)
+        
+        setUpDatabases()
         
         // Do any additional setup after loading the view, typically from a nib.
         let bookedEpisodes = UserDefaults.standard.bookmarkedEpisodes()
@@ -122,6 +137,46 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }
     }
     
+    @objc func repostHandler(){
+        let postDetails = ["uid" : userID,
+                           "author": username,
+                           "author_img":userImage,
+                           "content" : "Right now it's nothing :)",
+                           "Date" : Date(),
+                           "episode_link" : episode.fileUrl,
+                           "episode_img_link" : episode.imageUrl,
+                           "episode_name" : episode.title,
+                           "episode_desc" : episode.describtion] as [String : Any]
+        
+        var ref:DocumentReference? = nil
+                ref = self.fireStoreDatabaseRef.collection("Posts").addDocument(data: postDetails){
+                    error in
+        
+                    if let error = error {
+                        print("Error adding document \(error)")
+                    }else{
+                        print("Document inserted successfully with ID: \(ref!.documentID)")
+                        self.databaseRef.child("Timeline").child(self.userID!).childByAutoId().setValue("\(ref!.documentID)")
+                    }
+                }
+        
+        ref = self.fireStoreDatabaseRef
+            .collection("all_timelines")
+            .document(self.userID!)
+            .collection("timeline")
+            .addDocument(data: postDetails){
+                error in
+                
+                if let error = error {
+                    print("Error adding document \(error)")
+                }else{
+                    print("Document inserted successfully with ID: \(ref!.documentID)")
+                }
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Hide the navigation bar on the this view controller
@@ -153,6 +208,18 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func setUpDatabases(){
+        self.databaseRef = Database.database().reference()
+        self.userID = Auth.auth().currentUser?.uid
+        
+        self.databaseRef.child("usersInfo").child(userID!).observe(.value) { (snapshot) in
+            if let dictionary = snapshot.value as? [String:AnyObject]{
+                self.username = dictionary["username"] as? String
+                self.userImage = dictionary["profileImageURL"] as? String
+            }
+        }
     }
 }
 

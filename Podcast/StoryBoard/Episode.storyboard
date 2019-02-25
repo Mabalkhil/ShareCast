@@ -265,6 +265,7 @@
                         <outlet property="downloadButton" destination="nhE-GC-yra" id="bh5-h5-qGL"/>
                         <outlet property="episodeImage" destination="p4B-fj-d1j" id="KRJ-3e-c59"/>
                         <outlet property="playlistsCV" destination="PNE-A7-bTb" id="AKn-aR-hbb"/>
+                        <outlet property="rePostButton" destination="g3K-x2-iHv" id="aEy-qQ-PhP"/>
                         <outlet property="titleLabel" destination="bgx-BA-2FI" id="osl-Z8-xxd"/>
                     </connections>
                 </tableViewController>

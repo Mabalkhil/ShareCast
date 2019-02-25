@@ -22,6 +22,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     var continueButton:RoundedWhiteButton!
     var activityView:UIActivityIndicatorView!
     let ref = Database.database().reference(fromURL: "https://sharecast-c780f.firebaseio.com/")
+    var fireStoreDatabaseRef = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,6 +131,26 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                         self.present(alert,animated: true,completion: nil)
                     }
                 })
+                
+                var ref:DocumentReference? = nil
+                
+                let defaultData = ["uid" : "A100",
+                                   "author": "ShareCast.App",
+                                   "author_img":"appIcon",
+                                   "content" : "Welcome to this ShareCast",
+                                   "Date" : Date(),
+                                   "episode_link" : "",
+                                   "episode_img_link" : "",
+                                   "episode_name" : "",
+                                   "episode_desc" : ""] as [String : Any]
+                
+                ref = self.fireStoreDatabaseRef
+                    .collection("all_timelines")
+                    .document("\(uid)")
+                
+                ref?.collection("timeline")
+                    .document("A100")
+                    .setData(defaultData)
                 
                 let mainView = MainTabBarController()
                 self.present(mainView,animated: true,completion: nil)
