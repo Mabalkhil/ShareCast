@@ -16,7 +16,6 @@
 		2FC15E982201F4A600DF1FD4 /* BookmarkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC15E972201F4A600DF1FD4 /* BookmarkController.swift */; };
 		2FD789C62200E4D7006A47FE /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD789C52200E4D7006A47FE /* APIService.swift */; };
 		2FD789C82200E4EF006A47FE /* PlayerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD789C72200E4EE006A47FE /* PlayerDetailsViewController.swift */; };
-		2FD789CA2200E643006A47FE /* Bookmark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FD789C92200E643006A47FE /* Bookmark.storyboard */; };
 		2FE5C9992201FAEF00FCEE4E /* BookmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5C9982201FAEF00FCEE4E /* BookmarkCell.swift */; };
 		2FF0D74622175C7700F40025 /* playlistCellAddingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF0D74522175C7700F40025 /* playlistCellAddingCVC.swift */; };
 		3701CEDE220D294000684E18 /* MYAudioTapProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3701CEDB220D293F00684E18 /* MYAudioTapProcessor.m */; };
@@ -58,6 +57,7 @@
 		8F4FD70C220B3885000A06FC /* PlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4FD70B220B3885000A06FC /* PlayerHelper.swift */; };
 		9C44940753D94BD0785C9298 /* Pods_Podcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96503F0C3DF9B89F68700CAB /* Pods_Podcast.framework */; };
 		FA1AEC8E219414BD000B0882 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1AEC8D219414BD000B0882 /* PodcastCell.xib */; };
+		FA27471E22232E97002315FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA27471D22232E97002315FE /* User.swift */; };
 		FA397ED72195E66D00D33617 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA397ED62195E66D00D33617 /* SearchResults.swift */; };
 		FA397ED92195E68E00D33617 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA397ED82195E68E00D33617 /* Episode.swift */; };
 		FA49932A218DCD3E0021CFA3 /* PodcastSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA499329218DCD3D0021CFA3 /* PodcastSearchController.swift */; };
@@ -149,6 +149,7 @@
 		CF9AB54079E0B319EAB460DF /* Pods-Podcast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.release.xcconfig"; path = "Pods/Target Support Files/Pods-Podcast/Pods-Podcast.release.xcconfig"; sourceTree = "<group>"; };
 		DAB8A7A7632E63EB4EA43316 /* Pods_PodcastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PodcastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1AEC8D219414BD000B0882 /* PodcastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
+		FA27471D22232E97002315FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA397ED62195E66D00D33617 /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		FA397ED82195E68E00D33617 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		FA499329218DCD3D0021CFA3 /* PodcastSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastSearchController.swift; sourceTree = "<group>"; };
@@ -312,6 +313,7 @@
 				FA397ED82195E68E00D33617 /* Episode.swift */,
 				375DD44F2201F27D00C2D698 /* Playlist.swift */,
 				292111C422008D3A00B28DE2 /* Category.swift */,
+				FA27471D22232E97002315FE /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -463,7 +465,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				505B6C2B21F5C74F002E392D /* Episode.storyboard in Resources */,
-				50092BA02210AD9D00A05D06 /* subscriptions.storyboard in Resources */,
 				5018A44B21FF7DCF007EE027 /* Subscription.storyboard in Resources */,
 				FAFF82FA218CEB6C00882A6A /* LaunchScreen.storyboard in Resources */,
 				FAFF82F7218CEB6C00882A6A /* Assets.xcassets in Resources */,
@@ -503,10 +504,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ACBAVPlayer/ACBAVPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/FeedKit/FeedKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -514,10 +519,14 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ACBAVPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FeedKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -579,6 +588,7 @@
 				505B6C2821F5C74F002E392D /* Comment.swift in Sources */,
 				372023B0220374E900D0C555 /* addEpisodeToPlaylist.swift in Sources */,
 				50420F7B21A1113E0030CDB4 /* HilperExt.swift in Sources */,
+				FA27471E22232E97002315FE /* User.swift in Sources */,
 				50092B9C22109BA800A05D06 /* ChannelController.swift in Sources */,
 				50420FA221A12AF30030CDB4 /* SignInViewController.swift in Sources */,
 				50420F7721A083F80030CDB4 /* EntryViewController.swift in Sources */,
@@ -776,7 +786,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
 				DEVELOPMENT_TEAM = 6ABCB58568;
 				INFOPLIST_FILE = Podcast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -803,7 +812,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
 				DEVELOPMENT_TEAM = 6ABCB58568;
 				INFOPLIST_FILE = Podcast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

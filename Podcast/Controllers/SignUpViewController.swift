@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class SignUpViewController: UIViewController , UITextFieldDelegate{
 
@@ -22,6 +23,8 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     var continueButton:RoundedWhiteButton!
     var activityView:UIActivityIndicatorView!
     let ref = Database.database().reference(fromURL: "https://sharecast-c780f.firebaseio.com/")
+    let db = Firestore.firestore()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,8 +120,11 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
         Auth.auth().createUser(withEmail: email, password: pass) { user, error in
             if error == nil && user != nil {
                 guard let uid = user?.user.uid else {
+                    print("Error in creating user: \(error)")
                     return
                 }
+                
+                //Realtime Database
                 let userInfoRefrence = self.ref.child("usersInfo").child(uid)
                 let values =
                     ["email": email,"profileImgaeURL": "","firstName":firstName,"lastName":lastName,"username":"@\(username)"]
@@ -130,6 +136,23 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                         self.present(alert,animated: true,completion: nil)
                     }
                 })
+                
+                //Firestore
+              self.db.collection("usersInfo").document(uid).setData(User(dictionary: values)!.dictionary)
+                { error in
+                    if let err = error {
+                        let alert = UIAlertController(title: err.localizedDescription, message: "", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                        alert.addAction(action)
+                        self.present(alert,animated: true,completion: nil)
+                    }
+                    else{
+                        print("User added: \(User(dictionary: values)!.dictionary)")
+                    }
+
+                }
+                
+                
                 
                 let mainView = MainTabBarController()
                 self.present(mainView,animated: true,completion: nil)

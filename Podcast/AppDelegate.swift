@@ -9,6 +9,9 @@
 import UIKit
 import CoreData
 import Firebase
+import FirebaseFirestore
+
+
 
 let primaryColor = UIColor(red: 60/255, green: 133/255, blue: 198/255, alpha: 1)
 let secondaryColor = UIColor(red: 168/255, green: 153/255, blue: 153/255, alpha: 1)
@@ -21,7 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //configurations: Firebase - customization
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        FirebaseApp.configure()
+        
+        firebaseSetup()
+        
         window = UIWindow()
         window?.makeKeyAndVisible()
         window?.rootViewController = MainTabBarController()
@@ -105,6 +110,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    func firebaseSetup(){
+        
+        //launch Firebase
+        FirebaseApp.configure()
+        
+        //Configure Firestore to be presistant(work offline)
+        let settings = FirestoreSettings()
+        settings.isPersistenceEnabled = true
+        let db = Firestore.firestore()
+        db.settings = settings
     }
 
 }
