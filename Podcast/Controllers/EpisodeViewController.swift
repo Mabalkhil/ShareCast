@@ -217,7 +217,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         self.databaseRef.child("usersInfo").child(userID!).observe(.value) { (snapshot) in
             if let dictionary = snapshot.value as? [String:AnyObject]{
                 self.username = dictionary["username"] as? String
-                self.userImage = dictionary["profileImageURL"] as? String
+                self.userImage = dictionary["profileImgaeURL"] as? String
             }
         }
     }

@@ -33,25 +33,26 @@ class TimelineTVC: UITableViewCell {
         episode_desc.text = post.episode_desc
         comment.text = post.postContent
         
-        var url = URL(string: post.userImage!)
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-            if let err = error {
-                print(err)
-            }
-            DispatchQueue.main.async {
-                self.userImage.image = UIImage(data: data!)
-            }
-        }).resume()
-        
-        url = URL(string: post.episode_img_url!)
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-            if let err = error {
-                print(err)
-            }
-            DispatchQueue.main.async {
-                self.episode_image.image = UIImage(data: data!)
-            }
-        }).resume()
+//        var url = URL(string: post.userImage!)
+//        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+//            if let err = error {
+//                print(err)
+//            }
+//            DispatchQueue.main.async {
+//                self.userImage.image = UIImage(data: data!)
+//            }
+//        }).resume()
+        self.userImage.image = UIImage(named: "1400x1400-eagles_podcast-logo")
+        self.episode_image.image = UIImage(named: "1400x1400-eagles_podcast-logo")
+//       let url = URL(string: post.episode_img_url!)
+//        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+//            if let err = error {
+//                print(err)
+//            }
+//            DispatchQueue.main.async {
+//                self.episode_image.image = UIImage(data: data!)
+//            }
+//        }).resume()
     }
 
 }

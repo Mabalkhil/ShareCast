@@ -108,7 +108,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="comment" destination="ATO-Ry-YLO" id="L6E-Q2-Na6"/>
-                                            <outlet property="episodeView" destination="6fc-xt-G84" id="Ryf-UQ-uHw"/>
                                             <outlet property="episode_desc" destination="GMQ-n1-6TE" id="sit-Fc-0i4"/>
                                             <outlet property="episode_image" destination="dH0-7D-BE0" id="Cu3-jJ-rV8"/>
                                             <outlet property="episode_name" destination="bOl-d0-k53" id="PoU-0g-b3z"/>
