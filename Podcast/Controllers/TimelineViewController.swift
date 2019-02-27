@@ -18,6 +18,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        timeline.delegate = self
+        timeline.dataSource = self
+        
         loadData()
         checkForUpdate()
         // Do any additional setup after loading the view.
@@ -63,7 +67,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                             self.posts.append(Post(
                                 userName: DocumentChange.document.data()["author"] as! String,
                                 content: DocumentChange.document.data()["content"] as! String,
-                                img: (DocumentChange.document.data()["author_img"] as? String)!,
+                                img: DocumentChange.document.data()["author_img"] as! String,
                                 ep_name: DocumentChange.document.data()["episode_name"] as! String,
                                 ep_img: DocumentChange.document.data()["episode_img_link"] as! String,
                                 ep_desc: DocumentChange.document.data()["episode_desc"] as! String))

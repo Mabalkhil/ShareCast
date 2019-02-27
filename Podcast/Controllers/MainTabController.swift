@@ -25,7 +25,7 @@ class MainTabBarController: UITabBarController {
     //MARK: Setup Function
     fileprivate func setupViewControllers() {
         let homeNavController =
-            generateNavigationController(for: UIStoryboard(name: "Timeline", bundle: nil).instantiateViewController(withIdentifier: "TimelineSB"), title: "Home" , image: #imageLiteral(resourceName: "Home-1"))
+            generateNavigationController(for: ViewController(), title: "Home" , image: #imageLiteral(resourceName: "Home-1"))
         let searchNavController =
             generateNavigationController(for: UIStoryboard(name: "Discover", bundle: nil).instantiateViewController(withIdentifier: "discover"), title: "Discover" , image: #imageLiteral(resourceName: "Discover"))
         
@@ -55,10 +55,6 @@ class MainTabBarController: UITabBarController {
             homeNavController,searchNavController,chanellesController , ProfileController
             ] as! [UIViewController]
     }
-    
-    
-    
-    
     
     //MARK:- Helper Function
     fileprivate func generateNavigationController
