@@ -18,10 +18,15 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+<<<<<<< HEAD
         
         timeline.delegate = self
         timeline.dataSource = self
         
+=======
+        timeline.delegate = self
+        timeline.dataSource = self
+>>>>>>> 9c69bfcda2d5409cb3582b360ecd78eeaea66f32
         loadData()
         checkForUpdate()
         // Do any additional setup after loading the view.
@@ -63,11 +68,18 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                     guard let snapshot = QuerySnapshot else {return }
                     
                     snapshot.documentChanges.forEach({ (DocumentChange) in
+                         print(DocumentChange.document.data()["author_img"] as! String)
+                        print(DocumentChange.document.data()["uid"] )
                         if DocumentChange.type == .added {
                             self.posts.append(Post(
                                 userName: DocumentChange.document.data()["author"] as! String,
+<<<<<<< HEAD
                                 content: DocumentChange.document.data()["content"] as! String,
                                 img: DocumentChange.document.data()["author_img"] as! String,
+=======
+                               content: DocumentChange.document.data()["content"] as! String,
+                                img: (DocumentChange.document.data()["author_img"] as? String)!,
+>>>>>>> 9c69bfcda2d5409cb3582b360ecd78eeaea66f32
                                 ep_name: DocumentChange.document.data()["episode_name"] as! String,
                                 ep_img: DocumentChange.document.data()["episode_img_link"] as! String,
                                 ep_desc: DocumentChange.document.data()["episode_desc"] as! String))
