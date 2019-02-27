@@ -151,7 +151,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         var ref:DocumentReference? = nil
                 ref = self.fireStoreDatabaseRef.collection("Posts").addDocument(data: postDetails){
                     error in
-        
                     if let error = error {
                         print("Error adding document \(error)")
                     }else{
@@ -166,7 +165,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             .collection("timeline")
             .addDocument(data: postDetails){
                 error in
-                
                 if let error = error {
                     print("Error adding document \(error)")
                 }else{
@@ -174,7 +172,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
                 }
         }
         
-        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {

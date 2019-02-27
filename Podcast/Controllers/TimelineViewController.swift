@@ -62,7 +62,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                     
                     snapshot.documentChanges.forEach({ (DocumentChange) in
                          print(DocumentChange.document.data()["author_img"] as! String)
-                        print(DocumentChange.document.data()["uid"] )
+                        print(DocumentChange.document.data()["uid"])
                         if DocumentChange.type == .added {
                             self.posts.append(Post(
                                 userName: DocumentChange.document.data()["author"] as! String,
