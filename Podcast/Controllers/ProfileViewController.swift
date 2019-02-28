@@ -18,6 +18,8 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     let reffStor = Storage.storage().reference(forURL: "gs://sharecast-c780f.appspot.com").child("profile_Image")
     let reffDtatabase = Database.database().reference()
     let uid = Auth.auth().currentUser?.uid
+    let chache = NSCache<NSString,UIImage>()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,20 +37,21 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     }
     
     func setUpProfilePic(){
+        let chacheKey = reffStor.child("\(self.uid!).png").fullPath as NSString
+        if let cachedImage = chache.object(forKey: chacheKey) {
+            self.ProfileImage.image = cachedImage
+        }else{
         reffDtatabase.child("usersInfo").child(uid!).observe(.value) { (snapshot) in
             if let dictionary = snapshot.value as? [String:AnyObject]{
                 let profileUrl = dictionary["profileImgaeURL"] as? String
-                if profileUrl == "" {
-                    self.ProfileImage.image = UIImage(named: "Logo")
-                }else {
                     let url = URL(string: profileUrl!)
                     URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
                         if let err = error {
                             print(err)
                         }
                         DispatchQueue.main.async {
-                            self.ProfileImage.image = UIImage(data: data!)
-                        }
+                        self.ProfileImage.image = UIImage(data: data!)
+                    }
                     }).resume()
                 }
             }
@@ -74,10 +77,15 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
             return
         }
         ProfileImage.image = seletedImage
-        guard let uploadData = seletedImage.pngData() else {
+        guard let uploadData = seletedImage.jpeg(.lowest) else {
             return
         }
-      
+        // cahching the image
+        let chacheKey = reffStor.child("\(self.uid!).png").fullPath as NSString
+        print(chacheKey)
+        print(seletedImage)
+        chache.setObject(seletedImage, forKey: chacheKey)
+        
         reffStor.child("\(self.uid!).png").putData(uploadData, metadata: nil) { (metadata, error) in
             if let err = error {
                 print(err)
@@ -87,14 +95,12 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
                 if let err = error {
                     print(err)
                 }else{
-self.self.reffDtatabase.child("usersInfo").child(self.uid!).updateChildValues(["profileImgaeURL":url?.absoluteString])
+                    self.reffDtatabase.child("usersInfo").child(self.uid!).updateChildValues(["profileImgaeURL":url?.absoluteString])
                 }
             })
         
     }
 
-// let uid = Auth.auth().currentUser?.uid
-// reffDtatabase.child("users").child(uid).updateChildValues(["profileImage" : metadata.u])
     picker.dismiss(animated: true, completion: nil)
 }
     

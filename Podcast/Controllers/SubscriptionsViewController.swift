@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 class SubscriptionsViewController: UITableViewController {
         let reff = Database.database().reference()
-        var channels = [Podcast]()
+        var channelSub = [Podcast]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +57,7 @@ class SubscriptionsViewController: UITableViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destination = segue.destination as! ChannelController
                 // dont assign value directly because the destinition view visual component not created yet
-                destination.podcast = self.channels[indexPath.row]
+                destination.podcast = self.channelSub[indexPath.row]
               
                 
             }
@@ -66,13 +66,13 @@ class SubscriptionsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return channels.count
+        return channelSub.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! PodcastCell
-        let channel = channels[indexPath.row]
+        let channel = channelSub[indexPath.row]
         cell.podcast = channel
         return cell
     }
@@ -82,23 +82,34 @@ class SubscriptionsViewController: UITableViewController {
             return
         }
         print(currUser)
-        var url = [String]()
+        var channel = Podcast()
          reff.child("usersInfo").child(currUser).child("Subscription").observeSingleEvent(of: .value) { (snapshot) in
-            for case let urls as DataSnapshot in snapshot.children {
-                 url.append(urls.value as! String)
-                print(urls)
+            for case let rest as DataSnapshot in snapshot.children {
+                
+                let channelObj = rest.value as! [String:Any]
+                channel.artistName = channelObj["channelAuthor"] as! String
+                 channel.trackName = channelObj["channelName"] as! String
+                 channel.artworkUrl600 = channelObj["channelImageURL"] as! String
+                 channel.feedUrl = channelObj["channelURL"] as! String
+                channel.trackCount = channelObj["EpisodeCount"]  as! Int
+                self.channelSub.append(channel)
+        
             }
-            let apiObject = APIService.init()
-            apiObject.fetchChannels(feedUrls: url, completionHandler: { (podcast) in
-                self.channels = podcast
-                print("sooooommthing here \(self.channels[0].artistName)" )
-                 print("sooooommthing here \(self.channels[1].artistName)" )
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
                 self.tableView.reloadData()
-                }
-                return
-            })
+            }
         }
     }
     
 }
+
+//self.firebaseSubReff.child(uid).child("Subscription").observeSingleEvent(of: .value) { (snapshot) in
+//    for case let rest as DataSnapshot in snapshot.children {
+//        let key = rest.key
+//        let channelObj = rest.value as! [String:Any]
+//        if channelObj["channelURL"] as! String == self.podcast?.feedUrl {
+//            self.firebaseSubReff.child(uid).child("Subscription").child(key).removeValue()
+//            break
+//        }
+//    }
+//}

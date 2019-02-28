@@ -28,12 +28,13 @@ class TimelineTVC: UITableViewCell {
     }
     
     func setAttributes(post:Post){
-         var url = URL(string: post.episode_img_url!)
-        episode_image?.sd_setImage(with: url, completed: nil)
+
         usernameLabel.text = post.username
         episode_name.text = post.episode_name
         episode_desc.text = post.episode_desc
         comment.text = post.postContent
+        var url = URL(string: post.episode_img_url!)
+        episode_image?.sd_setImage(with: url, completed: nil)
          url = URL(string: post.userImage!)
         URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
             if let err = error {
