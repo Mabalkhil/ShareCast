@@ -101,9 +101,9 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let playlist = playlists[indexPath.row]
+         UserDefaults.standard.deletePlaylist(playlist: playlist, name: playlists[indexPath.row].playlistName!)
         playlists.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
-        UserDefaults.standard.deletePlaylist(playlist: playlist)
         viewDidLoad()
     }
     

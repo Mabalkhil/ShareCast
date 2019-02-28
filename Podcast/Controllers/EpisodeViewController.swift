@@ -106,6 +106,11 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         UserDefaults.standard.downloadEpisode(episode: episode.self)
         APIService.shared.downloadEpisode(episode: episode.self)
         //downloadButton.setImage(#imageLiteral(resourceName: "download_Done"), for: .normal)
+        if let tabItems = tabBarController?.tabBar.items {
+            // In this case we want to modify the badge number of the third tab:
+            let tabItem = tabItems[2]
+            tabItem.badgeValue = "1"
+        }
     }
     
     @objc func handelDismiss(){

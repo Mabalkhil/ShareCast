@@ -19,8 +19,6 @@ class SubscriptionsViewController: UITableViewController {
         tableView.register(nib, forCellReuseIdentifier: "cellId")
         tableView.delegate = self
         tableView.dataSource = self
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
