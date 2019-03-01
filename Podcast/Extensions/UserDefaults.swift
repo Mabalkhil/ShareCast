@@ -13,6 +13,8 @@ extension UserDefaults {
     static let downloadedEpisodeKey = "downloadedEpisodeKey"
     static let playlistsKey = "playlistsKey"
     static let bookmarkedEpisodeKey = "bookmarkedEpisodeKey"
+    static let trackedEpisodeKey = "trackedEpisodeKey"
+    
     
     func downloadEpisode(episode: Episode){
         
@@ -237,6 +239,63 @@ extension UserDefaults {
     
     
     
+    
+    
+    
+    
+    // adding a new episode inside a playlist
+    func trackedEpisode(episodeTitle: String, time: String){
+        
+        do{
+            var episodes = trackedEpisodes(title: episodeTitle, time: time)
+            
+            if episodes.isEmpty {
+                episodes[episodeTitle] = time
+            } else {
+                if (episodes[episodeTitle] != nil) {
+                    episodes[episodeTitle] = time
+                }
+                else {
+                     episodes[episodeTitle] = time
+                }
+            }
+            
+            
+            let data = try JSONEncoder().encode(episodes)
+            UserDefaults.standard.set(data, forKey: UserDefaults.trackedEpisodeKey)
+            
+        }catch let encodeErr {
+            
+            print("Failed to encode episode", encodeErr)
+            
+        }
+    }
+    
+    
+    
+    
+    // episodes inside a playlist
+    func  trackedEpisodes(title: String, time: String) -> [String: String]{
+        guard let trackedEpisodesData = UserDefaults.standard.data(forKey: UserDefaults.trackedEpisodeKey) else { return [:]}
+        print(trackedEpisodesData)
+        print("TRACK")
+        
+        do{
+            let episodes = try JSONDecoder().decode([String:String].self, from: trackedEpisodesData)
+            return episodes
+        }catch let decodeErr{
+            print("failed to decode:",decodeErr)
+        }
+        
+        return [:]
+    }
+    
+    
+    
+    
+    
+    
+    
     func deleteBookmarkedEpisode(episode: Episode) {
         let savedEpisodes = bookmarkedEpisodes()
         let filteredEpisodes = savedEpisodes.filter { (e) -> Bool in
@@ -251,6 +310,15 @@ extension UserDefaults {
             print("Failed to encode episode:", encodeErr)
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+ 
     
     
 }

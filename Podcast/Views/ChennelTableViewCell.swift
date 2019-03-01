@@ -22,17 +22,21 @@ class ChennelTableViewCell: UITableViewCell {
             descriptionLabel.text = episode.describtion
             
             let seconds = episode.time
+            var rem_seconds = 0.0
+            var minutes = 0.0
+            var hours = 0.0
             //print(millis!)
-            var rem_seconds = (seconds!).truncatingRemainder(dividingBy: 3600).truncatingRemainder(dividingBy: 60)
-            var minutes = (seconds!/(60)).truncatingRemainder(dividingBy: 60)
-            //minutes = Int(minutes)
-            var hours = (seconds!/(60*60)).truncatingRemainder(dividingBy: 24)
+            if (seconds != nil){
+                rem_seconds = (seconds!).truncatingRemainder(dividingBy: 3600).truncatingRemainder(dividingBy: 60)
+                minutes = (seconds!/(60)).truncatingRemainder(dividingBy: 60)
+                hours = (seconds!/(60*60)).truncatingRemainder(dividingBy: 24)
+            }
             durationLabel.text = String(format:"%02d:%02d:%02d",Int(hours), Int(minutes), Int(rem_seconds))
+
+            
 //            let dateFormatter = DateFormatter()
 //            dateFormatter.dateFormat = "dd MMM, yyyy"
 //            durationLabel.text = dateFormatter.string(from: episode.pubDate)
-            
-            
 //           let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
 //            episodeImageView.sd_setImage(with: url)
             

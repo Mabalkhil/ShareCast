@@ -16,7 +16,6 @@
 		2FC15E982201F4A600DF1FD4 /* BookmarkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC15E972201F4A600DF1FD4 /* BookmarkController.swift */; };
 		2FD789C62200E4D7006A47FE /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD789C52200E4D7006A47FE /* APIService.swift */; };
 		2FD789C82200E4EF006A47FE /* PlayerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD789C72200E4EE006A47FE /* PlayerDetailsViewController.swift */; };
-		2FD789CA2200E643006A47FE /* Bookmark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FD789C92200E643006A47FE /* Bookmark.storyboard */; };
 		2FE5C9992201FAEF00FCEE4E /* BookmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5C9982201FAEF00FCEE4E /* BookmarkCell.swift */; };
 		2FF0D74622175C7700F40025 /* playlistCellAddingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF0D74522175C7700F40025 /* playlistCellAddingCVC.swift */; };
 		3701CEDE220D294000684E18 /* MYAudioTapProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3701CEDB220D293F00684E18 /* MYAudioTapProcessor.m */; };
@@ -55,7 +54,7 @@
 		506217DA21FB26C20003F99F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506217D921FB26C20003F99F /* ProfileView.swift */; };
 		5092F02E2206EEDE00B3F376 /* ResetPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */; };
 		50A43E5D221809560074B70A /* SubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A43E5C221809560074B70A /* SubscriptionsViewController.swift */; };
-		8F4FD70C220B3885000A06FC /* PlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4FD70B220B3885000A06FC /* PlayerHelper.swift */; };
+		8FC75C842223B83000F07375 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FC75C832223B83000F07375 /* AudioToolbox.framework */; };
 		9C44940753D94BD0785C9298 /* Pods_Podcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96503F0C3DF9B89F68700CAB /* Pods_Podcast.framework */; };
 		FA1AEC8E219414BD000B0882 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1AEC8D219414BD000B0882 /* PodcastCell.xib */; };
 		FA397ED72195E66D00D33617 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA397ED62195E66D00D33617 /* SearchResults.swift */; };
@@ -143,7 +142,8 @@
 		5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassViewController.swift; sourceTree = "<group>"; };
 		50A43E5C221809560074B70A /* SubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewController.swift; sourceTree = "<group>"; };
 		6847BD8DB3712F94D9BA0552 /* Pods-Podcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Podcast/Pods-Podcast.debug.xcconfig"; sourceTree = "<group>"; };
-		8F4FD70B220B3885000A06FC /* PlayerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerHelper.swift; sourceTree = "<group>"; };
+		8FC75C832223B83000F07375 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		8FC75C852223B83000F07375 /* Podcast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Podcast.entitlements; sourceTree = "<group>"; };
 		9190023BC87AACCDD01077AB /* Pods_PodcastUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PodcastUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96503F0C3DF9B89F68700CAB /* Pods_Podcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Podcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF9AB54079E0B319EAB460DF /* Pods-Podcast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.release.xcconfig"; path = "Pods/Target Support Files/Pods-Podcast/Pods-Podcast.release.xcconfig"; sourceTree = "<group>"; };
@@ -169,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C44940753D94BD0785C9298 /* Pods_Podcast.framework in Frameworks */,
+				8FC75C842223B83000F07375 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,19 +242,12 @@
 		50B99E38725A014450D57A4E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8FC75C832223B83000F07375 /* AudioToolbox.framework */,
 				96503F0C3DF9B89F68700CAB /* Pods_Podcast.framework */,
 				DAB8A7A7632E63EB4EA43316 /* Pods_PodcastTests.framework */,
 				9190023BC87AACCDD01077AB /* Pods_PodcastUITests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8F4FD70A220B3864000A06FC /* PlayerHelper */ = {
-			isa = PBXGroup;
-			children = (
-				8F4FD70B220B3885000A06FC /* PlayerHelper.swift */,
-			);
-			path = PlayerHelper;
 			sourceTree = "<group>";
 		};
 		FA1AEC8821940F92000B0882 /* Views */ = {
@@ -339,7 +333,7 @@
 		FAFF82EB218CEB6400882A6A /* Podcast */ = {
 			isa = PBXGroup;
 			children = (
-				8F4FD70A220B3864000A06FC /* PlayerHelper */,
+				8FC75C852223B83000F07375 /* Podcast.entitlements */,
 				50533FDD21EFA3F500D50698 /* StoryBoard */,
 				50420FA021A1229C0030CDB4 /* Assets */,
 				50420F7C21A1114E0030CDB4 /* Extensions */,
@@ -426,6 +420,17 @@
 					FAFF82E8218CEB6400882A6A = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.HomeKit = {
+								enabled = 0;
+							};
+							com.apple.InterAppAudio = {
+								enabled = 1;
+							};
+						};
 					};
 					FAFF82FF218CEB6D00882A6A = {
 						CreatedOnToolsVersion = 10.1;
@@ -463,7 +468,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				505B6C2B21F5C74F002E392D /* Episode.storyboard in Resources */,
-				50092BA02210AD9D00A05D06 /* subscriptions.storyboard in Resources */,
 				5018A44B21FF7DCF007EE027 /* Subscription.storyboard in Resources */,
 				FAFF82FA218CEB6C00882A6A /* LaunchScreen.storyboard in Resources */,
 				FAFF82F7218CEB6C00882A6A /* Assets.xcassets in Resources */,
@@ -590,7 +594,6 @@
 				3723A1FB21A9D18400D5FAE9 /* RSSFeed.swift in Sources */,
 				FA49932D218DD04F0021CFA3 /* Podcast.swift in Sources */,
 				5018A44F21FF7DCF007EE027 /* DownloadEpisodeCell.swift in Sources */,
-				8F4FD70C220B3885000A06FC /* PlayerHelper.swift in Sources */,
 				FAFF82ED218CEB6400882A6A /* AppDelegate.swift in Sources */,
 				3723A1F921A9CDD100D5FAE9 /* String.swift in Sources */,
 				50A43E5D221809560074B70A /* SubscriptionsViewController.swift in Sources */,
@@ -774,17 +777,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Podcast/Podcast.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				DEVELOPMENT_TEAM = 6ABCB58568;
+				DEVELOPMENT_TEAM = DE8JGZ394K;
 				INFOPLIST_FILE = Podcast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fm.sharecast.Podcast1;
+				PRODUCT_BUNDLE_IDENTIFIER = "-21119";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
@@ -801,17 +804,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Podcast/Podcast.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				DEVELOPMENT_TEAM = 6ABCB58568;
+				DEVELOPMENT_TEAM = DE8JGZ394K;
 				INFOPLIST_FILE = Podcast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fm.sharecast.Podcast1;
+				PRODUCT_BUNDLE_IDENTIFIER = "-21119";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
