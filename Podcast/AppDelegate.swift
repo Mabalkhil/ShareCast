@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.tintColor = UIColor.white
-        //navigationBarAppearace.barTintColor = UIColor.white
+        navigationBarAppearace.barTintColor = UIColor.white
         
         // change navigation item title color
         navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]

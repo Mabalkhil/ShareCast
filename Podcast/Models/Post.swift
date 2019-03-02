@@ -15,14 +15,16 @@ class Post: NSObject {
     var episode_name:String?
     var episode_img_url:String?
     var episode_desc:String?
+    var post_id:String?
     
-    init(userName:String, content:String, img:String, ep_name:String, ep_img:String, ep_desc:String) {
+    init(userName:String, content:String, img:String, ep_name:String, ep_img:String, ep_desc:String, postID:String) {
         self.username = userName
         self.postContent = content
         self.userImage = img
         self.episode_name = ep_name
         self.episode_img_url = ep_img
         self.episode_desc = ep_desc
+        self.post_id = postID
     }
 }
 

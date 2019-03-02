@@ -153,7 +153,8 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     @objc func createNewPost(){
-        let postDetails = ["uid" : userID,
+        var ref:DocumentReference? = nil
+        var postDetails = ["uid" : userID,
                            "author": username,
                            "author_img":userImage,
                            "content" : postContentTV.text,
@@ -163,8 +164,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
                            "episode_name" : episode.title,
                            "episode_desc" : episode.describtion] as [String : Any]
         
-        var ref:DocumentReference? = nil
-
         ref = self.fireStoreDatabaseRef.collection("Posts").addDocument(data: postDetails){
             error in
             
@@ -176,9 +175,31 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             }
         }
 
+        postDetails = ["uid" : userID,
+                           "author": username,
+                           "author_img":userImage,
+                           "content" : postContentTV.text,
+                           "Date" : Date(),
+                           "episode_link" : episode.fileUrl,
+                           "episode_img_link" : episode.imageUrl,
+                           "episode_name" : episode.title,
+                           "episode_desc" : episode.describtion,
+                           "post_id" : ""] as [String : Any]
+        ref = self.fireStoreDatabaseRef
+            .collection("general_timelines")
+            .document(self.userID!)
+            .collection("timeline")
+            .addDocument(data: postDetails){
+                error in
+                if let error = error {
+                    print("Error adding document \(error)")
+                }else{
+                    print("Document inserted successfully with ID: \(ref!.documentID)")
+                }
+        }
         
         ref = self.fireStoreDatabaseRef
-            .collection("all_timelines")
+            .collection("private_timelines")
             .document(self.userID!)
             .collection("timeline")
             .addDocument(data: postDetails){

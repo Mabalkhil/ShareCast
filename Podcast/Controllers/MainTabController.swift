@@ -21,6 +21,7 @@ class MainTabBarController: UITabBarController {
         tabBar.barTintColor = UIColor(red: 47/255, green:47/255, blue:47/255, alpha: 1.0)
         setupViewControllers()
         setUpPlayerDetailsview()
+        UIApplication.shared.keyWindow?.rootViewController = self
     }
     //MARK: Setup Function
     fileprivate func setupViewControllers() {
