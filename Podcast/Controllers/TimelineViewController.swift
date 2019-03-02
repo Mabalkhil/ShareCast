@@ -27,7 +27,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     func loadData() {
         let userID = Auth.auth().currentUser?.uid
-        db.collection("all_timelines")
+        db.collection("general_timelines")
             .document(userID!)
             .collection("timeline").order(by: "Date", descending: true)
             .getDocuments(){
@@ -35,13 +35,15 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 if let error = error {
                     print("\(error.localizedDescription)")
                 }else{
-                    self.posts = (QuerySnapshot?.documents.flatMap({
+                    self.posts = (QuerySnapshot?.documents
+                        .flatMap({
                         Post(userName: $0.data()["author"] as! String,
                              content: $0.data()["content"] as! String,
                              img: $0.data()["author_img"] as! String,
                              ep_name: $0.data()["episode_name"] as! String,
                              ep_img: $0.data()["episode_img_link"] as! String,
-                             ep_desc: $0.data()["episode_desc"] as! String)}))!
+                             ep_desc: $0.data()["episode_desc"] as! String,
+                             postID: $0.documentID as! String)}))!
                     DispatchQueue.main.async {
                         self.timeline.reloadData()
                     }
@@ -51,7 +53,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     func checkForUpdate() {
         let userID = Auth.auth().currentUser?.uid
-        db.collection("all_timelines")
+        db.collection("general_timelines")
             .document(userID!)
             .collection("timeline")
             .addSnapshotListener { QuerySnapshot, Error in
@@ -61,8 +63,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                     guard let snapshot = QuerySnapshot else {return }
                     
                     snapshot.documentChanges.forEach({ (DocumentChange) in
-                         print(DocumentChange.document.data()["author_img"] as! String)
-                        print(DocumentChange.document.data()["content"] as! String)
                         if DocumentChange.type == .added {
                             self.posts.insert(Post(
                                 userName: DocumentChange.document.data()["author"] as! String,
@@ -70,7 +70,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                                 img: (DocumentChange.document.data()["author_img"] as? String)!,
                                 ep_name: DocumentChange.document.data()["episode_name"] as! String,
                                 ep_img: DocumentChange.document.data()["episode_img_link"] as! String,
-                                ep_desc: DocumentChange.document.data()["episode_desc"] as! String), at: 0)
+                                ep_desc: DocumentChange.document.data()["episode_desc"] as! String,
+                                postID: DocumentChange.document.documentID as! String), at: 0)
                             DispatchQueue.main.async {
                                 self.timeline.reloadData()
                             }
@@ -88,6 +89,31 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = timeline.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! TimelineTVC
         cell.setAttributes(post: posts[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let post_id = self.posts[indexPath.row].post_id
+        let userID = Auth.auth().currentUser?.uid
+        
+        db.collection("general_timelines")
+            .document(userID!)
+            .collection("timeline").document(post_id!).delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
+                }
+        }
+        db.collection("private_timelines")
+            .document(userID!)
+            .collection("timeline").document(post_id!).delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
+                }
+        }
+        timeline.reloadData()
     }
 
 }

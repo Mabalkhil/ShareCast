@@ -16,6 +16,7 @@ class TimelineTVC: UITableViewCell {
     @IBOutlet weak var episode_image: UIImageView?
     @IBOutlet weak var episode_name: UILabel!
     @IBOutlet weak var episode_desc: UITextView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -33,8 +34,10 @@ class TimelineTVC: UITableViewCell {
         episode_name.text = post.episode_name
         episode_desc.text = post.episode_desc
         comment.text = post.postContent
+        
         var url = URL(string: post.episode_img_url!)
         episode_image?.sd_setImage(with: url, completed: nil)
+        
          url = URL(string: post.userImage!)
         URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
             if let err = error {
@@ -44,16 +47,6 @@ class TimelineTVC: UITableViewCell {
                 self.userImage.image = UIImage(data: data!)
             }
         }).resume()
- 
-//       let url = URL(string: post.episode_img_url!)
-//        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-//            if let err = error {
-//                print(err)
-//            }
-//            DispatchQueue.main.async {
-//                self.episode_image.image = UIImage(data: data!)
-//            }
-//        }).resume()
     }
 
 }
