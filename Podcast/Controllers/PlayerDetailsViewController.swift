@@ -172,10 +172,6 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
         }
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .mixWithOthers)
-            print("Playback OK")
-            //self.player.allowsExternalPlayback = true
-            // self.player.isExternalPlaybackActive = true
-            
             try AVAudioSession.sharedInstance().setActive(true)
             print("Session is Active")
         } catch {
@@ -212,13 +208,11 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
             player.play()
             isPlaying = true
             smartSpeedButton.isEnabled = false
+            smartSpeedButton.isHidden = true
+            SSLabel.isHidden = true
+            
         }
     }
-    
-    
-
-
-    
     
     //MARK:- Play & Pause
     //the pause button
@@ -242,7 +236,18 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
             isPlaying = false
         }
         print ("Time skiped" ,skiped)
-        UserDefaults.standard.trackedEpisodes(title: self.episode.title, time: self.player.currentTime().toDisplayString())
+//        guard let duration = player.currentItem?.duration else { return }
+//        let durationInSeconds = CMTimeGetSeconds(duration)
+        UserDefaults.standard.trackedEpisode(episodeTitle: self.episode.title, time: Double(getDurationInSeconds()))
+    }
+    
+    
+    fileprivate func getDurationInSeconds() -> Float {
+        guard let duration = player.currentItem?.currentTime() else { return 0.0}
+        let durationInSeconds = Float(CMTimeGetSeconds(duration))
+        print("*************")
+        print(durationInSeconds)
+        return durationInSeconds
     }
     
     //MARK:- Other Playing related stuff
@@ -274,8 +279,7 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
         let time: CMTime = CMTimeMakeWithSeconds(Float64(skipTime), preferredTimescale: timeScale) //////
         let seekTime = CMTimeAdd(player.currentTime(), time)
         player.seek(to: seekTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
-        print("Seeking... " )
-        print(timeScale)
+        
     }
     
     //controlling volume
@@ -341,7 +345,6 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
                         let time  = episode.timeStamps![i]
                         self.marks.append(Mark.init(time: time, desc: title))
                     }
-                    
                 }
                 setTable()
             }
@@ -361,6 +364,10 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
         // in both cases, the player will be showen
         let app = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
         if (self.episode == nil || episode.title != self.episode.title) {
+            if (self.episode != nil ) {
+                print(getDurationInSeconds())
+                UserDefaults.standard.trackedEpisode(episodeTitle: self.episode.title, time: Double(getDurationInSeconds()))
+            }
             player.stop()
             self.episode = episode
             self.marks.removeAll() // remove all time marks from before
@@ -374,7 +381,13 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
             setScrollView()
             smallPlayerPlay.setImage(#imageLiteral(resourceName: "PauseButton"), for: .normal)
             playPauseButton.setImage(#imageLiteral(resourceName: "PauseButton"), for: .normal)
+            var tracked = UserDefaults.standard.trackedEpisodes()
             playEpisode()
+            if tracked[episode.title] != nil {
+                let time = tracked[episode.title] as! Double
+                let time_to: CMTime = CMTimeMakeWithSeconds(Float64(time), preferredTimescale: 600) //////
+                self.player.seek(to: time_to)
+            }
             self.setupNowPlayingInfo()
         }
         else {
@@ -392,7 +405,7 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
         scrollView.frame = CGRect(x: 0.0, y: 0.0, width: screenWidth, height: screenHeight/2.0)
-        
+        //view.insertSubview(self.smallPlayer)
         // small player settings
         smallPlayer.layer.cornerRadius = smallPlayer.frame.height/2
         smallPlayer.clipsToBounds = true
@@ -408,6 +421,7 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
         //(UISwipeGestureRecognizer(target: self, action: #selector(dismissSmallPlayer)).direction = .left)
     }
     
+
     @objc func dismissSmallPlayer() {
         let offScreen = -smallPlayer.frame.width
         let y = smallPlayer.frame.minX
@@ -491,21 +505,14 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
     @objc func findSilences() {
             guard isPlaying == true else { return }
             if smartSpeedToggle == true{
-            player.updateMeters()
-            if left < decibelThreshold && player.rate != 2 && left != Float(0){
-                print("0.1 seconds were skiped")
-                skiped = skiped + 0.1
-                let skipTime = 0.1
-                self.seekToCurrentTime(delta: skipTime)
-            } //else if player.rate != 1 && left > decibelThreshold && left != Float(0){
-//                    print("b")
-//                    //player.rate = 1
-//            }
-//
-           }//else{
-//                player.rate = 1
-//                timerTest!.invalidate()
-//            }
+                player.updateMeters()
+                if left < decibelThreshold && player.rate != 2 && left != Float(0){
+                    print("0.1 seconds were skiped")
+                    skiped = skiped + 0.1
+                    let skipTime = 0.1
+                    self.seekToCurrentTime(delta: skipTime)
+                }
+           }
     }
     
     
@@ -513,4 +520,3 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
 
 
 
-//player.seek(to: CMTimeMakeWithSeconds(value, duration), toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)

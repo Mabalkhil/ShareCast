@@ -244,10 +244,10 @@ extension UserDefaults {
     
     
     // adding a new episode inside a playlist
-    func trackedEpisode(episodeTitle: String, time: String){
+    func trackedEpisode(episodeTitle: String, time: Double){
         
         do{
-            var episodes = trackedEpisodes(title: episodeTitle, time: time)
+            var episodes = trackedEpisodes()
             
             if episodes.isEmpty {
                 episodes[episodeTitle] = time
@@ -275,13 +275,14 @@ extension UserDefaults {
     
     
     // episodes inside a playlist
-    func  trackedEpisodes(title: String, time: String) -> [String: String]{
+    func  trackedEpisodes() -> [String: Double]{
         guard let trackedEpisodesData = UserDefaults.standard.data(forKey: UserDefaults.trackedEpisodeKey) else { return [:]}
-        print(trackedEpisodesData)
+        //print(trackedEpisodesData)
         print("TRACK")
         
         do{
-            let episodes = try JSONDecoder().decode([String:String].self, from: trackedEpisodesData)
+            let episodes = try JSONDecoder().decode([String:Double].self, from: trackedEpisodesData)
+            print(episodes)
             return episodes
         }catch let decodeErr{
             print("failed to decode:",decodeErr)
