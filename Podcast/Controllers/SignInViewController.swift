@@ -48,7 +48,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         emailField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         passwordField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         
-        
+        // to dismiss the keyboard
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:  #selector(SignInViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
         
        // let tap = UITapGestureRecognizer(target: self, action: #selector(backTomain))
        // back.isUserInteractionEnabled=true
@@ -57,6 +59,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         
     }
     
+    //Calls this function when the tap is recognized.
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+
 
     @objc func textFieldChanged(_ target:UITextField) {
         let email = emailField.text
