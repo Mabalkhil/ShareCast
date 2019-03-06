@@ -175,15 +175,17 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         guard let seletedImage = selectedImageFromPicker else {
             return
         }
-        ProfileImage.image = seletedImage
-        guard let uploadData = seletedImage.jpeg(.lowest) else {
+        
+        let compressedImage = resizeImage(image: seletedImage, newWidth: 250)
+        ProfileImage.image = compressedImage
+        guard let uploadData = compressedImage!.jpeg(.lowest) else {
             return
         }
         // cahching the image
         let chacheKey = reffStor.child("\(self.uid!).png").fullPath as NSString
         print(chacheKey)
-        print(seletedImage)
-        chache.setObject(seletedImage, forKey: chacheKey)
+        print(compressedImage)
+        chache.setObject(compressedImage!, forKey: chacheKey)
         
         reffStor.child("\(self.uid!).png").putData(uploadData, metadata: nil) { (metadata, error) in
             if let err = error {
@@ -197,11 +199,22 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
                     self.reffDtatabase.child("usersInfo").child(self.uid!).updateChildValues(["profileImgaeURL":url?.absoluteString])
                 }
             })
-        
-    }
+        }
 
     picker.dismiss(animated: true, completion: nil)
-}
+    }
+    
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
+        
+        let newHeight = newWidth
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
          picker.dismiss(animated: true, completion: nil)

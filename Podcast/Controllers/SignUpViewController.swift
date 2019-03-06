@@ -21,6 +21,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     
     var continueButton:RoundedWhiteButton!
     var activityView:UIActivityIndicatorView!
+    var fireStoreDatabaseRef = Firestore.firestore()
     let ref = Database.database().reference(fromURL: "https://sharecast-c780f.firebaseio.com/")
     
     override func viewDidLoad() {
@@ -130,6 +131,20 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                         self.present(alert,animated: true,completion: nil)
                     }
                 })
+                
+                var ref:DocumentReference? = nil
+                
+                let postDetails = ["username" : username]
+                ref = self.fireStoreDatabaseRef
+                    .collection("all_usernames")
+                    .addDocument(data: postDetails){
+                        error in
+                        if let error = error {
+                            print("Error adding document \(error)")
+                        }else{
+                            print("Document inserted successfully with ID: \(ref!.documentID)")
+                        }
+                }
                 
                 let mainView = MainTabBarController()
                 self.present(mainView,animated: true,completion: nil)
