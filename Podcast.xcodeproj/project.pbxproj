@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		290E0C4A223044210000E7DF /* PeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290E0C49223044210000E7DF /* PeopleCell.swift */; };
+		290E0C4C223063D90000E7DF /* UsersProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 290E0C4B223063D90000E7DF /* UsersProfile.storyboard */; };
+		290E0C50223065C90000E7DF /* UsersProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290E0C4F223065C90000E7DF /* UsersProfileController.swift */; };
 		29140E3E2202FDCD0060522E /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29140E3D2202FDCD0060522E /* Discover.storyboard */; };
 		29140E42220349000060522E /* DiscoverTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29140E41220349000060522E /* DiscoverTableCell.swift */; };
 		29140E44220352500060522E /* SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29140E43220352500060522E /* SearchDelegate.swift */; };
 		292111C322008B0E00B28DE2 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292111C222008B0E00B28DE2 /* CategoryCell.swift */; };
 		292111C522008D3A00B28DE2 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292111C422008D3A00B28DE2 /* Category.swift */; };
 		2980CBE22208D89200AC2C11 /* PlayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2980CBE12208D89200AC2C11 /* PlayerExtension.swift */; };
+		29C02397222AEDD100857E1D /* PeopleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29C02396222AEDD100857E1D /* PeopleCell.xib */; };
+		29C02399222EBBD500857E1D /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C02398222EBBD500857E1D /* Person.swift */; };
 		2F9AD7A62223B076000D00BA /* Timeline.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F9AD7A52223B076000D00BA /* Timeline.storyboard */; };
 		2F9AD7A822245331000D00BA /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9AD7A722245331000D00BA /* TimelineViewController.swift */; };
 		2F9AD7AA22245638000D00BA /* TimelineTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9AD7A922245638000D00BA /* TimelineTVC.swift */; };
@@ -93,12 +98,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		290E0C49223044210000E7DF /* PeopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCell.swift; sourceTree = "<group>"; };
+		290E0C4B223063D90000E7DF /* UsersProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UsersProfile.storyboard; sourceTree = "<group>"; };
+		290E0C4F223065C90000E7DF /* UsersProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersProfileController.swift; sourceTree = "<group>"; };
 		29140E3D2202FDCD0060522E /* Discover.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
 		29140E41220349000060522E /* DiscoverTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableCell.swift; sourceTree = "<group>"; };
 		29140E43220352500060522E /* SearchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDelegate.swift; sourceTree = "<group>"; };
 		292111C222008B0E00B28DE2 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		292111C422008D3A00B28DE2 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		2980CBE12208D89200AC2C11 /* PlayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerExtension.swift; sourceTree = "<group>"; };
+		29C02396222AEDD100857E1D /* PeopleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeopleCell.xib; sourceTree = "<group>"; };
+		29C02398222EBBD500857E1D /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		2F9AD7A52223B076000D00BA /* Timeline.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Timeline.storyboard; sourceTree = "<group>"; };
 		2F9AD7A722245331000D00BA /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		2F9AD7A922245638000D00BA /* TimelineTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTVC.swift; sourceTree = "<group>"; };
@@ -245,6 +255,7 @@
 				2FD789C92200E643006A47FE /* Bookmark.storyboard */,
 				29140E3D2202FDCD0060522E /* Discover.storyboard */,
 				2F9AD7A52223B076000D00BA /* Timeline.storyboard */,
+				290E0C4B223063D90000E7DF /* UsersProfile.storyboard */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -288,6 +299,8 @@
 				29140E41220349000060522E /* DiscoverTableCell.swift */,
 				2FF0D74522175C7700F40025 /* playlistCellAddingCVC.swift */,
 				2F9AD7A922245638000D00BA /* TimelineTVC.swift */,
+				29C02396222AEDD100857E1D /* PeopleCell.xib */,
+				290E0C49223044210000E7DF /* PeopleCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -313,6 +326,7 @@
 				5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */,
 				505B6C4021FA09D3002E392D /* ProfileViewController.swift */,
 				FA499329218DCD3D0021CFA3 /* PodcastSearchController.swift */,
+				290E0C4F223065C90000E7DF /* UsersProfileController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -326,6 +340,7 @@
 				375DD44F2201F27D00C2D698 /* Playlist.swift */,
 				292111C422008D3A00B28DE2 /* Category.swift */,
 				2F9AD7AB22245EF1000D00BA /* Post.swift */,
+				29C02398222EBBD500857E1D /* Person.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -477,11 +492,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				505B6C2B21F5C74F002E392D /* Episode.storyboard in Resources */,
+				29C02397222AEDD100857E1D /* PeopleCell.xib in Resources */,
 				2F9AD7A62223B076000D00BA /* Timeline.storyboard in Resources */,
 				5018A44B21FF7DCF007EE027 /* Subscription.storyboard in Resources */,
 				FAFF82FA218CEB6C00882A6A /* LaunchScreen.storyboard in Resources */,
 				FAFF82F7218CEB6C00882A6A /* Assets.xcassets in Resources */,
 				50420F7321A013140030CDB4 /* GoogleService-Info.plist in Resources */,
+				290E0C4C223063D90000E7DF /* UsersProfile.storyboard in Resources */,
 				29140E3E2202FDCD0060522E /* Discover.storyboard in Resources */,
 				50533FE321EFA59E00D50698 /* Channel.storyboard in Resources */,
 				505B6C3421F66A03002E392D /* Player.storyboard in Resources */,
@@ -595,6 +612,7 @@
 				292111C522008D3A00B28DE2 /* Category.swift in Sources */,
 				3723A1F521A9C66400D5FAE9 /* EpisodeCell.swift in Sources */,
 				500607FD222715DF00C6F720 /* UIImage.swift in Sources */,
+				290E0C4A223044210000E7DF /* PeopleCell.swift in Sources */,
 				372023AE220373A300D0C555 /* PlaylistCell.swift in Sources */,
 				505B6C3121F6571E002E392D /* TimeMarkCell.swift in Sources */,
 				2FF0D74622175C7700F40025 /* playlistCellAddingCVC.swift in Sources */,
@@ -622,6 +640,7 @@
 				5018A44F21FF7DCF007EE027 /* DownloadEpisodeCell.swift in Sources */,
 				8F4FD70C220B3885000A06FC /* PlayerHelper.swift in Sources */,
 				FAFF82ED218CEB6400882A6A /* AppDelegate.swift in Sources */,
+				29C02399222EBBD500857E1D /* Person.swift in Sources */,
 				3723A1F921A9CDD100D5FAE9 /* String.swift in Sources */,
 				2F9AD7AC22245EF1000D00BA /* Post.swift in Sources */,
 				2F9AD7AA22245638000D00BA /* TimelineTVC.swift in Sources */,
@@ -630,6 +649,7 @@
 				FAFF831E218CEC4300882A6A /* MainTabController.swift in Sources */,
 				375DD44E2201ED8C00C2D698 /* PlaylistsCell.swift in Sources */,
 				3723A20521AB373A00D5FAE9 /* CMTime.swift in Sources */,
+				290E0C50223065C90000E7DF /* UsersProfileController.swift in Sources */,
 				50420F9F21A122040030CDB4 /* RoundedWhiteButton.swift in Sources */,
 				292111C322008B0E00B28DE2 /* CategoryCell.swift in Sources */,
 			);
