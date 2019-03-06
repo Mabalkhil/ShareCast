@@ -21,8 +21,6 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
     var alert: UIAlertController!
     var alertAction: UIAlertAction!
     
-    
-    
     @IBOutlet var createPlaylistTable: UITableView!
     @IBOutlet weak var playlistTextField: UITextField!
     @IBOutlet var emptyView: UIView!
@@ -50,6 +48,7 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+   
     @objc func addPlaylist(){
         var temp: Playlist
         let playlistName = playlistTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -90,6 +89,7 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         view.endEditing(true)
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return playlists.count
     }
@@ -116,9 +116,9 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let playlist = playlists[indexPath.row]
+         UserDefaults.standard.deletePlaylist(playlist: playlist, name: playlists[indexPath.row].playlistName!)
         playlists.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
-        UserDefaults.standard.deletePlaylist(playlist: playlist)
         viewDidLoad()
     }
     

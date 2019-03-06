@@ -51,8 +51,8 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
         self.firebaseSubReff.child(uid).child("Subscription").observeSingleEvent(of: .value) { (snapshot) in
             var exist = false
             for case let rest as DataSnapshot in snapshot.children {
-                let url = rest.value as! String
-                if url == self.podcast?.feedUrl {
+                let channelObj = rest.value as! [String:Any]
+                if channelObj["channelURL"] as? String == self.podcast?.feedUrl {
                     exist = true
                     print(1)
                     break
@@ -85,7 +85,7 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
          //Configure the table view
          checkUserSubscriptions()
 
-        print("HHHHHHEEEEEERRRRRREEE \(podcast?.feedUrl)")
+      
         guard let url = URL(string : podcast?.artworkUrl600 ?? "") else {return}
         headerView.chennelImage.sd_setImage(with: url, completed: nil)
         headerView.nameLabel.text = podcast?.trackName
@@ -140,27 +140,29 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
            present(self.alert,animated: true,completion: nil)
             return
         }
-        //
-         guard var chanelTitle = podcast?.trackName  else{
-            return
-        }
-            chanelTitle = chanelTitle.replacingOccurrences(of: ".", with: " ")
-            chanelTitle =  chanelTitle.replacingOccurrences(of: "]", with: " ")
-            chanelTitle =  chanelTitle.replacingOccurrences(of: "[", with: " ")
-            chanelTitle = chanelTitle.replacingOccurrences(of: "#", with: " ")
-            chanelTitle = chanelTitle.replacingOccurrences(of: "$", with: " ")
-        
-        guard let chanellUrl = podcast?.feedUrl else {
-            return
-        }
+
         if headerView.SubButton.currentTitle! == "Subscribe" {
-            print("Look Here\(chanelTitle)")
-            firebaseSubReff.child(uid).child("Subscription").updateChildValues([chanelTitle : chanellUrl])
+            firebaseSubReff.child(uid).child("Subscription").childByAutoId().updateChildValues(
+                ["channelURL" : podcast?.feedUrl,
+                 "channelName": podcast?.trackName ,
+                    "channelAuthor": podcast?.artistName,
+                    "channelImageURL": podcast?.artworkUrl600,
+                    "EpisodeCount": podcast?.trackCount
+                ])
             headerView.SubButton.setTitle("Unsubscribe", for: .normal)
         }else {
             self.alert = UIAlertController(title: "Are you sure you want to Unsubscribe", message: "", preferredStyle: .alert)
             let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-                self.firebaseSubReff.child(uid).child("Subscription").child(chanelTitle).removeValue()
+                self.firebaseSubReff.child(uid).child("Subscription").observeSingleEvent(of: .value) { (snapshot) in
+                    for case let rest as DataSnapshot in snapshot.children {
+                        let key = rest.key
+                        let channelObj = rest.value as! [String:Any]
+                        if channelObj["channelURL"] as? String == self.podcast?.feedUrl {
+                        self.firebaseSubReff.child(uid).child("Subscription").child(key).removeValue()
+                            break
+                        }
+                    }
+                }
                 self.headerView.SubButton.setTitle("Subscribe", for: .normal)
                 return
             })

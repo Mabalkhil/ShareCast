@@ -22,9 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        window = UIWindow()
-        window?.makeKeyAndVisible()
-        window?.rootViewController = MainTabBarController()
+//        window = UIWindow()
+//        window?.makeKeyAndVisible()
+//        window?.rootViewController = MainTabBarController()
         
         UIApplication.shared.statusBarStyle = .lightContent
         

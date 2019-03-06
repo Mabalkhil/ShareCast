@@ -125,7 +125,108 @@
             startingLineNumber = "25"
             endingLineNumber = "25"
             landmarkName = "init(feedItem:)"
+            filePath = "Podcast/Controllers/ChannelController.swift"
+            timestampString = "573037073.712917"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "checkUserSubscriptions()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Podcast/Controllers/ChannelController.swift"
+            timestampString = "573037073.7130409"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "SubscribePressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Podcast/Views/PodcastCell.swift"
+            timestampString = "573037073.7131211"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "PodcastCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Podcast.PodcastCell.episodeCountLabel.getter : weak Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "Podcast"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohammedabalkhail/Desktop/Swift/ShareCast/Podcast/Views/PodcastCell.swift"
+                  timestampString = "573037074.021916"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "37">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Podcast.PodcastCell.episodeCountLabel.setter : weak Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "Podcast"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohammedabalkhail/Desktop/Swift/ShareCast/Podcast/Views/PodcastCell.swift"
+                  timestampString = "573037074.024899"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Podcast.PodcastCell.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; Podcast.PodcastCell"
+                  moduleName = "Podcast"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohammedabalkhail/Desktop/Swift/ShareCast/Podcast/Views/PodcastCell.swift"
+                  timestampString = "573037074.027022"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "194">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Podcast.PodcastCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Podcast.PodcastCell&gt;"
+                  moduleName = "Podcast"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohammedabalkhail/Desktop/Swift/ShareCast/Podcast/Views/PodcastCell.swift"
+                  timestampString = "573037074.029443"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "175">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -157,6 +258,13 @@
             startingLineNumber = "63"
             endingLineNumber = "63"
             landmarkName = "handleSelectProfile()"
+            filePath = "Podcast/Controllers/ProfileViewController.swift"
+            timestampString = "573037073.713573"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -173,6 +281,12 @@
             startingLineNumber = "77"
             endingLineNumber = "77"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            timestampString = "573037073.713636"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "setUpProfilePic()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -221,6 +335,12 @@
             startingLineNumber = "98"
             endingLineNumber = "98"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            timestampString = "573037073.713685"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "setUpProfilePic()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -237,6 +357,12 @@
             startingLineNumber = "96"
             endingLineNumber = "96"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            timestampString = "573037073.713735"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "setUpProfilePic()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -269,6 +395,12 @@
             startingLineNumber = "99"
             endingLineNumber = "99"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            timestampString = "573037073.713783"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "setUpProfilePic()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -387,31 +519,31 @@
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Podcast.SignUpViewController.handleSignUp() -&gt; ()"
+                  symbolName = "closure #1 (__C.FIRDataSnapshot) -&gt; () in Podcast.ProfileViewController.setUpProfilePic() -&gt; ()"
                   moduleName = "Podcast"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mohammedabalkhail/Desktop/Swift/ShareCast/Podcast/Controllers/SignUpViewController.swift"
-                  timestampString = "570481941.901525"
+                  urlString = "file:///Users/mohammedabalkhail/Desktop/Swift/ShareCast/Podcast/Controllers/ProfileViewController.swift"
+                  timestampString = "573037074.038063"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "127"
-                  endingLineNumber = "127"
-                  offsetFromSymbolStart = "4897">
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "1063">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Podcast.SignUpViewController.handleSignUp() -&gt; ()"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (__C.FIRDataSnapshot) -&gt; () in Podcast.ProfileViewController.setUpProfilePic() -&gt; ()"
                   moduleName = "Podcast"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mohammedabalkhail/Desktop/Swift/ShareCast/Podcast/Controllers/SignUpViewController.swift"
-                  timestampString = "570481941.904911"
+                  urlString = "file:///Users/mohammedabalkhail/Desktop/Swift/ShareCast/Podcast/Controllers/ProfileViewController.swift"
+                  timestampString = "573037074.0405329"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "128"
-                  endingLineNumber = "128"
-                  offsetFromSymbolStart = "85">
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "69">
                </Location>
             </Locations>
          </BreakpointContent>

@@ -27,6 +27,10 @@ class DownloadsController: UIViewController, UITableViewDelegate, UITableViewDat
             tablwViewDownload.backgroundView = UIView()
         }
         setupObservers()
+        if let tabItems = tabBarController?.tabBar.items {
+            let tabItem = tabItems[2]
+            tabItem.badgeValue = nil
+        }
     }
     
     fileprivate func setupObservers(){

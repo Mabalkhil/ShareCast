@@ -21,18 +21,10 @@ class PodcastCell: UITableViewCell {
             artistNameLabel.text = podcast.artistName
             episodeCountLabel.text = "\(podcast.trackCount ?? 0) Episodes"
             guard let url = URL(string : podcast.artworkUrl600 ?? "") else {return}
-//            URLSession.shared.dataTask(with: url) { (data, _, _) in
-//                print("finished downloading image data", data ?? nil)
-//                guard let data = data else {return}
-//                DispatchQueue.main.async {
-//                    self.podcastImageView.image = UIImage(data: data)
-//                }
-//            }.resume()
             podcastImageView.layer.borderWidth = 1
             podcastImageView.layer.masksToBounds = false
             podcastImageView.layer.cornerRadius = podcastImageView.frame.height/2
             podcastImageView.clipsToBounds = true
-      
             podcastImageView.sd_setImage(with: url, completed: nil)
         }
     }

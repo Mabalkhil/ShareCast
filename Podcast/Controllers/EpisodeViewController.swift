@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Firebase
 
-class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
     
     @IBOutlet weak var tableViewComments: UITableView!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -16,11 +17,19 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet var playlistsCV: UICollectionView!
     
+    @IBOutlet var writePost: UIView!
+    @IBOutlet weak var postContentTV: UITextView!
     
     var comments = [CommentObj]()
     var episode = Episode()
     let blackView = UIView()
     var playlists = UserDefaults.standard.playlistsArray()
+    
+    var fireStoreDatabaseRef = Firestore.firestore()
+    var databaseRef = DatabaseReference.init()
+    var userID:String?
+    var username:String?
+    var userImage:String?
     
     // this function will change the episode and start the player - YAY!
     @IBAction private func clickToPlay(_ sender: UIButton) {
@@ -45,14 +54,35 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }
     }
     
+    @IBOutlet weak var rePostButton: UIButton!{
+        didSet{
+            rePostButton.addTarget(self, action: #selector(repostHandler), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var createPostButton: UIButton!{
+        didSet{
+            createPostButton.addTarget(self, action: #selector(createNewPost), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var postCancelButton: UIButton!{
+        didSet{
+            postCancelButton.addTarget(self, action: #selector(cancelNewPost), for: .touchUpInside)
+        }
+    }
+    
     override func viewDidLoad() {
         setAttributes()
         super.viewDidLoad()
         
         playlistsCV.delegate = self
         playlistsCV.dataSource = self
+        postContentTV.delegate = self
         let index = playlists.count
         playlists.insert(Playlist(name: "Cancel", epis_list: []), at: index)
+        
+        setUpDatabases()
         
         // Do any additional setup after loading the view, typically from a nib.
         let bookedEpisodes = UserDefaults.standard.bookmarkedEpisodes()
@@ -76,6 +106,11 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         UserDefaults.standard.downloadEpisode(episode: episode.self)
         APIService.shared.downloadEpisode(episode: episode.self)
         //downloadButton.setImage(#imageLiteral(resourceName: "download_Done"), for: .normal)
+        if let tabItems = tabBarController?.tabBar.items {
+            // In this case we want to modify the badge number of the third tab:
+            let tabItem = tabItems[2]
+            tabItem.badgeValue = "1"
+        }
     }
     
     @objc func handelDismiss(){
@@ -122,6 +157,92 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }
     }
     
+    @objc func createNewPost(){
+        let postDetails = ["uid" : userID,
+                           "author": username,
+                           "author_img":userImage,
+                           "content" : postContentTV.text,
+                           "Date" : Date(),
+                           "episode_link" : episode.fileUrl,
+                           "episode_img_link" : episode.imageUrl,
+                           "episode_name" : episode.title,
+                           "episode_desc" : episode.describtion] as [String : Any]
+        
+        var ref:DocumentReference? = nil
+
+        ref = self.fireStoreDatabaseRef.collection("Posts").addDocument(data: postDetails){
+            error in
+            
+            if let error = error {
+                print("Error adding document \(error)")
+            }else{
+                print("Document inserted successfully with ID: \(ref!.documentID)")
+                self.databaseRef.child("Timeline").child(self.userID!).childByAutoId().setValue("\(ref!.documentID)")
+            }
+        }
+
+        
+        ref = self.fireStoreDatabaseRef
+            .collection("all_timelines")
+            .document(self.userID!)
+            .collection("timeline")
+            .addDocument(data: postDetails){
+                error in
+                if let error = error {
+                    print("Error adding document \(error)")
+                }else{
+                    print("Document inserted successfully with ID: \(ref!.documentID)")
+                }
+        }
+        
+
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.blackView.alpha = 0.0
+            self.writePost.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 200)
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.tabBarController?.tabBar.isHidden = false
+            PlayerDetailsViewController.shared.view.isHidden = false
+        }, completion: nil)
+    }
+    
+    @objc func cancelNewPost(){
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.blackView.alpha = 0.0
+            self.writePost.alpha = 0.0
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.tabBarController?.tabBar.isHidden = false
+            PlayerDetailsViewController.shared.view.isHidden = false
+        }, completion: nil)
+    }
+    
+    @objc func repostHandler(){
+        
+        blackView.backgroundColor = UIColor.black
+        blackView.alpha = 0
+        writePost.alpha = 0
+        
+        blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handelDismiss)))
+        
+        self.view.addSubview(blackView)
+        self.view.addSubview(writePost)
+        
+        let width = self.view.frame.width / 1.25
+        let height = width * 9 / 16
+        let y = (self.view.frame.height - height)/2
+        let x = (self.view.frame.width - width)/2
+        writePost.frame = CGRect(x: x, y: y, width: width, height: height)
+        blackView.frame = self.view.bounds
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.blackView.alpha = 0.5
+            self.writePost.alpha = 1
+            self.writePost.frame = CGRect(x: x, y: y, width: width, height: height)
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.tabBarController?.tabBar.isHidden = true
+            PlayerDetailsViewController.shared.view.isHidden = true
+        }, completion: nil)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Hide the navigation bar on the this view controller
@@ -153,6 +274,22 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func setUpDatabases(){
+        self.databaseRef = Database.database().reference()
+        self.userID = Auth.auth().currentUser?.uid
+        
+        self.databaseRef.child("usersInfo").child(userID!).observe(.value) { (snapshot) in
+            if let dictionary = snapshot.value as? [String:AnyObject]{
+                self.username = dictionary["username"] as? String
+                self.userImage = dictionary["profileImgaeURL"] as? String
+            }
+        }
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        postContentTV.text = ""
     }
 }
 

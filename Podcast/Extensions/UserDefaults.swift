@@ -72,16 +72,20 @@ extension UserDefaults {
     
     
     // delete a playlist
-    func deletePlaylist(playlist: Playlist) {
-        let savedEpisodes = playlistsArray()
-        let filteredEpisodes = savedEpisodes.filter { (p) -> Bool in
+    func deletePlaylist(playlist: Playlist, name: String) {
+        let savedPlaylists = playlistsArray()
+        var savedEpisoodesInPlaylist = playlistEpisodes(name: "savedArrayKey"+name)
+        let filteredEpisodes = savedPlaylists.filter { (p) -> Bool in
             // you should use episode.collectionId to be safer with deletes
             return p.playlistName != playlist.playlistName
         }
-        
+
         do {
             let data = try JSONEncoder().encode(filteredEpisodes)
+            let episodeData = try JSONEncoder().encode(savedEpisoodesInPlaylist)
+            savedEpisoodesInPlaylist.removeAll()
             UserDefaults.standard.set(data, forKey: UserDefaults.playlistsKey)
+            UserDefaults.standard.set(episodeData, forKey: "savedArrayKey"+name)
         } catch let encodeErr {
             print("Failed to encode episode:", encodeErr)
         }

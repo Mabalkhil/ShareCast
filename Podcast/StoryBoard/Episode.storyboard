@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -261,14 +262,73 @@
                     <connections>
                         <outlet property="addToPlaylistButton" destination="sxg-X6-kHf" id="xbW-G2-EUv"/>
                         <outlet property="bookmarkButton" destination="dJ0-mM-P6j" id="ciS-rK-1EN"/>
+                        <outlet property="createPostButton" destination="jNy-W4-2mG" id="I5p-uh-PXI"/>
                         <outlet property="descriptionLabel" destination="saY-iS-7Z9" id="6x4-fh-3Rb"/>
                         <outlet property="downloadButton" destination="nhE-GC-yra" id="bh5-h5-qGL"/>
                         <outlet property="episodeImage" destination="p4B-fj-d1j" id="KRJ-3e-c59"/>
                         <outlet property="playlistsCV" destination="PNE-A7-bTb" id="AKn-aR-hbb"/>
+                        <outlet property="postCancelButton" destination="QCV-7f-nAU" id="Doi-5A-dQq"/>
+                        <outlet property="postContentTV" destination="ttt-eT-6uB" id="quQ-YP-IVj"/>
+                        <outlet property="rePostButton" destination="g3K-x2-iHv" id="aEy-qQ-PhP"/>
                         <outlet property="titleLabel" destination="bgx-BA-2FI" id="osl-Z8-xxd"/>
+                        <outlet property="writePost" destination="BfX-Fs-gKj" id="91T-vq-GDs"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lan-6R-VQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="BfX-Fs-gKj" userLabel="writePost">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="150"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y9P-0k-fRA">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="126"/>
+                            <subviews>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write your comment here..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ttt-eT-6uB">
+                                    <rect key="frame" x="8" y="8" width="224" height="118"/>
+                                    <color key="backgroundColor" red="0.32028031350000002" green="0.32054913039999999" blue="0.32032194730000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="ttt-eT-6uB" firstAttribute="top" secondItem="y9P-0k-fRA" secondAttribute="top" constant="8" id="3YF-7r-bJB"/>
+                                <constraint firstAttribute="bottom" secondItem="ttt-eT-6uB" secondAttribute="bottom" id="ErJ-BF-Jir"/>
+                                <constraint firstAttribute="trailing" secondItem="ttt-eT-6uB" secondAttribute="trailing" constant="8" id="Jrq-Hi-9Hr"/>
+                                <constraint firstItem="ttt-eT-6uB" firstAttribute="leading" secondItem="y9P-0k-fRA" secondAttribute="leading" constant="8" id="mwm-9t-POw"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="yVQ-Hj-sK0" userLabel="buttons">
+                            <rect key="frame" x="0.0" y="126" width="240" height="24"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QCV-7f-nAU">
+                                    <rect key="frame" x="0.0" y="0.0" width="120" height="24"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <state key="normal" title="Cancel">
+                                        <color key="titleColor" red="0.92456585170000005" green="0.38482528919999998" blue="0.3745569587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNy-W4-2mG">
+                                    <rect key="frame" x="120" y="0.0" width="120" height="24"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <state key="normal" title="Post">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.11763278394937515" green="0.11765617877244949" blue="0.11762764304876328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="yVQ-Hj-sK0" secondAttribute="trailing" id="Bpy-u6-RFi"/>
+                        <constraint firstItem="y9P-0k-fRA" firstAttribute="trailing" secondItem="PjW-6s-FYf" secondAttribute="trailing" id="NKm-jM-x4A"/>
+                        <constraint firstItem="yVQ-Hj-sK0" firstAttribute="top" secondItem="y9P-0k-fRA" secondAttribute="bottom" id="Qw8-Dj-bY4"/>
+                        <constraint firstItem="y9P-0k-fRA" firstAttribute="leading" secondItem="PjW-6s-FYf" secondAttribute="leading" id="Zn9-w6-tBu"/>
+                        <constraint firstAttribute="bottom" secondItem="yVQ-Hj-sK0" secondAttribute="bottom" id="aLn-g4-aei"/>
+                        <constraint firstItem="yVQ-Hj-sK0" firstAttribute="leading" secondItem="BfX-Fs-gKj" secondAttribute="leading" id="kcD-4R-nQ0"/>
+                        <constraint firstItem="y9P-0k-fRA" firstAttribute="top" secondItem="BfX-Fs-gKj" secondAttribute="top" id="tjZ-ER-4nQ"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="PjW-6s-FYf"/>
+                </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" id="PNE-A7-bTb">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

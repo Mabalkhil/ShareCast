@@ -15,14 +15,8 @@ class ProfileView: UIView {
    let reff = Database.database().reference()
 
     
-    @IBOutlet weak var editProfile:UIButton! {
-        didSet {
-            let origImage = UIImage(named: "settings");
-            let tintedImage = origImage?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-            editProfile.setImage(tintedImage, for: .normal)
-            editProfile.tintColor = UIColor.white
-        }
-    }
+    @IBOutlet weak var editProfile:UIButton!
+    
     @IBOutlet weak var username: UILabel!{
         didSet{
             self.username.text = "No Username"
