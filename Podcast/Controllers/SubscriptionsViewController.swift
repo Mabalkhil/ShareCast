@@ -9,9 +9,9 @@
 import UIKit
 import Firebase
 class SubscriptionsViewController: UITableViewController {
-        let reff = Database.database().reference()
-        var channelSub = [Podcast]()
-
+    let reff = Database.database().reference()
+    var channelSub = [Podcast]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchUserSubs()
@@ -22,11 +22,11 @@ class SubscriptionsViewController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-         tableView.separatorStyle = .singleLine
+        tableView.separatorStyle = .singleLine
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -37,17 +37,18 @@ class SubscriptionsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      
-//        let channelStoryboard = UIStoryboard(name: "Channel", bundle: Bundle.main)
-//        guard let destinationViewController = channelStoryboard.instantiateInitialViewController() as?
-//            ChannelController else {
-//                return
-//        }
-//        let podcast = self.channels[indexPath.row]
-//        destinationViewController.podcast = podcast
-//        navigationController?.pushViewController(destinationViewController, animated: true)
+        performSegue(withIdentifier: "showChannel", sender: nil)
+        
+        //        let channelStoryboard = UIStoryboard(name: "Channel", bundle: Bundle.main)
+        //        guard let destinationViewController = channelStoryboard.instantiateInitialViewController() as?
+        //            ChannelController else {
+        //                return
+        //        }
+        //        let podcast = self.channels[indexPath.row]
+        //        destinationViewController.podcast = podcast
+        //        navigationController?.pushViewController(destinationViewController, animated: true)
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showChannel" {
             
@@ -55,16 +56,12 @@ class SubscriptionsViewController: UITableViewController {
                 let destination = segue.destination as! ChannelController
                 // dont assign value directly because the destinition view visual component not created yet
                 destination.podcast = self.channelSub[indexPath.row]
-              
+                
                 
             }
         }
-        let podcast = self.channels[indexPath.row]
-        destinationViewController.podcast = podcast
-        navigationController?.pushViewController(destinationViewController, animated: true)
     }
-
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return channelSub.count
@@ -77,24 +74,24 @@ class SubscriptionsViewController: UITableViewController {
         cell.podcast = channel
         return cell
     }
-        
+    
     func fetchUserSubs(){
         guard let currUser = Auth.auth().currentUser?.uid else {
             return
         }
         print(currUser)
         var channel = Podcast()
-         reff.child("usersInfo").child(currUser).child("Subscription").observeSingleEvent(of: .value) { (snapshot) in
+        reff.child("usersInfo").child(currUser).child("Subscription").observeSingleEvent(of: .value) { (snapshot) in
             for case let rest as DataSnapshot in snapshot.children {
                 
                 let channelObj = rest.value as! [String:Any]
                 channel.artistName = channelObj["channelAuthor"] as! String
-                 channel.trackName = channelObj["channelName"] as! String
-                 channel.artworkUrl600 = channelObj["channelImageURL"] as! String
-                 channel.feedUrl = channelObj["channelURL"] as! String
+                channel.trackName = channelObj["channelName"] as! String
+                channel.artworkUrl600 = channelObj["channelImageURL"] as! String
+                channel.feedUrl = channelObj["channelURL"] as! String
                 channel.trackCount = channelObj["EpisodeCount"]  as! Int
                 self.channelSub.append(channel)
-        
+                
             }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
