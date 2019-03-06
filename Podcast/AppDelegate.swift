@@ -27,13 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        window?.rootViewController = MainTabBarController()
         
         UIApplication.shared.statusBarStyle = .lightContent
-        
-        var navigationBarAppearace = UINavigationBar.appearance()
-        navigationBarAppearace.tintColor = UIColor.white
-        navigationBarAppearace.barTintColor = UIColor.white
-        
-        // change navigation item title color
-        navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        let navigationBarAppearace = UINavigationBar.appearance()
+
+        //   change navigation item title color
+      navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         
         return true
     }

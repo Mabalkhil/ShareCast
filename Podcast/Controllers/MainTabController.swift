@@ -34,7 +34,7 @@ class MainTabBarController: UITabBarController {
             let MainStoryRef = UIStoryboard(name: "Main", bundle: Bundle.main)
             let EntryViewController = MainStoryRef.instantiateViewController(withIdentifier: "ProfileSigninView")
             homeNavController =
-            generateNavigationController(for: EntryViewController, title: "Profile", image: #imageLiteral(resourceName: "Profile-1"))
+            generateNavigationController(for: EntryViewController, title: "Profile", image: #imageLiteral(resourceName: "Home-1"))
         }
             
             
