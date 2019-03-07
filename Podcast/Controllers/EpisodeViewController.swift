@@ -82,7 +82,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         let index = playlists.count
         playlists.insert(Playlist(name: "Cancel", epis_list: []), at: index)
         
-        setUpDatabases()
+       
         
         // Do any additional setup after loading the view, typically from a nib.
         let bookedEpisodes = UserDefaults.standard.bookmarkedEpisodes()
@@ -153,6 +153,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     @objc func createNewPost(){
+        setUpDatabases()
         var ref:DocumentReference? = nil
         var postDetails = ["uid" : userID,
                            "author": username,
