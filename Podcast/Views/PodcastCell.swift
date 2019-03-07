@@ -15,17 +15,30 @@ class PodcastCell: UITableViewCell {
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var episodeCountLabel: UILabel!
     
-    var podcast: Podcast! {
+    var podcast: Podcast? {
         didSet{
-            trackNameLabel.text = podcast.trackName
-            artistNameLabel.text = podcast.artistName
-            episodeCountLabel.text = "\(podcast.trackCount ?? 0) Episodes"
-            guard let url = URL(string : podcast.artworkUrl600 ?? "") else {return}
+            trackNameLabel.text = podcast?.trackName
+            artistNameLabel.text = podcast?.artistName
+            episodeCountLabel.text = "\(podcast?.trackCount ?? 0) Episodes"
+            guard let url = URL(string : podcast?.artworkUrl600 ?? "") else {return}
             podcastImageView.layer.borderWidth = 1
             podcastImageView.layer.masksToBounds = false
             podcastImageView.layer.cornerRadius = podcastImageView.frame.height/2
             podcastImageView.clipsToBounds = true
             podcastImageView.sd_setImage(with: url, completed: nil)
+        }
+    }
+    
+    var person: Person?{
+        didSet{
+            trackNameLabel.text = person?.name
+            artistNameLabel.text = person?.username
+            episodeCountLabel.text = ""
+            podcastImageView.layer.borderWidth = 1
+            podcastImageView.layer.masksToBounds = false
+            podcastImageView.layer.cornerRadius = podcastImageView.frame.height/2
+            podcastImageView.clipsToBounds = true
+            podcastImageView.sd_setImage(with: person?.imgURL, completed: nil)
         }
     }
 }

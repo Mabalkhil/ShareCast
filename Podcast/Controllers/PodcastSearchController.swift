@@ -8,10 +8,12 @@
 
 import UIKit
 import Alamofire
+import Firebase
 
 class PodcastSearchController: UITableViewController, UISearchBarDelegate{
     // state variables
     let cellId = "cellId"
+    let cellId2 = "cellId2"
     var podcasts = [Podcast]()
     // Implement SearchBar Controller
     let searchController = UISearchController(searchResultsController: nil)
@@ -25,6 +27,9 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
     
     //delegate for the search table results
     var searchDelegate = SearchDelegate()
+    
+    //users list
+    var people = [Person]()
     
     
     override func viewDidLoad() {
@@ -49,23 +54,52 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
         searchController.searchBar.tintColor = UIColor.white
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
+        //adding scope buttons to the search
+        searchController.searchBar.scopeButtonTitles = ["Channels", "People"]
     }
+    
     // executes whenever the text in the search bar changes
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
         APIService.shared.fetchPodcast(searchText: searchText) { (podcasts) in
             self.podcasts = podcasts
             self.searchDelegate.updatePodcasts(podcasts: self.podcasts)
             self.resultTableView.reloadData()
         }
+        
         if searchText.count == 0{
             self.podcasts.removeAll()
+            self.people.removeAll()
+            self.searchDelegate.updatePeople(people: self.people)
             self.resultTableView.reloadData()
+        } else {
+            
+            //for users
+            Database.database().reference().child("usersInfo").queryOrdered(byChild: "firstName").queryStarting(atValue: searchText).queryEnding(atValue: searchText + "\u{f8ff}").observe(.childAdded) { (snapshot) in
+                print(snapshot)
+                if let dict = snapshot.value as? [String: AnyObject]{
+                    var person = Person()
+                    let fName = dict["firstName"] as? String
+                    let lName = dict["lastName"] as? String
+                    person.name = fName! + " " + lName!
+                    person.username = dict["username"] as? String
+                    person.imgURL = dict["profileImgaeURL"] as? URL
+                    self.people.append(person)
+                    
+                    self.searchDelegate.updatePeople(people: self.people)
+                    self.resultTableView.reloadData()
+                    print(self.people.count)
+                }
+            }
         }
+       
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.podcasts.removeAll()
+        self.people.removeAll()
         self.searchDelegate.updatePodcasts(podcasts: self.podcasts)
+        self.searchDelegate.updatePeople(people: self.people)
         self.resultTableView.reloadData()
         self.resultTableView.removeFromSuperview()
 
@@ -73,6 +107,14 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.view.addSubview(resultTableView)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        self.searchDelegate.searchScope = searchBar.scopeButtonTitles! [selectedScope]
+        self.resultTableView.reloadData()
+        print(searchBar.scopeButtonTitles! [selectedScope])
+        
+        
     }
     
     
@@ -83,15 +125,17 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
     fileprivate func setupSearchTable(){
         //OMITTED: UITableViewCell registration
         
-        self.searchDelegate.setData(podcasts: self.podcasts, id: self.cellId, nav: navigationController!)
         resultTableView.delegate = searchDelegate
         resultTableView.dataSource = searchDelegate
+        self.searchDelegate.setData(podcasts: self.podcasts, people: self.people, id: self.cellId, nav: navigationController!)
         
         self.definesPresentationContext = true // This will add navigation header for every controller you move to
         resultTableView.tableFooterView = UIView() // removes table lines
         self.resultTableView.backgroundColor =  UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
         let nib = UINib(nibName: "PodcastCell", bundle: nil)
+        //let nib2 = UINib(nibName: "PeopleCell", bundle: nil)
         resultTableView.register(nib, forCellReuseIdentifier: cellId)
+        //resultTableView.register(nib2, forCellReuseIdentifier: cellId)
         
         resultTableView.frame = self.view.frame
         //resultTableView.tag = 010
