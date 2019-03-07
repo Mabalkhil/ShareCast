@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseFirestore
 
 class SignUpViewController: UIViewController , UITextFieldDelegate{
 
@@ -135,6 +134,9 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                         alert.addAction(action)
                         self.present(alert,animated: true,completion: nil)
                     }
+                    else{
+                        print("ADDED WITH REALTIME:\n \(User(dictionary: values)!.dictionary)")
+                    }
                 })
                 
                 //Firestore
@@ -147,11 +149,10 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                         self.present(alert,animated: true,completion: nil)
                     }
                     else{
-                        print("User added: \(User(dictionary: values)!.dictionary)")
+                        print("ADDED WITH FIRESTORE:\n \(User(dictionary: values)!.dictionary)")
                     }
 
                 }
-                
                 
                 
                 let mainView = MainTabBarController()

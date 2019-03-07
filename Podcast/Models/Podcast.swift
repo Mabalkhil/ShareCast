@@ -14,4 +14,28 @@ struct Podcast: Decodable{
     var artworkUrl600: String?
     var trackCount: Int?
     var feedUrl: String?
+    
+    var dictionary : [String : Any] {
+        return [
+            "trackName" : trackName ?? "",
+            "artistName" : artistName ?? "",
+            "artworkUrl600" : artworkUrl600 ?? "",
+            "trackCount" : trackCount ?? "",
+            "feedUrl" : feedUrl ?? ""
+        ]
+    }
+    init?(dictionary : [String:Any]) {
+        self.trackName = dictionary["trackName"] as? String ?? ""
+        self.artistName = dictionary["artistName"] as? String ?? ""
+        self.artistName = dictionary["artistName"] as? String ?? ""
+        self.artworkUrl600 = dictionary["artworkUrl600"] as? String ?? ""
+        self.trackCount = dictionary["trackCount"] as? Int ?? 0
+        self.feedUrl = dictionary["feedUrl"] as? String ?? ""
+
+        
+        
+    }
+    init (){
+        
+    }
 }

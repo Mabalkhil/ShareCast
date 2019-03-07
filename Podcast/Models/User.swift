@@ -22,7 +22,13 @@ struct User {
     var username : String
 
     var dictionary : [String:Any]{
-        return ["email": email,"profileImageURL": profileImageURL,"firstName":firstName,"lastName":lastName,"username":"@\(username)"]
+        return [
+            "email": email,
+            "profileImageURL": profileImageURL,
+            "firstName":firstName,
+            "lastName":lastName,
+            "username":"@\(username)"
+        ]
 
     }
         init?(dictionary : [String:Any]) {

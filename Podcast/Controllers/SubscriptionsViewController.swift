@@ -8,9 +8,12 @@
 
 import UIKit
 import Firebase
+
 class SubscriptionsViewController: UITableViewController {
-        let reff = Database.database().reference()
-        var channels = [Podcast]()
+    let reff = Database.database().reference()
+    var channels = [Podcast]()
+    let db = Firestore.firestore()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +77,26 @@ class SubscriptionsViewController: UITableViewController {
                  url.append(urls.value as! String)
                 print(urls)
             }
+            
+            
+            self.db.collection("usersInfo").document(currUser).collection("Subscription").getDocuments(){
+                (querySnapshot, err) in
+                if let err = err {
+                    print("Error in retreiving list of subscriptions: \n \(err)")
+                }
+                else{
+                    self.channels.removeAll()
+                    for document in querySnapshot!.documents {
+                        if let podcast = Podcast(dictionary: document.data()){
+                            self.channels.append(podcast)
+                            print("Podcast \(podcast.trackName ?? "NO NAME") was retreived")
+                            
+                        }
+                    }
+                }
+            }
+            
+            
             let apiObject = APIService.init()
             apiObject.fetchChannels(feedUrls: url, completionHandler: { (podcast) in
                 self.channels = podcast
