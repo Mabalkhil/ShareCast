@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Podcast/Controllers/ChannelController.swift"
-            timestampString = "573233082.832862"
+            timestampString = "573689507.698024"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "54"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Podcast/Controllers/ChannelController.swift"
-            timestampString = "573233082.832984"
+            timestampString = "573689507.698117"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "165"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Podcast/Views/PodcastCell.swift"
-            timestampString = "573688251.529453"
+            timestampString = "573724507.060568"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "16"
@@ -58,7 +58,7 @@
                   moduleName = "Podcast"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mohammedabalkhail/Desktop/Swift/ShareCast/Podcast/Views/PodcastCell.swift"
-                  timestampString = "573037074.021916"
+                  timestampString = "573723925.492995"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "16"
@@ -73,7 +73,7 @@
                   moduleName = "Podcast"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mohammedabalkhail/Desktop/Swift/ShareCast/Podcast/Views/PodcastCell.swift"
-                  timestampString = "573037074.024899"
+                  timestampString = "573723925.5203201"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "16"
@@ -88,7 +88,7 @@
                   moduleName = "Podcast"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mohammedabalkhail/Desktop/Swift/ShareCast/Podcast/Views/PodcastCell.swift"
-                  timestampString = "573037074.027022"
+                  timestampString = "573723925.573766"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "16"
@@ -103,7 +103,7 @@
                   moduleName = "Podcast"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mohammedabalkhail/Desktop/Swift/ShareCast/Podcast/Views/PodcastCell.swift"
-                  timestampString = "573037074.029443"
+                  timestampString = "573723925.6121759"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "16"
@@ -120,7 +120,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Podcast/Controllers/ProfileViewController.swift"
-            timestampString = "573232952.631883"
+            timestampString = "573724507.061144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "87"
@@ -136,7 +136,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Podcast/Controllers/ProfileViewController.swift"
-            timestampString = "573232952.6319489"
+            timestampString = "573724507.061524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
@@ -152,7 +152,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Podcast/Controllers/ProfileViewController.swift"
-            timestampString = "573232952.632004"
+            timestampString = "573724507.061805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
@@ -168,7 +168,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Podcast/Controllers/ProfileViewController.swift"
-            timestampString = "573232952.632058"
+            timestampString = "573724507.0620821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
@@ -184,7 +184,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Podcast/Controllers/ProfileViewController.swift"
-            timestampString = "573232952.632108"
+            timestampString = "573724507.062351"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
@@ -200,7 +200,7 @@
                   moduleName = "Podcast"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mohammedabalkhail/Desktop/Swift/ShareCast/Podcast/Controllers/ProfileViewController.swift"
-                  timestampString = "573037074.038063"
+                  timestampString = "573723925.662257"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "48"
@@ -215,7 +215,7 @@
                   moduleName = "Podcast"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mohammedabalkhail/Desktop/Swift/ShareCast/Podcast/Controllers/ProfileViewController.swift"
-                  timestampString = "573037074.0405329"
+                  timestampString = "573723925.669831"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "49"
@@ -223,6 +223,38 @@
                   offsetFromSymbolStart = "69">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Podcast/Controllers/EpisodeViewController.swift"
+            timestampString = "573724507.062621"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "createNewPost()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Podcast/Controllers/EpisodeViewController.swift"
+            timestampString = "573724507.062676"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "createNewPost()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

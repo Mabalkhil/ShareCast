@@ -81,8 +81,9 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         postContentTV.delegate = self
         let index = playlists.count
         playlists.insert(Playlist(name: "Cancel", epis_list: []), at: index)
-        
-       
+        if Auth.auth().currentUser?.uid != nil {
+        setUpDatabases()
+        }
         
         // Do any additional setup after loading the view, typically from a nib.
         let bookedEpisodes = UserDefaults.standard.bookmarkedEpisodes()
@@ -153,7 +154,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     @objc func createNewPost(){
-        setUpDatabases()
+
         var ref:DocumentReference? = nil
         var postDetails = ["uid" : userID,
                            "author": username,
@@ -234,6 +235,13 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     @objc func repostHandler(){
         
+        guard (Auth.auth().currentUser?.uid) != nil else {
+            let alert = UIAlertController(title: "Not Register", message: "You have to register to get this feature", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(alertAction)
+            present(alert,animated: true,completion: nil)
+            return
+        }
         blackView.backgroundColor = UIColor.black
         blackView.alpha = 0
         writePost.alpha = 0
