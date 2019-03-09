@@ -44,15 +44,17 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         reffDtatabase.child("usersInfo").child(uid!).observe(.value) { (snapshot) in
             if let dictionary = snapshot.value as? [String:AnyObject]{
                 let profileUrl = dictionary["profileImageURL"] as? String
-                    let url = URL(string: profileUrl!)
-                    URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-                        if let err = error {
-                            print(err)
+                if profileUrl != nil{
+                        let url = URL(string: profileUrl!)
+                        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+                            if let err = error {
+                                print(err)
+                            }
+                            DispatchQueue.main.async {
+                            self.ProfileImage.image = UIImage(data: data!)
                         }
-                        DispatchQueue.main.async {
-                        self.ProfileImage.image = UIImage(data: data!)
-                    }
-                    }).resume()
+                        }).resume()
+                }
                 }
             }
         }

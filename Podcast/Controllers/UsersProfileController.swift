@@ -39,7 +39,7 @@ class UsersProfileController: UIViewController {
     func setupProfile(){
         self.name.text = person.name
         self.username.text = person.username
-        self.followButton.isEnabled = (firebaseReff?.uid == nil)
+        self.followButton.isEnabled = !(firebaseReff?.uid == nil)
     }
     
     //MARK:- Toggle Follow
