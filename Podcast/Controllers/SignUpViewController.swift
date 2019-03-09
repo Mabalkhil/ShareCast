@@ -21,8 +21,8 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     
     var continueButton:RoundedWhiteButton!
     var activityView:UIActivityIndicatorView!
-    let ref = Database.database().reference(fromURL: "https://sharecast-c780f.firebaseio.com/")
     var fireStoreDatabaseRef = Firestore.firestore()
+    let ref = Database.database().reference(fromURL: "https://sharecast-c780f.firebaseio.com/")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,7 +122,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                 }
                 let userInfoRefrence = self.ref.child("usersInfo").child(uid)
                 let values =
-                    ["email": email,"profileImgaeURL": "https://firebasestorage.googleapis.com/v0/b/sharecast-c780f.appspot.com/o/profile_Image%2F1moRr6IwUkPC5M3IBgUIEmoDCJW2.png?alt=media&token=b0b9b521-862e-4d15-a3fc-1ca1d2d4e870","firstName":firstName,"lastName":lastName,"username":"@\(username)"]
+                    ["email": email,"profileImgaeURL": "https://firebasestorage.googleapis.com/v0/b/sharecast-c780f.appspot.com/o/profile_Image%2FDefault.png?alt=media&token=37fdc72b-ffbe-430a-85c8-07dde877e71d","firstName":firstName,"lastName":lastName,"username":"@\(username)"]
                 userInfoRefrence.updateChildValues(values, withCompletionBlock: { (error, ref) in
                     if let err = error {
                         let alert = UIAlertController(title: err.localizedDescription, message: "", preferredStyle: .alert)
@@ -134,23 +134,17 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                 
                 var ref:DocumentReference? = nil
                 
-                let defaultData = ["uid" : "A100",
-                                   "author": "ShareCast.App",
-                                   "author_img":"https://firebasestorage.googleapis.com/v0/b/sharecast-c780f.appspot.com/o/profile_Image%2F1moRr6IwUkPC5M3IBgUIEmoDCJW2.png?alt=media&token=b0b9b521-862e-4d15-a3fc-1ca1d2d4e870",
-                                   "content" : "Welcome to this ShareCast",
-                                   "Date" : Date(),
-                                   "episode_link" : "",
-                                   "episode_img_link" : "",
-                                   "episode_name" : "",
-                                   "episode_desc" : ""] as [String : Any]
-                
+                let postDetails = ["username" : username]
                 ref = self.fireStoreDatabaseRef
-                    .collection("all_timelines")
-                    .document("\(uid)")
-                
-                ref?.collection("timeline")
-                    .document("A100")
-                    .setData(defaultData)
+                    .collection("all_usernames")
+                    .addDocument(data: postDetails){
+                        error in
+                        if let error = error {
+                            print("Error adding document \(error)")
+                        }else{
+                            print("Document inserted successfully with ID: \(ref!.documentID)")
+                        }
+                }
                 
                 let mainView = MainTabBarController()
                 self.present(mainView,animated: true,completion: nil)

@@ -9,8 +9,9 @@
 import UIKit
 import Firebase
 
-class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var privateTimeline: UITableView!
     @IBOutlet weak var ProfileImage: UIImageView!
 
     // variables
@@ -18,6 +19,8 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     let reffStor = Storage.storage().reference(forURL: "gs://sharecast-c780f.appspot.com").child("profile_Image")
     let reffDtatabase = Database.database().reference()
     let uid = Auth.auth().currentUser?.uid
+    var posts = [Post]()
+    var db = Firestore.firestore()
     let chache = NSCache<NSString,UIImage>()
     
     
@@ -26,14 +29,11 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         if uid != nil {
         setUpProfilePic()
         }
-        ProfileImage.layer.borderWidth = 1
-        ProfileImage.layer.borderColor = UIColor.white.cgColor
-        ProfileImage.layer.masksToBounds = false
-        ProfileImage.layer.cornerRadius = ProfileImage.frame.height/2
-        ProfileImage.clipsToBounds = true
-        ProfileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfile)))
-        ProfileImage.isUserInteractionEnabled = true
         
+        privateTimeline.delegate = self
+        privateTimeline.dataSource = self
+        loadData()
+        checkForUpdate()
     }
     
     func setUpProfilePic(){
@@ -56,6 +56,105 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
                 }
             }
         }
+        
+        ProfileImage.layer.borderWidth = 1
+        ProfileImage.layer.borderColor = UIColor.white.cgColor
+        ProfileImage.layer.masksToBounds = false
+        ProfileImage.layer.cornerRadius = ProfileImage.frame.height/2
+        ProfileImage.clipsToBounds = true
+        ProfileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfile)))
+        ProfileImage.isUserInteractionEnabled = true
+    }
+    
+    func loadData() {
+        let userID = Auth.auth().currentUser?.uid
+        db.collection("private_timelines")
+            .document(userID!)
+            .collection("timeline").order(by: "Date", descending: true)
+            .getDocuments(){
+                QuerySnapshot, error in
+                if let error = error {
+                    print("\(error.localizedDescription)")
+                }else{
+                    self.posts = (QuerySnapshot?.documents
+                        .flatMap({
+                            Post(userName: $0.data()["author"] as! String,
+                                 content: $0.data()["content"] as! String,
+                                 img: $0.data()["author_img"] as! String,
+                                 ep_name: $0.data()["episode_name"] as! String,
+                                 ep_img: $0.data()["episode_img_link"] as! String,
+                                 ep_desc: $0.data()["episode_desc"] as! String,
+                                 postID: $0.documentID as! String)}))!
+                    DispatchQueue.main.async {
+                        self.privateTimeline.reloadData()
+                    }
+                }
+        }
+    }
+    
+    func checkForUpdate() {
+        let userID = Auth.auth().currentUser?.uid
+        db.collection("private_timelines")
+            .document(userID!)
+            .collection("timeline")
+            .addSnapshotListener { QuerySnapshot, Error in
+                if let error = Error {
+                    print("\(error.localizedDescription)")
+                }else{
+                    guard let snapshot = QuerySnapshot else {return }
+                    
+                    snapshot.documentChanges.forEach({ (DocumentChange) in
+                        if DocumentChange.type == .added {
+                            self.posts.insert(Post(
+                                userName: DocumentChange.document.data()["author"] as! String,
+                                content: DocumentChange.document.data()["content"] as! String,
+                                img: (DocumentChange.document.data()["author_img"] as? String)!,
+                                ep_name: DocumentChange.document.data()["episode_name"] as! String,
+                                ep_img: DocumentChange.document.data()["episode_img_link"] as! String,
+                                ep_desc: DocumentChange.document.data()["episode_desc"] as! String,
+                                postID: DocumentChange.document.documentID as! String), at: 0)
+                            DispatchQueue.main.async {
+                                self.privateTimeline.reloadData()
+                            }
+                        }
+                    })
+                }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = privateTimeline.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! TimelineTVC
+        cell.setAttributes(post: posts[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let post_id = self.posts[indexPath.row].post_id
+        let userID = Auth.auth().currentUser?.uid
+        
+        db.collection("general_timelines")
+            .document(userID!)
+            .collection("timeline").document(post_id!).delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
+                }
+        }
+        db.collection("private_timelines")
+            .document(userID!)
+            .collection("timeline").document(post_id!).delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
+                }
+        }
+        privateTimeline.reloadData()
     }
     
     @objc func handleSelectProfile() {
@@ -76,15 +175,17 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         guard let seletedImage = selectedImageFromPicker else {
             return
         }
-        ProfileImage.image = seletedImage
-        guard let uploadData = seletedImage.jpeg(.lowest) else {
+        
+        let compressedImage = resizeImage(image: seletedImage, newWidth: 250)
+        ProfileImage.image = compressedImage
+        guard let uploadData = compressedImage!.jpeg(.lowest) else {
             return
         }
         // cahching the image
         let chacheKey = reffStor.child("\(self.uid!).png").fullPath as NSString
         print(chacheKey)
-        print(seletedImage)
-        chache.setObject(seletedImage, forKey: chacheKey)
+        print(compressedImage)
+        chache.setObject(compressedImage!, forKey: chacheKey)
         
         reffStor.child("\(self.uid!).png").putData(uploadData, metadata: nil) { (metadata, error) in
             if let err = error {
@@ -98,17 +199,24 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
                     self.reffDtatabase.child("usersInfo").child(self.uid!).updateChildValues(["profileImgaeURL":url?.absoluteString])
                 }
             })
-        
-    }
+        }
 
     picker.dismiss(animated: true, completion: nil)
-}
+    }
     
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
+        
+        let newHeight = newWidth
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
          picker.dismiss(animated: true, completion: nil)
     }
-    
-    
-    
 }

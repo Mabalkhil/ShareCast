@@ -81,8 +81,9 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         postContentTV.delegate = self
         let index = playlists.count
         playlists.insert(Playlist(name: "Cancel", epis_list: []), at: index)
-        
+        if Auth.auth().currentUser?.uid != nil {
         setUpDatabases()
+        }
         
         // Do any additional setup after loading the view, typically from a nib.
         let bookedEpisodes = UserDefaults.standard.bookmarkedEpisodes()
@@ -158,7 +159,9 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     @objc func createNewPost(){
-        let postDetails = ["uid" : userID,
+
+        var ref:DocumentReference? = nil
+        var postDetails = ["uid" : userID,
                            "author": username,
                            "author_img":userImage,
                            "content" : postContentTV.text,
@@ -168,8 +171,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
                            "episode_name" : episode.title,
                            "episode_desc" : episode.describtion] as [String : Any]
         
-        var ref:DocumentReference? = nil
-
         ref = self.fireStoreDatabaseRef.collection("Posts").addDocument(data: postDetails){
             error in
             
@@ -181,9 +182,31 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             }
         }
 
+        postDetails = ["uid" : userID,
+                           "author": username,
+                           "author_img":userImage,
+                           "content" : postContentTV.text,
+                           "Date" : Date(),
+                           "episode_link" : episode.fileUrl,
+                           "episode_img_link" : episode.imageUrl,
+                           "episode_name" : episode.title,
+                           "episode_desc" : episode.describtion,
+                           "post_id" : ""] as [String : Any]
+        ref = self.fireStoreDatabaseRef
+            .collection("general_timelines")
+            .document(self.userID!)
+            .collection("timeline")
+            .addDocument(data: postDetails){
+                error in
+                if let error = error {
+                    print("Error adding document \(error)")
+                }else{
+                    print("Document inserted successfully with ID: \(ref!.documentID)")
+                }
+        }
         
         ref = self.fireStoreDatabaseRef
-            .collection("all_timelines")
+            .collection("private_timelines")
             .document(self.userID!)
             .collection("timeline")
             .addDocument(data: postDetails){
@@ -217,6 +240,13 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     @objc func repostHandler(){
         
+        guard (Auth.auth().currentUser?.uid) != nil else {
+            let alert = UIAlertController(title: "Not Register", message: "You have to register to get this feature", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(alertAction)
+            present(alert,animated: true,completion: nil)
+            return
+        }
         blackView.backgroundColor = UIColor.black
         blackView.alpha = 0
         writePost.alpha = 0

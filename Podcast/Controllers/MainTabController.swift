@@ -24,10 +24,21 @@ class MainTabBarController: UITabBarController {
         UIApplication.shared.keyWindow?.rootViewController = self
     }
     //MARK: Setup Function
-    fileprivate func setupViewControllers() {
-        let homeNavController =
+    fileprivate func setupViewControllers(){
+    
+        var homeNavController : UIViewController?
+        if(Auth.auth().currentUser?.uid != nil){
+            homeNavController =
             generateNavigationController(for: UIStoryboard(name: "Timeline", bundle: nil).instantiateViewController(withIdentifier: "TimelineSB"), title: "Home" , image: #imageLiteral(resourceName: "Home-1"))
-        let searchNavController =
+        }else{
+            let MainStoryRef = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let EntryViewController = MainStoryRef.instantiateViewController(withIdentifier: "ProfileSigninView")
+            homeNavController =
+            generateNavigationController(for: EntryViewController, title: "Profile", image: #imageLiteral(resourceName: "Home-1"))
+        }
+            
+            
+            let searchNavController =
             generateNavigationController(for: UIStoryboard(name: "Discover", bundle: nil).instantiateViewController(withIdentifier: "discover"), title: "Discover" , image: #imageLiteral(resourceName: "Discover"))
         
         let chanellesController =
@@ -49,9 +60,7 @@ class MainTabBarController: UITabBarController {
             ProfileController =
                 generateNavigationController(for: EntryViewController, title: "Profile", image: #imageLiteral(resourceName: "Profile-1"))
         }
-        
-        
-        
+    
         viewControllers = [
             homeNavController,searchNavController,chanellesController , ProfileController
             ] as! [UIViewController]
@@ -107,3 +116,4 @@ class MainTabBarController: UITabBarController {
         self.playerDetailsview.bigPlayer.isHidden = true
     }
 }
+
