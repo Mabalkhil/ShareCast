@@ -27,7 +27,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // add background gardian color 
+        // add background gardian color
         //view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
         
         continueButton = RoundedWhiteButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
@@ -122,7 +122,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                 }
                 let userInfoRefrence = self.ref.child("usersInfo").child(uid)
                 let values =
-                    ["email": email,"profileImageURL": "https://firebasestorage.googleapis.com/v0/b/sharecast-c780f.appspot.com/o/profile_Image%2F1moRr6IwUkPC5M3IBgUIEmoDCJW2.png?alt=media&token=b0b9b521-862e-4d15-a3fc-1ca1d2d4e870","firstName":firstName,"lastName":lastName,"username":"@\(username)"]
+                    ["email": email,"profileImgaeURL": "https://firebasestorage.googleapis.com/v0/b/sharecast-c780f.appspot.com/o/profile_Image%2FDefault.png?alt=media&token=37fdc72b-ffbe-430a-85c8-07dde877e71d","firstName":firstName,"lastName":lastName,"username":"@\(username)"]
                 userInfoRefrence.updateChildValues(values, withCompletionBlock: { (error, ref) in
                     if let err = error {
                         let alert = UIAlertController(title: err.localizedDescription, message: "", preferredStyle: .alert)
