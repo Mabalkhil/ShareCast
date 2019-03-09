@@ -21,6 +21,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     @IBOutlet weak var postContentTV: UITextView!
     
     var comments = [CommentObj]()
+    var followersIDs : [String] = []
     var episode = Episode()
     let blackView = UIView()
     var playlists = UserDefaults.standard.playlistsArray()
@@ -81,8 +82,10 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         postContentTV.delegate = self
         let index = playlists.count
         playlists.insert(Playlist(name: "Cancel", epis_list: []), at: index)
+        
         if Auth.auth().currentUser?.uid != nil {
-        setUpDatabases()
+            print("1: ???")
+            setUpDatabases()
         }
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -205,6 +208,23 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
                 }
         }
         
+        print(self.followersIDs)
+        for userUID in self.followersIDs{
+            print(userUID)
+            ref = self.fireStoreDatabaseRef
+                .collection("general_timelines")
+                .document(userUID)
+                .collection("timeline")
+                .addDocument(data: postDetails){
+                    error in
+                    if let error = error {
+                        print("Error adding document \(error)")
+                    }else{
+                        print("Document inserted successfully with ID: \(ref!.documentID)")
+                    }
+            }
+        }
+        
         ref = self.fireStoreDatabaseRef
             .collection("private_timelines")
             .document(self.userID!)
@@ -315,6 +335,17 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
                 self.username = dictionary["username"] as? String
                 self.userImage = dictionary["profileImgaeURL"] as? String
             }
+        }
+        
+        
+        databaseRef.child("usersInfo").child(userID!).child("Followers").observeSingleEvent(of: .value) { (snapshot) in
+            for case let rest as DataSnapshot in snapshot.children {
+                if((rest.value as! Int) == 1){
+                    self.followersIDs.append(rest.key)
+                    print(self.followersIDs)
+                }
+            }
+            
         }
     }
     
