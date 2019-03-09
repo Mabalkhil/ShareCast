@@ -75,7 +75,7 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
         } else {
             
             //for users
-             
+             self.people.removeAll()
             Database.database().reference().child("usersInfo").queryOrdered(byChild: "firstName").queryStarting(atValue: searchText).queryEnding(atValue: searchText + "\u{f8ff}").observe(.childAdded) {
                     (snapshot) in
                     print(snapshot)

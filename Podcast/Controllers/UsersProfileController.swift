@@ -62,15 +62,15 @@ class UsersProfileController: UIViewController {
         }
     }
     func follow(uid: String, fid: String){
-        firebaseSubReff.child(uid).child("Following").child(fid)
-        firebaseSubReff.child(fid).child("Followers").child(uid)
+        firebaseSubReff.child(uid).child("Following").updateChildValues([fid: 1])
+        firebaseSubReff.child(fid).child("Followers").updateChildValues([uid: 1])
         self.followButton.setTitle("Unfollow", for: .normal)
         
     }
     func unfollow(uid: String, fid: String){
         guard  let uid = firebaseReff?.uid else {return}
-        firebaseSubReff.child(uid).child("Following").child(fid).removeValue()
-        firebaseSubReff.child(fid).child("Followers").child(uid).removeValue()
+        firebaseSubReff.child(uid).child("Following").updateChildValues([fid: 0])
+        firebaseSubReff.child(fid).child("Followers").updateChildValues([uid: 0])
         followButton.setTitle("Follow", for: .normal)
 
         
@@ -82,18 +82,19 @@ class UsersProfileController: UIViewController {
             return
         }
         self.firebaseSubReff.child(uid).child("Following").observeSingleEvent(of: .value) { (snapshot) in
-            var exist = false
+            var followed = false
             for case let rest as DataSnapshot in snapshot.children {
                 
-                if self.person.uid == (rest.value as! String) {
-                    exist = true
-                    print(1)
+                if self.person.uid == rest.key {
+                    followed = ((rest.value as! Int) == 1)
                     break
                 }
             }
-            if exist {
+            if followed {
+                print("User \(self.person.username) is followed")
                 self.followButton.setTitle("Unfollow", for: .normal)
             } else {
+                print("User \(self.person.username) is not followed")
                 self.followButton.setTitle("Follow", for: .normal)
             }
         }
