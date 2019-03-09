@@ -18,7 +18,7 @@ class PeopleCell: UITableViewCell {
     
     var person: Person! {
         didSet{
-            name.text = person.name
+            name.text = person.firstName + " " + person.lastName
             username.text = person.username
             
             profileImg.layer.borderWidth = 1

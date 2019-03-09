@@ -53,6 +53,11 @@ extension String{
         return []
     }
     
+    func dropFirst() -> String {
+        var str = self
+        str = str.substring(from: 1)
+        return str
+    }
     
     
 }
