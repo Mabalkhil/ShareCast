@@ -43,7 +43,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         }else{
         reffDtatabase.child("usersInfo").child(uid!).observe(.value) { (snapshot) in
             if let dictionary = snapshot.value as? [String:AnyObject]{
-                let profileUrl = dictionary["profileImgaeURL"] as? String
+                let profileUrl = dictionary["profileImageURL"] as? String
                     let url = URL(string: profileUrl!)
                     URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
                         if let err = error {

@@ -9,10 +9,52 @@
 import UIKit
 
 struct Person {
+    var uid : String
+    var email : String
+    var profileImageURL : String
+    var firstName : String
+    var lastName : String
+    var username : String
     
-    var name: String?
-    var username: String?
-    var imgURL: URL?
+    var dictionary : [String:Any]{
+        return [
+            "email": email,
+            "profileImageURL": profileImageURL,
+            "firstName":firstName,
+            "lastName":lastName,
+            "username":"@\(username)"
+        ]
+        
+    }
+    var name : String {
+        return firstName+" "+lastName
+    }
+    var imgURL : URL {
+        return URL(string: profileImageURL) ?? URL(string: "https://yt3.ggpht.com/a-/AAuE7mCaS97ZoRx-C_7L7IszNnHivrl6IOqYDdelFA=s176-mo-c-c0xffffffff-rj-k-no")!
+        
+    }
     
-
+    
+    init?(dictionary : [String:Any]) {
+        self.uid = ""
+        self.email = dictionary["email"] as? String ?? ""
+        self.profileImageURL = dictionary["profileImageURL"] as? String ?? ""
+        self.firstName = dictionary["firstName"] as? String ?? ""
+        self.lastName = dictionary["lastName"] as? String ?? ""
+        self.username = (dictionary["username"] as? String)?.dropFirst() ?? ""
+        
+        
+    }
+    
+    init?(uid: String, dictionary : [String:Any]){
+        self.uid = uid
+        self.email = dictionary["email"] as? String ?? ""
+        self.profileImageURL = dictionary["profileImageURL"] as? String ?? ""
+        self.firstName = dictionary["firstName"] as? String ?? ""
+        self.lastName = dictionary["lastName"] as? String ?? ""
+        self.username = (dictionary["username"] as? String)?.dropFirst() ?? ""
+        
+    }
+    
+    
 }

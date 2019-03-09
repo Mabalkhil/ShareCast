@@ -34,12 +34,16 @@
                                                             <rect key="frame" x="145" y="110" width="203" height="25"/>
                                                             <color key="backgroundColor" red="0.63288956880569458" green="0.090287677943706512" blue="0.36726683378219604" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="width" constant="203" id="2jJ-At-Lwf"/>
                                                                 <constraint firstAttribute="height" constant="25" id="BRs-q7-lh4"/>
                                                             </constraints>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" title="Follow">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="toggleFollow:" destination="4SQ-P9-5yq" eventType="touchUpInside" id="jOY-kc-ugx"/>
+                                                            </connections>
                                                         </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1400x1400-eagles_podcast-logo" translatesAutoresizingMaskIntoConstraints="NO" id="oJx-QR-IOC">
                                                             <rect key="frame" x="10" y="10" width="125" height="125"/>

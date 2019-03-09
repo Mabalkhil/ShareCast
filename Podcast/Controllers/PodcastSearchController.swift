@@ -75,20 +75,18 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
         } else {
             
             //for users
-            Database.database().reference().child("usersInfo").queryOrdered(byChild: "firstName").queryStarting(atValue: searchText).queryEnding(atValue: searchText + "\u{f8ff}").observe(.childAdded) { (snapshot) in
-                print(snapshot)
-                if let dict = snapshot.value as? [String: AnyObject]{
-                    var person = Person()
-                    let fName = dict["firstName"] as? String
-                    let lName = dict["lastName"] as? String
-                    person.name = fName! + " " + lName!
-                    person.username = dict["username"] as? String
-                    person.imgURL = dict["profileImgaeURL"] as? URL
-                    self.people.append(person)
-                    
-                    self.searchDelegate.updatePeople(people: self.people)
-                    self.resultTableView.reloadData()
-                    print(self.people.count)
+             
+            Database.database().reference().child("usersInfo").queryOrdered(byChild: "firstName").queryStarting(atValue: searchText).queryEnding(atValue: searchText + "\u{f8ff}").observe(.childAdded) {
+                    (snapshot) in
+                    print(snapshot)
+                    if let dict = snapshot.value as? [String: AnyObject]{
+                        
+                        let person = Person(uid: snapshot.key, dictionary: dict)
+                        self.people.append(person!)
+                        
+                        self.searchDelegate.updatePeople(people: self.people)
+                        self.resultTableView.reloadData()
+                        print(self.people.count)
                 }
             }
         }

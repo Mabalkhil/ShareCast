@@ -281,26 +281,26 @@
 		FA1AEC8821940F92000B0882 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5018A44821FF7DCF007EE027 /* DownloadEpisodeCell.swift */,
-				505B6C2E21F6571E002E392D /* TimeMarkCell.swift */,
-				505B6C2521F5C74F002E392D /* CommentObj.swift */,
-				505B6C2421F5C74F002E392D /* Comment.swift */,
-				5036E73821EFC0D100FA5E12 /* ChannelHeaderView.swift */,
-				5036E73A21F080E000FA5E12 /* ChennelTableViewCell.swift */,
-				3723A1F321A9C66400D5FAE9 /* EpisodeCell.swift */,
-				FA1AEC8D219414BD000B0882 /* PodcastCell.xib */,
-				FA8F8F412194D4CA00301EF6 /* PodcastCell.swift */,
-				50420F9E21A122040030CDB4 /* RoundedWhiteButton.swift */,
-				506217D921FB26C20003F99F /* ProfileView.swift */,
-				375DD44D2201ED8C00C2D698 /* PlaylistsCell.swift */,
-				372023AD220373A300D0C555 /* PlaylistCell.swift */,
 				2FE5C9982201FAEF00FCEE4E /* BookmarkCell.swift */,
 				292111C222008B0E00B28DE2 /* CategoryCell.swift */,
+				5036E73821EFC0D100FA5E12 /* ChannelHeaderView.swift */,
+				5036E73A21F080E000FA5E12 /* ChennelTableViewCell.swift */,
+				505B6C2421F5C74F002E392D /* Comment.swift */,
+				505B6C2521F5C74F002E392D /* CommentObj.swift */,
 				29140E41220349000060522E /* DiscoverTableCell.swift */,
-				2FF0D74522175C7700F40025 /* playlistCellAddingCVC.swift */,
-				2F9AD7A922245638000D00BA /* TimelineTVC.swift */,
-				29C02396222AEDD100857E1D /* PeopleCell.xib */,
+				5018A44821FF7DCF007EE027 /* DownloadEpisodeCell.swift */,
+				3723A1F321A9C66400D5FAE9 /* EpisodeCell.swift */,
 				290E0C49223044210000E7DF /* PeopleCell.swift */,
+				29C02396222AEDD100857E1D /* PeopleCell.xib */,
+				372023AD220373A300D0C555 /* PlaylistCell.swift */,
+				2FF0D74522175C7700F40025 /* playlistCellAddingCVC.swift */,
+				375DD44D2201ED8C00C2D698 /* PlaylistsCell.swift */,
+				FA8F8F412194D4CA00301EF6 /* PodcastCell.swift */,
+				FA1AEC8D219414BD000B0882 /* PodcastCell.xib */,
+				506217D921FB26C20003F99F /* ProfileView.swift */,
+				50420F9E21A122040030CDB4 /* RoundedWhiteButton.swift */,
+				2F9AD7A922245638000D00BA /* TimelineTVC.swift */,
+				505B6C2E21F6571E002E392D /* TimeMarkCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -308,25 +308,25 @@
 		FA499328218DCD0D0021CFA3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				50092B9B22109BA800A05D06 /* ChannelController.swift */,
-				50A43E5C221809560074B70A /* SubscriptionsViewController.swift */,
-				2F9AD7A722245331000D00BA /* TimelineViewController.swift */,
-				2FD789C72200E4EE006A47FE /* PlayerDetailsViewController.swift */,
-				5018A44721FF7DCF007EE027 /* DownloadsController.swift */,
-				505B6C2621F5C74F002E392D /* EpisodeViewController.swift */,
-				FAFF831D218CEC4300882A6A /* MainTabController.swift */,
-				FAFF82EE218CEB6400882A6A /* ViewController.swift */,
-				50420F7621A083F80030CDB4 /* EntryViewController.swift */,
-				50420F7821A089170030CDB4 /* SignUpViewController.swift */,
-				50420FA121A12AF30030CDB4 /* SignInViewController.swift */,
-				502484AF21FCED3D00CA84F1 /* EditProfileViewController.swift */,
-				375DD44B2201ECA700C2D698 /* CreatePlaylistController.swift */,
 				372023AF220374E900D0C555 /* addEpisodeToPlaylist.swift */,
 				2FC15E972201F4A600DF1FD4 /* BookmarkController.swift */,
-				5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */,
-				505B6C4021FA09D3002E392D /* ProfileViewController.swift */,
+				50092B9B22109BA800A05D06 /* ChannelController.swift */,
+				375DD44B2201ECA700C2D698 /* CreatePlaylistController.swift */,
+				5018A44721FF7DCF007EE027 /* DownloadsController.swift */,
+				502484AF21FCED3D00CA84F1 /* EditProfileViewController.swift */,
+				50420F7621A083F80030CDB4 /* EntryViewController.swift */,
+				505B6C2621F5C74F002E392D /* EpisodeViewController.swift */,
+				FAFF831D218CEC4300882A6A /* MainTabController.swift */,
+				2FD789C72200E4EE006A47FE /* PlayerDetailsViewController.swift */,
 				FA499329218DCD3D0021CFA3 /* PodcastSearchController.swift */,
+				505B6C4021FA09D3002E392D /* ProfileViewController.swift */,
+				5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */,
+				50420FA121A12AF30030CDB4 /* SignInViewController.swift */,
+				50420F7821A089170030CDB4 /* SignUpViewController.swift */,
+				50A43E5C221809560074B70A /* SubscriptionsViewController.swift */,
+				2F9AD7A722245331000D00BA /* TimelineViewController.swift */,
 				290E0C4F223065C90000E7DF /* UsersProfileController.swift */,
+				FAFF82EE218CEB6400882A6A /* ViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -828,14 +828,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WF36QP22R7;
+				DEVELOPMENT_TEAM = 6ABCB58568;
 				INFOPLIST_FILE = Podcast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fm.sharecast.Podcast121119;
+				PRODUCT_BUNDLE_IDENTIFIER = fm.sharecast.Podcast1211189;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
@@ -854,14 +854,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WF36QP22R7;
+				DEVELOPMENT_TEAM = 6ABCB58568;
 				INFOPLIST_FILE = Podcast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fm.sharecast.Podcast121119;
+				PRODUCT_BUNDLE_IDENTIFIER = fm.sharecast.Podcast1211189;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
