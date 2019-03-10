@@ -19,6 +19,7 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
 
      var tapProcessor: MYAudioTapProcessor!
     // create instance of the same class to make it singlton, we just need to add a private constructer to avoid ceating a new object
+    // but Swift is stupid, duh 
     static var shared = UIStoryboard(name: "Player", bundle: Bundle.main).instantiateViewController(withIdentifier: "PlayerStoryBoard") as! PlayerDetailsViewController
     
     var isPlaying = false
@@ -97,9 +98,7 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         setUpViews()
-        
         if episode != nil {
             let durationTime = Double(self.player.currentItem?.duration.seconds ?? 0)
             if (durationTime > 0.0) {
