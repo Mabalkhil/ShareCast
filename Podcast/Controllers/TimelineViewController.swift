@@ -91,29 +91,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let post_id = self.posts[indexPath.row].post_id
-        let userID = Auth.auth().currentUser?.uid
-        
-        db.collection("general_timelines")
-            .document(userID!)
-            .collection("timeline").document(post_id!).delete() { err in
-                if let err = err {
-                    print("Error removing document: \(err)")
-                } else {
-                    print("Document successfully removed!")
-                }
-        }
-        db.collection("private_timelines")
-            .document(userID!)
-            .collection("timeline").document(post_id!).delete() { err in
-                if let err = err {
-                    print("Error removing document: \(err)")
-                } else {
-                    print("Document successfully removed!")
-                }
-        }
-        timeline.reloadData()
-    }
+   
 
 }
