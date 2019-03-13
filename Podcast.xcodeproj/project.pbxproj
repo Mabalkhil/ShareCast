@@ -15,6 +15,7 @@
 		29140E44220352500060522E /* SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29140E43220352500060522E /* SearchDelegate.swift */; };
 		292111C322008B0E00B28DE2 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292111C222008B0E00B28DE2 /* CategoryCell.swift */; };
 		292111C522008D3A00B28DE2 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292111C422008D3A00B28DE2 /* Category.swift */; };
+		297A669522397B4C007DBE2B /* CommentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297A669422397B4C007DBE2B /* CommentExtension.swift */; };
 		2980CBE22208D89200AC2C11 /* PlayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2980CBE12208D89200AC2C11 /* PlayerExtension.swift */; };
 		29C02397222AEDD100857E1D /* PeopleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29C02396222AEDD100857E1D /* PeopleCell.xib */; };
 		29C02399222EBBD500857E1D /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C02398222EBBD500857E1D /* Person.swift */; };
@@ -106,6 +107,7 @@
 		29140E43220352500060522E /* SearchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDelegate.swift; sourceTree = "<group>"; };
 		292111C222008B0E00B28DE2 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		292111C422008D3A00B28DE2 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		297A669422397B4C007DBE2B /* CommentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentExtension.swift; sourceTree = "<group>"; };
 		2980CBE12208D89200AC2C11 /* PlayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerExtension.swift; sourceTree = "<group>"; };
 		29C02396222AEDD100857E1D /* PeopleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeopleCell.xib; sourceTree = "<group>"; };
 		29C02398222EBBD500857E1D /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				29140E43220352500060522E /* SearchDelegate.swift */,
 				2980CBE12208D89200AC2C11 /* PlayerExtension.swift */,
 				500607FC222715DF00C6F720 /* UIImage.swift */,
+				297A669422397B4C007DBE2B /* CommentExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -286,7 +289,6 @@
 				5036E73821EFC0D100FA5E12 /* ChannelHeaderView.swift */,
 				5036E73A21F080E000FA5E12 /* ChennelTableViewCell.swift */,
 				505B6C2421F5C74F002E392D /* Comment.swift */,
-				505B6C2521F5C74F002E392D /* CommentObj.swift */,
 				29140E41220349000060522E /* DiscoverTableCell.swift */,
 				5018A44821FF7DCF007EE027 /* DownloadEpisodeCell.swift */,
 				3723A1F321A9C66400D5FAE9 /* EpisodeCell.swift */,
@@ -334,6 +336,7 @@
 		FA49932B218DD0330021CFA3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				505B6C2521F5C74F002E392D /* CommentObj.swift */,
 				FA49932C218DD04F0021CFA3 /* Podcast.swift */,
 				FA397ED62195E66D00D33617 /* SearchResults.swift */,
 				FA397ED82195E68E00D33617 /* Episode.swift */,
@@ -531,7 +534,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ACBAVPlayer/ACBAVPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
@@ -568,7 +571,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6B23A841E5CD2B417D2ECBE /* [CP] Check Pods Manifest.lock */ = {
@@ -639,6 +642,7 @@
 				FA49932D218DD04F0021CFA3 /* Podcast.swift in Sources */,
 				5018A44F21FF7DCF007EE027 /* DownloadEpisodeCell.swift in Sources */,
 				8F4FD70C220B3885000A06FC /* PlayerHelper.swift in Sources */,
+				297A669522397B4C007DBE2B /* CommentExtension.swift in Sources */,
 				FAFF82ED218CEB6400882A6A /* AppDelegate.swift in Sources */,
 				29C02399222EBBD500857E1D /* Person.swift in Sources */,
 				3723A1F921A9CDD100D5FAE9 /* String.swift in Sources */,
