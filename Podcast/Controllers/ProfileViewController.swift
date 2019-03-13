@@ -78,6 +78,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
                 if let error = error {
                     print("\(error.localizedDescription)")
                 }else{
+                    //whereField("uid", isEqualTo: userID)
                     self.posts = (QuerySnapshot?.documents
                         .flatMap({
                             Post(userName: $0.data()["author"] as! String,
@@ -86,6 +87,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
                                  ep_name: $0.data()["episode_name"] as! String,
                                  ep_img: $0.data()["episode_img_link"] as! String,
                                  ep_desc: $0.data()["episode_desc"] as! String,
+                                 dateID: $0.data()["Date"] as! Date,
                                  postID: $0.documentID as! String)}))!
                     DispatchQueue.main.async {
                         self.privateTimeline.reloadData()
@@ -114,6 +116,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
                                 ep_name: DocumentChange.document.data()["episode_name"] as! String,
                                 ep_img: DocumentChange.document.data()["episode_img_link"] as! String,
                                 ep_desc: DocumentChange.document.data()["episode_desc"] as! String,
+                                dateID: DocumentChange.document.data()["Date"] as! Date,
                                 postID: DocumentChange.document.documentID as! String), at: 0)
                             DispatchQueue.main.async {
                                 self.privateTimeline.reloadData()
@@ -136,16 +139,18 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let post_id = self.posts[indexPath.row].post_id
-        let userID = Auth.auth().currentUser?.uid
+        let epName = self.posts[indexPath.row].episode_name
         
+        let userID = Auth.auth().currentUser?.uid
+        print("--------------------")
+        print(epName!)
         db.collection("general_timelines")
             .document(userID!)
-            .collection("timeline").document(post_id!).delete() { err in
+            .collection("timeline").document(epName!).delete(){ err in
                 if let err = err {
                     print("Error removing document: \(err)")
                 } else {
                     print("Document successfully removed!")
-                    print(post_id)
                 }
         }
         db.collection("private_timelines")
@@ -155,7 +160,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
                     print("Error removing document: \(err)")
                 } else {
                     print("Document successfully removed!")
-                    print(post_id)
+                    
                     self.privateTimeline.reloadData()
                 }
         }
