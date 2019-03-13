@@ -145,6 +145,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
                     print("Error removing document: \(err)")
                 } else {
                     print("Document successfully removed!")
+                    print(post_id)
                 }
         }
         db.collection("private_timelines")
@@ -154,9 +155,12 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
                     print("Error removing document: \(err)")
                 } else {
                     print("Document successfully removed!")
+                    print(post_id)
+                    self.privateTimeline.reloadData()
                 }
         }
         privateTimeline.reloadData()
+        viewDidLoad()
     }
     
     @objc func handleSelectProfile() {
