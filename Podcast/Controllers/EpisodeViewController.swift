@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
+
     
     @IBOutlet weak var likeCounter: UILabel!
     @IBOutlet weak var likeButton: UIButton!
@@ -18,10 +19,20 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     @IBOutlet weak var episodeImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet var playlistsCV: UICollectionView!
+
+    
+    //Repost/Comment View
+    let dbs = DBService.shared
     @IBOutlet var writePost: UIView!
     @IBOutlet weak var postContentTV: UITextView!
     
+    @IBOutlet weak var playButton: UIButton!
+    
+    var postType: String = ""
+    
+    
     var comments = [CommentObj]()
+    let cellId = "cellId"
     var followersIDs : [String] = []
     var episode = Episode()
     let blackView = UIView()
@@ -33,11 +44,13 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     var userID:String?
     var username:String?
     var userImage:String?
+    var person : Person?
     var counter = 0
     var key = ""
     var exist = false
     var fileURL = ""
-    
+
+    //MARK:- Buttons Actions
     // this function will change the episode and start the player - YAY!
     @IBAction private func clickToPlay(_ sender: UIButton) {
         PlayerDetailsViewController.shared.setEpisode(episode: self.episode)
@@ -61,12 +74,22 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }
     }
     
+    //repost button
     @IBOutlet weak var rePostButton: UIButton!{
         didSet{
             rePostButton.addTarget(self, action: #selector(repostHandler), for: .touchUpInside)
         }
     }
     
+    //Comment button
+    @IBOutlet weak var commentButton: UIButton!{
+        didSet{
+            commentButton.addTarget(self, action: #selector(repostHandler), for: .touchUpInside)
+        }
+    }
+    
+    
+    //Repost-Comment view buttons
     @IBOutlet weak var createPostButton: UIButton!{
         didSet{
             createPostButton.addTarget(self, action: #selector(createNewPost), for: .touchUpInside)
@@ -79,10 +102,15 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }
     }
     
+    
     override func viewDidLoad() {
         setAttributes()
         super.viewDidLoad()
-       
+
+        setUpComments()
+        //self.playButton.setTitleColor(UIColor., for: .normal)
+        self.playButton.layer.cornerRadius = playButton.layer.frame.size.width/2
+        self.view.addSubview(self.playButton)
         playlistsCV.delegate = self
         playlistsCV.dataSource = self
         postContentTV.delegate = self
@@ -231,104 +259,25 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }
     }
     
+    //MARK:- Post handeler
     @objc func createNewPost(){
-
-        var ref:DocumentReference? = nil
-        var postDetails = ["uid" : userID,
-                           "author": username,
-                           "author_img":userImage,
-                           "content" : postContentTV.text,
-                           "Date" : Date(),
-                           "episode_link" : episode.fileUrl,
-                           "episode_img_link" : episode.imageUrl,
-                           "episode_name" : episode.title,
-                           "episode_desc" : episode.describtion] as [String : Any]
-        
-        ref = self.fireStoreDatabaseRef.collection("Posts").addDocument(data: postDetails){
-            error in
-            
-            if let error = error {
-                print("Error adding document \(error)")
-            }else{
-                print("Document inserted successfully with ID: \(ref!.documentID)")
-                self.databaseRef.child("Timeline").child(self.userID!).childByAutoId().setValue("\(ref!.documentID)")
-            }
+        print(postType)
+        if postType == "repost" {
+            self.addNewPost()
+        } else {
+            self.addNewComment()
         }
 
-        postDetails = ["uid" : userID,
-                           "author": username,
-                           "author_img":userImage,
-                           "content" : postContentTV.text,
-                           "Date" : Date(),
-                           "episode_link" : episode.fileUrl,
-                           "episode_img_link" : episode.imageUrl,
-                           "episode_name" : episode.title,
-                           "episode_desc" : episode.describtion,
-                           "post_id" : ""] as [String : Any]
-        ref = self.fireStoreDatabaseRef
-            .collection("general_timelines")
-            .document(self.userID!)
-            .collection("timeline")
-            .addDocument(data: postDetails){
-                error in
-                if let error = error {
-                    print("Error adding document \(error)")
-                }else{
-                    print("Document inserted successfully with ID: \(ref!.documentID)")
-                }
-        }
-        
-        print(self.followersIDs)
-        for userUID in self.followersIDs{
-            print(userUID)
-            ref = self.fireStoreDatabaseRef
-                .collection("general_timelines")
-                .document(userUID)
-                .collection("timeline")
-                .addDocument(data: postDetails){
-                    error in
-                    if let error = error {
-                        print("Error adding document \(error)")
-                    }else{
-                        print("Document inserted successfully with ID: \(ref!.documentID)")
-                    }
-            }
-        }
-        
-        ref = self.fireStoreDatabaseRef
-            .collection("private_timelines")
-            .document(self.userID!)
-            .collection("timeline")
-            .addDocument(data: postDetails){
-                error in
-                if let error = error {
-                    print("Error adding document \(error)")
-                }else{
-                    print("Document inserted successfully with ID: \(ref!.documentID)")
-                }
-        }
-        
-
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.blackView.alpha = 0.0
-            self.writePost.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 200)
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            self.tabBarController?.tabBar.isHidden = false
-            PlayerDetailsViewController.shared.view.isHidden = false
-        }, completion: nil)
+        self.hidePostView()
     }
     
     @objc func cancelNewPost(){
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.blackView.alpha = 0.0
-            self.writePost.alpha = 0.0
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            self.tabBarController?.tabBar.isHidden = false
-            PlayerDetailsViewController.shared.view.isHidden = false
-        }, completion: nil)
+        self.hidePostView()
     }
     
-    @objc func repostHandler(){
+    
+    //handling post view
+    @objc func repostHandler(sender: UIButton){
         
         guard (Auth.auth().currentUser?.uid) != nil else {
             let alert = UIAlertController(title: "Not Register", message: "You have to register to get this feature", preferredStyle: .alert)
@@ -337,11 +286,14 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             present(alert,animated: true,completion: nil)
             return
         }
+        
+        postType = sender.currentTitle!
+        
         blackView.backgroundColor = UIColor.black
         blackView.alpha = 0
         writePost.alpha = 0
         
-        blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handelDismiss)))
+        blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hidePostView)))
         
         self.view.addSubview(blackView)
         self.view.addSubview(writePost)
@@ -397,29 +349,29 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     func setUpDatabases(){
-        self.databaseRef = Database.database().reference()
         self.userID = Auth.auth().currentUser?.uid
-        
-        self.databaseRef.child("usersInfo").child(userID!).observe(.value) { (snapshot) in
-            if let dictionary = snapshot.value as? [String:AnyObject]{
-                self.username = dictionary["username"] as? String
-                self.userImage = dictionary["profileImgaeURL"] as? String
-            }
+        self.dbs.getPerson(uid: userID!) {(person) in
+            self.person = person
+            self.username = person.username
+            self.userImage = person.profileImageURL
+        }
+        dbs.getFollowersIDs { (followersIDs) in
+            self.followersIDs = followersIDs
         }
         
-        
-        databaseRef.child("usersInfo").child(userID!).child("Followers").observeSingleEvent(of: .value) { (snapshot) in
-            for case let rest as DataSnapshot in snapshot.children {
-                if((rest.value as! Int) == 1){
-                    self.followersIDs.append(rest.key)
-                    print(self.followersIDs)
-                }
-            }
-            
-        }
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
         postContentTV.text = ""
+    }
+    
+    //MARK:- Comments
+    func setUpComments(){
+        dbs.getComments(episode: self.episode) { (comments) in
+            DispatchQueue.main.async {
+                self.comments = comments
+                self.tableView.reloadData()
+            }
+        }
     }
 }
 

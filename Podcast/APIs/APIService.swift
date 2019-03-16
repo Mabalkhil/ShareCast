@@ -10,42 +10,11 @@ import Alamofire
 import FeedKit
 
 
-
-
-extension String {
-    func index(from: Int) -> Index {
-        return self.index(startIndex, offsetBy: from)
-    }
-    
-    func substring(from: Int) -> String {
-        let fromIndex = index(from: from)
-        return substring(from: fromIndex)
-    }
-    
-    func substring(to: Int) -> String {
-        let toIndex = index(from: to)
-        return substring(to: toIndex)
-    }
-    
-    func substring(with r: Range<Int>) -> String {
-        let startIndex = index(from: r.lowerBound)
-        let endIndex = index(from: r.upperBound)
-        return substring(with: startIndex..<endIndex)
-    }
-}
-
-extension NSNotification.Name{
-    
-    static let downloadProgress = NSNotification.Name("downloadProgress")
-    static let downloadComplete = NSNotification.Name("downloadComplete ")
-}
-
-
 class APIService {
-    
-    typealias EpisodeDownloadCompleteTuple = (fileURL: String, episodeTitle: String)
     // Signleton Object
     static let shared = APIService()
+    
+    typealias EpisodeDownloadCompleteTuple = (fileURL: String, episodeTitle: String)
     var categories = [Category]()
     
     func fetchEpisodes(feedUrl: String, completionHandler: @escaping ([Episode]) -> ()){

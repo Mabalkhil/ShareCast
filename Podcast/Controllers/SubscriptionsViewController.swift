@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 class SubscriptionsViewController: UITableViewController {
-    let reff = Database.database().reference()
+    let dbs = DBService.shared
     var channelSub = [Podcast]()
     
     override func viewDidLoad() {
@@ -69,23 +69,9 @@ class SubscriptionsViewController: UITableViewController {
     }
     
     func fetchUserSubs(){
-        guard let currUser = Auth.auth().currentUser?.uid else {
-            return
-        }
-        print(currUser)
-        var channel = Podcast()
-        reff.child("usersInfo").child(currUser).child("Subscription").observeSingleEvent(of: .value) { (snapshot) in
-            for case let rest as DataSnapshot in snapshot.children {
-                
-                let channelObj = rest.value as! [String:Any]
-                channel.artistName = channelObj["channelAuthor"] as! String
-                channel.trackName = channelObj["channelName"] as! String
-                channel.artworkUrl600 = channelObj["channelImageURL"] as! String
-                channel.feedUrl = channelObj["channelURL"] as! String
-                channel.trackCount = channelObj["EpisodeCount"]  as! Int
-                self.channelSub.append(channel)
-                
-            }
+        dbs.getSubscriptions {
+            podcasts in
+            self.channelSub = podcasts
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -93,5 +79,4 @@ class SubscriptionsViewController: UITableViewController {
     }
     
 }
-
 
