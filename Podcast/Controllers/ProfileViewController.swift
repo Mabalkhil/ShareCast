@@ -202,7 +202,6 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
                 }
             })
         }
-
     picker.dismiss(animated: true, completion: nil)
     }
     

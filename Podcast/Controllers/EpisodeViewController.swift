@@ -11,6 +11,7 @@ import Firebase
 
 class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
     
+    @IBOutlet weak var likeCounter: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var tableViewComments: UITableView!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -32,7 +33,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     var userID:String?
     var username:String?
     var userImage:String?
-    var counter = 1
+    var counter = 0
     var key = ""
     var exist = false
     var fileURL = ""
@@ -115,7 +116,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     func checkLikedEpisode(){
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        fireBaseDatabaseRef.child(uid).child("Likes").observeSingleEvent(of: .value) { (snapshot) in
+        fireBaseDatabaseRef.child("usersInfo").child(uid).child("Likes").observeSingleEvent(of: .value) { (snapshot) in
             for case let episodeUrl as DataSnapshot in snapshot.children {
                 let url = episodeUrl.value as! String
                 if(url == self.episode.fileUrl){
@@ -127,9 +128,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }
     }
     
-    func EpisodeLike(){
-        
-    }
     @objc func downloadHandler(){
         UserDefaults.standard.downloadEpisode(episode: episode.self)
         APIService.shared.downloadEpisode(episode: episode.self)
@@ -193,34 +191,28 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             present(alert,animated: true,completion: nil)
             return
         }
+        
         if likeButton.titleLabel?.text == "like" {
-            if exist == true {
-            fireBaseDatabaseRef.child("Episodes").child(self.key).setValue(self.counter+1)
-            }else{
-                self.key = fireBaseDatabaseRef.child("Episodes").childByAutoId().key ?? ""
-                print(self.fileURL)
-                fireBaseDatabaseRef.child("Episodes").child(self.key).updateChildValues(["eURL" :self.fileURL,"counter":self.counter])
-            }
-            fireBaseDatabaseRef.child(uid).child("Likes").child(self.key).setValue(self.fileURL)
+            self.counter += 1
+            fireBaseDatabaseRef.child("Episodes").child(self.key).child("counter").setValue(self.counter)
+            fireBaseDatabaseRef.child("usersInfo").child(uid).child("Likes").child(self.key).setValue(self.fileURL)
             likeButton.setTitle("unlike", for: .normal )
             likeButton.setImage(UIImage(named: "like_filled"), for: .normal)
         }else{
-            fireBaseDatabaseRef.child("Episodes").child(self.key).child("counter").setValue(self.counter-1)
-            fireBaseDatabaseRef.child(uid).child("Likes").child(self.key).removeValue()
+            self.counter -= 1
+            fireBaseDatabaseRef.child("Episodes").child(self.key).child("counter").setValue(self.counter)
+            fireBaseDatabaseRef.child("usersInfo").child(uid).child("Likes").child(self.key).removeValue()
             likeButton.setTitle("like", for: .normal )
             likeButton.setImage(UIImage(named: "like"), for: .normal)
         }
+         self.likeCounter.text = "\(self.counter)"
     }
+    
     
     func checkEpisodeUrl() {
         fireBaseDatabaseRef.child("Episodes").observeSingleEvent(of: .value) { (snapshot) in
             for case let epi as DataSnapshot in snapshot.children {
-                guard let obj = epi.value else {
-                    return
-                }
-                print(obj)
                 let channelObj = epi.value as! [String:Any]
-                print(channelObj)
                 guard let url = (channelObj["eURL"] as! String?) else {
                     return
                 }
@@ -231,6 +223,11 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
                         break
                 }
             }
+            if self.exist == false {
+                self.key =  self.fireBaseDatabaseRef.child("Episodes").childByAutoId().key ?? ""
+                self.fireBaseDatabaseRef.child("Episodes").child(self.key).updateChildValues(["eURL": self.fileURL,"counter":0])
+            }
+            self.likeCounter.text = "\(self.counter)"
         }
     }
     
