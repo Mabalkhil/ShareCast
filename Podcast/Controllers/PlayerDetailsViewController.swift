@@ -198,6 +198,8 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
             player.replaceCurrentItem(with: playerItem)
             player.play()
             isPlaying = true
+            smartSpeedButton.isHidden = false
+            SSLabel.isHidden = false
             smartSpeedButton.isEnabled = true
         } else{
             guard let url = URL(string: episode.streamURL) else { return }
@@ -368,6 +370,7 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
                 UserDefaults.standard.trackedEpisode(episodeTitle: self.episode.title, time: Double(getDurationInSeconds()))
             }
             player.stop()
+            smartSpeedToggle == false
             self.episode = episode
             self.marks.removeAll() // remove all time marks from before
             smartSpeedToggle = false

@@ -92,7 +92,7 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
         handleTimeMark()
         
         scrollView.delegate = self
-        //scrollView.isScrollEnabled = false
+       // scrollView.isScrollEnabled = true
     }
     
     
