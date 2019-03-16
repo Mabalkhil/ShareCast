@@ -11,12 +11,12 @@ import Firebase
 
 class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
     
+    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var tableViewComments: UITableView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var episodeImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet var playlistsCV: UICollectionView!
-    
     @IBOutlet var writePost: UIView!
     @IBOutlet weak var postContentTV: UITextView!
     
@@ -27,10 +27,15 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     var playlists = UserDefaults.standard.playlistsArray()
     
     var fireStoreDatabaseRef = Firestore.firestore()
+    var fireBaseDatabaseRef = Database.database().reference()
     var databaseRef = DatabaseReference.init()
     var userID:String?
     var username:String?
     var userImage:String?
+    var counter = 1
+    var key = ""
+    var exist = false
+    var fileURL = ""
     
     // this function will change the episode and start the player - YAY!
     @IBAction private func clickToPlay(_ sender: UIButton) {
@@ -76,16 +81,18 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     override func viewDidLoad() {
         setAttributes()
         super.viewDidLoad()
-        
+       
         playlistsCV.delegate = self
         playlistsCV.dataSource = self
         postContentTV.delegate = self
         let index = playlists.count
         playlists.insert(Playlist(name: "Cancel", epis_list: []), at: index)
         
+         fileURL = episode.fileUrl ?? ""
         if Auth.auth().currentUser?.uid != nil {
-            print("1: ???")
             setUpDatabases()
+            checkLikedEpisode()
+            checkEpisodeUrl()
         }
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -106,6 +113,23 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         episodeImage.sd_setImage(with: url)
     }
     
+    func checkLikedEpisode(){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        fireBaseDatabaseRef.child(uid).child("Likes").observeSingleEvent(of: .value) { (snapshot) in
+            for case let episodeUrl as DataSnapshot in snapshot.children {
+                let url = episodeUrl.value as! String
+                if(url == self.episode.fileUrl){
+                    self.likeButton.setTitle("unlike", for: .normal )
+                    self.likeButton.setImage(UIImage(named: "like_filled"), for: .normal)
+                    break
+                }
+            }
+        }
+    }
+    
+    func EpisodeLike(){
+        
+    }
     @objc func downloadHandler(){
         UserDefaults.standard.downloadEpisode(episode: episode.self)
         APIService.shared.downloadEpisode(episode: episode.self)
@@ -158,6 +182,55 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }else{
             UserDefaults.standard.deleteBookmarkedEpisode(episode: episode)
             bookmarkButton.setImage(UIImage(named: "bookmark"), for: .normal)
+        }
+    }
+    @IBAction func likePressed(_ sender: Any) {
+        // check if the user register
+        guard let uid = Auth.auth().currentUser?.uid else {
+            let alert = UIAlertController(title: "Not Register", message: "You have to register to get this feature", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(alertAction)
+            present(alert,animated: true,completion: nil)
+            return
+        }
+        if likeButton.titleLabel?.text == "like" {
+            if exist == true {
+            fireBaseDatabaseRef.child("Episodes").child(self.key).setValue(self.counter+1)
+            }else{
+                self.key = fireBaseDatabaseRef.child("Episodes").childByAutoId().key ?? ""
+                print(self.fileURL)
+                fireBaseDatabaseRef.child("Episodes").child(self.key).updateChildValues(["eURL" :self.fileURL,"counter":self.counter])
+            }
+            fireBaseDatabaseRef.child(uid).child("Likes").child(self.key).setValue(self.fileURL)
+            likeButton.setTitle("unlike", for: .normal )
+            likeButton.setImage(UIImage(named: "like_filled"), for: .normal)
+        }else{
+            fireBaseDatabaseRef.child("Episodes").child(self.key).child("counter").setValue(self.counter-1)
+            fireBaseDatabaseRef.child(uid).child("Likes").child(self.key).removeValue()
+            likeButton.setTitle("like", for: .normal )
+            likeButton.setImage(UIImage(named: "like"), for: .normal)
+        }
+    }
+    
+    func checkEpisodeUrl() {
+        fireBaseDatabaseRef.child("Episodes").observeSingleEvent(of: .value) { (snapshot) in
+            for case let epi as DataSnapshot in snapshot.children {
+                guard let obj = epi.value else {
+                    return
+                }
+                print(obj)
+                let channelObj = epi.value as! [String:Any]
+                print(channelObj)
+                guard let url = (channelObj["eURL"] as! String?) else {
+                    return
+                }
+                if(self.fileURL == url){
+                self.counter = channelObj["counter"] as! Int
+                self.key = epi.key
+                self.exist = true
+                        break
+                }
+            }
         }
     }
     
@@ -348,7 +421,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             
         }
     }
-    
     func textViewDidBeginEditing(_ textView: UITextView) {
         postContentTV.text = ""
     }

@@ -114,7 +114,10 @@
                                                                 <constraint firstAttribute="height" constant="50" id="ukt-KT-Xl7"/>
                                                             </constraints>
                                                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                                            <state key="normal" title="Button" image="like"/>
+                                                            <state key="normal" title="like" image="like"/>
+                                                            <connections>
+                                                                <action selector="likePressed:" destination="YKl-A7-hyP" eventType="touchUpInside" id="OHV-aR-yLb"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhE-GC-yra">
                                                             <rect key="frame" x="0.0" y="290" width="50" height="50"/>
@@ -266,6 +269,7 @@
                         <outlet property="descriptionLabel" destination="saY-iS-7Z9" id="6x4-fh-3Rb"/>
                         <outlet property="downloadButton" destination="nhE-GC-yra" id="bh5-h5-qGL"/>
                         <outlet property="episodeImage" destination="p4B-fj-d1j" id="KRJ-3e-c59"/>
+                        <outlet property="likeButton" destination="jXa-M5-lee" id="oTY-Hf-0op"/>
                         <outlet property="playlistsCV" destination="PNE-A7-bTb" id="AKn-aR-hbb"/>
                         <outlet property="postCancelButton" destination="QCV-7f-nAU" id="Doi-5A-dQq"/>
                         <outlet property="postContentTV" destination="ttt-eT-6uB" id="quQ-YP-IVj"/>

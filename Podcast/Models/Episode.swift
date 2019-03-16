@@ -35,7 +35,7 @@ struct Episode: Codable {
         let feedDescription = (feedItem.description as! String?) ?? ""
         self.timeStampLables = feedDescription.timeStampsLabled()
         self.timeStamps = feedDescription.timeStamps()
-        self.fileUrl = ""
+        self.fileUrl = feedItem.link ?? ""
         self.time = feedItem.iTunes?.iTunesDuration
        // print(test, separator: ".\n")
         

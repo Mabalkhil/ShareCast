@@ -308,14 +308,15 @@
 		FA499328218DCD0D0021CFA3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				505B6C2621F5C74F002E392D /* EpisodeViewController.swift */,
+				50A43E5C221809560074B70A /* SubscriptionsViewController.swift */,
+				50092B9B22109BA800A05D06 /* ChannelController.swift */,
 				372023AF220374E900D0C555 /* addEpisodeToPlaylist.swift */,
 				2FC15E972201F4A600DF1FD4 /* BookmarkController.swift */,
-				50092B9B22109BA800A05D06 /* ChannelController.swift */,
 				375DD44B2201ECA700C2D698 /* CreatePlaylistController.swift */,
 				5018A44721FF7DCF007EE027 /* DownloadsController.swift */,
 				502484AF21FCED3D00CA84F1 /* EditProfileViewController.swift */,
 				50420F7621A083F80030CDB4 /* EntryViewController.swift */,
-				505B6C2621F5C74F002E392D /* EpisodeViewController.swift */,
 				FAFF831D218CEC4300882A6A /* MainTabController.swift */,
 				2FD789C72200E4EE006A47FE /* PlayerDetailsViewController.swift */,
 				FA499329218DCD3D0021CFA3 /* PodcastSearchController.swift */,
@@ -323,7 +324,6 @@
 				5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */,
 				50420FA121A12AF30030CDB4 /* SignInViewController.swift */,
 				50420F7821A089170030CDB4 /* SignUpViewController.swift */,
-				50A43E5C221809560074B70A /* SubscriptionsViewController.swift */,
 				2F9AD7A722245331000D00BA /* TimelineViewController.swift */,
 				290E0C4F223065C90000E7DF /* UsersProfileController.swift */,
 				FAFF82EE218CEB6400882A6A /* ViewController.swift */,
@@ -531,7 +531,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ACBAVPlayer/ACBAVPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
@@ -568,7 +568,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6B23A841E5CD2B417D2ECBE /* [CP] Check Pods Manifest.lock */ = {

@@ -39,14 +39,7 @@ class SubscriptionsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showChannel", sender: nil)
         
-        //        let channelStoryboard = UIStoryboard(name: "Channel", bundle: Bundle.main)
-        //        guard let destinationViewController = channelStoryboard.instantiateInitialViewController() as?
-        //            ChannelController else {
-        //                return
-        //        }
-        //        let podcast = self.channels[indexPath.row]
-        //        destinationViewController.podcast = podcast
-        //        navigationController?.pushViewController(destinationViewController, animated: true)
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -101,13 +94,4 @@ class SubscriptionsViewController: UITableViewController {
     
 }
 
-//self.firebaseSubReff.child(uid).child("Subscription").observeSingleEvent(of: .value) { (snapshot) in
-//    for case let rest as DataSnapshot in snapshot.children {
-//        let key = rest.key
-//        let channelObj = rest.value as! [String:Any]
-//        if channelObj["channelURL"] as! String == self.podcast?.feedUrl {
-//            self.firebaseSubReff.child(uid).child("Subscription").child(key).removeValue()
-//            break
-//        }
-//    }
-//}
+
