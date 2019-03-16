@@ -102,6 +102,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         Auth.auth().signIn(withEmail: email, password: pass) { user, error in
             if error == nil && user != nil {
                 let mainView = MainTabBarController()
+                DBService.shared.uid = (Auth.auth().currentUser?.uid)!
                 self.present(mainView,animated: true,completion: nil)
             } else {
                 let errorMsg = error!.localizedDescription

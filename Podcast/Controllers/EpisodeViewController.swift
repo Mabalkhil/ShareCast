@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
-    
+    let dbs = DBService.shared
     @IBOutlet weak var tableViewComments: UITableView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var episodeImage: UIImageView!
@@ -38,6 +38,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     var userID:String?
     var username:String?
     var userImage:String?
+    var person : Person?
     
     //MARK:- Buttons Actions
     // this function will change the episode and start the player - YAY!
@@ -95,7 +96,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     override func viewDidLoad() {
         setAttributes()
         super.viewDidLoad()
-        
+        setUpComments()
         //self.playButton.setTitleColor(UIColor., for: .normal)
         self.playButton.layer.cornerRadius = playButton.layer.frame.size.width/2
         self.view.addSubview(self.playButton)
@@ -274,30 +275,30 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     func setUpDatabases(){
-        self.databaseRef = Database.database().reference()
         self.userID = Auth.auth().currentUser?.uid
-        
-        self.databaseRef.child("usersInfo").child(userID!).observe(.value) { (snapshot) in
-            if let dictionary = snapshot.value as? [String:AnyObject]{
-                self.username = dictionary["username"] as? String
-                self.userImage = dictionary["profileImgaeURL"] as? String
-            }
+        self.dbs.getPerson(uid: userID!) {(person) in
+            self.person = person
+            self.username = person.username
+            self.userImage = person.profileImageURL
+        }
+        dbs.getFollowersIDs { (followersIDs) in
+            self.followersIDs = followersIDs
         }
         
-        
-        databaseRef.child("usersInfo").child(userID!).child("Followers").observeSingleEvent(of: .value) { (snapshot) in
-            for case let rest as DataSnapshot in snapshot.children {
-                if((rest.value as! Int) == 1){
-                    self.followersIDs.append(rest.key)
-                    print(self.followersIDs)
-                }
-            }
-            
-        }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         postContentTV.text = ""
+    }
+    
+    //MARK:- Comments
+    func setUpComments(){
+        dbs.getComments(episode: self.episode) { (comments) in
+            DispatchQueue.main.async {
+                self.comments = comments
+                self.tableView.reloadData()
+            }
+        }
     }
 }
 

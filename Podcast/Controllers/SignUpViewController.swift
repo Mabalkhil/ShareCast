@@ -21,8 +21,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     
     var continueButton:RoundedWhiteButton!
     var activityView:UIActivityIndicatorView!
-    var fireStoreDatabaseRef = Firestore.firestore()
-    let ref = Database.database().reference(fromURL: "https://sharecast-c780f.firebaseio.com/")
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,31 +119,20 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                 guard let uid = user?.user.uid else {
                     return
                 }
-                let userInfoRefrence = self.ref.child("usersInfo").child(uid)
                 let values =
-                    ["email": email,"profileImgaeURL": "https://firebasestorage.googleapis.com/v0/b/sharecast-c780f.appspot.com/o/profile_Image%2FDefault.png?alt=media&token=37fdc72b-ffbe-430a-85c8-07dde877e71d","firstName":firstName,"lastName":lastName,"username":"@\(username)"]
-                userInfoRefrence.updateChildValues(values, withCompletionBlock: { (error, ref) in
-                    if let err = error {
-                        let alert = UIAlertController(title: err.localizedDescription, message: "", preferredStyle: .alert)
-                        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                        alert.addAction(action)
-                        self.present(alert,animated: true,completion: nil)
-                    }
+                    ["email": email,
+                     "profileImageURL": "https://firebasestorage.googleapis.com/v0/b/sharecast-c780f.appspot.com/o/profile_Image%2FDefault.png?alt=media&token=37fdc72b-ffbe-430a-85c8-07dde877e71d",
+                     "firstName":firstName,
+                     "lastName":lastName,
+                     "username":"@\(username)"]
+                let person = Person(dictionary: values)
+
+                
+                DBService.shared.singup(person: person!, uid: uid, completionHandler: {
+                    alert in
+                    self.present(alert,animated: true,completion: nil)
+                    
                 })
-                
-                var ref:DocumentReference? = nil
-                
-                let postDetails = ["username" : username]
-                ref = self.fireStoreDatabaseRef
-                    .collection("all_usernames")
-                    .addDocument(data: postDetails){
-                        error in
-                        if let error = error {
-                            print("Error adding document \(error)")
-                        }else{
-                            print("Document inserted successfully with ID: \(ref!.documentID)")
-                        }
-                }
                 
                 let mainView = MainTabBarController()
                 self.present(mainView,animated: true,completion: nil)

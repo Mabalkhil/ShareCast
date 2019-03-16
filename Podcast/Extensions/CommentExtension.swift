@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 
 extension EpisodeViewController{
-    
     //Hide View method
     @objc func hidePostView() {
         //to hide text
@@ -110,11 +109,15 @@ extension EpisodeViewController{
         let comment = CommentObj(
         realName: "",
         username: username!,
-        img: userImage!,
+        img: userImage ?? "" ,
         com: postContentTV.text)
-        
-        self.comments.append(comment)
-        self.tableView.reloadData()
+        self.dbs.postComment(episode: self.episode, comment: comment) {
+            
+            DispatchQueue.main.async {
+                self.comments.append(comment)
+                self.tableView.reloadData()
+            }
+        }
     }
     
     //MARK:- Comment Table methods
@@ -131,6 +134,4 @@ extension EpisodeViewController{
         
         return cell
     }
-
-    
 }

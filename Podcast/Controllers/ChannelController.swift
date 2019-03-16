@@ -24,8 +24,8 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
           
         }
     }
+    let dbs = DBService.shared
     var firebaseReff = Auth.auth().currentUser
-    var firebaseSubReff = Database.database().reference().child("usersInfo")
     var alert: UIAlertController!
     var alertAction: UIAlertAction!
     
@@ -48,22 +48,17 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
             self.headerView.SubButton.setTitle("Subscribe", for: .normal)
             return
         }
-        self.firebaseSubReff.child(uid).child("Subscription").observeSingleEvent(of: .value) { (snapshot) in
-            var exist = false
-            for case let rest as DataSnapshot in snapshot.children {
-                let channelObj = rest.value as! [String:Any]
-                if channelObj["channelURL"] as? String == self.podcast?.feedUrl {
-                    exist = true
-                    print(1)
-                    break
-                }
-            }
-            if exist {
+
+        self.dbs.checkSubscribestion(podcast: podcast!) {
+            (exists) in
+            if exists {
                 self.headerView.SubButton.setTitle("Unsubscribe", for: .normal)
             } else {
                 self.headerView.SubButton.setTitle("Subscribe", for: .normal)
             }
         }
+
+
     }
     
     
@@ -142,27 +137,12 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
         }
 
         if headerView.SubButton.currentTitle! == "Subscribe" {
-            firebaseSubReff.child(uid).child("Subscription").childByAutoId().updateChildValues(
-                ["channelURL" : podcast?.feedUrl,
-                 "channelName": podcast?.trackName ,
-                    "channelAuthor": podcast?.artistName,
-                    "channelImageURL": podcast?.artworkUrl600,
-                    "EpisodeCount": podcast?.trackCount
-                ])
+            dbs.subscribeToChannel(podcast: podcast!)
             headerView.SubButton.setTitle("Unsubscribe", for: .normal)
         }else {
             self.alert = UIAlertController(title: "Are you sure you want to Unsubscribe", message: "", preferredStyle: .alert)
             let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-                self.firebaseSubReff.child(uid).child("Subscription").observeSingleEvent(of: .value) { (snapshot) in
-                    for case let rest as DataSnapshot in snapshot.children {
-                        let key = rest.key
-                        let channelObj = rest.value as! [String:Any]
-                        if channelObj["channelURL"] as? String == self.podcast?.feedUrl {
-                        self.firebaseSubReff.child(uid).child("Subscription").child(key).removeValue()
-                            break
-                        }
-                    }
-                }
+                self.dbs.unsubscribeToChannel(podcast: self.podcast!)
                 self.headerView.SubButton.setTitle("Subscribe", for: .normal)
                 return
             })
