@@ -206,10 +206,11 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     @objc func repostHandler(sender: UIButton){
         
         guard (Auth.auth().currentUser?.uid) != nil else {
-            let alert = UIAlertController(title: "Not Register", message: "You have to register to get this feature", preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alert.addAction(alertAction)
-            present(alert,animated: true,completion: nil)
+//            let alert = UIAlertController(title: "Not Register", message: "You have to register to get this feature", preferredStyle: .alert)
+//            let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+//            alert.addAction(alertAction)
+//            present(alert,animated: true,completion: nil)
+            alertUser("Not Register", "You have to register to get this feature")
             return
         }
         
@@ -281,6 +282,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             self.username = person.username
             self.userImage = person.profileImageURL
         }
+        print(self.username)
         dbs.getFollowersIDs { (followersIDs) in
             self.followersIDs = followersIDs
         }

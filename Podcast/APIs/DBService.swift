@@ -303,6 +303,7 @@ class DBService {
                 }
         }
     }
+    
     func deletePost(postId: String) {
         self.db.collection("general_timelines")
             .document(uid)
@@ -379,6 +380,7 @@ class DBService {
                     var comments = [CommentObj]()
                     for commentDic in snapshot!.documents {
                         guard let comment = CommentObj(dictionary: commentDic.data()) else {continue}
+                        comment.commentID = commentDic.documentID
                         comments.append(comment)
                     }
                     completionHandler(comments)
@@ -386,6 +388,24 @@ class DBService {
                 
         }
 
+    }
+    
+    
+    func deleteComment(episode: Episode, comment: CommentObj, completionHandler: @escaping () -> ()) {
+        print("Deleting from firestore")
+        self.db
+            .collection("Episode")
+            .document(episode.streamURL.toBase64())
+            .collection("Comments")
+            .document(comment.commentID!)//This may need modifications
+            .delete() {
+                err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("FIRESTORE: Comment successfully removed from Episode!: \(comment.commentID)")
+                }
+        }
     }
     
     

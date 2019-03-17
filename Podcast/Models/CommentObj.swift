@@ -14,6 +14,7 @@ class CommentObj: NSObject {
     var userName: String?
     var userImage: String?
     var commentDesc: String?
+    var commentID: String?
     
     var dictionary : [String:Any]{
         return [

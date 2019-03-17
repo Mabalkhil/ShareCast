@@ -108,9 +108,10 @@ extension EpisodeViewController{
         //print("Message: \(postContentTV.text)")
         let comment = CommentObj(
         realName: "",
-        username: username!,
+        username: self.username!,
         img: userImage ?? "" ,
         com: postContentTV.text)
+        
         self.dbs.postComment(episode: self.episode, comment: comment) {
             
             DispatchQueue.main.async {
@@ -134,4 +135,42 @@ extension EpisodeViewController{
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        //This part checks the firebase
+//        guard (Auth.auth().currentUser?.uid) != nil else {
+//            alertUser("Not Register", "You have to register to get this feature")
+//            return
+//        }
+        
+        print("Starting deletion")
+        let comment = self.comments[indexPath.row]
+        
+        if comment.userName != self.username {
+            alertUser("Alert", "You are not authorized to delete this comment!!")
+            
+        } else {
+            print("In else statement")
+            self.dbs.deleteComment(episode: self.episode, comment: comment) {
+                
+                DispatchQueue.main.async {
+                    self.comments.remove(at: indexPath.row)
+                    print("Table removed from list !!!!")
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        
+    }
+    
+    
+    
+    func alertUser(_ title: String, _ msg: String){
+        
+       let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style:.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }
