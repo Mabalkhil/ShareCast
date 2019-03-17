@@ -35,7 +35,7 @@ class CommentObj: NSObject {
         self.userRealName = dictionary["userRealName"] as? String ?? ""
         self.userName = dictionary["userName"] as? String ?? ""
         self.userImage = dictionary["userImage"] as? String ?? ""
-        self.commentDesc = dictionary["userName"] as? String ?? ""
+        self.commentDesc = dictionary["commentDesc"] as? String ?? ""
     }
     
     init(realName:String, username:String, img:String, com:String) {

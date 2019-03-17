@@ -351,8 +351,9 @@ class DBService {
     
     //MARK:- Episode Queires
     
-    func postComment(episode: Episode, comment: CommentObj, completionHandler: @escaping () -> ()){
-        self.db
+    func postComment(episode: Episode, comment: CommentObj, completionHandler: @escaping (String) -> ()){
+        var ref: DocumentReference? = nil
+        ref = self.db
             .collection("Episodes")
             .document(episode.streamURL.toBase64())
             .collection("Comments")
@@ -362,7 +363,7 @@ class DBService {
                     print("FIRESTORE: Error in posting comment, \(err)")
                 }
                 else{
-                    completionHandler()
+                    completionHandler(ref!.documentID)
                 }
         }
     }
@@ -391,19 +392,20 @@ class DBService {
     }
     
     
-    func deleteComment(episode: Episode, comment: CommentObj, completionHandler: @escaping () -> ()) {
+    func deleteComment(episode: Episode, commentID: String, completionHandler: @escaping () -> ()) {
         print("Deleting from firestore")
         self.db
             .collection("Episode")
             .document(episode.streamURL.toBase64())
             .collection("Comments")
-            .document(comment.commentID!)//This may need modifications
+            .document(commentID)//This may need modifications
             .delete() {
                 err in
                 if let err = err {
                     print("Error removing document: \(err)")
                 } else {
-                    print("FIRESTORE: Comment successfully removed from Episode!: \(comment.commentID)")
+                    print("FIRESTORE: Comment successfully removed from Episode!: \(commentID)")
+                    completionHandler()
                 }
         }
     }

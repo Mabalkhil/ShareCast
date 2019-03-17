@@ -112,9 +112,10 @@ extension EpisodeViewController{
         img: userImage ?? "" ,
         com: postContentTV.text)
         
-        self.dbs.postComment(episode: self.episode, comment: comment) {
+        self.dbs.postComment(episode: self.episode, comment: comment) {commentID in
             
             DispatchQueue.main.async {
+                comment.commentID = commentID
                 self.comments.append(comment)
                 self.tableView.reloadData()
             }
@@ -152,11 +153,11 @@ extension EpisodeViewController{
             
         } else {
             print("In else statement")
-            self.dbs.deleteComment(episode: self.episode, comment: comment) {
+            self.dbs.deleteComment(episode: self.episode, commentID: comment.commentID!) {
                 
                 DispatchQueue.main.async {
                     self.comments.remove(at: indexPath.row)
-                    print("Table removed from list !!!!")
+                    print("Cell removed from list !!!!")
                     self.tableView.reloadData()
                 }
             }
