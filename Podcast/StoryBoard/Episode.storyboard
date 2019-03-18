@@ -296,6 +296,7 @@
                         <outlet property="episodeImage" destination="p4B-fj-d1j" id="KRJ-3e-c59"/>
                         <outlet property="likeButton" destination="jXa-M5-lee" id="oTY-Hf-0op"/>
                         <outlet property="likeCounter" destination="F9a-1O-IiG" id="m4u-BF-q3G"/>
+                        <outlet property="playButton" destination="lCj-Bk-1nx" id="C03-Qb-3fE"/>
                         <outlet property="playlistsCV" destination="PNE-A7-bTb" id="AKn-aR-hbb"/>
                         <outlet property="postCancelButton" destination="QCV-7f-nAU" id="Doi-5A-dQq"/>
                         <outlet property="postContentTV" destination="ttt-eT-6uB" id="quQ-YP-IVj"/>
