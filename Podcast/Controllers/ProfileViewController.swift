@@ -140,19 +140,24 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let post_id = self.posts[indexPath.row].post_id
         let epName = self.posts[indexPath.row].episode_name
+        let dateID = self.posts[indexPath.row].date
         
         let userID = Auth.auth().currentUser?.uid
         print("--------------------")
         print(epName!)
         db.collection("general_timelines")
             .document(userID!)
-            .collection("timeline").document(epName!).delete(){ err in
+            .collection("timeline").whereField("episode_name", isEqualTo: epName!).getDocuments(){ (querySnapshot, err) in
                 if let err = err {
-                    print("Error removing document: \(err)")
+                    print("Error getting documents: \(err)")
                 } else {
-                    print("Document successfully removed!")
+                    for document in querySnapshot!.documents {
+                        document.reference.delete()
+                        print("Document successfully removed!")
+                    }
                 }
         }
+
         db.collection("private_timelines")
             .document(userID!)
             .collection("timeline").document(post_id!).delete() { err in
@@ -166,6 +171,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         }
         privateTimeline.reloadData()
         viewDidLoad()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     
     @objc func handleSelectProfile() {

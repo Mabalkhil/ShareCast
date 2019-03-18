@@ -20,12 +20,14 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         timeline.delegate = self
         timeline.dataSource = self
+        
         loadData()
         checkForUpdate()
         // Do any additional setup after loading the view.
     }
+
     
-    func loadData() {
+     func loadData() {
         let userID = Auth.auth().currentUser?.uid
         db.collection("general_timelines")
             .document(userID!)
@@ -52,7 +54,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func checkForUpdate() {
+    @objc func checkForUpdate() {
         let userID = Auth.auth().currentUser?.uid
         db.collection("general_timelines")
             .document(userID!)
