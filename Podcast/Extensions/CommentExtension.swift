@@ -116,6 +116,7 @@ extension EpisodeViewController{
             
             DispatchQueue.main.async {
                 comment.commentID = commentID
+                print(commentID)
                 self.comments.append(comment)
                 self.tableView.reloadData()
             }
@@ -149,7 +150,7 @@ extension EpisodeViewController{
         let comment = self.comments[indexPath.row]
         
         if comment.userName != self.username {
-            alertUser("Alert", "You are not authorized to delete this comment!!")
+            alertUser("Sorry", "You are not authorized to delete this comment!!")
             
         } else {
             print("In else statement")

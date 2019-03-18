@@ -395,14 +395,14 @@ class DBService {
     func deleteComment(episode: Episode, commentID: String, completionHandler: @escaping () -> ()) {
         print("Deleting from firestore")
         self.db
-            .collection("Episode")
+            .collection("Episodes")
             .document(episode.streamURL.toBase64())
             .collection("Comments")
-            .document(commentID)//This may need modifications
-            .delete() {
-                err in
-                if let err = err {
-                    print("Error removing document: \(err)")
+            .document(commentID)
+            .delete { Error in
+                
+                if let Error = Error {
+                    print("Error removing document: \(Error)")
                 } else {
                     print("FIRESTORE: Comment successfully removed from Episode!: \(commentID)")
                     completionHandler()
