@@ -39,14 +39,7 @@ class SubscriptionsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showChannel", sender: nil)
         
-        //        let channelStoryboard = UIStoryboard(name: "Channel", bundle: Bundle.main)
-        //        guard let destinationViewController = channelStoryboard.instantiateInitialViewController() as?
-        //            ChannelController else {
-        //                return
-        //        }
-        //        let podcast = self.channels[indexPath.row]
-        //        destinationViewController.podcast = podcast
-        //        navigationController?.pushViewController(destinationViewController, animated: true)
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -86,3 +79,4 @@ class SubscriptionsViewController: UITableViewController {
     }
     
 }
+

@@ -10,14 +10,19 @@ import UIKit
 import Firebase
 
 class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
-    let dbs = DBService.shared
+
+    
+    @IBOutlet weak var likeCounter: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var tableViewComments: UITableView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var episodeImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet var playlistsCV: UICollectionView!
+
     
     //Repost/Comment View
+    let dbs = DBService.shared
     @IBOutlet var writePost: UIView!
     @IBOutlet weak var postContentTV: UITextView!
     
@@ -34,12 +39,17 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     var playlists = UserDefaults.standard.playlistsArray()
     
     var fireStoreDatabaseRef = Firestore.firestore()
+    var fireBaseDatabaseRef = Database.database().reference()
     var databaseRef = DatabaseReference.init()
     var userID:String?
     var username:String?
     var userImage:String?
     var person : Person?
-    
+    var counter = 0
+    var key = ""
+    var exist = false
+    var fileURL = ""
+
     //MARK:- Buttons Actions
     // this function will change the episode and start the player - YAY!
     @IBAction private func clickToPlay(_ sender: UIButton) {
@@ -96,20 +106,22 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     override func viewDidLoad() {
         setAttributes()
         super.viewDidLoad()
+
         setUpComments()
         //self.playButton.setTitleColor(UIColor., for: .normal)
         self.playButton.layer.cornerRadius = playButton.layer.frame.size.width/2
         self.view.addSubview(self.playButton)
-        
         playlistsCV.delegate = self
         playlistsCV.dataSource = self
         postContentTV.delegate = self
         let index = playlists.count
         playlists.insert(Playlist(name: "Cancel", epis_list: []), at: index)
         
+         fileURL = episode.fileUrl ?? ""
         if Auth.auth().currentUser?.uid != nil {
-            print("1: ???")
             setUpDatabases()
+            checkLikedEpisode()
+            checkEpisodeUrl()
         }
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -128,6 +140,20 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         titleLabel.text = episode.title
         guard let url = URL(string: episode.imageUrl ?? "") else {return}
         episodeImage.sd_setImage(with: url)
+    }
+    
+    func checkLikedEpisode(){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        fireBaseDatabaseRef.child("usersInfo").child(uid).child("Likes").observeSingleEvent(of: .value) { (snapshot) in
+            for case let episodeUrl as DataSnapshot in snapshot.children {
+                let url = episodeUrl.value as! String
+                if(url == self.episode.fileUrl){
+                    self.likeButton.setTitle("unlike", for: .normal )
+                    self.likeButton.setImage(UIImage(named: "like_filled"), for: .normal)
+                    break
+                }
+            }
+        }
     }
     
     @objc func downloadHandler(){
@@ -182,6 +208,54 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }else{
             UserDefaults.standard.deleteBookmarkedEpisode(episode: episode)
             bookmarkButton.setImage(UIImage(named: "bookmark"), for: .normal)
+        }
+    }
+    @IBAction func likePressed(_ sender: Any) {
+        // check if the user register
+        guard let uid = Auth.auth().currentUser?.uid else {
+            let alert = UIAlertController(title: "Not Register", message: "You have to register to get this feature", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(alertAction)
+            present(alert,animated: true,completion: nil)
+            return
+        }
+        
+        if likeButton.titleLabel?.text == "like" {
+            self.counter += 1
+            fireBaseDatabaseRef.child("Episodes").child(self.key).child("counter").setValue(self.counter)
+            fireBaseDatabaseRef.child("usersInfo").child(uid).child("Likes").child(self.key).setValue(self.fileURL)
+            likeButton.setTitle("unlike", for: .normal )
+            likeButton.setImage(UIImage(named: "like_filled"), for: .normal)
+        }else{
+            self.counter -= 1
+            fireBaseDatabaseRef.child("Episodes").child(self.key).child("counter").setValue(self.counter)
+            fireBaseDatabaseRef.child("usersInfo").child(uid).child("Likes").child(self.key).removeValue()
+            likeButton.setTitle("like", for: .normal )
+            likeButton.setImage(UIImage(named: "like"), for: .normal)
+        }
+         self.likeCounter.text = "\(self.counter)"
+    }
+    
+    
+    func checkEpisodeUrl() {
+        fireBaseDatabaseRef.child("Episodes").observeSingleEvent(of: .value) { (snapshot) in
+            for case let epi as DataSnapshot in snapshot.children {
+                let channelObj = epi.value as! [String:Any]
+                guard let url = (channelObj["eURL"] as! String?) else {
+                    return
+                }
+                if(self.fileURL == url){
+                self.counter = channelObj["counter"] as! Int
+                self.key = epi.key
+                self.exist = true
+                        break
+                }
+            }
+            if self.exist == false {
+                self.key =  self.fireBaseDatabaseRef.child("Episodes").childByAutoId().key ?? ""
+                self.fireBaseDatabaseRef.child("Episodes").child(self.key).updateChildValues(["eURL": self.fileURL,"counter":0])
+            }
+            self.likeCounter.text = "\(self.counter)"
         }
     }
     
@@ -288,7 +362,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }
         
     }
-    
     func textViewDidBeginEditing(_ textView: UITextView) {
         postContentTV.text = ""
     }

@@ -124,8 +124,22 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         print(compressedImage)
         chache.setObject(compressedImage!, forKey: chacheKey)
         dbs.setProfileImage(uploadData: uploadData)
-        
-        picker.dismiss(animated: true, completion: nil)
+
+        reffStor.child("\(self.uid!).png").putData(uploadData, metadata: nil) { (metadata, error) in
+            if let err = error {
+                print(err)
+                return
+            }
+            self.reffStor.child("\(self.uid!).png").downloadURL(completion: { (url, error) in
+                if let err = error {
+                    print(err)
+                }else{ // fireStire code should be here 
+//self.reffDtatabase.child("usersInfo").child(self.uid!).updateChildValues(["profileImgaeURL":url?.absoluteString])
+                }
+            })
+        }
+    picker.dismiss(animated: true, completion: nil)
+
     }
     
     func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
