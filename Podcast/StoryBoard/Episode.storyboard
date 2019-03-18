@@ -37,13 +37,10 @@
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUm-m7-tZK">
                                                             <rect key="frame" x="0.0" y="310" width="364" height="30"/>
-                                                            <color key="backgroundColor" red="0.92456585170000005" green="0.38482528919999998" blue="0.3745569587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <state key="normal" title="Click to play">
+                                                            <color key="backgroundColor" red="0.92549019607843142" green="0.38431372549019605" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <state key="normal" title="Write Comment">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
-                                                            <connections>
-                                                                <action selector="clickToPlay:" destination="YKl-A7-hyP" eventType="touchUpInside" id="qni-Jf-lG7"/>
-                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -92,7 +89,7 @@
                                                                 <constraint firstAttribute="width" constant="50" id="cNX-AI-3Qq"/>
                                                             </constraints>
                                                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                                            <state key="normal" title="Button" image="share"/>
+                                                            <state key="normal" title="repost" image="share"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vU-Uq-TwI">
                                                             <rect key="frame" x="0.0" y="174" width="50" height="50"/>
@@ -105,17 +102,33 @@
                                                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                             <state key="normal" title="Button" image="send"/>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jXa-M5-lee">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WwK-QZ-K9f">
                                                             <rect key="frame" x="0.0" y="232" width="50" height="50"/>
-                                                            <color key="backgroundColor" red="0.19128635529999999" green="0.1914627552" blue="0.19131368400000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="jXa-M5-lee" secondAttribute="height" multiplier="1:1" id="IGP-Qi-Tc0"/>
-                                                                <constraint firstAttribute="width" constant="50" id="lbl-4c-d4b"/>
-                                                                <constraint firstAttribute="height" constant="50" id="ukt-KT-Xl7"/>
-                                                            </constraints>
-                                                            <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                                            <state key="normal" title="Button" image="like"/>
-                                                        </button>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jXa-M5-lee">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                    <color key="backgroundColor" red="0.19128635529999999" green="0.1914627552" blue="0.19131368400000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="jXa-M5-lee" secondAttribute="height" multiplier="1:1" id="IGP-Qi-Tc0"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="lbl-4c-d4b"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="ukt-KT-Xl7"/>
+                                                                    </constraints>
+                                                                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                                    <state key="normal" title="like" image="like"/>
+                                                                    <connections>
+                                                                        <action selector="likePressed:" destination="YKl-A7-hyP" eventType="touchUpInside" id="OHV-aR-yLb"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9a-1O-IiG">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </view>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhE-GC-yra">
                                                             <rect key="frame" x="0.0" y="290" width="50" height="50"/>
                                                             <color key="backgroundColor" red="0.19128635529999999" green="0.1914627552" blue="0.19131368400000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -169,17 +182,31 @@
                                         </view>
                                     </subviews>
                                 </stackView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCj-Bk-1nx">
+                                    <rect key="frame" x="344" y="572" width="50" height="50"/>
+                                    <color key="backgroundColor" red="0.92549019607843142" green="0.38431372549019605" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="OWR-Jx-7hL"/>
+                                        <constraint firstAttribute="height" constant="50" id="czS-Xh-REz"/>
+                                    </constraints>
+                                    <state key="normal" image="PlayButton"/>
+                                    <connections>
+                                        <action selector="clickToPlay:" destination="YKl-A7-hyP" eventType="touchUpInside" id="Xch-Qi-u7G"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.19128635529999999" green="0.1914627552" blue="0.19131368400000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="lCj-Bk-1nx" secondAttribute="trailing" constant="20" id="4jB-QY-s1O"/>
                                 <constraint firstItem="BLP-cc-G4o" firstAttribute="top" secondItem="HOa-rd-9tj" secondAttribute="top" id="9qJ-Td-uLT"/>
+                                <constraint firstAttribute="bottom" secondItem="lCj-Bk-1nx" secondAttribute="bottom" constant="20" id="Iqq-WA-e8E"/>
                                 <constraint firstAttribute="bottom" secondItem="BLP-cc-G4o" secondAttribute="bottom" id="JPn-z2-pjA"/>
                                 <constraint firstAttribute="trailing" secondItem="BLP-cc-G4o" secondAttribute="trailing" id="skI-bN-lVN"/>
                                 <constraint firstItem="BLP-cc-G4o" firstAttribute="leading" secondItem="HOa-rd-9tj" secondAttribute="leading" id="xVo-Pd-yJf"/>
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Comment" rowHeight="115" id="bBW-yS-hhT" customClass="Comment" customModule="Podcast" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Comment" rowHeight="115" id="bBW-yS-hhT" customClass="CommentCell" customModule="Podcast" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="670" width="414" height="115"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bBW-yS-hhT" id="xss-nT-L9A">
@@ -262,19 +289,62 @@
                     <connections>
                         <outlet property="addToPlaylistButton" destination="sxg-X6-kHf" id="xbW-G2-EUv"/>
                         <outlet property="bookmarkButton" destination="dJ0-mM-P6j" id="ciS-rK-1EN"/>
+                        <outlet property="commentButton" destination="wUm-m7-tZK" id="v0Q-PI-WiO"/>
                         <outlet property="createPostButton" destination="jNy-W4-2mG" id="I5p-uh-PXI"/>
                         <outlet property="descriptionLabel" destination="saY-iS-7Z9" id="6x4-fh-3Rb"/>
                         <outlet property="downloadButton" destination="nhE-GC-yra" id="bh5-h5-qGL"/>
                         <outlet property="episodeImage" destination="p4B-fj-d1j" id="KRJ-3e-c59"/>
+                        <outlet property="likeButton" destination="jXa-M5-lee" id="oTY-Hf-0op"/>
+                        <outlet property="likeCounter" destination="F9a-1O-IiG" id="m4u-BF-q3G"/>
+                        <outlet property="playButton" destination="lCj-Bk-1nx" id="C03-Qb-3fE"/>
                         <outlet property="playlistsCV" destination="PNE-A7-bTb" id="AKn-aR-hbb"/>
                         <outlet property="postCancelButton" destination="QCV-7f-nAU" id="Doi-5A-dQq"/>
                         <outlet property="postContentTV" destination="ttt-eT-6uB" id="quQ-YP-IVj"/>
                         <outlet property="rePostButton" destination="g3K-x2-iHv" id="aEy-qQ-PhP"/>
+                        <outlet property="tableViewComments" destination="Fvw-8L-vXR" id="sdJ-XQ-5me"/>
                         <outlet property="titleLabel" destination="bgx-BA-2FI" id="osl-Z8-xxd"/>
                         <outlet property="writePost" destination="BfX-Fs-gKj" id="91T-vq-GDs"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lan-6R-VQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" id="PNE-A7-bTb">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.1176327839" green="0.1176561788" blue="0.117627643" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ir5-Ea-BKy">
+                        <size key="itemSize" width="408" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <cells>
+                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="playlist" id="fCh-kp-cz3" customClass="playlistCellAddingCVC" customModule="Podcast" customModuleProvider="target">
+                            <rect key="frame" x="3" y="0.0" width="408" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                <rect key="frame" x="0.0" y="0.0" width="408" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOz-ON-tSI">
+                                        <rect key="frame" x="23" y="14.5" width="362" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </view>
+                            <constraints>
+                                <constraint firstAttribute="trailingMargin" secondItem="NOz-ON-tSI" secondAttribute="trailing" constant="15" id="MX4-uz-zRK"/>
+                                <constraint firstItem="NOz-ON-tSI" firstAttribute="leading" secondItem="fCh-kp-cz3" secondAttribute="leadingMargin" constant="15" id="keA-IQ-f8C"/>
+                                <constraint firstItem="NOz-ON-tSI" firstAttribute="centerY" secondItem="fCh-kp-cz3" secondAttribute="centerY" id="khQ-Vo-bjP"/>
+                                <constraint firstItem="NOz-ON-tSI" firstAttribute="centerX" secondItem="fCh-kp-cz3" secondAttribute="centerX" id="tkf-8u-Zsb"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="playlistName" destination="NOz-ON-tSI" id="vp4-XD-KDa"/>
+                            </connections>
+                        </collectionViewCell>
+                    </cells>
+                </collectionView>
                 <view contentMode="scaleToFill" id="BfX-Fs-gKj" userLabel="writePost">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="150"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -329,56 +399,19 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="PjW-6s-FYf"/>
                 </view>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" id="PNE-A7-bTb">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.1176327839" green="0.1176561788" blue="0.117627643" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ir5-Ea-BKy">
-                        <size key="itemSize" width="408" height="50"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                    <cells>
-                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="playlist" id="fCh-kp-cz3" customClass="playlistCellAddingCVC" customModule="Podcast" customModuleProvider="target">
-                            <rect key="frame" x="3" y="0.0" width="408" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                <rect key="frame" x="0.0" y="0.0" width="408" height="50"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOz-ON-tSI">
-                                        <rect key="frame" x="23" y="14.5" width="362" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </view>
-                            <constraints>
-                                <constraint firstAttribute="trailingMargin" secondItem="NOz-ON-tSI" secondAttribute="trailing" constant="15" id="MX4-uz-zRK"/>
-                                <constraint firstItem="NOz-ON-tSI" firstAttribute="leading" secondItem="fCh-kp-cz3" secondAttribute="leadingMargin" constant="15" id="keA-IQ-f8C"/>
-                                <constraint firstItem="NOz-ON-tSI" firstAttribute="centerY" secondItem="fCh-kp-cz3" secondAttribute="centerY" id="khQ-Vo-bjP"/>
-                                <constraint firstItem="NOz-ON-tSI" firstAttribute="centerX" secondItem="fCh-kp-cz3" secondAttribute="centerX" id="tkf-8u-Zsb"/>
-                            </constraints>
-                            <connections>
-                                <outlet property="playlistName" destination="NOz-ON-tSI" id="vp4-XD-KDa"/>
-                            </connections>
-                        </collectionViewCell>
-                    </cells>
-                </collectionView>
             </objects>
             <point key="canvasLocation" x="34.782608695652179" y="-246.42857142857142"/>
         </scene>
     </scenes>
     <resources>
         <image name="1400x1400-eagles_podcast-logo" width="1400" height="1400"/>
-        <image name="add-list" width="384" height="384"/>
-        <image name="bookmark" width="384" height="384"/>
-        <image name="download" width="384" height="384"/>
-        <image name="like" width="384" height="384"/>
-        <image name="reply-all" width="384" height="384"/>
-        <image name="send" width="409.60000610351562" height="409.60000610351562"/>
-        <image name="share" width="409.60000610351562" height="409.60000610351562"/>
+        <image name="PlayButton" width="480" height="480"/>
+        <image name="add-list" width="512" height="512"/>
+        <image name="bookmark" width="512" height="512"/>
+        <image name="download" width="512" height="512"/>
+        <image name="like" width="480" height="480"/>
+        <image name="reply-all" width="512" height="512"/>
+        <image name="send" width="512" height="512"/>
+        <image name="share" width="512" height="512"/>
     </resources>
 </document>

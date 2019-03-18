@@ -14,7 +14,7 @@ class UsersProfileController: UIViewController {
     //MARK:- V
     var person: Person!
     var firebaseReff = Auth.auth().currentUser
-    var firebaseSubReff = Database.database().reference().child("usersInfo")
+    var dbs = DBService.shared
     var alert: UIAlertController!
     var alertAction: UIAlertAction!
     //MARK:- @IBOutlet
@@ -39,7 +39,7 @@ class UsersProfileController: UIViewController {
     func setupProfile(){
         self.name.text = person.name
         self.username.text = person.username
-        self.followButton.isEnabled = !(firebaseReff?.uid == nil)
+        self.followButton.isEnabled = !(dbs.uid.isEmpty)
     }
     
     //MARK:- Toggle Follow
@@ -62,43 +62,33 @@ class UsersProfileController: UIViewController {
         }
     }
     func follow(uid: String, fid: String){
-        firebaseSubReff.child(uid).child("Following").updateChildValues([fid: 1])
-        firebaseSubReff.child(fid).child("Followers").updateChildValues([uid: 1])
+        self.dbs.follow(fid: fid)
         self.followButton.setTitle("Unfollow", for: .normal)
         
     }
     func unfollow(uid: String, fid: String){
-        guard  let uid = firebaseReff?.uid else {return}
-        firebaseSubReff.child(uid).child("Following").updateChildValues([fid: 0])
-        firebaseSubReff.child(fid).child("Followers").updateChildValues([uid: 0])
+        self.dbs.unfollow(fid: fid)
         followButton.setTitle("Follow", for: .normal)
 
         
     }
     //MARK:-
     func checkIfFollowed(){
-        guard let uid = firebaseReff?.uid else {
+        if dbs.uid.isEmpty{
             followButton.isEnabled = false
-            return
         }
-        self.firebaseSubReff.child(uid).child("Following").observeSingleEvent(of: .value) { (snapshot) in
-            var followed = false
-            for case let rest as DataSnapshot in snapshot.children {
-                
-                if self.person.uid == rest.key {
-                    followed = ((rest.value as! Int) == 1)
-                    break
+        else{
+            dbs.isFollowing(fid: person.uid) { (followed) in
+                if followed {
+                    print("User \(self.person.username) is followed")
+                    self.followButton.setTitle("Unfollow", for: .normal)
+                } else {
+                    print("User \(self.person.username) is not followed")
+                    self.followButton.setTitle("Follow", for: .normal)
                 }
             }
-            if followed {
-                print("User \(self.person.username) is followed")
-                self.followButton.setTitle("Unfollow", for: .normal)
-            } else {
-                print("User \(self.person.username) is not followed")
-                self.followButton.setTitle("Follow", for: .normal)
-            }
+
         }
     }
-
 
 }

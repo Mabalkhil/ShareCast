@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Comment: UITableViewCell {
+class CommentCell: UITableViewCell {
 
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var username: UILabel!
@@ -21,23 +21,30 @@ class Comment: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//
+//        // Configure the view for the selected state
+//    }
+//
+//    func setComment(comment:CommentObj){
+//
+//    }
     
-    func setComment(comment:CommentObj){
-//        userImage.layer.borderWidth = 1
-        userImage.layer.masksToBounds = false
-//        userImage.layer.borderColor = UIColor.black.cgColor
-        userImage.layer.cornerRadius = userImage.frame.height/2
-        userImage.clipsToBounds = true
-        
-        UserRealName.text = comment.userRealName!
-        username.text = comment.userName!
-        userImage.image = UIImage(named: comment.userImage!)
-        commentDescription.text = comment.commentDesc!
+    var comment: CommentObj? {
+        didSet{
+            //        userImage.layer.borderWidth = 1
+            userImage.layer.masksToBounds = false
+            //        userImage.layer.borderColor = UIColor.black.cgColor
+            userImage.layer.cornerRadius = userImage.frame.height/2
+            userImage.clipsToBounds = true
+            
+            UserRealName.text = comment?.userRealName
+            username.text = comment?.userName
+//            userImage.image = UIImage(named: comment?.userImage)
+            commentDescription.text = comment?.commentDesc
+            userImage.sd_setImage(with: comment?.imgURL, completed: nil)
+        }
     }
 
 }

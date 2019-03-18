@@ -16,6 +16,10 @@
 		292111C322008B0E00B28DE2 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292111C222008B0E00B28DE2 /* CategoryCell.swift */; };
 		292111C522008D3A00B28DE2 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292111C422008D3A00B28DE2 /* Category.swift */; };
 		2980CBE22208D89200AC2C11 /* PlayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2980CBE12208D89200AC2C11 /* PlayerExtension.swift */; };
+		2992ACBF223FFFCD00CE5C44 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2992ACBE223FFFCD00CE5C44 /* DBService.swift */; };
+		2992ACC2223FFFD900CE5C44 /* CommentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2992ACC0223FFFD800CE5C44 /* CommentExtension.swift */; };
+		2992ACC3223FFFD900CE5C44 /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2992ACC1223FFFD800CE5C44 /* NSNotification.swift */; };
+		2992ACC52240000500CE5C44 /* CommentObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2992ACC42240000500CE5C44 /* CommentObj.swift */; };
 		29C02397222AEDD100857E1D /* PeopleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29C02396222AEDD100857E1D /* PeopleCell.xib */; };
 		29C02399222EBBD500857E1D /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C02398222EBBD500857E1D /* Person.swift */; };
 		2F9AD7A62223B076000D00BA /* Timeline.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F9AD7A52223B076000D00BA /* Timeline.storyboard */; };
@@ -54,7 +58,6 @@
 		50420FA221A12AF30030CDB4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50420FA121A12AF30030CDB4 /* SignInViewController.swift */; };
 		50533FE321EFA59E00D50698 /* Channel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50533FE221EFA59E00D50698 /* Channel.storyboard */; };
 		505B6C2821F5C74F002E392D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B6C2421F5C74F002E392D /* Comment.swift */; };
-		505B6C2921F5C74F002E392D /* CommentObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B6C2521F5C74F002E392D /* CommentObj.swift */; };
 		505B6C2A21F5C74F002E392D /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B6C2621F5C74F002E392D /* EpisodeViewController.swift */; };
 		505B6C2B21F5C74F002E392D /* Episode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 505B6C2721F5C74F002E392D /* Episode.storyboard */; };
 		505B6C3121F6571E002E392D /* TimeMarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B6C2E21F6571E002E392D /* TimeMarkCell.swift */; };
@@ -107,6 +110,10 @@
 		292111C222008B0E00B28DE2 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		292111C422008D3A00B28DE2 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		2980CBE12208D89200AC2C11 /* PlayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerExtension.swift; sourceTree = "<group>"; };
+		2992ACBE223FFFCD00CE5C44 /* DBService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
+		2992ACC0223FFFD800CE5C44 /* CommentExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentExtension.swift; sourceTree = "<group>"; };
+		2992ACC1223FFFD800CE5C44 /* NSNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
+		2992ACC42240000500CE5C44 /* CommentObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentObj.swift; sourceTree = "<group>"; };
 		29C02396222AEDD100857E1D /* PeopleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeopleCell.xib; sourceTree = "<group>"; };
 		29C02398222EBBD500857E1D /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		2F9AD7A52223B076000D00BA /* Timeline.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Timeline.storyboard; sourceTree = "<group>"; };
@@ -151,7 +158,6 @@
 		50420FA121A12AF30030CDB4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		50533FE221EFA59E00D50698 /* Channel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Channel.storyboard; sourceTree = "<group>"; };
 		505B6C2421F5C74F002E392D /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		505B6C2521F5C74F002E392D /* CommentObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentObj.swift; sourceTree = "<group>"; };
 		505B6C2621F5C74F002E392D /* EpisodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
 		505B6C2721F5C74F002E392D /* Episode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Episode.storyboard; sourceTree = "<group>"; };
 		505B6C2E21F6571E002E392D /* TimeMarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeMarkCell.swift; sourceTree = "<group>"; };
@@ -220,6 +226,8 @@
 		50420F7C21A1114E0030CDB4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2992ACC0223FFFD800CE5C44 /* CommentExtension.swift */,
+				2992ACC1223FFFD800CE5C44 /* NSNotification.swift */,
 				3701CEDD220D294000684E18 /* MYAudioTapProcessor.h */,
 				3701CEDB220D293F00684E18 /* MYAudioTapProcessor.m */,
 				3701CEDC220D294000684E18 /* Podcast-Bridging-Header.h */,
@@ -286,7 +294,6 @@
 				5036E73821EFC0D100FA5E12 /* ChannelHeaderView.swift */,
 				5036E73A21F080E000FA5E12 /* ChennelTableViewCell.swift */,
 				505B6C2421F5C74F002E392D /* Comment.swift */,
-				505B6C2521F5C74F002E392D /* CommentObj.swift */,
 				29140E41220349000060522E /* DiscoverTableCell.swift */,
 				5018A44821FF7DCF007EE027 /* DownloadEpisodeCell.swift */,
 				3723A1F321A9C66400D5FAE9 /* EpisodeCell.swift */,
@@ -308,14 +315,15 @@
 		FA499328218DCD0D0021CFA3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				505B6C2621F5C74F002E392D /* EpisodeViewController.swift */,
+				50A43E5C221809560074B70A /* SubscriptionsViewController.swift */,
+				50092B9B22109BA800A05D06 /* ChannelController.swift */,
 				372023AF220374E900D0C555 /* addEpisodeToPlaylist.swift */,
 				2FC15E972201F4A600DF1FD4 /* BookmarkController.swift */,
-				50092B9B22109BA800A05D06 /* ChannelController.swift */,
 				375DD44B2201ECA700C2D698 /* CreatePlaylistController.swift */,
 				5018A44721FF7DCF007EE027 /* DownloadsController.swift */,
 				502484AF21FCED3D00CA84F1 /* EditProfileViewController.swift */,
 				50420F7621A083F80030CDB4 /* EntryViewController.swift */,
-				505B6C2621F5C74F002E392D /* EpisodeViewController.swift */,
 				FAFF831D218CEC4300882A6A /* MainTabController.swift */,
 				2FD789C72200E4EE006A47FE /* PlayerDetailsViewController.swift */,
 				FA499329218DCD3D0021CFA3 /* PodcastSearchController.swift */,
@@ -323,7 +331,6 @@
 				5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */,
 				50420FA121A12AF30030CDB4 /* SignInViewController.swift */,
 				50420F7821A089170030CDB4 /* SignUpViewController.swift */,
-				50A43E5C221809560074B70A /* SubscriptionsViewController.swift */,
 				2F9AD7A722245331000D00BA /* TimelineViewController.swift */,
 				290E0C4F223065C90000E7DF /* UsersProfileController.swift */,
 				FAFF82EE218CEB6400882A6A /* ViewController.swift */,
@@ -334,6 +341,7 @@
 		FA49932B218DD0330021CFA3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2992ACC42240000500CE5C44 /* CommentObj.swift */,
 				FA49932C218DD04F0021CFA3 /* Podcast.swift */,
 				FA397ED62195E66D00D33617 /* SearchResults.swift */,
 				FA397ED82195E68E00D33617 /* Episode.swift */,
@@ -348,6 +356,7 @@
 		FA49932E218E2BF30021CFA3 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				2992ACBE223FFFCD00CE5C44 /* DBService.swift */,
 				2FD789C52200E4D7006A47FE /* APIService.swift */,
 			);
 			path = APIs;
@@ -609,8 +618,11 @@
 				29140E44220352500060522E /* SearchDelegate.swift in Sources */,
 				5018A44E21FF7DCF007EE027 /* DownloadsController.swift in Sources */,
 				FA397ED72195E66D00D33617 /* SearchResults.swift in Sources */,
+				2992ACC3223FFFD900CE5C44 /* NSNotification.swift in Sources */,
+				2992ACBF223FFFCD00CE5C44 /* DBService.swift in Sources */,
 				2FD789C62200E4D7006A47FE /* APIService.swift in Sources */,
 				505B6C2A21F5C74F002E392D /* EpisodeViewController.swift in Sources */,
+				2992ACC52240000500CE5C44 /* CommentObj.swift in Sources */,
 				FA8F8F422194D4CA00301EF6 /* PodcastCell.swift in Sources */,
 				5036E73B21F080E000FA5E12 /* ChennelTableViewCell.swift in Sources */,
 				2F9AD7A822245331000D00BA /* TimelineViewController.swift in Sources */,
@@ -653,7 +665,7 @@
 				2F9AD7AC22245EF1000D00BA /* Post.swift in Sources */,
 				2F9AD7AA22245638000D00BA /* TimelineTVC.swift in Sources */,
 				50A43E5D221809560074B70A /* SubscriptionsViewController.swift in Sources */,
-				505B6C2921F5C74F002E392D /* CommentObj.swift in Sources */,
+				2992ACC2223FFFD900CE5C44 /* CommentExtension.swift in Sources */,
 				FAFF831E218CEC4300882A6A /* MainTabController.swift in Sources */,
 				375DD44E2201ED8C00C2D698 /* PlaylistsCell.swift in Sources */,
 				3723A20521AB373A00D5FAE9 /* CMTime.swift in Sources */,

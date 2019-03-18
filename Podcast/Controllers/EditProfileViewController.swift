@@ -29,9 +29,7 @@ class EditProfileViewController: UITableViewController {
             cancelButton.tintColor = UIColor.white
         }
     }
-    
-    let databaseReff = Database.database().reference().child("usersInfo")
-    let uid = Auth.auth().currentUser?.uid
+    let dbs = DBService.shared
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,16 +38,14 @@ class EditProfileViewController: UITableViewController {
     // MARK: - Table view data source
 
     @IBAction func SaveProfileChanges(_ sender: Any) {
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
-        }
+
         guard let username = usernameText.text else { return }
         guard let firstName = firstNameText.text else { return }
         guard let lastName = lastNameText.text else { return }
-        
+        var updatedUserInfo = [String: Any]()
         if usernameText.text != "" {
             if username.isValidName{
-                 databaseReff.child(uid).updateChildValues(["username" : "@\(username)"])
+                updatedUserInfo["username"] = "@\(username)"
             }else{
                 let alert = UIAlertController(title: "Inalid username", message: "", preferredStyle: .alert)
                 let action = UIAlertAction(title: "Try Again", style: .cancel, handler: nil)
@@ -58,10 +54,12 @@ class EditProfileViewController: UITableViewController {
             }
         }
         if firstNameText.text != "" {
-            databaseReff.child(uid).updateChildValues(["firstName" : firstName]) }
+            updatedUserInfo["firstName"] = firstName
+            }
         if lastNameText.text != "" {
-            databaseReff.child(uid).updateChildValues(["lastName" : lastName]) }
-        
+            updatedUserInfo["lastName"] = lastName
+            }
+        self.dbs.updateUserInfo(updatedInfo: updatedUserInfo)
         self.dismiss(animated: true, completion: nil)
   
     }
