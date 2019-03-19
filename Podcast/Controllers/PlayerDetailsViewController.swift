@@ -348,6 +348,11 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
                     }
                 }
                 setTable()
+                print("time mark here")
+                print(marks)
+                pageControl.numberOfPages = 3
+                scrollView.isScrollEnabled = true
+                
             }
             else {
                 scrollView.isScrollEnabled = false

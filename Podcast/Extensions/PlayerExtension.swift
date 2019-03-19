@@ -89,10 +89,11 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
         episodeImg.frame.size.width = self.view.frame.width
         episodeImg.frame.size.height = scrollView.frame.size.height
         scrollView.addSubview(episodeImg)
+        
         handleTimeMark()
         
         scrollView.delegate = self
-       // scrollView.isScrollEnabled = true
+        scrollView.isScrollEnabled = true
     }
     
     
