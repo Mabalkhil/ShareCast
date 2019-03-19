@@ -350,7 +350,7 @@ class DBService {
     }
     
     //MARK:- Episode Queires
-    
+    //Comment Queries
     func postComment(episode: Episode, comment: CommentObj, completionHandler: @escaping (String) -> ()){
         var ref: DocumentReference? = nil
         ref = self.db
@@ -408,6 +408,63 @@ class DBService {
                     completionHandler()
                 }
         }
+    }
+    
+    
+    //Likes Queries
+    func likeEpisode(episode: Episode){
+        
+        self.db
+            .collection("Episodes")
+            .document(episode.streamURL.toBase64())
+            .collection("Likes")
+            .document(uid)
+            .setData([:])
+        
+    }
+    
+    
+    func unlikeEpisode(episode: Episode){
+        
+        self.db
+            .collection("Episodes")
+            .document(episode.streamURL.toBase64())
+            .collection("Likes")
+            .document(uid)
+            .delete { (Error) in
+                
+                if let Error = Error{
+                    print("Error removing document: \(Error)")
+                } else {
+                    print("FIRESTORE: Like successfully removed from Episode!")
+                }
+                
+        }
+    }
+    
+    func checkForLikes(episode: Episode, completionHandler: @escaping (Bool, Int) -> ()){
+
+        var liked = false
+        var list: [String] = []
+
+        self.db
+            .collection("Episodes")
+            .document(episode.streamURL.toBase64())
+            .collection("Likes").getDocuments { (QuerySnapshot, Error) in
+                
+                if let Error = Error{
+                    print("Error Checking Episode Coolection")
+                    
+                } else {
+                
+                    for doc in (QuerySnapshot?.documents)! {
+                        list.append(doc.documentID)
+                    }
+                }
+                
+                completionHandler(list.contains(self.uid), list.count)
+        }
+
     }
     
     

@@ -141,10 +141,10 @@ extension EpisodeViewController{
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         //This part checks the firebase
-//        guard (Auth.auth().currentUser?.uid) != nil else {
-//            alertUser("Not Register", "You have to register to get this feature")
-//            return
-//        }
+        guard (Auth.auth().currentUser?.uid) != nil else {
+            alertUser("Not Register", "You have to register to get this feature")
+            return
+        }
         
         print("Starting deletion")
         let comment = self.comments[indexPath.row]

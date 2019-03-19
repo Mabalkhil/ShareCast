@@ -12,8 +12,7 @@ import Firebase
 
 class ProfileView: UIView {
    
-   let reff = Database.database().reference()
-
+    let dbs = DBService.shared
     
     @IBOutlet weak var editProfile:UIButton!
     
@@ -28,15 +27,10 @@ class ProfileView: UIView {
                 self.name.text = "anonymous"
                 return
             }
-            reff.child("usersInfo").child(uid).observe(.value) { (snapshot) in
-                if let dictionary = snapshot.value as? [String:AnyObject]{
-                        let firstName = dictionary["firstName"] as! String
-                        let lastName =  dictionary["lastName"] as! String
-                        let username = dictionary["username"] as! String
-                        self.name.text = "\(firstName) \(lastName)"
-                        self.username.text = username
-                }
-            }
+            self.dbs.getPerson(uid: uid, completionHandler: { (Person) in
+                self.name.text = "\(Person.firstName) \(Person.lastName)"
+                self.username.text = "@\(Person.username)"
+            })
         }
     }
 }

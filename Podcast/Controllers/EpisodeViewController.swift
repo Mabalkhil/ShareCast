@@ -121,7 +121,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         if Auth.auth().currentUser?.uid != nil {
             setUpDatabases()
             checkLikedEpisode()
-            checkEpisodeUrl()
+            //checkEpisodeUrl()
         }
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -142,18 +142,22 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         episodeImage.sd_setImage(with: url)
     }
     
+    //This method checks if the user liked this episode before
     func checkLikedEpisode(){
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        fireBaseDatabaseRef.child("usersInfo").child(uid).child("Likes").observeSingleEvent(of: .value) { (snapshot) in
-            for case let episodeUrl as DataSnapshot in snapshot.children {
-                let url = episodeUrl.value as! String
-                if(url == self.episode.fileUrl){
-                    self.likeButton.setTitle("unlike", for: .normal )
+        self.dbs.checkForLikes(episode: self.episode){ (liked, count)  in
+            
+            DispatchQueue.main.async {
+                if liked{
+                    self.likeButton.setTitle("unlike", for: .normal)
                     self.likeButton.setImage(UIImage(named: "like_filled"), for: .normal)
-                    break
                 }
+                
+                self.counter = count
+                self.likeCounter.text = "\(self.counter)"
             }
+            
         }
+        
     }
     
     @objc func downloadHandler(){
@@ -221,17 +225,19 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }
         
         if likeButton.titleLabel?.text == "like" {
+            
             self.counter += 1
-            fireBaseDatabaseRef.child("Episodes").child(self.key).child("counter").setValue(self.counter)
-            fireBaseDatabaseRef.child("usersInfo").child(uid).child("Likes").child(self.key).setValue(self.fileURL)
+            self.dbs.likeEpisode(episode: self.episode)
             likeButton.setTitle("unlike", for: .normal )
             likeButton.setImage(UIImage(named: "like_filled"), for: .normal)
+            
         }else{
+            
             self.counter -= 1
-            fireBaseDatabaseRef.child("Episodes").child(self.key).child("counter").setValue(self.counter)
-            fireBaseDatabaseRef.child("usersInfo").child(uid).child("Likes").child(self.key).removeValue()
+            self.dbs.unlikeEpisode(episode: self.episode)
             likeButton.setTitle("like", for: .normal )
             likeButton.setImage(UIImage(named: "like"), for: .normal)
+            
         }
          self.likeCounter.text = "\(self.counter)"
     }
@@ -280,10 +286,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     @objc func repostHandler(sender: UIButton){
         
         guard (Auth.auth().currentUser?.uid) != nil else {
-//            let alert = UIAlertController(title: "Not Register", message: "You have to register to get this feature", preferredStyle: .alert)
-//            let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-//            alert.addAction(alertAction)
-//            present(alert,animated: true,completion: nil)
             alertUser("Not Register", "You have to register to get this feature")
             return
         }
