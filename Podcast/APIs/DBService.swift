@@ -84,11 +84,14 @@ class DBService {
             .document(uid)
             .collection("Following")
             .document(fid)
+            .setData([:])
+        
         self.db
             .collection("usersInfo")
             .document(fid)
             .collection("Followers")
             .document(uid)
+            .setData([:])
 
     }
     
