@@ -8,6 +8,8 @@
 
 import UIKit
 import AVKit
+import ACBAVPlayer
+import MediaPlayer
 
 extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource{
     
@@ -16,6 +18,65 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageNumber = scrollView.contentOffset.x / scrollView.frame.size.width
         pageControl.currentPage = Int(pageNumber)
+    }
+    
+    
+    // this function for lockscreen info: title and channel
+    func setupNowPlayingInfo() {
+        var nowPlayingInfo = [String: Any]()
+        nowPlayingInfo[MPMediaItemPropertyTitle] = episode.title
+        nowPlayingInfo[MPMediaItemPropertyArtist] = episode.author
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
+    
+    // this function for backgroudplaying
+    func setupAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch let sessionErr {
+            print("Failed to activate session:", sessionErr)
+        }
+    }
+    
+     //this function is for contrling the player using the remote control center
+    func setupRemoteControl() {
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        let commandCenter = MPRemoteCommandCenter.shared()
+        MPRemoteCommandCenter.shared().playCommand.isEnabled = true
+        MPRemoteCommandCenter.shared().playCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.player.play()
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            //self.miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            return .success
+        }
+    
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.pauseCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.player.pause()
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            //self.miniPlayPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            return .success
+        }
+
+        commandCenter.togglePlayPauseCommand.isEnabled = true
+        commandCenter.togglePlayPauseCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.handlePlayPause()
+            return .success
+        }
+     }
+    
+    // this function for lockscreen for tracking the time of the episode
+    func setupLockscreenCurrentTime() {
+        // use empty dictionary if nowPlayingInfo is nil
+        var nowPlayingInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo ?? [:]
+        // some modifications here
+        guard let currentItem = player.currentItem else { return }
+        let durationInSeconds = CMTimeGetSeconds(currentItem.duration)
+        let elapsedTime = CMTimeGetSeconds(player.currentTime())
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = elapsedTime
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = durationInSeconds
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
     
     //setting scroll view
@@ -28,10 +89,11 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
         episodeImg.frame.size.width = self.view.frame.width
         episodeImg.frame.size.height = scrollView.frame.size.height
         scrollView.addSubview(episodeImg)
+        
         handleTimeMark()
         
         scrollView.delegate = self
-        //scrollView.isScrollEnabled = false
+        scrollView.isScrollEnabled = true
     }
     
     

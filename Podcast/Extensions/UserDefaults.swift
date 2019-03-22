@@ -13,6 +13,8 @@ extension UserDefaults {
     static let downloadedEpisodeKey = "downloadedEpisodeKey"
     static let playlistsKey = "playlistsKey"
     static let bookmarkedEpisodeKey = "bookmarkedEpisodeKey"
+    static let trackedEpisodeKey = "trackedEpisodeKey"
+    
     
     func downloadEpisode(episode: Episode){
         
@@ -144,11 +146,6 @@ extension UserDefaults {
         }
     }
     
-
-
-    
-    
-    
     
     func  downloadedEpisodes() -> [Episode]{
         
@@ -218,10 +215,6 @@ extension UserDefaults {
         return []
     }
     
-    
-    
-
-
     // episodes inside a playlist
     func  playlistEpisodes(name: String) -> [Episode]{
         
@@ -238,8 +231,44 @@ extension UserDefaults {
         return []
     }
     
+    // adding a new episode inside a playlist
+    func trackedEpisode(episodeTitle: String, time: Double){
+        do{
+            var episodes = trackedEpisodes()
+            
+            if episodes.isEmpty {
+                episodes[episodeTitle] = time
+            } else {
+                if (episodes[episodeTitle] != nil) {
+                    episodes[episodeTitle] = time
+                }
+                else {
+                     episodes[episodeTitle] = time
+                }
+            }
+            let data = try JSONEncoder().encode(episodes)
+            UserDefaults.standard.set(data, forKey: UserDefaults.trackedEpisodeKey)
+            
+        }catch let encodeErr {
+            print("Failed to encode episode", encodeErr)
+            
+        }
+    }
     
     
+    // episodes inside a playlist
+    func  trackedEpisodes() -> [String: Double]{
+        guard let trackedEpisodesData = UserDefaults.standard.data(forKey: UserDefaults.trackedEpisodeKey) else { return [:]}
+        do{
+            let episodes = try JSONDecoder().decode([String:Double].self, from: trackedEpisodesData)
+            print(episodes)
+            return episodes
+        }catch let decodeErr{
+            print("failed to decode:",decodeErr)
+        }
+        
+        return [:]
+    }
     
     func deleteBookmarkedEpisode(episode: Episode) {
         let savedEpisodes = bookmarkedEpisodes()
@@ -255,6 +284,4 @@ extension UserDefaults {
             print("Failed to encode episode:", encodeErr)
         }
     }
-    
-    
 }

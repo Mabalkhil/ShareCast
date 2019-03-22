@@ -78,6 +78,8 @@ class MainTabBarController: UITabBarController {
         return navController
     }
     
+    
+    
     @objc func minimizePlayerDetails(){
         MaximumSize.isActive = false
         MinimumSize.isActive = true
@@ -85,8 +87,10 @@ class MainTabBarController: UITabBarController {
             self.view.layoutIfNeeded()
             self.tabBar.transform = .identity
         })
-        self.playerDetailsview.smallPlayer.isHidden = false
-        self.playerDetailsview.bigPlayer.isHidden = true
+            self.playerDetailsview.smallPlayer.isHidden = false
+            self.playerDetailsview.bigPlayer.isHidden = true
+
+        
     }
     
     // this method will take the episode from anywhere
@@ -98,10 +102,11 @@ class MainTabBarController: UITabBarController {
             self.view.layoutIfNeeded()
             self.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
         })
-        
-        self.playerDetailsview.smallPlayer.isHidden = true
-        self.playerDetailsview.bigPlayer.isHidden = false
-        
+            self.playerDetailsview.smallPlayer.isHidden = true
+            self.playerDetailsview.bigPlayer.isHidden = false
+
+
+
     }
     
     fileprivate func setUpPlayerDetailsview(){
