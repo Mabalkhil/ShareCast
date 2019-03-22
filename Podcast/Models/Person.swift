@@ -30,7 +30,7 @@ struct Person {
         return firstName+" "+lastName
     }
     var imgURL : URL {
-        return URL(string: profileImageURL) ?? URL(string: "https://yt3.ggpht.com/a-/AAuE7mCaS97ZoRx-C_7L7IszNnHivrl6IOqYDdelFA=s176-mo-c-c0xffffffff-rj-k-no")!
+        return URL(string: profileImageURL) ?? URL(string: "https://firebasestorage.googleapis.com/v0/b/sharecast-c780f.appspot.com/o/profile_Image%2FDefault.png?alt=media&token=37fdc72b-ffbe-430a-85c8-07dde877e71d")!
         
     }
     
@@ -55,6 +55,5 @@ struct Person {
         self.username = (dictionary["username"] as? String)?.dropFirst() ?? ""
         
     }
-    
     
 }

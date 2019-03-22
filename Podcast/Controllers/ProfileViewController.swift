@@ -40,7 +40,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
             self.ProfileImage.image = cachedImage
         }else{
             
-            dbs.fetchProfileImage { (image) in
+            dbs.fetchProfileImage(targetID: self.uid!) { (image) in
                 DispatchQueue.main.async {
                 self.ProfileImage.image = image
                 }

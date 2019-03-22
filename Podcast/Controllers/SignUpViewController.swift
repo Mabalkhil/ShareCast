@@ -22,6 +22,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     var continueButton:RoundedWhiteButton!
     var activityView:UIActivityIndicatorView!
 
+    let ref = Database.database().reference(fromURL: "https://sharecast-c780f.firebaseio.com/")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,6 +134,12 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                     self.present(alert,animated: true,completion: nil)
                     
                 })
+                
+                let userInfoRefrence = self.ref.child("usersInfo").child(uid)
+                let data =
+                    ["profileImgaeURL": person?.profileImageURL,"firstName":firstName,"lastName":lastName,"username":"@\(username)", "searchName": person?.name.lowercased()]
+                
+                userInfoRefrence.updateChildValues(data)
                 
                 let mainView = MainTabBarController()
                 self.present(mainView,animated: true,completion: nil)

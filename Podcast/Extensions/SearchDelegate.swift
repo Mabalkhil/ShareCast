@@ -14,8 +14,9 @@ class SearchDelegate: NSObject, UITableViewDelegate, UITableViewDataSource {
     var podcasts = [Podcast]()
     var people = [Person]()
     var cellId: String!
-    //var cellId2: String! = "cellId2"
     var navController: UINavigationController!
+    
+    let dbs = DBService.shared
     
     var searchScope: String! = "Channels"
     
@@ -107,7 +108,11 @@ class SearchDelegate: NSObject, UITableViewDelegate, UITableViewDataSource {
                 UsersProfileController else {
                     return
             }
-            let person = self.people[indexPath.row]
+            var person = self.people[indexPath.row]
+            //to get the selected user full info
+            self.dbs.getPerson(uid: person.uid, completionHandler: { (Person) in
+                person = Person
+            })
             destinationViewController.person = person
             navController?.pushViewController(destinationViewController, animated: true)
         }

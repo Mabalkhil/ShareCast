@@ -18,6 +18,7 @@ class DBService {
     var uid = Auth.auth().currentUser?.uid ?? ""
     
     
+    
     //MARK:- Signup Queries
     func singup(person: Person, uid: String, completionHandler: @escaping (UIAlertController) -> ())  {
         self.uid = uid
@@ -220,10 +221,10 @@ class DBService {
             .updateData(updatedInfo)
     }
     
-    func fetchProfileImage(completionHandler: @escaping (UIImage) -> ()){
+    func fetchProfileImage(targetID: String,completionHandler: @escaping (UIImage) -> ()){
         self.db
             .collection("usersInfo")
-            .document(uid).getDocument { (snapshot, err) in
+            .document(targetID).getDocument { (snapshot, err) in
                 if let err = err {
                     print("FIRESTORE: Error getting profile image url: \(err)")
                 } else if let profileImageUrl = snapshot?.data()?["profileImageURL"] {
@@ -467,6 +468,35 @@ class DBService {
 
     }
     
+//    //MARK:- Search Queries
+//
+//    func searchForUser(txt: String, completionHandler: @escaping ([Person]) -> ()) {
+//
+//        self.db.collection("usersInfo").whereField("username", isEqualTo: "@\(txt)").getDocuments { (QuerySnapshot, Error) in
+//            if let Error = Error{
+//                print("Error in retrieving results")
+//
+//            } else {
+//                if (QuerySnapshot?.isEmpty)!{
+//                    print("no results found")
+//                }
+//
+//                var people = [Person]()
+//                for doc in (QuerySnapshot?.documents)!{
+//
+//                    let personDic = doc.data()
+//                    var person = Person(dictionary: personDic)!
+//                    person.uid = doc.documentID
+//                    print("inside loop")
+//                    print(person)
+//                    people.append(person)
+//
+//                }
+//
+//                completionHandler(people)
+//            }
+//        }
+//    }
     
 }
 
