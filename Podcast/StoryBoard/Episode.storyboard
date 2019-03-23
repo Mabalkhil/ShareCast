@@ -269,7 +269,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="COMMENT" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cuy-yk-AJQ" userLabel="Comment">
-                                            <rect key="frame" x="70" y="45" width="344" height="40.5"/>
+                                            <rect key="frame" x="70" y="45" width="344" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="2Un-uf-rmE"/>
                                             </constraints>
@@ -277,19 +277,6 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply-all" translatesAutoresizingMaskIntoConstraints="NO" id="zc6-wy-fuG">
-                                            <rect key="frame" x="336" y="86.5" width="20" height="20"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="0FW-d9-Las"/>
-                                                <constraint firstAttribute="width" constant="20" id="Iwf-Sx-8k5"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55 Reply" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Qt-vp-htm">
-                                            <rect key="frame" x="359" y="92.5" width="43" height="12"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" red="0.19128635529999999" green="0.1914627552" blue="0.19131368400000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
@@ -297,14 +284,9 @@
                                         <constraint firstItem="cuy-yk-AJQ" firstAttribute="leading" secondItem="Smn-ui-8ey" secondAttribute="trailing" constant="10" id="HcG-86-Q0H"/>
                                         <constraint firstItem="p2Q-be-Ji6" firstAttribute="leading" secondItem="Smn-ui-8ey" secondAttribute="trailing" constant="10" id="MGU-X7-dvi"/>
                                         <constraint firstItem="p2Q-be-Ji6" firstAttribute="top" secondItem="xss-nT-L9A" secondAttribute="topMargin" id="MgL-1Z-jXh"/>
-                                        <constraint firstItem="7Qt-vp-htm" firstAttribute="leading" secondItem="zc6-wy-fuG" secondAttribute="trailing" constant="3" id="Qub-OW-T1q"/>
                                         <constraint firstItem="ehc-g2-nNy" firstAttribute="leading" secondItem="Smn-ui-8ey" secondAttribute="trailing" constant="10" id="YJJ-xh-6P5"/>
-                                        <constraint firstAttribute="bottom" secondItem="zc6-wy-fuG" secondAttribute="bottom" constant="8" id="ZZC-e6-zMv"/>
                                         <constraint firstAttribute="trailing" secondItem="cuy-yk-AJQ" secondAttribute="trailing" id="l7t-yC-xhO"/>
-                                        <constraint firstAttribute="trailing" secondItem="7Qt-vp-htm" secondAttribute="trailing" constant="12" id="mIg-5Z-eaQ"/>
-                                        <constraint firstItem="zc6-wy-fuG" firstAttribute="top" secondItem="cuy-yk-AJQ" secondAttribute="bottom" constant="1" id="qFz-RV-kvF"/>
                                         <constraint firstItem="ehc-g2-nNy" firstAttribute="top" secondItem="p2Q-be-Ji6" secondAttribute="bottom" constant="1" id="tU9-WD-CpJ"/>
-                                        <constraint firstAttribute="bottom" secondItem="7Qt-vp-htm" secondAttribute="bottom" constant="10" id="tzP-ln-MIO"/>
                                         <constraint firstItem="cuy-yk-AJQ" firstAttribute="top" secondItem="ehc-g2-nNy" secondAttribute="bottom" constant="3" id="uYW-lN-pCF"/>
                                         <constraint firstItem="Smn-ui-8ey" firstAttribute="top" secondItem="xss-nT-L9A" secondAttribute="top" constant="10" id="vhy-do-SeQ"/>
                                     </constraints>
@@ -325,7 +307,7 @@
                     <connections>
                         <outlet property="addToPlaylistButton" destination="sxg-X6-kHf" id="xbW-G2-EUv"/>
                         <outlet property="bookmarkButton" destination="dJ0-mM-P6j" id="ciS-rK-1EN"/>
-                        <outlet property="commentButton" destination="KgR-a5-hoi" id="hmn-nE-UbW"/>
+                        <outlet property="commentButton" destination="KgR-a5-hoi" id="gAn-P5-uJX"/>
                         <outlet property="commentContentTF" destination="3ic-y4-taC" id="eUR-Hj-3hL"/>
                         <outlet property="createPostButton" destination="jNy-W4-2mG" id="I5p-uh-PXI"/>
                         <outlet property="descriptionLabel" destination="saY-iS-7Z9" id="6x4-fh-3Rb"/>
@@ -334,7 +316,7 @@
                         <outlet property="followerCV" destination="le4-Jd-lso" id="U1J-1t-MOZ"/>
                         <outlet property="likeButton" destination="jXa-M5-lee" id="oTY-Hf-0op"/>
                         <outlet property="likeCounter" destination="F9a-1O-IiG" id="m4u-BF-q3G"/>
-                        <outlet property="mentionToUser" destination="5vU-Uq-TwI" id="Deq-3P-tX3"/>
+                        <outlet property="mentionToUser" destination="5vU-Uq-TwI" id="2Nm-tn-QX1"/>
                         <outlet property="playlistsCV" destination="PNE-A7-bTb" id="AKn-aR-hbb"/>
                         <outlet property="postCancelButton" destination="QCV-7f-nAU" id="Doi-5A-dQq"/>
                         <outlet property="postContentTV" destination="ttt-eT-6uB" id="quQ-YP-IVj"/>
@@ -494,7 +476,6 @@
         <image name="bookmark" width="384" height="384"/>
         <image name="download" width="384" height="384"/>
         <image name="like" width="384" height="384"/>
-        <image name="reply-all" width="384" height="384"/>
         <image name="send" width="409.60000610351562" height="409.60000610351562"/>
         <image name="share" width="409.60000610351562" height="409.60000610351562"/>
     </resources>

@@ -89,7 +89,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     @IBOutlet weak var mentionToUser: UIButton!{
         didSet{
-            commentButton.addTarget(self, action: #selector(recommendToUser), for: .touchUpInside)
+            mentionToUser.addTarget(self, action: #selector(recommendToUser), for: .touchUpInside)
         }
     }
     
@@ -183,6 +183,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.blackView.alpha = 0.0
             self.playlistsCV.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 200)
+            self.followerCV.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 200)
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.tabBarController?.tabBar.isHidden = false
             PlayerDetailsViewController.shared.view.isHidden = false
@@ -213,6 +214,9 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     @objc func recommendToUser(){
+        
+        print("Hello bitch")
+        
         blackView.backgroundColor = UIColor.black
         blackView.alpha = 0
         
@@ -221,6 +225,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         self.view.addSubview(blackView)
         self.view.addSubview(followerCV)
         
+        print(followers)
         let cvHeight = CGFloat(50 * followers.count) + (self.tabBarController?.tabBar.frame.height)!
         let y = self.view.frame.height - cvHeight
         followerCV.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: cvHeight)
@@ -396,6 +401,8 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             self.followersIDs = followersIDs
         }
         
+        print(self.followersIDs)
+        
         // this code to get the followes images and names
         for oneDude in followersIDs {
             dbs.getPerson(uid: oneDude) { (Person) in
@@ -403,6 +410,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             }
         }
         
+        print(self.followers)
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
         postContentTV.text = ""
