@@ -107,7 +107,7 @@ extension EpisodeViewController{
     func addNewComment() {
         //print("Message: \(postContentTV.text)")
         let comment = CommentObj(
-        realName: "",
+        realName: person?.name ?? "",
         username: self.username!,
         img: userImage ?? "" ,
         com: postContentTV.text)
