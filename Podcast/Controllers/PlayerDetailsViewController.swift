@@ -170,7 +170,7 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
         player.addBoundaryTimeObserver(forTimes: times, queue: .main){
         }
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .mixWithOthers)
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
             print("Session is Active")
         } catch {

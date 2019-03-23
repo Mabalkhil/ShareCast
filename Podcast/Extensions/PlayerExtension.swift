@@ -46,7 +46,7 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
         MPRemoteCommandCenter.shared().playCommand.isEnabled = true
         MPRemoteCommandCenter.shared().playCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
             self.player.play()
-            self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "PauseButton"), for: .normal)
             //self.miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
             return .success
         }
@@ -54,7 +54,7 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
         commandCenter.pauseCommand.isEnabled = true
         commandCenter.pauseCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
             self.player.pause()
-            self.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "PlayButton"), for: .normal)
             //self.miniPlayPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             return .success
         }
