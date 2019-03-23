@@ -19,7 +19,7 @@
                         <color key="backgroundColor" red="0.32028031350000002" green="0.32054913039999999" blue="0.32032194730000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" red="0.32028031350000002" green="0.32054913039999999" blue="0.32032194730000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <stackView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" id="dbq-tp-DIY">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="190"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJu-QZ-4wg" userLabel="Channels">
@@ -53,8 +53,36 @@
                                         <constraint firstAttribute="bottom" secondItem="AMO-6T-Lvt" secondAttribute="bottom" constant="10" id="zMQ-kZ-lmb"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwI-yl-Nh5" userLabel="Playlists">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="riF-Pk-trz" userLabel="Channels">
                                     <rect key="frame" x="0.0" y="55" width="414" height="50"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Xc-7P-oD5">
+                                            <rect key="frame" x="70" y="10" width="318" height="30"/>
+                                            <state key="normal" title="Download">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="download" translatesAutoresizingMaskIntoConstraints="NO" id="7VW-na-l3R">
+                                            <rect key="frame" x="15" y="5" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="4kL-Eq-Xjv"/>
+                                                <constraint firstAttribute="width" constant="40" id="izd-xK-J5t"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.32028031350000002" green="0.32054913039999999" blue="0.32032194730000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="2Xc-7P-oD5" secondAttribute="trailing" constant="26" id="1Hv-CL-F2l"/>
+                                        <constraint firstItem="7VW-na-l3R" firstAttribute="top" secondItem="riF-Pk-trz" secondAttribute="top" constant="5" id="1RD-28-7Zb"/>
+                                        <constraint firstAttribute="bottom" secondItem="7VW-na-l3R" secondAttribute="bottom" constant="5" id="1qu-Nc-pMk"/>
+                                        <constraint firstAttribute="bottom" secondItem="2Xc-7P-oD5" secondAttribute="bottom" constant="10" id="WAf-hL-Tem"/>
+                                        <constraint firstItem="2Xc-7P-oD5" firstAttribute="leading" secondItem="7VW-na-l3R" secondAttribute="trailing" constant="15" id="gl0-UJ-pI0"/>
+                                        <constraint firstItem="7VW-na-l3R" firstAttribute="leading" secondItem="riF-Pk-trz" secondAttribute="leading" constant="15" id="lLJ-hC-lWV"/>
+                                        <constraint firstItem="2Xc-7P-oD5" firstAttribute="top" secondItem="riF-Pk-trz" secondAttribute="top" constant="10" id="xvO-9l-1Pq"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwI-yl-Nh5" userLabel="Playlists">
+                                    <rect key="frame" x="0.0" y="110" width="414" height="50"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXc-0o-sPs">
                                             <rect key="frame" x="70" y="10" width="318" height="30"/>
@@ -85,7 +113,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7E1-dl-7Kx" userLabel="Bookmark">
-                                    <rect key="frame" x="0.0" y="110" width="414" height="50"/>
+                                    <rect key="frame" x="0.0" y="165" width="414" height="50"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpV-6I-eVN">
                                             <rect key="frame" x="70" y="10" width="318" height="30"/>
@@ -116,10 +144,10 @@
                                         <constraint firstItem="rpV-6I-eVN" firstAttribute="leading" secondItem="fVZ-Fz-d1m" secondAttribute="trailing" constant="15" id="rOo-jB-2c9"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downloaded Episodes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLc-tg-ArA">
-                                    <rect key="frame" x="0.0" y="165" width="414" height="25"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mentions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLc-tg-ArA">
+                                    <rect key="frame" x="0.0" y="220" width="414" height="30"/>
                                     <color key="backgroundColor" red="0.92456585170000005" green="0.38482528919999998" blue="0.3745569587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -127,16 +155,16 @@
                         </stackView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell1" rowHeight="80" id="KYy-Cx-LQd" userLabel="DownloadCell" customClass="DownloadEpisodeCell" customModule="Podcast" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="218" width="414" height="80"/>
+                                <rect key="frame" x="0.0" y="278" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" restorationIdentifier="cell2" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KYy-Cx-LQd" id="1YI-SN-yBt" userLabel="Episode">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell2" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KYy-Cx-LQd" id="1YI-SN-yBt" userLabel="Episode">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tc4-ga-I6J">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tc4-ga-I6J">
                                             <rect key="frame" x="0.0" y="2" width="414" height="76"/>
                                             <subviews>
-                                                <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Otr-Hm-sB5">
+                                                <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Otr-Hm-sB5">
                                                     <rect key="frame" x="0.0" y="74" width="414" height="2"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </progressView>
@@ -716,7 +744,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="subscriptions" useStoryboardIdentifierAsRestorationIdentifier="YES" id="axQ-p6-UpI" customClass="SubscriptionsViewController" customModule="Podcast" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ePw-Re-gXM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <connections>

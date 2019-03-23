@@ -142,6 +142,7 @@ class DBService {
     }
     
     func getFollowersIDs(completionHandler: @escaping ([String]) -> ()){
+        print("22222")
         self.db
             .collection("usersInfo")
             .document(uid)
@@ -153,12 +154,14 @@ class DBService {
                 } else {
                     var followersIDs = [String]()
                     for follower in snapshot!.documents {
+                        
                         followersIDs.append(follower.documentID)
+                        print(follower.documentID)
                     }
                     completionHandler(followersIDs)
                 }
-                
         }
+        print("33333")
     }
 
     

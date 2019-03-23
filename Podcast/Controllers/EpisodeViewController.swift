@@ -24,6 +24,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
 
     
     //Repost/Comment View
+    let dispatch = DispatchGroup()
     let dbs = DBService.shared
     @IBOutlet var writePost: UIView!
     @IBOutlet weak var postContentTV: UITextView!
@@ -110,9 +111,9 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     
     override func viewDidLoad() {
-        setAttributes()
         super.viewDidLoad()
-
+        setUpDatabases()
+        setAttributes()
         setUpComments()
         
         playlistsCV.delegate = self
@@ -127,9 +128,9 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         
          fileURL = episode.fileUrl ?? ""
         if Auth.auth().currentUser?.uid != nil {
-            setUpDatabases()
+        
             checkLikedEpisode()
-            //checkEpisodeUrl()
+
         }
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -138,6 +139,8 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             bookmarkButton.setImage(UIImage(named: "bookmark_highlight"), for: .normal)
         }
     }
+    
+    
    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -215,7 +218,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     @objc func recommendToUser(){
         
-        print("Hello bitch")
         
         blackView.backgroundColor = UIColor.black
         blackView.alpha = 0
@@ -239,6 +241,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             PlayerDetailsViewController.shared.view.isHidden = true
         }, completion: nil)
     }
+    
     
     @objc func bookmarkAddingHandler(){
         // Checking if the button has highlighted image or not to run the correct operation
@@ -351,6 +354,14 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         // Hide the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.tabBarController?.tabBar.isHidden = false
+        // this code to get the followes images and names
+        dispatch.enter()
+        for oneDude in followersIDs {
+            dbs.getPerson(uid: oneDude) { (Person) in
+                self.followers.append(Person)
+            }
+        }
+        dispatch.leave()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -371,6 +382,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             cell.setAttributes(playlist: playlists[indexPath.row])
             return cell
         }else {
+            print("hello")
             let cell = followerCV.dequeueReusableCell(withReuseIdentifier: "follower", for: indexPath) as! followersMentionCellCVC
             cell.setAttributes(person: followers[indexPath.row])
             return cell
@@ -390,27 +402,22 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     func setUpDatabases(){
+        print("1111")
         self.userID = Auth.auth().currentUser?.uid
+        dispatch.enter()
+            self.dbs.getFollowersIDs { (followersIDs) in
+            self.followersIDs = followersIDs
+        }
+        dispatch.leave()
+        print(self.followersIDs)
         self.dbs.getPerson(uid: userID!) {(person) in
             self.person = person
             self.username = person.username
             self.userImage = person.profileImageURL
         }
-        print(self.username)
-        dbs.getFollowersIDs { (followersIDs) in
-            self.followersIDs = followersIDs
-        }
+       
         
-        print(self.followersIDs)
         
-        // this code to get the followes images and names
-        for oneDude in followersIDs {
-            dbs.getPerson(uid: oneDude) { (Person) in
-                self.followers.append(Person)
-            }
-        }
-        
-        print(self.followers)
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
         postContentTV.text = ""
