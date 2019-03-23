@@ -104,13 +104,15 @@ extension EpisodeViewController{
     }
     
     //adding new comment to the episode
-    func addNewComment() {
-        //print("Message: \(postContentTV.text)")
+    @objc func addNewComment() {
         let comment = CommentObj(
         realName: "",
         username: self.username!,
         img: userImage ?? "" ,
-        com: postContentTV.text)
+        com: commentContentTF.text!)
+        
+        commentContentTF.placeholder = "Comment here"
+        commentContentTF.text = ""
         
         self.dbs.postComment(episode: self.episode, comment: comment) {commentID in
             

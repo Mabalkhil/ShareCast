@@ -22,6 +22,7 @@
 		2992ACC52240000500CE5C44 /* CommentObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2992ACC42240000500CE5C44 /* CommentObj.swift */; };
 		29C02397222AEDD100857E1D /* PeopleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29C02396222AEDD100857E1D /* PeopleCell.xib */; };
 		29C02399222EBBD500857E1D /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C02398222EBBD500857E1D /* Person.swift */; };
+		2F3E975422456EA400CBDB13 /* followersMentionCellCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3E975322456EA400CBDB13 /* followersMentionCellCVC.swift */; };
 		2F9AD7A62223B076000D00BA /* Timeline.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F9AD7A52223B076000D00BA /* Timeline.storyboard */; };
 		2F9AD7A822245331000D00BA /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9AD7A722245331000D00BA /* TimelineViewController.swift */; };
 		2F9AD7AA22245638000D00BA /* TimelineTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9AD7A922245638000D00BA /* TimelineTVC.swift */; };
@@ -116,6 +117,7 @@
 		2992ACC42240000500CE5C44 /* CommentObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentObj.swift; sourceTree = "<group>"; };
 		29C02396222AEDD100857E1D /* PeopleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeopleCell.xib; sourceTree = "<group>"; };
 		29C02398222EBBD500857E1D /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		2F3E975322456EA400CBDB13 /* followersMentionCellCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = followersMentionCellCVC.swift; sourceTree = "<group>"; };
 		2F9AD7A52223B076000D00BA /* Timeline.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Timeline.storyboard; sourceTree = "<group>"; };
 		2F9AD7A722245331000D00BA /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		2F9AD7A922245638000D00BA /* TimelineTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTVC.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				50420F9E21A122040030CDB4 /* RoundedWhiteButton.swift */,
 				2F9AD7A922245638000D00BA /* TimelineTVC.swift */,
 				505B6C2E21F6571E002E392D /* TimeMarkCell.swift */,
+				2F3E975322456EA400CBDB13 /* followersMentionCellCVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -548,7 +551,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ACBAVPlayer/ACBAVPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
@@ -585,7 +588,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6B23A841E5CD2B417D2ECBE /* [CP] Check Pods Manifest.lock */ = {
@@ -616,6 +619,7 @@
 				502484B021FCED3D00CA84F1 /* EditProfileViewController.swift in Sources */,
 				FA49932A218DCD3E0021CFA3 /* PodcastSearchController.swift in Sources */,
 				29140E44220352500060522E /* SearchDelegate.swift in Sources */,
+				2F3E975422456EA400CBDB13 /* followersMentionCellCVC.swift in Sources */,
 				5018A44E21FF7DCF007EE027 /* DownloadsController.swift in Sources */,
 				FA397ED72195E66D00D33617 /* SearchResults.swift in Sources */,
 				2992ACC3223FFFD900CE5C44 /* NSNotification.swift in Sources */,

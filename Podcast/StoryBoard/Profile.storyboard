@@ -58,19 +58,19 @@
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jet-Kh-Jls">
                                                                             <rect key="frame" x="0.0" y="0.0" width="54" height="30"/>
-                                                                            <state key="normal" title="100">
+                                                                            <state key="normal" title="0">
                                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             </state>
                                                                         </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfl-sm-VPi">
                                                                             <rect key="frame" x="94" y="0.0" width="54" height="30"/>
-                                                                            <state key="normal" title="50">
+                                                                            <state key="normal" title="0">
                                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             </state>
                                                                         </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FI7-Wt-diG">
                                                                             <rect key="frame" x="188" y="0.0" width="54" height="30"/>
-                                                                            <state key="normal" title="44">
+                                                                            <state key="normal" title="0">
                                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             </state>
                                                                         </button>
