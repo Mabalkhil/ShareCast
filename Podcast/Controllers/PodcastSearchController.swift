@@ -11,6 +11,10 @@ import Alamofire
 import Firebase
 
 class PodcastSearchController: UITableViewController, UISearchBarDelegate{
+    
+    //DBS reference
+    let dbs = DBService.shared
+    
     // state variables
     let cellId = "cellId"
     let cellId2 = "cellId2"
@@ -75,15 +79,16 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
         } else {
             
             //for users
-             self.people.removeAll()
-            Database.database().reference().child("usersInfo").queryOrdered(byChild: "firstName").queryStarting(atValue: searchText).queryEnding(atValue: searchText + "\u{f8ff}").observe(.childAdded) {
+            self.people.removeAll()
+
+            Database.database().reference().child("usersInfo").queryOrdered(byChild: "searchName").queryStarting(atValue: searchText.lowercased()).queryEnding(atValue: searchText.lowercased() + "\u{f8ff}").observe(.childAdded) {
                     (snapshot) in
                     print(snapshot)
                     if let dict = snapshot.value as? [String: AnyObject]{
-                        
+
                         let person = Person(uid: snapshot.key, dictionary: dict)
                         self.people.append(person!)
-                        
+
                         self.searchDelegate.updatePeople(people: self.people)
                         self.resultTableView.reloadData()
                         print(self.people.count)

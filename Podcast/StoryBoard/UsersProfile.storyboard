@@ -188,6 +188,7 @@
                         <outlet property="following" destination="pOR-Yi-ORk" id="7tt-mh-Vtf"/>
                         <outlet property="name" destination="W0R-Dd-qw5" id="Be5-yj-M0C"/>
                         <outlet property="posts" destination="CSS-QZ-AzS" id="pvT-yJ-dNA"/>
+                        <outlet property="profileImage" destination="oJx-QR-IOC" id="UH9-2J-ibj"/>
                         <outlet property="username" destination="0DB-iL-59b" id="BGR-Wo-lQB"/>
                     </connections>
                 </viewController>

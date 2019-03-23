@@ -106,7 +106,7 @@ extension EpisodeViewController{
     //adding new comment to the episode
     @objc func addNewComment() {
         let comment = CommentObj(
-        realName: "",
+        realName: person?.name ?? "",
         username: self.username!,
         img: userImage ?? "" ,
         com: commentContentTF.text!)
