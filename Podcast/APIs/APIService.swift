@@ -13,6 +13,9 @@ import FeedKit
 class APIService {
     // Signleton Object
     static let shared = APIService()
+    var request: Alamofire.Request?
+    var requests = [Alamofire.Request]()
+    var downloadProgress = 0.0
     
     typealias EpisodeDownloadCompleteTuple = (fileURL: String, episodeTitle: String)
     var categories = [Category]()
@@ -74,9 +77,10 @@ class APIService {
         
         let downloadRequest = DownloadRequest.suggestedDownloadDestination()
         
-        Alamofire.download(episode.streamURL, to: downloadRequest).downloadProgress { (progress) in
+        
+       self.request = Alamofire.download(episode.streamURL, to: downloadRequest).downloadProgress { (progress) in
             print(progress.fractionCompleted)
-            
+            self.downloadProgress = progress.fractionCompleted
             NotificationCenter.default.post(name: .downloadProgress, object: nil, userInfo: ["title": episode.title, "progress": progress.fractionCompleted ])
             
             }.response { (resp) in
@@ -100,6 +104,7 @@ class APIService {
                 }
                 
         }
+        self.requests.append(request!)
     }
     
     
@@ -108,6 +113,18 @@ class APIService {
     
     func deleteEpisode(episode: Episode){
         var filePath:URL
+        var count = 0
+        if self.downloadProgress < 1{
+            
+            for req in self.requests {
+                if req.description.contains(episode.streamURL) {
+                    self.requests[count].cancel()
+                    self.requests.remove(at: count)
+                }
+                count = count + 1
+            }
+
+        }else{
         
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         
@@ -117,7 +134,7 @@ class APIService {
             if fileURLs.count > 0 {
                 
                 filePath = URL(string: episode.fileUrl!)!
-                
+
             } else {
                 print("Could not find local directory to store file")
                 return
@@ -125,8 +142,9 @@ class APIService {
 
                 try FileManager.default.removeItem(at:filePath)
           
-        } catch  { print(error) }
+            } catch  { print(error) }
         
+        }
     }
     
     
