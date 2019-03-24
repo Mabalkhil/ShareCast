@@ -227,6 +227,10 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         self.view.addSubview(blackView)
         self.view.addSubview(followerCV)
         
+        if followers.isEmpty{
+            followers = dbs.followers
+        }
+        
         print(followers)
         let cvHeight = CGFloat(50 * followers.count) + (self.tabBarController?.tabBar.frame.height)!
         let y = self.view.frame.height - cvHeight
@@ -357,7 +361,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == playlistsCV{
+        if collectionView == self.playlistsCV{
             return playlists.count
         }else {
             return followers.count
@@ -369,22 +373,50 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == playlistsCV{
-            let cell = playlistsCV.dequeueReusableCell(withReuseIdentifier: "playlist", for: indexPath) as! playlistCellAddingCVC
+        if collectionView == self.playlistsCV{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playlist", for: indexPath) as! playlistCellAddingCVC
             cell.setAttributes(playlist: playlists[indexPath.row])
             return cell
         }else {
             print("hello")
-            let cell = followerCV.dequeueReusableCell(withReuseIdentifier: "follower", for: indexPath) as! followersMentionCellCVC
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "follower", for: indexPath) as! followersMentionCellCVC
+            print(followers[indexPath.row])
             cell.setAttributes(person: followers[indexPath.row])
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if playlists[indexPath.row].playlistName != "Cancel"{
-            playlists[indexPath.row].addTask(ep: self.episode)
-            UserDefaults.standard.playlistEpisode(episode: self.episode, name: playlists[indexPath.row].playlistName!)
+        if collectionView == self.playlistsCV {
+            if playlists[indexPath.row].playlistName != "Cancel"{
+                playlists[indexPath.row].addTask(ep: self.episode)
+                UserDefaults.standard.playlistEpisode(episode: self.episode, name: playlists[indexPath.row].playlistName!)
+            }
+        }else {
+            var ref:DocumentReference? = nil
+            let user = followers[indexPath.row].uid
+            print(followers[indexPath.row].uid)
+            var mentionDetails = ["uid" : userID,
+                           "author": username,
+                           "author_img":userImage,
+                           "Date" : Date(),
+                           "episode_link" : episode.fileUrl,
+                           "episode_img_link" : episode.imageUrl,
+                           "episode_name" : episode.title,
+                           "episode_desc" : episode.describtion] as [String : Any]
+            
+            ref = self.fireStoreDatabaseRef
+                .collection("mentions")
+                .document(user)
+                .collection("my_mentions")
+                .addDocument(data: mentionDetails){
+                    error in
+                    if let error = error {
+                        print("Error adding document \(error)")
+                    }else{
+                        print("Document inserted successfully with ID: \(ref!.documentID)")
+                    }
+            }
         }
         handelDismiss()
     }
@@ -394,17 +426,19 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     func setUpDatabases(){
-        print("1111")
+        print("1111")        
         self.userID = Auth.auth().currentUser?.uid
-        self.dispatch.enter()
+        self.dbs.getPerson(uid: userID!) {(person) in
+            self.person = person
+            self.username = person.username
+            self.userImage = person.profileImageURL
+        }
+        
         dbs.getFollowers { (result) in
             self.followers = result
-            self.dispatch.leave()
         }
-       
-        
-        
     }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         postContentTV.text = ""
     }

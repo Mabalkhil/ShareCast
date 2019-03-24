@@ -407,7 +407,8 @@
                                 <constraint firstAttribute="trailing" secondItem="GaO-wv-zqr" secondAttribute="trailing" constant="10" id="i9H-ro-8LX"/>
                             </constraints>
                             <connections>
-                                <outlet property="playlistName" destination="GaO-wv-zqr" id="pRb-DU-GPA"/>
+                                <outlet property="userImg" destination="Ybr-cZ-GU3" id="TAE-FN-uvh"/>
+                                <outlet property="username" destination="GaO-wv-zqr" id="hms-U7-Ypm"/>
                             </connections>
                         </collectionViewCell>
                     </cells>
