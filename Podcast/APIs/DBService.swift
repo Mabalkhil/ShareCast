@@ -1,5 +1,5 @@
 //
-//  DBService.swift
+//  Service.swift
 //  Podcast
 //
 //  Created by MacBook on 14/03/2019.
@@ -77,6 +77,21 @@ class DBService {
         }
     }
     
+    func getPersons(uids : [String], completionHandler: @escaping ([Person]) -> ()){
+        var count = 0
+        var persons = [Person]()
+        for uid in uids {
+            
+            self.getPerson(uid: uid) { (person) in
+                persons.append(person)
+            }
+            count = count + 1
+            if count == uids.count {
+                completionHandler(persons)
+            }
+        }
+    }
+    
     //MARK:- Follow/Unfollow
     func follow(fid: String) {
         self.db
@@ -131,6 +146,7 @@ class DBService {
                     for following in snapshot!.documents {
                         followingIDs.append(following.documentID)
                     }
+                    
                     completionHandler(followingIDs)
                 }
                 
@@ -150,10 +166,27 @@ class DBService {
                     var followersIDs = [String]()
                     for follower in snapshot!.documents {
                         followersIDs.append(follower.documentID)
+                        
                     }
                     completionHandler(followersIDs)
                 }
                 
+        }
+    }
+    
+    func getFollowers(completionHandler: @escaping ([Person]) -> ()){
+        self.getFollowersIDs { (uids) in
+            self.getPersons(uids: uids, completionHandler: { (followers) in
+                completionHandler(followers)
+            })
+        }
+    }
+    
+    func getFollowing(completionHandler: @escaping ([Person]) -> ()){
+        self.getFollowingIDs { (uids) in
+            self.getPersons(uids: uids, completionHandler: { (followers) in
+                completionHandler(followers)
+            })
         }
     }
 

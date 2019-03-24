@@ -78,7 +78,8 @@ extension String{
         return substring(with: startIndex..<endIndex)
     }
     func fromBase64() -> String? {
-        guard let data = Data(base64Encoded: self) else {
+        let str = self.replacingOccurrences(of: "%", with: "/", options: .literal, range: nil)
+        guard let data = Data(base64Encoded: str) else {
             return nil
         }
         
@@ -87,6 +88,7 @@ extension String{
     
     func toBase64() -> String {
         return Data(self.utf8).base64EncodedString()
+            .replacingOccurrences(of: "/", with: "%", options: .literal, range: nil)
     }
     
 }
