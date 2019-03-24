@@ -397,14 +397,13 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         print("1111")
         self.userID = Auth.auth().currentUser?.uid
         self.dispatch.enter()
-        dbs.getFollowers { (result) in
-            self.followers = result
-            self.dispatch.leave()
-        }
-       
-        
-        
+        dbs.getFollowersIDs(completionHandler: { (result) in
+            DispatchQueue.main.async {
+                print(result)
+            }
+            })
     }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         postContentTV.text = ""
     }

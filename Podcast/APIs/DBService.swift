@@ -74,7 +74,6 @@ class DBService {
                     }
                     
                 }
-                
         }
     }
     
@@ -165,7 +164,6 @@ class DBService {
     }
     
     func getFollowers(completionHandler: @escaping ([Person]) -> ()){
-        print("22222")
         self.db
             .collection("usersInfo")
             .document(uid)
@@ -178,27 +176,51 @@ class DBService {
                     var followersIDs = [String]()
                     for follower in snapshot!.documents {
                         print(follower.documentID)
-                        self.dispatch.enter()
                         followersIDs.append(follower.documentID)
-                        self.dispatch.leave()
                     }
                     var followers = [Person]()
-                    
-                    self.dispatch.enter()
                     for oneUser in followersIDs{
                         print(oneUser)
                         self.getPerson(uid: oneUser, completionHandler: { (Person) in
                             print(Person)
                             followers.append(Person)
-                            print(followers)
                         })
                     }
-                    self.dispatch.leave()
+                    print(followers)
                     completionHandler(followers)
                 }
         }
     }
 
+    func getFollowersMoreOptm() -> [Person]{
+          var followers = [Person]()
+          var followersIDs = [String]()
+        self.db
+            .collection("usersInfo")
+            .document(uid)
+            .collection("Followers")
+            .getDocuments {
+                (snapshot, err) in
+                if let err = err {
+                    print("FIRESTORE: Error getting subscribed channels: \(err)")
+                } else {
+                    for follower in snapshot!.documents {
+                        print(follower.documentID)
+                        followersIDs.append(follower.documentID)
+                    }
+                    for oneUser in followersIDs{
+                        print(oneUser)
+                        self.getPerson(uid: oneUser, completionHandler: { (Person) in
+                            print(Person)
+                            followers.append(Person)
+                        })
+                    }
+                    print(followers)
+                    
+                }
+        }
+                    return followers
+    }
     
     
     

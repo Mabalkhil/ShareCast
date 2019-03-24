@@ -156,6 +156,90 @@
                                 </label>
                             </subviews>
                         </stackView>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="200" id="NHC-au-nFa" customClass="TimelineTVC" customModule="Podcast" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="278" width="414" height="200"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NHC-au-nFa" id="Fya-Na-q9E">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Xvc-z1-M7c">
+                                            <rect key="frame" x="30" y="21" width="354" height="50"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hrK-Iw-LIZ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="WUY-0j-osZ"/>
+                                                        <constraint firstAttribute="width" constant="50" id="rMP-Ip-MZa"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="20"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lkO-31-bEe">
+                                                    <rect key="frame" x="65" y="0.0" width="289" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y1F-eo-rg9" userLabel="Episode view">
+                                            <rect key="frame" x="30" y="106" width="374" height="84"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1400x1400-eagles_podcast-logo" translatesAutoresizingMaskIntoConstraints="NO" id="rLt-qO-OGW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" fixedFrame="YES" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNj-tj-9Xk">
+                                                    <rect key="frame" x="85" y="23" width="279" height="54"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Episode name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJb-Ec-kHA">
+                                                    <rect key="frame" x="85" y="0.0" width="274" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.32028031350000002" green="0.32054913039999999" blue="0.32032194730000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.19128635529999999" green="0.1914627552" blue="0.19131368400000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="Xvc-z1-M7c" firstAttribute="leading" secondItem="Fya-Na-q9E" secondAttribute="leadingMargin" constant="10" id="6Zb-SM-1Zu"/>
+                                        <constraint firstItem="y1F-eo-rg9" firstAttribute="leading" secondItem="Fya-Na-q9E" secondAttribute="leadingMargin" constant="10" id="Aqd-Px-uyD"/>
+                                        <constraint firstAttribute="bottom" secondItem="y1F-eo-rg9" secondAttribute="bottom" constant="10" id="a1i-Ce-coT"/>
+                                        <constraint firstItem="y1F-eo-rg9" firstAttribute="top" secondItem="Xvc-z1-M7c" secondAttribute="bottom" constant="35" id="ccm-bL-WW8"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Xvc-z1-M7c" secondAttribute="trailing" constant="10" id="nQR-RG-uGo"/>
+                                        <constraint firstItem="Xvc-z1-M7c" firstAttribute="top" secondItem="Fya-Na-q9E" secondAttribute="topMargin" constant="10" id="qFg-hN-BgO"/>
+                                        <constraint firstItem="y1F-eo-rg9" firstAttribute="trailing" secondItem="Fya-Na-q9E" secondAttribute="trailingMargin" constant="10" id="yfy-kZ-vPv"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="episode_desc" destination="oNj-tj-9Xk" id="5Uw-0p-VIV"/>
+                                    <outlet property="episode_image" destination="rLt-qO-OGW" id="ap9-2o-8L0"/>
+                                    <outlet property="episode_name" destination="qJb-Ec-kHA" id="Jh0-pe-4cT"/>
+                                    <outlet property="userImage" destination="hrK-Iw-LIZ" id="GVi-qw-q63"/>
+                                    <outlet property="usernameLabel" destination="lkO-31-bEe" id="8SE-qK-zfH"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
                     </tableView>
                     <nil key="simulatedTopBarMetrics"/>
                 </tableViewController>

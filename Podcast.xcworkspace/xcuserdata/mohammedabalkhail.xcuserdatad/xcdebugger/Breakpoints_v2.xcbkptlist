@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Podcast/Controllers/EpisodeViewController.swift"
-            timestampString = "575140432.778002"
+            timestampString = "575145103.702651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "421"
-            endingLineNumber = "421"
-            landmarkName = "setUpDatabases()"
-            landmarkType = "7">
+            startingLineNumber = "420"
+            endingLineNumber = "420"
+            landmarkName = "EpisodeViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Podcast/APIs/DBService.swift"
-            timestampString = "575140432.785724"
+            timestampString = "575145103.704537"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "getFollowersIDs(completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Podcast/Controllers/EpisodeViewController.swift"
-            timestampString = "575140432.788498"
+            timestampString = "575145103.707592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "365"
             endingLineNumber = "365"
-            landmarkName = "viewWillAppear(_:)"
+            landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,12 +58,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Podcast/Controllers/DownloadEpisodes.swift"
-            timestampString = "575140432.7901289"
+            timestampString = "575145103.708396"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "21"
             endingLineNumber = "21"
             landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Podcast/Controllers/EpisodeViewController.swift"
+            timestampString = "575145103.7093199"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "403"
+            endingLineNumber = "403"
+            landmarkName = "setUpDatabases()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
