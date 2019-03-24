@@ -354,14 +354,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         // Hide the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.tabBarController?.tabBar.isHidden = false
-        // this code to get the followes images and names
-        dispatch.enter()
-        for oneDude in followersIDs {
-            dbs.getPerson(uid: oneDude) { (Person) in
-                self.followers.append(Person)
-            }
-        }
-        dispatch.leave()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -404,16 +396,10 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     func setUpDatabases(){
         print("1111")
         self.userID = Auth.auth().currentUser?.uid
-        dispatch.enter()
-            self.dbs.getFollowersIDs { (followersIDs) in
-            self.followersIDs = followersIDs
-        }
-        dispatch.leave()
-        print(self.followersIDs)
-        self.dbs.getPerson(uid: userID!) {(person) in
-            self.person = person
-            self.username = person.username
-            self.userImage = person.profileImageURL
+        self.dispatch.enter()
+        dbs.getFollowers { (result) in
+            self.followers = result
+            self.dispatch.leave()
         }
        
         
