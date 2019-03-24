@@ -16,7 +16,7 @@ class DBService {
     let db = Firestore.firestore()
     let reffStor = Storage.storage().reference(forURL: "gs://sharecast-c780f.appspot.com").child("profile_Image")
     var uid = Auth.auth().currentUser?.uid ?? ""
-    
+    let dispatch = DispatchGroup()
     
     
     //MARK:- Signup Queries
@@ -162,6 +162,41 @@ class DBService {
                 }
         }
         print("33333")
+    }
+    
+    func getFollowers(completionHandler: @escaping ([Person]) -> ()){
+        print("22222")
+        self.db
+            .collection("usersInfo")
+            .document(uid)
+            .collection("Followers")
+            .getDocuments {
+                (snapshot, err) in
+                if let err = err {
+                    print("FIRESTORE: Error getting subscribed channels: \(err)")
+                } else {
+                    var followersIDs = [String]()
+                    for follower in snapshot!.documents {
+                        print(follower.documentID)
+                        self.dispatch.enter()
+                        followersIDs.append(follower.documentID)
+                        self.dispatch.leave()
+                    }
+                    var followers = [Person]()
+                    
+                    self.dispatch.enter()
+                    for oneUser in followersIDs{
+                        print(oneUser)
+                        self.getPerson(uid: oneUser, completionHandler: { (Person) in
+                            print(Person)
+                            followers.append(Person)
+                            print(followers)
+                        })
+                    }
+                    self.dispatch.leave()
+                    completionHandler(followers)
+                }
+        }
     }
 
     
