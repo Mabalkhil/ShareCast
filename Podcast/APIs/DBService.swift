@@ -200,6 +200,7 @@ class DBService {
 
     
     func getFollowers2(completionHandler: @escaping ([Person]) -> ()){
+        var followers = [Person]()
         var followersIDs = [String]()
         self.db
             .collection("usersInfo")
@@ -214,24 +215,20 @@ class DBService {
                         print(follower.documentID)
                         followersIDs.append(follower.documentID)
                     }
-                    for oneUser in followersIDs{
-                        print(oneUser)
-                        self.getPerson(uid: oneUser, completionHandler: { (Person) in
-                            print(Person)
-                            self.followers.append(Person)
-                        })
                     DispatchQueue.global(qos: .background).async {
                         for oneUser in followersIDs{
                             print(oneUser)
                             self.getPerson(uid: oneUser, completionHandler: { (Person) in
-                                self.followers.append(Person)
+                                followers.append(Person)
+                                if !self.followers.isEmpty{
+                                    self.followers.append(Person)
+                                }
                             })
                         }
                     }
-                        print(self.followers)
-                        completionHandler(self.followers)
+                    print(followers)
+                    completionHandler(followers)
                 }
-            }
         }
     }
     
