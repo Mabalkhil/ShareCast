@@ -23,6 +23,10 @@ class DownloadEpisodes: UITableViewController {
             tableView.backgroundView = UIView()
         }
         setupObservers()
+        if let tabItems = tabBarController?.tabBar.items {
+            let tabItem = tabItems[2]
+            tabItem.badgeValue = nil
+        }
         
     }
 

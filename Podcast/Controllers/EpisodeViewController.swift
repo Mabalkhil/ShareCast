@@ -433,6 +433,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             self.username = person.username
             self.userImage = person.profileImageURL
         }
+
         dbs.getFollowers { (result) in
             self.followers = result
         }

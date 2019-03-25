@@ -13,11 +13,11 @@
         <scene sceneID="Ijc-uB-zEZ">
             <objects>
                 <tableViewController storyboardIdentifier="Mention" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0o5-r1-dSW" customClass="MentionController" customModule="Podcast" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fLR-sf-l4v">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fLR-sf-l4v">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.32028031350000002" green="0.32054913039999999" blue="0.32032194730000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="separatorColor" red="0.32028031350000002" green="0.32054913039999999" blue="0.32032194730000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <stackView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" id="dbq-tp-DIY">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -161,7 +161,7 @@
                                 <rect key="frame" x="0.0" y="278" width="414" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NHC-au-nFa" id="Fya-Na-q9E">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="199.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Xvc-z1-M7c">
@@ -187,9 +187,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="9ZL-VY-qmU"/>
+                                            </constraints>
                                         </stackView>
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y1F-eo-rg9" userLabel="Episode view">
-                                            <rect key="frame" x="30" y="106" width="374" height="84"/>
+                                            <rect key="frame" x="30" y="81" width="374" height="84"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1400x1400-eagles_podcast-logo" translatesAutoresizingMaskIntoConstraints="NO" id="rLt-qO-OGW">
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -212,6 +215,9 @@
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.32028031350000002" green="0.32054913039999999" blue="0.32032194730000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="84" id="y31-vg-DMk"/>
+                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -225,16 +231,16 @@
                                         <constraint firstItem="Xvc-z1-M7c" firstAttribute="leading" secondItem="Fya-Na-q9E" secondAttribute="leadingMargin" constant="10" id="6Zb-SM-1Zu"/>
                                         <constraint firstItem="y1F-eo-rg9" firstAttribute="leading" secondItem="Fya-Na-q9E" secondAttribute="leadingMargin" constant="10" id="Aqd-Px-uyD"/>
                                         <constraint firstAttribute="bottom" secondItem="y1F-eo-rg9" secondAttribute="bottom" constant="10" id="a1i-Ce-coT"/>
-                                        <constraint firstItem="y1F-eo-rg9" firstAttribute="top" secondItem="Xvc-z1-M7c" secondAttribute="bottom" constant="35" id="ccm-bL-WW8"/>
+                                        <constraint firstItem="y1F-eo-rg9" firstAttribute="top" secondItem="Xvc-z1-M7c" secondAttribute="bottom" constant="10" id="ccm-bL-WW8"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Xvc-z1-M7c" secondAttribute="trailing" constant="10" id="nQR-RG-uGo"/>
                                         <constraint firstItem="Xvc-z1-M7c" firstAttribute="top" secondItem="Fya-Na-q9E" secondAttribute="topMargin" constant="10" id="qFg-hN-BgO"/>
                                         <constraint firstItem="y1F-eo-rg9" firstAttribute="trailing" secondItem="Fya-Na-q9E" secondAttribute="trailingMargin" constant="10" id="yfy-kZ-vPv"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="episode_desc" destination="oNj-tj-9Xk" id="5Uw-0p-VIV"/>
-                                    <outlet property="episode_image" destination="rLt-qO-OGW" id="ap9-2o-8L0"/>
-                                    <outlet property="episode_name" destination="qJb-Ec-kHA" id="Jh0-pe-4cT"/>
+                                    <outlet property="episode_desc" destination="oNj-tj-9Xk" id="gpH-vg-dJQ"/>
+                                    <outlet property="episode_image" destination="rLt-qO-OGW" id="ejH-TJ-z3Y"/>
+                                    <outlet property="episode_name" destination="qJb-Ec-kHA" id="seJ-Rx-kx2"/>
                                     <outlet property="userImage" destination="hrK-Iw-LIZ" id="GVi-qw-q63"/>
                                     <outlet property="usernameLabel" destination="lkO-31-bEe" id="8SE-qK-zfH"/>
                                 </connections>

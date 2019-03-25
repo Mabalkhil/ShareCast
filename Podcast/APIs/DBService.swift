@@ -137,7 +137,6 @@ class DBService {
                     }
                     completionHandler(followingIDs)
                 }
-                
         }
     }
     
@@ -196,42 +195,10 @@ class DBService {
                         print(self.followers)
                         completionHandler(self.followers)
                 }
+            }
         }
     }
-
-    func getFollowersMoreOptm() -> [Person]{
-          var followers = [Person]()
-          var followersIDs = [String]()
-        self.db
-            .collection("usersInfo")
-            .document(uid)
-            .collection("Followers")
-            .getDocuments {
-                (snapshot, err) in
-                if let err = err {
-                    print("FIRESTORE: Error getting subscribed channels: \(err)")
-                } else {
-                    for follower in snapshot!.documents {
-                        print(follower.documentID)
-                        followersIDs.append(follower.documentID)
-                    }
-                    for oneUser in followersIDs{
-                        print(oneUser)
-                        self.getPerson(uid: oneUser, completionHandler: { (Person) in
-                            print(Person)
-                            followers.append(Person)
-                        })
-                    }
-                    print(followers)
-                    
-                }
-        }
-                    return followers
-    }
     
-    
-    
-
     
     //MARK:- Subscriptions Queries
     func subscribeToChannel(podcast: Podcast) {
@@ -279,6 +246,31 @@ class DBService {
                     completionHandler(podcasts)
                 }
                 
+        }
+    }
+    
+    func getMentionedEpisodes(completionHandler: @escaping ([Post]) -> ()){
+
+        self.db
+            .collection("mentions")
+            .document(uid)
+            .collection("my_mentions")
+            .getDocuments{
+                (QuerySnapshot, error) in
+                if let error = error {
+                    print("\(error.localizedDescription)")
+                }else{
+                    var posts = (QuerySnapshot?.documents
+                        .flatMap({
+                            Post(userName: $0.data()["author"] as! String,
+                                 content: "",
+                                 img: $0.data()["author_img"] as! String,
+                                 ep_name: $0.data()["episode_name"] as! String,
+                                 ep_img: $0.data()["episode_img_link"] as! String,
+                                 ep_desc: $0.data()["episode_desc"] as! String,
+                                 postID: "")}))!
+                    completionHandler(posts)
+                }
         }
     }
     
@@ -569,4 +561,5 @@ class DBService {
 //    }
     
 }
+
 
