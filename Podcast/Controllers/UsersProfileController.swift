@@ -24,6 +24,7 @@ class UsersProfileController: UIViewController {
     @IBOutlet weak var following: UIButton!
     @IBOutlet weak var followers: UIButton!
     @IBOutlet weak var followButton: UIButton!
+    @IBOutlet weak var profileImage: UIImageView!
     
     
     
@@ -32,6 +33,7 @@ class UsersProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupProfile()
+        setupProfileImage()
     }
     override func viewWillAppear(_ animated: Bool) {
         checkIfFollowed()
@@ -40,6 +42,22 @@ class UsersProfileController: UIViewController {
         self.name.text = person.name
         self.username.text = person.username
         self.followButton.isEnabled = !(dbs.uid.isEmpty)
+        
+    }
+    
+    func setupProfileImage()  {
+        
+        dbs.fetchProfileImage(targetID: self.person.uid) { (image) in
+            DispatchQueue.main.async {
+                self.profileImage.image = image
+            }
+        }
+        
+        profileImage.layer.borderWidth = 1
+        profileImage.layer.borderColor = UIColor.white.cgColor
+        profileImage.layer.masksToBounds = false
+        profileImage.layer.cornerRadius = profileImage.frame.height/2
+        profileImage.clipsToBounds = true
     }
     
     //MARK:- Toggle Follow

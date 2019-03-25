@@ -41,8 +41,8 @@ class MainTabBarController: UITabBarController {
             let searchNavController =
             generateNavigationController(for: UIStoryboard(name: "Discover", bundle: nil).instantiateViewController(withIdentifier: "discover"), title: "Discover" , image: #imageLiteral(resourceName: "Discover"))
         
-        let chanellesController =
-            generateNavigationController(for: UIStoryboard(name: "Subscription", bundle: nil).instantiateViewController(withIdentifier: "Download1"), title: "Subscription", image: #imageLiteral(resourceName: "Chanelles"))
+        let mentionController =
+            generateNavigationController(for: UIStoryboard(name: "Subscription", bundle: nil).instantiateViewController(withIdentifier: "Mention"), title: "Subscription", image: #imageLiteral(resourceName: "Chanelles"))
         
         var ProfileController : UIViewController?
         if(Auth.auth().currentUser?.uid != nil){
@@ -62,7 +62,7 @@ class MainTabBarController: UITabBarController {
         }
     
         viewControllers = [
-            homeNavController,searchNavController,chanellesController , ProfileController
+            homeNavController,searchNavController,mentionController , ProfileController
             ] as! [UIViewController]
     }
     

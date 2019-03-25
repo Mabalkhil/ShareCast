@@ -48,5 +48,24 @@ class TimelineTVC: UITableViewCell {
             }
         }).resume()
     }
-
+    
+    func setMentionedEpisode(post:Post){
+        
+        usernameLabel.text = post.username
+        episode_name.text = post.episode_name
+        episode_desc.text = post.episode_desc
+        
+        var url = URL(string: post.episode_img_url!)
+        episode_image?.sd_setImage(with: url, completed: nil)
+        
+        url = URL(string: post.userImage!)
+        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+            if let err = error {
+                print(err)
+            }
+            DispatchQueue.main.async {
+                self.userImage.image = UIImage(data: data!)
+            }
+        }).resume()
+    }
 }

@@ -16,6 +16,8 @@ class DBService {
     let db = Firestore.firestore()
     let reffStor = Storage.storage().reference(forURL: "gs://sharecast-c780f.appspot.com").child("profile_Image")
     var uid = Auth.auth().currentUser?.uid ?? ""
+    var followers = [Person]()
+
     
     
     //MARK:- Signup Queries
@@ -65,7 +67,7 @@ class DBService {
                     print("FIRESTORE: Error getting  Person with id \(uid) : \(err)")
                 } else {
                     if let personDic = snapshot?.data() {
-                        let person = Person(dictionary: personDic)!
+                        let person = Person(uid: uid, dictionary: personDic)!
                         completionHandler(person)
                     }
                     else {
@@ -73,7 +75,6 @@ class DBService {
                     }
                     
                 }
-                
         }
     }
     
@@ -99,11 +100,14 @@ class DBService {
             .document(uid)
             .collection("Following")
             .document(fid)
+            .setData([:])
+        
         self.db
             .collection("usersInfo")
             .document(fid)
             .collection("Followers")
             .document(uid)
+            .setData([:])
 
     }
     
@@ -149,11 +153,11 @@ class DBService {
                     
                     completionHandler(followingIDs)
                 }
-                
         }
     }
     
     func getFollowersIDs(completionHandler: @escaping ([String]) -> ()){
+        print("22222")
         self.db
             .collection("usersInfo")
             .document(uid)
@@ -165,14 +169,16 @@ class DBService {
                 } else {
                     var followersIDs = [String]()
                     for follower in snapshot!.documents {
-                        followersIDs.append(follower.documentID)
                         
+                        followersIDs.append(follower.documentID)
+
                     }
                     completionHandler(followersIDs)
                 }
-                
         }
+        print("33333")
     }
+
     
     func getFollowers(completionHandler: @escaping ([Person]) -> ()){
         self.getFollowersIDs { (uids) in
@@ -191,9 +197,44 @@ class DBService {
     }
 
     
-    
-    
 
+    
+    func getFollowers2(completionHandler: @escaping ([Person]) -> ()){
+        var followersIDs = [String]()
+        self.db
+            .collection("usersInfo")
+            .document(uid)
+            .collection("Followers")
+            .getDocuments {
+                (snapshot, err) in
+                if let err = err {
+                    print("FIRESTORE: Error getting subscribed channels: \(err)")
+                } else {
+                    for follower in snapshot!.documents {
+                        print(follower.documentID)
+                        followersIDs.append(follower.documentID)
+                    }
+                    for oneUser in followersIDs{
+                        print(oneUser)
+                        self.getPerson(uid: oneUser, completionHandler: { (Person) in
+                            print(Person)
+                            self.followers.append(Person)
+                        })
+                    DispatchQueue.global(qos: .background).async {
+                        for oneUser in followersIDs{
+                            print(oneUser)
+                            self.getPerson(uid: oneUser, completionHandler: { (Person) in
+                                self.followers.append(Person)
+                            })
+                        }
+                    }
+                        print(self.followers)
+                        completionHandler(self.followers)
+                }
+            }
+        }
+    }
+    
     
     //MARK:- Subscriptions Queries
     func subscribeToChannel(podcast: Podcast) {
@@ -244,6 +285,31 @@ class DBService {
         }
     }
     
+    func getMentionedEpisodes(completionHandler: @escaping ([Post]) -> ()){
+
+        self.db
+            .collection("mentions")
+            .document(uid)
+            .collection("my_mentions")
+            .getDocuments{
+                (QuerySnapshot, error) in
+                if let error = error {
+                    print("\(error.localizedDescription)")
+                }else{
+                    var posts = (QuerySnapshot?.documents
+                        .flatMap({
+                            Post(userName: $0.data()["author"] as! String,
+                                 content: "",
+                                 img: $0.data()["author_img"] as! String,
+                                 ep_name: $0.data()["episode_name"] as! String,
+                                 ep_img: $0.data()["episode_img_link"] as! String,
+                                 ep_desc: $0.data()["episode_desc"] as! String,
+                                 postID: "")}))!
+                    completionHandler(posts)
+                }
+        }
+    }
+    
     //MARK:- Profile Queries
     
     func updateUserInfo(updatedInfo: [String: Any]){
@@ -253,10 +319,10 @@ class DBService {
             .updateData(updatedInfo)
     }
     
-    func fetchProfileImage(completionHandler: @escaping (UIImage) -> ()){
+    func fetchProfileImage(targetID: String,completionHandler: @escaping (UIImage) -> ()){
         self.db
             .collection("usersInfo")
-            .document(uid).getDocument { (snapshot, err) in
+            .document(targetID).getDocument { (snapshot, err) in
                 if let err = err {
                     print("FIRESTORE: Error getting profile image url: \(err)")
                 } else if let profileImageUrl = snapshot?.data()?["profileImageURL"] {
@@ -500,6 +566,36 @@ class DBService {
 
     }
     
+//    //MARK:- Search Queries
+//
+//    func searchForUser(txt: String, completionHandler: @escaping ([Person]) -> ()) {
+//
+//        self.db.collection("usersInfo").whereField("username", isEqualTo: "@\(txt)").getDocuments { (QuerySnapshot, Error) in
+//            if let Error = Error{
+//                print("Error in retrieving results")
+//
+//            } else {
+//                if (QuerySnapshot?.isEmpty)!{
+//                    print("no results found")
+//                }
+//
+//                var people = [Person]()
+//                for doc in (QuerySnapshot?.documents)!{
+//
+//                    let personDic = doc.data()
+//                    var person = Person(dictionary: personDic)!
+//                    person.uid = doc.documentID
+//                    print("inside loop")
+//                    print(person)
+//                    people.append(person)
+//
+//                }
+//
+//                completionHandler(people)
+//            }
+//        }
+//    }
     
 }
+
 

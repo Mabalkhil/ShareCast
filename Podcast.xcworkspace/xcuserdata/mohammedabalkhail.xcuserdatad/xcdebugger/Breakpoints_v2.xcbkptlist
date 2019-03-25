@@ -6,48 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Podcast/Controllers/EpisodeViewController.swift"
-            timestampString = "574421257.422083"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "checkLikedEpisode()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Podcast/Controllers/EpisodeViewController.swift"
-            timestampString = "574421257.4233561"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
-            landmarkName = "likePressed(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Podcast/Controllers/EpisodeViewController.swift"
-            timestampString = "574421257.423774"
+            filePath = "Podcast/APIs/DBService.swift"
+            timestampString = "575198786.294855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
-            landmarkName = "checkEpisodeUrl()"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "getMentionedEpisodes(completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Podcast/Controllers/EpisodeViewController.swift"
-            timestampString = "574421257.424157"
+            filePath = "Podcast/APIs/DBService.swift"
+            timestampString = "575198786.30081"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
+            landmarkName = "getMentionedEpisodes(completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,30 +41,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Podcast/Controllers/EpisodeViewController.swift"
-            timestampString = "574421257.42452"
+            filePath = "Podcast/Controllers/MentionController.swift"
+            timestampString = "575198786.30138"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
-            landmarkName = "likePressed(_:)"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "fetchMentionedEpisodes()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Podcast/Controllers/EpisodeViewController.swift"
-            timestampString = "574421257.424843"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "checkEpisodeUrl()"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;Podcast.Post&gt;) -&gt; () in Podcast.MentionController.fetchMentionedEpisodes() -&gt; ()"
+                  moduleName = "Podcast"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohammedabalkhail/Desktop/Swift/ShareCast/Podcast/Controllers/MentionController.swift"
+                  timestampString = "575198140.570093"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "477">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Array&lt;Podcast.Post&gt;) -&gt; () in Podcast.MentionController.fetchMentionedEpisodes() -&gt; ()"
+                  moduleName = "Podcast"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohammedabalkhail/Desktop/Swift/ShareCast/Podcast/Controllers/MentionController.swift"
+                  timestampString = "575198140.576888"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

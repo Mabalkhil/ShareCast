@@ -19,21 +19,21 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     @IBOutlet weak var episodeImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet var playlistsCV: UICollectionView!
+    @IBOutlet var followerCV: UICollectionView!
+    
 
     
     //Repost/Comment View
+    let dispatch = DispatchGroup()
     let dbs = DBService.shared
     @IBOutlet var writePost: UIView!
     @IBOutlet weak var postContentTV: UITextView!
-    
-    @IBOutlet weak var playButton: UIButton!
-    
-    var postType: String = ""
-    
+    @IBOutlet weak var commentContentTF: UITextField!
     
     var comments = [CommentObj]()
     let cellId = "cellId"
     var followersIDs : [String] = []
+    var followers : [Person] = []
     var episode = Episode()
     let blackView = UIView()
     var playlists = UserDefaults.standard.playlistsArray()
@@ -84,9 +84,16 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     //Comment button
     @IBOutlet weak var commentButton: UIButton!{
         didSet{
-            commentButton.addTarget(self, action: #selector(repostHandler), for: .touchUpInside)
+            commentButton.addTarget(self, action: #selector(addNewComment), for: .touchUpInside)
         }
     }
+    
+    @IBOutlet weak var mentionToUser: UIButton!{
+        didSet{
+            mentionToUser.addTarget(self, action: #selector(recommendToUser), for: .touchUpInside)
+        }
+    }
+    
     
     
     //Repost-Comment view buttons
@@ -104,24 +111,26 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     
     override func viewDidLoad() {
-        setAttributes()
         super.viewDidLoad()
-
+        setUpDatabases()
+        setAttributes()
         setUpComments()
-        //self.playButton.setTitleColor(UIColor., for: .normal)
-        self.playButton.layer.cornerRadius = playButton.layer.frame.size.width/2
-        self.view.addSubview(self.playButton)
+        
         playlistsCV.delegate = self
         playlistsCV.dataSource = self
+        
+        followerCV.delegate = self
+        followerCV.dataSource = self
+        
         postContentTV.delegate = self
         let index = playlists.count
         playlists.insert(Playlist(name: "Cancel", epis_list: []), at: index)
         
          fileURL = episode.fileUrl ?? ""
         if Auth.auth().currentUser?.uid != nil {
-            setUpDatabases()
+        
             checkLikedEpisode()
-            //checkEpisodeUrl()
+
         }
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -130,6 +139,8 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             bookmarkButton.setImage(UIImage(named: "bookmark_highlight"), for: .normal)
         }
     }
+    
+    
    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -175,6 +186,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.blackView.alpha = 0.0
             self.playlistsCV.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 200)
+            self.followerCV.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 200)
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.tabBarController?.tabBar.isHidden = false
             PlayerDetailsViewController.shared.view.isHidden = false
@@ -203,6 +215,37 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             PlayerDetailsViewController.shared.view.isHidden = true
         }, completion: nil)
     }
+    
+    @objc func recommendToUser(){
+        
+        
+        blackView.backgroundColor = UIColor.black
+        blackView.alpha = 0
+        
+        blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handelDismiss)))
+        
+        self.view.addSubview(blackView)
+        self.view.addSubview(followerCV)
+        
+        if followers.isEmpty{
+            followers = dbs.followers
+        }
+        
+        print(followers)
+        let cvHeight = CGFloat(50 * followers.count) + (self.tabBarController?.tabBar.frame.height)!
+        let y = self.view.frame.height - cvHeight
+        followerCV.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: cvHeight)
+        blackView.frame = self.view.bounds
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.blackView.alpha = 0.5
+            self.followerCV.frame = CGRect(x: 0, y: y, width: self.view.frame.width, height: cvHeight)
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.tabBarController?.tabBar.isHidden = true
+            PlayerDetailsViewController.shared.view.isHidden = true
+        }, completion: nil)
+    }
+    
     
     @objc func bookmarkAddingHandler(){
         // Checking if the button has highlighted image or not to run the correct operation
@@ -267,13 +310,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     //MARK:- Post handeler
     @objc func createNewPost(){
-        print(postType)
-        if postType == "repost" {
-            self.addNewPost()
-        } else {
-            self.addNewComment()
-        }
-
+        self.addNewPost()
         self.hidePostView()
     }
     
@@ -289,8 +326,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             alertUser("Not Register", "You have to register to get this feature")
             return
         }
-        
-        postType = sender.currentTitle!
         
         blackView.backgroundColor = UIColor.black
         blackView.alpha = 0
@@ -326,7 +361,11 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return playlists.count
+        if collectionView == self.playlistsCV{
+            return playlists.count
+        }else {
+            return followers.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -334,15 +373,50 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = playlistsCV.dequeueReusableCell(withReuseIdentifier: "playlist", for: indexPath) as! playlistCellAddingCVC
-        cell.setAttributes(playlist: playlists[indexPath.row])
-        return cell
+        if collectionView == self.playlistsCV{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playlist", for: indexPath) as! playlistCellAddingCVC
+            cell.setAttributes(playlist: playlists[indexPath.row])
+            return cell
+        }else {
+            print("hello")
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "follower", for: indexPath) as! followersMentionCellCVC
+            print(followers[indexPath.row])
+            cell.setAttributes(person: followers[indexPath.row])
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if playlists[indexPath.row].playlistName != "Cancel"{
-            playlists[indexPath.row].addTask(ep: self.episode)
-            UserDefaults.standard.playlistEpisode(episode: self.episode, name: playlists[indexPath.row].playlistName!)
+        if collectionView == self.playlistsCV {
+            if playlists[indexPath.row].playlistName != "Cancel"{
+                playlists[indexPath.row].addTask(ep: self.episode)
+                UserDefaults.standard.playlistEpisode(episode: self.episode, name: playlists[indexPath.row].playlistName!)
+            }
+        }else {
+            var ref:DocumentReference? = nil
+            let user = followers[indexPath.row].uid
+            print(followers[indexPath.row].uid)
+            var mentionDetails = ["uid" : userID,
+                           "author": username,
+                           "author_img":userImage,
+                           "Date" : Date(),
+                           "episode_link" : episode.fileUrl,
+                           "episode_img_link" : episode.imageUrl,
+                           "episode_name" : episode.title,
+                           "episode_desc" : episode.describtion] as [String : Any]
+            
+            ref = self.fireStoreDatabaseRef
+                .collection("mentions")
+                .document(user)
+                .collection("my_mentions")
+                .addDocument(data: mentionDetails){
+                    error in
+                    if let error = error {
+                        print("Error adding document \(error)")
+                    }else{
+                        print("Document inserted successfully with ID: \(ref!.documentID)")
+                    }
+            }
         }
         handelDismiss()
     }
@@ -352,18 +426,19 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     func setUpDatabases(){
+        print("1111")        
         self.userID = Auth.auth().currentUser?.uid
         self.dbs.getPerson(uid: userID!) {(person) in
             self.person = person
             self.username = person.username
             self.userImage = person.profileImageURL
         }
-        print(self.username)
-        dbs.getFollowersIDs { (followersIDs) in
-            self.followersIDs = followersIDs
+
+        dbs.getFollowers { (result) in
+            self.followers = result
         }
-        
     }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         postContentTV.text = ""
     }
