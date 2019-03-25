@@ -39,7 +39,6 @@ class MentionController: UITableViewController{
     func fetchMentionedEpisodes(){
         dbs.getMentionedEpisodes(completionHandler: { (post) in
             self.mentionedPost = post
-            print(self.mentionedPost[0].episode_name)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
