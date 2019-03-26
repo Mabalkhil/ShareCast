@@ -220,9 +220,9 @@ class DBService {
                             print(oneUser)
                             self.getPerson(uid: oneUser, completionHandler: { (Person) in
                                 followers.append(Person)
-                                if !self.followers.isEmpty{
+                              
                                     self.followers.append(Person)
-                                }
+                                
                             })
                         }
                     }
