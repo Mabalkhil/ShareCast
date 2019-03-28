@@ -9,6 +9,10 @@
 import UIKit
 import Firebase
 
+
+
+
+
 class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDataSource{
     
     // Outlets
@@ -76,7 +80,7 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         
-    
+        
          //Configure the table view
          checkUserSubscriptions()
 
@@ -94,6 +98,7 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
         headerView.SubButton.layer.borderColor = UIColor.white.cgColor
         headerView.SubButton.layer.cornerRadius = 5
         headerView.SubButton.clipsToBounds = true
+        
     }
     
      func numberOfSections(in tableView: UITableView) -> Int {
@@ -155,6 +160,37 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
         }
         
     }
+    
+    
+    @IBAction func BellButton(_ sender: Any) {
+        
+//        print("-------------------------------")
+//                print(Date().dayBefore)
+//                for ep in episodes {
+//                    if ep.pubDate > Date().dayBefore{
+//
+//                        print(ep.title)
+//                        print(ep.pubDate)
+//                        print("-----------")
+//                    }
+//                }
+        
+        // unregister user
+        guard  let uid = firebaseReff?.uid else {
+            self.alert = UIAlertController(title: "Not Register", message: "You have to register to get this feature", preferredStyle: .alert)
+            self.alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            self.alert.addAction( self.alertAction)
+            present(self.alert,animated: true,completion: nil)
+            return
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
     
     
     

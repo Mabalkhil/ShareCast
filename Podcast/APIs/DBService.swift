@@ -233,6 +233,27 @@ class DBService {
     }
     
     
+    //MARK:- Bell Queries
+    
+    func bellAChannel(podcast: Podcast) {
+        self.db
+            .collection("usersInfo")
+            .document(uid)
+            .collection("Bell")
+            .document((podcast.feedUrl?.toBase64())!)
+            .setData((podcast.dictionary))
+    }
+    
+    func unBellAChannel(podcast: Podcast) {
+        self.db
+            .collection("usersInfo")
+            .document(uid)
+            .collection("Bell")
+            .document((podcast.feedUrl?.toBase64())!)
+            .delete()
+    }
+    
+    
     //MARK:- Subscriptions Queries
     func subscribeToChannel(podcast: Podcast) {
         self.db

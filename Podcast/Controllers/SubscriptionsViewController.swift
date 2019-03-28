@@ -8,9 +8,23 @@
 
 import UIKit
 import Firebase
+
+extension Date {
+    var dayBefore: Date {
+        return Calendar.current.date(byAdding: .day, value: -30, to: noon)!
+    }
+    
+    var noon: Date {
+        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+    }
+    
+}
+
+
 class SubscriptionsViewController: UITableViewController {
     let dbs = DBService.shared
     var channelSub = [Podcast]()
+    var episodes = [Episode]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +37,45 @@ class SubscriptionsViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         tableView.separatorStyle = .singleLine
+        print("-------------------------")
+        fetchEpisode(podcast: channelSub[0])
+        
+        for ep in episodes {
+            print(ep.title)
+        }
+        
+        
+        //        print("-------------------------------")
+        //                print(Date().dayBefore)
+        //                for ep in episodes {
+        //                    if ep.pubDate > Date().dayBefore{
+        //
+        //                        print(ep.title)
+        //                        print(ep.pubDate)
+        //                        print("-----------")
+        //                    }
+        //                }
     }
+    
+    
+    
+    fileprivate func fetchEpisode(podcast: Podcast){
+        guard let feedURL = podcast.feedUrl else {
+            return
+        }
+        print("looooooooooook heeeeerrrr\(feedURL)")
+        APIService.shared.fetchEpisodes(feedUrl: feedURL) { (e) in
+            
+                            for ep in e {
+                                if ep.pubDate > Date().dayBefore{
+                                   self.episodes.append(ep)
+                                }
+                            }
+           
+        }
+    }
+    
+    
     
     // MARK: - Table view data source
     
