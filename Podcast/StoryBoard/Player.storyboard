@@ -68,10 +68,6 @@
                                             <scrollView verifyAmbiguity="off" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rne-fv-9rL">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="448"/>
                                             </scrollView>
-                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZuA-Ck-fsj">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="448"/>
-                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="CoolStuff" translatesAutoresizingMaskIntoConstraints="NO" id="mnK-8p-ecA">
                                                 <rect key="frame" x="0.0" y="373" width="414" height="75"/>
                                                 <constraints>
@@ -100,13 +96,9 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.19213637710000001" green="0.1921699047" blue="0.1921290755" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="ZuA-Ck-fsj" secondAttribute="trailing" id="2zK-VS-pW8"/>
                                             <constraint firstAttribute="bottom" secondItem="mnK-8p-ecA" secondAttribute="bottom" id="6DH-JH-4cY"/>
-                                            <constraint firstItem="ZuA-Ck-fsj" firstAttribute="leading" secondItem="Oxc-83-Ejw" secondAttribute="leading" id="CnX-CR-fGM"/>
                                             <constraint firstAttribute="trailing" secondItem="rne-fv-9rL" secondAttribute="trailing" id="D6p-YY-dJs"/>
-                                            <constraint firstAttribute="bottom" secondItem="ZuA-Ck-fsj" secondAttribute="bottom" id="KHk-hC-yeK"/>
                                             <constraint firstAttribute="trailing" secondItem="mnK-8p-ecA" secondAttribute="trailing" id="LQx-Jd-SYD"/>
-                                            <constraint firstItem="ZuA-Ck-fsj" firstAttribute="top" secondItem="Oxc-83-Ejw" secondAttribute="top" id="MIa-ZH-WX3"/>
                                             <constraint firstItem="3Qh-UO-TyY" firstAttribute="centerX" secondItem="Oxc-83-Ejw" secondAttribute="centerX" id="TuJ-nM-soY"/>
                                             <constraint firstItem="6Lg-hU-Mef" firstAttribute="leading" secondItem="Oxc-83-Ejw" secondAttribute="leading" id="Vfs-MD-Z5e"/>
                                             <constraint firstItem="rne-fv-9rL" firstAttribute="leading" secondItem="Oxc-83-Ejw" secondAttribute="leading" id="Xsr-1e-JYD"/>
@@ -207,7 +199,7 @@
                                                             <constraint firstAttribute="width" secondItem="egC-uT-fGK" secondAttribute="height" multiplier="12:7" id="gnM-rP-qf3"/>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="pBa-Ru-rnD"/>
                                                         </constraints>
-                                                        <state key="normal" image="Forword"/>
+                                                        <state key="normal" image="forword"/>
                                                         <connections>
                                                             <action selector="handleFastForword:" destination="jsk-6e-4xq" eventType="touchUpInside" id="cow-27-JGH"/>
                                                         </connections>
@@ -421,9 +413,9 @@
         <image name="Backword-1" width="2067" height="1468"/>
         <image name="CoolStuff" width="1080" height="196"/>
         <image name="Dismiss" width="70" height="70"/>
-        <image name="Forword" width="496.07998657226562" height="352.32000732421875"/>
         <image name="PlayButton" width="480" height="480"/>
         <image name="SmartSpeed" width="480" height="480"/>
         <image name="VOLUME" width="60" height="60"/>
+        <image name="forword" width="2067" height="1468"/>
     </resources>
 </document>
