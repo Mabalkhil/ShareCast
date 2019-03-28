@@ -20,7 +20,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet var playlistsCV: UICollectionView!
     @IBOutlet var followerCV: UICollectionView!
-    
+
 
     
     //Repost/Comment View
@@ -108,6 +108,8 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             postCancelButton.addTarget(self, action: #selector(cancelNewPost), for: .touchUpInside)
         }
     }
+    
+    
     
     
     override func viewDidLoad() {
@@ -224,6 +226,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         
         blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handelDismiss)))
         
+        
         self.view.addSubview(blackView)
         self.view.addSubview(followerCV)
         
@@ -244,6 +247,12 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             self.tabBarController?.tabBar.isHidden = true
             PlayerDetailsViewController.shared.view.isHidden = true
         }, completion: nil)
+        
+        
+        print(URL(string: episode.streamURL))
+        
+        
+        
     }
     
     
@@ -426,7 +435,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     func setUpDatabases(){
-        print("1111")        
         self.userID = Auth.auth().currentUser?.uid
         self.dbs.getPerson(uid: userID!) {(person) in
             self.person = person

@@ -89,11 +89,10 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
         episodeImg.frame.size.width = self.view.frame.width
         episodeImg.frame.size.height = scrollView.frame.size.height
         scrollView.addSubview(episodeImg)
-        
         handleTimeMark()
         
         scrollView.delegate = self
-        scrollView.isScrollEnabled = true
+        //scrollView.isScrollEnabled = false
     }
     
     
@@ -120,19 +119,19 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.marks.count
+        return 10//self.marks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimeMarkCell", for: indexPath) //as! TimeMarkCell
-        let tm = self.marks[indexPath.row]
+//        let tm = self.marks[indexPath.row]
 //        cell.time = tm.time
 //        cell.desc = tm.desc
         cell.textLabel?.textColor = .white
         cell.detailTextLabel?.textColor = .white
-        cell.textLabel?.text = tm.time
-        cell.detailTextLabel?.text = tm.desc
+        cell.textLabel?.text = "tm.time"
+        cell.detailTextLabel?.text = "tm.desc"
         return cell
     }
     

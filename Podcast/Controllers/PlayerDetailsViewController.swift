@@ -355,8 +355,9 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
                 
             }
             else {
-                scrollView.isScrollEnabled = false
+                //scrollView.isScrollEnabled = false
                 pageControl.numberOfPages = 1
+                print("No time marks")
             }
         }
     }

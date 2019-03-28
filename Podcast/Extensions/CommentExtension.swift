@@ -168,6 +168,10 @@ extension EpisodeViewController{
         
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     
     
     func alertUser(_ title: String, _ msg: String){
@@ -175,6 +179,24 @@ extension EpisodeViewController{
        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style:.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+        
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if (kind == UICollectionView.elementKindSectionHeader) {
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCollectionReusableView", for: indexPath) as! LinkCollectionReusableView
+            headerView.copyLinkButton.addTarget(self, action: #selector(copyLinkToClipboard), for: .touchUpInside)
+            return headerView
+        }
+        fatalError()
+    }
+    
+    
+    @objc func copyLinkToClipboard(){
+        print("Copying to clipboard")
+        UIPasteboard.general.url = URL(string: self.episode.streamURL)
+        handelDismiss()
     }
     
 }

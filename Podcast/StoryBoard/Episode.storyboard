@@ -371,13 +371,13 @@
                     <color key="backgroundColor" red="0.1176327839" green="0.1176561788" blue="0.117627643" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9cG-mM-maz">
                         <size key="itemSize" width="408" height="50"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="headerReferenceSize" width="50" height="50"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                     <cells>
                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="follower" id="3mr-Le-tSb" customClass="followersMentionCellCVC" customModule="Podcast" customModuleProvider="target">
-                            <rect key="frame" x="3" y="0.0" width="408" height="50"/>
+                            <rect key="frame" x="3" y="50" width="408" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                 <rect key="frame" x="0.0" y="0.0" width="408" height="50"/>
@@ -412,6 +412,29 @@
                             </connections>
                         </collectionViewCell>
                     </cells>
+                    <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderCollectionReusableView" id="tb5-Ts-4Re" customClass="LinkCollectionReusableView" customModule="Podcast" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="copyLinkButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USb-mU-0FC">
+                                <rect key="frame" x="10" y="0.0" width="68" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="1x8-rO-PMt"/>
+                                </constraints>
+                                <state key="normal" title="Copy Link">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="USb-mU-0FC" firstAttribute="top" secondItem="tb5-Ts-4Re" secondAttribute="top" id="0EJ-hD-C8Z"/>
+                            <constraint firstAttribute="bottom" secondItem="USb-mU-0FC" secondAttribute="bottom" id="5UD-Dx-5vk"/>
+                            <constraint firstItem="USb-mU-0FC" firstAttribute="leading" secondItem="tb5-Ts-4Re" secondAttribute="leading" constant="10" id="W9F-LQ-Pdk"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="copyLinkButton" destination="USb-mU-0FC" id="vyX-to-TEY"/>
+                        </connections>
+                    </collectionReusableView>
                 </collectionView>
                 <view contentMode="scaleToFill" id="BfX-Fs-gKj" userLabel="writePost">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="150"/>
@@ -473,11 +496,11 @@
     </scenes>
     <resources>
         <image name="1400x1400-eagles_podcast-logo" width="1400" height="1400"/>
-        <image name="add-list" width="384" height="384"/>
-        <image name="bookmark" width="384" height="384"/>
-        <image name="download" width="384" height="384"/>
-        <image name="like" width="384" height="384"/>
-        <image name="send" width="409.60000610351562" height="409.60000610351562"/>
-        <image name="share" width="409.60000610351562" height="409.60000610351562"/>
+        <image name="add-list" width="512" height="512"/>
+        <image name="bookmark" width="512" height="512"/>
+        <image name="download" width="512" height="512"/>
+        <image name="like" width="480" height="480"/>
+        <image name="send" width="512" height="512"/>
+        <image name="share" width="512" height="512"/>
     </resources>
 </document>
