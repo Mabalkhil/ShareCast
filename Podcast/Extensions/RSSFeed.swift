@@ -21,7 +21,7 @@ extension RSSFeed {
         return podcast
     }
     
-    func toEpisodes() -> [Episode]{
+    func toEpisodes(url: URL) -> [Episode]{
         let imageUrl = iTunes?.iTunesImage?.attributes?.href
         
         var episodes = [Episode]()
@@ -31,6 +31,7 @@ extension RSSFeed {
                 
                 episode.imageUrl = imageUrl
             }
+            episode.channelURL = url.absoluteString ?? ""
             episodes.append(episode)
         })
         

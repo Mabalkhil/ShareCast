@@ -71,10 +71,9 @@ extension EpisodeViewController{
                     print("Document inserted successfully with ID: \(ref!.documentID)")
                 }
         }
-        
-        print(self.followersIDs)
+
         for userUID in self.followersIDs{
-            print(userUID)
+
             ref = self.fireStoreDatabaseRef
                 .collection("general_timelines")
                 .document(userUID)
@@ -118,7 +117,6 @@ extension EpisodeViewController{
             
             DispatchQueue.main.async {
                 comment.commentID = commentID
-                print(commentID)
                 self.comments.append(comment)
                 self.tableView.reloadData()
             }
@@ -148,19 +146,16 @@ extension EpisodeViewController{
             return
         }
         
-        print("Starting deletion")
         let comment = self.comments[indexPath.row]
         
         if comment.userName != self.username {
             alertUser("Sorry", "You are not authorized to delete this comment!!")
             
         } else {
-            print("In else statement")
             self.dbs.deleteComment(episode: self.episode, commentID: comment.commentID!) {
                 
                 DispatchQueue.main.async {
                     self.comments.remove(at: indexPath.row)
-                    print("Cell removed from list !!!!")
                     self.tableView.reloadData()
                 }
             }
@@ -194,8 +189,7 @@ extension EpisodeViewController{
     
     
     @objc func copyLinkToClipboard(){
-        print("Copying to clipboard")
-        UIPasteboard.general.url = URL(string: self.episode.streamURL)
+        UIPasteboard.general.string = "Chennel:\(episode.channelURL!):Episode:\(episode.streamURL)"
         handelDismiss()
     }
     

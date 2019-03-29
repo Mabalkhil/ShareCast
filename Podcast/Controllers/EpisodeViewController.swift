@@ -233,8 +233,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         if followers.isEmpty{
             followers = dbs.followers
         }
-        
-        print(followers)
+
         let cvHeight = CGFloat(50 * followers.count) + (self.tabBarController?.tabBar.frame.height)!
         let y = self.view.frame.height - cvHeight
         followerCV.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: cvHeight)
@@ -247,11 +246,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             self.tabBarController?.tabBar.isHidden = true
             PlayerDetailsViewController.shared.view.isHidden = true
         }, completion: nil)
-        
-        
-        print(URL(string: episode.streamURL))
-        
-        
         
     }
     
@@ -387,9 +381,8 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             cell.setAttributes(playlist: playlists[indexPath.row])
             return cell
         }else {
-            print("hello")
+
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "follower", for: indexPath) as! followersMentionCellCVC
-            print(followers[indexPath.row])
             cell.setAttributes(person: followers[indexPath.row])
             return cell
         }
@@ -404,7 +397,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }else {
             var ref:DocumentReference? = nil
             let user = followers[indexPath.row].uid
-            print(followers[indexPath.row].uid)
+
             var mentionDetails = ["uid" : userID,
                            "author": username,
                            "author_img":userImage,

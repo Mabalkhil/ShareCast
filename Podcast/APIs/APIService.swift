@@ -35,7 +35,7 @@ class APIService {
             }
             
             guard let feed = result.rssFeed else { return }
-            let episodes = feed.toEpisodes()
+            let episodes = feed.toEpisodes(url: url)
             completionHandler(episodes)
             
         }
@@ -150,7 +150,6 @@ class APIService {
     
     
     func fetchPodcast(searchText: String, completionHandeler: @escaping ([Podcast]) -> ()) {
-        print("searching for podcast, term = " + searchText )
         //iTunesAPI
         let url = "https://itunes.apple.com/search"
         //Parameters for the API
@@ -195,7 +194,7 @@ class APIService {
             // This list of categories will be sent to the DiscoverController to be displayed overthere
             //Here we specify that the search attribute is for the genreIndex
             //So we can use the ids in the categories dict to look for podcasts
-            print("searching for podcast, term = " + name )
+
             //iTunesAPI
             let url = "https://itunes.apple.com/search"
             //Parameters for the API
@@ -212,7 +211,6 @@ class APIService {
                     let searchResult = try
                         JSONDecoder().decode(SearchResults.self, from:data)
                     let cate = Category(title: name, podcasts:searchResult.results)
-                    print(name+" has \(searchResult.results.count) results")
                     
                     // we append all the categories in the loop to the golbal varibal categories
                     self.categories.append(cate)
