@@ -1017,6 +1017,7 @@
                                     <outlet property="EpisodeDescription" destination="43P-St-Gp2" id="ABs-28-mQa"/>
                                     <outlet property="EpisodeImage" destination="Pe1-cr-G6J" id="3KL-lW-hRM"/>
                                     <outlet property="EpisodeName" destination="ii6-II-55u" id="CBz-Iz-mzX"/>
+                                    <segue destination="3OO-UV-FQY" kind="show" identifier="bellToEpisode" id="Syw-pq-ebP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1028,6 +1029,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3HP-O4-EPb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1486" y="-1186"/>
+        </scene>
+        <!--Episode-->
+        <scene sceneID="VZV-rT-zhC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Episode" id="3OO-UV-FQY" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ofm-gI-fOG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2055" y="-1412"/>
         </scene>
     </scenes>
     <resources>

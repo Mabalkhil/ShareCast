@@ -67,7 +67,7 @@ class BellController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.episodes[indexPath.row].fileUrl != nil{
-            clickToPlay()
+            
         }
     }
     
@@ -82,9 +82,16 @@ class BellController: UITableViewController {
     }
     
     
-    private func clickToPlay() {
-        let indexPath = tableView.indexPathForSelectedRow
-        PlayerDetailsViewController.shared.setEpisode(episode: self.episodes[(indexPath?.row ?? nil)!])
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "bellToEpisode" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let destination = segue.destination as! EpisodeViewController
+                // dont assign value directly because the destinition view visual component not created yet
+                destination.episode = episodes[indexPath.row]
+            }
+        }
     }
     
     
@@ -92,7 +99,6 @@ class BellController: UITableViewController {
     func fetchUserBell(){
         dbs.getBellChannels {
             podcasts in
-            print("-------------------------")
             if podcasts.count != 0{
                 for ch in podcasts{
                     self.fetchEpisode(podcast: ch)

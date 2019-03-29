@@ -125,10 +125,9 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
     }
 
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return episodes.count
-      
     }
+    
         // Filling the TableViewCell
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChennelTableViewCell
