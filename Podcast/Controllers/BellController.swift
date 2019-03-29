@@ -33,6 +33,7 @@ class BellController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchUserBell()
+         self.navigationController?.navigationBar.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
         let nib = UINib(nibName: "PodcastCell", bundle: nil)
         BellView.register(nib, forCellReuseIdentifier: "cellId")
         BellView.delegate = self
