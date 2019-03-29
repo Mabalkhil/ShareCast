@@ -16,7 +16,7 @@ class ChannelHeaderView: UIView {
             let origImage = UIImage(named: "alarm");
             let tintedImage = origImage?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
             BellButton.setImage(tintedImage, for: .normal)
-            BellButton.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
+            BellButton.tintColor = UIColor.white
         }
     }
     @IBOutlet weak var nameLabel: UILabel! {

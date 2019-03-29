@@ -62,7 +62,25 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
             }
         }
 
-
+    }
+    
+    
+    func checkUserBell(){
+        guard let uid = firebaseReff?.uid else {
+            headerView.BellButton.setTitle("Bell", for: .normal)
+            return
+        }
+        
+        self.dbs.checkBell(podcast: podcast!) {
+            (exists) in
+            if exists {
+                self.headerView.BellButton.setTitle("Unbell", for: .normal)
+                self.headerView.BellButton.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
+            } else {
+                self.headerView.BellButton.setTitle("Bell", for: .normal)
+                self.headerView.BellButton.tintColor = UIColor.white
+            }
+        }
     }
     
     
@@ -83,6 +101,7 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
         
          //Configure the table view
          checkUserSubscriptions()
+         checkUserBell()
 
       
         guard let url = URL(string : podcast?.artworkUrl600 ?? "") else {return}
@@ -164,17 +183,6 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
     
     @IBAction func BellButton(_ sender: Any) {
         
-//        print("-------------------------------")
-//                print(Date().dayBefore)
-//                for ep in episodes {
-//                    if ep.pubDate > Date().dayBefore{
-//
-//                        print(ep.title)
-//                        print(ep.pubDate)
-//                        print("-----------")
-//                    }
-//                }
-        
         // unregister user
         guard  let uid = firebaseReff?.uid else {
             self.alert = UIAlertController(title: "Not Register", message: "You have to register to get this feature", preferredStyle: .alert)
@@ -184,6 +192,26 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
             return
         }
         
+        if headerView.BellButton.currentTitle == "Bell" {
+            dbs.bellAChannel(podcast: podcast!)
+            headerView.BellButton.setTitle("Unbell", for: .normal)
+            self.headerView.BellButton.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
+        }else {
+            self.alert = UIAlertController(title: "Are you sure you want to unbell", message: "", preferredStyle: .alert)
+            let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                self.dbs.unBellAChannel(podcast: self.podcast!)
+                self.headerView.BellButton.setTitle("Bell", for: .normal)
+                self.headerView.BellButton.tintColor = UIColor.white
+                return
+            })
+            self.alertAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+            self.alert.addAction(self.alertAction)
+            self.alert.addAction(yesAction)
+            present(self.alert,animated: true,completion: nil)
+            return
+
+        }
+    
         
         
     }

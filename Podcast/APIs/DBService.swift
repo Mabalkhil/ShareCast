@@ -253,6 +253,38 @@ class DBService {
             .delete()
     }
     
+    func checkBell(podcast: Podcast, completionHandler: @escaping (Bool) -> ()){
+        self.db
+            .collection("usersInfo")
+            .document(uid)
+            .collection("Bell")
+            .document((podcast.feedUrl?.toBase64())!).getDocument {
+                (snapshot, error) in
+                completionHandler(snapshot?.exists ?? false)
+        }
+    }
+    
+    func getBellChannels(completionHandler: @escaping ([Podcast]) -> ()){
+        self.db
+            .collection("usersInfo")
+            .document(uid)
+            .collection("Bell")
+            .getDocuments {
+                (snapshot, err) in
+                if let err = err {
+                    print("FIRESTORE: Error getting bell channels: \(err)")
+                } else {
+                    var podcasts = [Podcast]()
+                    for podcastDic in snapshot!.documents {
+                        guard let podcast = Podcast(dictionary: podcastDic.data()) else {continue}
+                        podcasts.append(podcast)
+                    }
+                    completionHandler(podcasts)
+                }
+                
+        }
+    }
+    
     
     //MARK:- Subscriptions Queries
     func subscribeToChannel(podcast: Podcast) {

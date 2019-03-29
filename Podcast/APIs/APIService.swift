@@ -113,15 +113,13 @@ class APIService {
     
     func deleteEpisode(episode: Episode){
         var filePath:URL
-        var count = 0
         if self.downloadProgress < 1{
             
             for req in self.requests {
                 if req.description.contains(episode.streamURL) {
-                    self.requests[count].cancel()
-                    self.requests.remove(at: count)
+                    req.cancel()
+                    self.requests.index(of: req).map { self.requests.remove(at: $0) }
                 }
-                count = count + 1
             }
 
         }else{
