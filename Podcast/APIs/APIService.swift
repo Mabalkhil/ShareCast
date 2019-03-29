@@ -79,7 +79,6 @@ class APIService {
         
         
        self.request = Alamofire.download(episode.streamURL, to: downloadRequest).downloadProgress { (progress) in
-            print(progress.fractionCompleted)
             self.downloadProgress = progress.fractionCompleted
             NotificationCenter.default.post(name: .downloadProgress, object: nil, userInfo: ["title": episode.title, "progress": progress.fractionCompleted ])
             
@@ -113,13 +112,15 @@ class APIService {
     
     func deleteEpisode(episode: Episode){
         var filePath:URL
+        var count = 0
         if self.downloadProgress < 1{
             
             for req in self.requests {
                 if req.description.contains(episode.streamURL) {
-                    req.cancel()
-                    self.requests.index(of: req).map { self.requests.remove(at: $0) }
+                    self.requests[count].cancel()
+                    self.requests.remove(at: count)
                 }
+                count = count + 1
             }
 
         }else{
