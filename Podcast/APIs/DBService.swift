@@ -200,6 +200,7 @@ class DBService {
 
     
     func getFollowers2(completionHandler: @escaping ([Person]) -> ()){
+        self.followers.removeAll()
         var followers = [Person]()
         var followersIDs = [String]()
         self.db

@@ -211,9 +211,6 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
             return
 
         }
-    
-        
-        
     }
     
     

@@ -220,7 +220,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     @objc func recommendToUser(){
         
-        
         blackView.backgroundColor = UIColor.black
         blackView.alpha = 0
         
@@ -229,11 +228,13 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         self.view.addSubview(blackView)
         self.view.addSubview(followerCV)
         
+        print("------------------------")
+        print(followers)
         if followers.isEmpty{
             followers = dbs.followers
         }
         
-        print(followers)
+        
         let cvHeight = CGFloat(50 * followers.count) + (self.tabBarController?.tabBar.frame.height)!
         let y = self.view.frame.height - cvHeight
         followerCV.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: cvHeight)
