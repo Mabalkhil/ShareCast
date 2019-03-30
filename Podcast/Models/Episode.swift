@@ -10,12 +10,12 @@ import Foundation
 import FeedKit
 
 struct Episode: Codable {
-    let title: String
-    let pubDate: Date
-    let describtion: String
+    var title: String
+    var pubDate: Date
+    var describtion: String
     var imageUrl: String?
-    let author: String
-    let streamURL: String
+    var author: String
+    var streamURL: String
     var timeStampLables: [String]?
     var timeStamps: [String]?
     var fileUrl: String?

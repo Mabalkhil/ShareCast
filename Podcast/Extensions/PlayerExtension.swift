@@ -89,23 +89,19 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
         episodeImg.frame.size.width = self.view.frame.width
         episodeImg.frame.size.height = scrollView.frame.size.height
         scrollView.addSubview(episodeImg)
-        
-        handleTimeMark()
+        //handleTimeMark()
         
         scrollView.delegate = self
-        scrollView.isScrollEnabled = true
+        //scrollView.isScrollEnabled = false
     }
     
     
     //MARK:- Table view functions
     
     func setTable() {
-        
         scrollView.contentSize = CGSize(width: self.view.frame.width * 2, height: scrollView.frame.size.height)
-        
         frame.origin.x = self.view.frame.width
         //frame.size = scrollView.frame.size
-        
         myTableView = UITableView(frame: frame)
         myTableView.backgroundColor = UIColor.white.withAlphaComponent(0.0)
         let copyedView = episodeImg.copyView() as UIImageView
@@ -125,16 +121,25 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TimeMarkCell", for: indexPath) //as! TimeMarkCell
-        let tm = self.marks[indexPath.row]
-//        cell.time = tm.time
-//        cell.desc = tm.desc
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TimeMarkCell", for: indexPath) as! TimeMarkCell
+
         cell.textLabel?.textColor = .white
         cell.detailTextLabel?.textColor = .white
-        cell.textLabel?.text = tm.time
-        cell.detailTextLabel?.text = tm.desc
+        var x = indexPath.row-1
+        if  x >= marks.count-1 {
+             print("index", indexPath.row  , "count ", marks.count )
+         }
+        else {
+            print("index", indexPath.row  , "count ", marks.count )
+           cell.setTimeMark(mark: self.marks[indexPath.row])
+         }
         return cell
     }
+    
+    
+    
+    
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
@@ -144,12 +149,16 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
         cell.backgroundColor = UIColor.white.withAlphaComponent(0.0)
     }
     
+    
+    
+    
     //Handing the selected time mark
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let selectedTime = self.marks[indexPath.row].time
         
-        let timeInSecondsList = selectedTime.split(whereSeparator: { $0 == ":" || $0 == " " })//.map { Double($0)!}
+        let timeInSecondsList = selectedTime!.split(whereSeparator: { $0 == ":" || $0 == " " })//.map { Double($0)!}
         var timeInSeconds:Double = 0
         if (timeInSecondsList.count == 3 ) {
             let hours = (Double(timeInSecondsList[0]) ?? 0.0 ) * 3600
@@ -166,7 +175,9 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
         self.player.seek(to: CMTimeMakeWithSeconds(timeInSeconds, preferredTimescale: 1))
         
     }
+
 }
+
 
 extension UIView
 {

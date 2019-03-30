@@ -122,8 +122,8 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         }
         // cahching the image
         let chacheKey = reffStor.child("\(self.uid!).png").fullPath as NSString
-        print(chacheKey)
-        print(compressedImage)
+        //print(chacheKey)
+        //print(compressedImage)
         chache.setObject(compressedImage!, forKey: chacheKey)
         dbs.setProfileImage(uploadData: uploadData)
 
@@ -159,4 +159,38 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
          picker.dismiss(animated: true, completion: nil)
     }
+    
+    
+    
+    
+    // when a segue triggred  and before the visual transition occure
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showEpisodeDetails" {
+            if let indexPath = privateTimeline.indexPathForSelectedRow {
+                let destination = segue.destination as! EpisodeViewController
+                var episode = Episode()
+                episode.describtion = posts[indexPath.row].episode_desc ?? ""
+                episode.title = posts[indexPath.row].episode_name ?? ""
+                episode.pubDate = posts[indexPath.row].episode_Date
+                episode.streamURL = posts[indexPath.row].episode_streamURL
+                episode.fileUrl = posts[indexPath.row].episode_FileUrl
+                episode.imageUrl = posts[indexPath.row].episode_img_url
+                episode.author = posts[indexPath.row].episode_author
+                episode.timeStampLables = posts[indexPath.row].episode_timeStampLables
+                episode.time =  posts[indexPath.row].episode_time
+                episode.timeStamps = posts[indexPath.row].episode_timeStamps
+                
+                destination.episode = episode
+                print(self.posts[indexPath.row].episode_author)
+                
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
 }

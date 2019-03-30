@@ -9,7 +9,10 @@ class MentionController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchMentionedEpisodes()
+        if Auth.auth().currentUser?.uid != nil {
+            fetchMentionedEpisodes()
+        }
+        
         tableView.delegate = self
         tableView.dataSource = self
       
@@ -45,4 +48,35 @@ class MentionController: UITableViewController{
         })
 
     }
+    
+    
+    // when a segue triggred  and before the visual transition occure
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showEpisodeDetails" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let destination = segue.destination as! EpisodeViewController
+                var episode = Episode()
+                episode.describtion = mentionedPost[indexPath.row].episode_desc ?? ""
+                episode.title = mentionedPost[indexPath.row].episode_name ?? ""
+                episode.pubDate = mentionedPost[indexPath.row].episode_Date
+                episode.streamURL = mentionedPost[indexPath.row].episode_streamURL
+                episode.fileUrl = mentionedPost[indexPath.row].episode_FileUrl
+                episode.imageUrl = mentionedPost[indexPath.row].episode_img_url
+                episode.author = mentionedPost[indexPath.row].episode_author
+                episode.timeStampLables = mentionedPost[indexPath.row].episode_timeStampLables
+                episode.time =  mentionedPost[indexPath.row].episode_time
+                episode.timeStamps = mentionedPost[indexPath.row].episode_timeStamps
+                
+                destination.episode = episode
+                
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
 }
