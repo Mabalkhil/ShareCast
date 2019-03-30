@@ -45,7 +45,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                              ep_name: $0.data()["episode_name"] as! String,
                              ep_img: $0.data()["episode_img_link"] as! String,
                              ep_desc: $0.data()["episode_desc"] as! String,
-                             postID: $0.documentID as! String)}))!
+                             postID: $0.data()["post_id"] as! String)}))!
                     DispatchQueue.main.async {
                         self.timeline.reloadData()
                     }
@@ -73,7 +73,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                                 ep_name: DocumentChange.document.data()["episode_name"] as! String,
                                 ep_img: DocumentChange.document.data()["episode_img_link"] as! String,
                                 ep_desc: DocumentChange.document.data()["episode_desc"] as! String,
-                                postID: DocumentChange.document.documentID as! String), at: 0)
+                                postID: DocumentChange.document.data()["post_id"] as! String), at: 0)
                             DispatchQueue.main.async {
                                 self.timeline.reloadData()
                             }

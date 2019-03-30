@@ -28,6 +28,7 @@ extension EpisodeViewController{
     func addNewPost() {
         
         var ref:DocumentReference? = nil
+        var currentPostID:String?;
         var postDetails = ["uid" : userID,
                            "author": username,
                            "author_img":userImage,
@@ -49,6 +50,8 @@ extension EpisodeViewController{
             }
         }
         
+        currentPostID = ref!.documentID
+        
         postDetails = ["uid" : userID,
                        "author": username,
                        "author_img":userImage,
@@ -58,7 +61,7 @@ extension EpisodeViewController{
                        "episode_img_link" : episode.imageUrl,
                        "episode_name" : episode.title,
                        "episode_desc" : episode.describtion,
-                       "post_id" : ""] as [String : Any]
+                       "post_id" : currentPostID] as [String : Any]
         ref = self.fireStoreDatabaseRef
             .collection("general_timelines")
             .document(self.userID!)

@@ -301,7 +301,7 @@ class DBService {
                                  ep_name: $0.data()["episode_name"] as! String,
                                  ep_img: $0.data()["episode_img_link"] as! String,
                                  ep_desc: $0.data()["episode_desc"] as! String,
-                                 postID: "")}))!
+                                 postID: $0.data()["post_id"] as! String)}))!
                     completionHandler(posts)
                 }
         }
@@ -361,7 +361,7 @@ class DBService {
                                  ep_name: $0.data()["episode_name"] as! String,
                                  ep_img: $0.data()["episode_img_link"] as! String,
                                  ep_desc: $0.data()["episode_desc"] as! String,
-                                 postID: $0.documentID as! String)}))!
+                                 postID: $0.data()["post_id"] as! String)}))!
                     completionHandler(posts)
                 }
         }
@@ -390,7 +390,7 @@ class DBService {
                                 ep_name: DocumentChange.document.data()["episode_name"] as! String,
                                 ep_img: DocumentChange.document.data()["episode_img_link"] as! String,
                                 ep_desc: DocumentChange.document.data()["episode_desc"] as! String,
-                                postID: DocumentChange.document.documentID as! String), at: 0)
+                                postID: DocumentChange.document.data()["post_id"] as! String), at: 0)
                             if(snapshot.documentChanges.count == counter){
                                 completionHandler(posts)
                             }
@@ -401,29 +401,91 @@ class DBService {
     }
     
     func deletePost(postId: String) {
+        var postID:String?
+        var followers_ids = [String]()
+        
+        self.getFollowersIDs{ (result) in
+            followers_ids = result
+        }
+        
         self.db.collection("general_timelines")
             .document(uid)
-            .collection("timeline").document(postId)
-            .delete() {
-                err in
+            .collection("timeline").whereField("post_id", isEqualTo: postId).getDocuments{
+                QuerySnapshot,err  in
                 if let err = err {
                     print("Error removing document: \(err)")
                 } else {
-                    print("FIRESTORE: Post successfully removed from general_timelines!: \(postId)")
+                    for singlePost in (QuerySnapshot?.documents)!{
+                        postID = singlePost.documentID
+                        self.db.collection("general_timelines")
+                            .document(self.uid)
+                            .collection("timeline").document(postID!).delete() {
+                                err in
+                                if let err = err {
+                                    print("Error removing document: \(err)")
+                                } else {
+                                    print("FIRESTORE: Post successfully removed from \(self.uid) general_timelines")
+                                }
+                        }
+                    }
                 }
         }
+        
+        print(followers_ids)
+        for follower in followers_ids{
+            self.db.collection("general_timelines")
+                .document(follower)
+                .collection("timeline").whereField("post_id", isEqualTo: postId).getDocuments{
+                    QuerySnapshot,err  in
+                    if let err = err {
+                        print("Error removing document: \(err)")
+                    } else {
+                        print("hello")
+                        for singlePost in (QuerySnapshot?.documents)!{
+                            print(singlePost)
+                            postID = singlePost.documentID
+                            self.db.collection("general_timelines")
+                                .document(self.uid)
+                                .collection("timeline").document(postID!).delete() {
+                                    err in
+                                    if let err = err {
+                                        print("Error removing document: \(err)")
+                                    } else {
+                                        print("FIRESTORE: Post successfully removed from \(follower) general_timelines")
+                                    }
+                            }
+                        }
+                    }
+            }
+        }
+        
+        
         self.db.collection("private_timelines")
-            .document(uid)
-            .collection("timeline").document(postId)
-            .delete() {
-                err in
+            .document(self.uid)
+            .collection("timeline").whereField("post_id", isEqualTo: postId).getDocuments{
+                QuerySnapshot,err  in
                 if let err = err {
                     print("Error removing document: \(err)")
                 } else {
-                    print("FIRESTORE: Post successfully removed from private_timelines!: \(postId)")
+                    print("hello")
+                    for singlePost in (QuerySnapshot?.documents)!{
+                        print(singlePost)
+                        postID = singlePost.documentID
+                        self.db.collection("private_timelines")
+                            .document(self.uid)
+                            .collection("timeline").document(postID!).delete() {
+                                err in
+                                if let err = err {
+                                    print("Error removing document: \(err)")
+                                } else {
+                                    print("FIRESTORE: Post successfully removed from \(self.uid) private_timelines!:")
+                                }
+                        }
+                    }
                 }
         }
     }
+    
     func setProfileImage(uploadData: Data){
         reffStor.child("\(uid).png").putData(uploadData, metadata: nil) { (metadata, error) in
             if let err = error {
