@@ -378,7 +378,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             cell.setAttributes(playlist: playlists[indexPath.row])
             return cell
         }else {
-            print("hello")
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "follower", for: indexPath) as! followersMentionCellCVC
             print(followers[indexPath.row])
             cell.setAttributes(person: followers[indexPath.row])

@@ -301,7 +301,7 @@ class DBService {
                                  ep_name: $0.data()["episode_name"] as! String,
                                  ep_img: $0.data()["episode_img_link"] as! String,
                                  ep_desc: $0.data()["episode_desc"] as! String,
-                                 postID: $0.data()["post_id"] as! String)}))!
+                                 postID: $0.documentID as! String)}))!
                     completionHandler(posts)
                 }
         }
@@ -400,6 +400,20 @@ class DBService {
         }
     }
     
+    func deleteMention(postId: String) {
+        self.db.collection("mentions")
+            .document(uid)
+            .collection("my_mentions").document(postId)
+            .delete() {
+                err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("FIRESTORE: mention successfully removed post ID = \(postId)")
+                }
+        }
+    }
+    
     func deletePost(postId: String) {
         var postID:String?
         var followers_ids = [String]()
@@ -431,7 +445,6 @@ class DBService {
                 }
         }
         
-        print(followers_ids)
         for follower in followers_ids{
             self.db.collection("general_timelines")
                 .document(follower)
@@ -467,7 +480,6 @@ class DBService {
                 if let err = err {
                     print("Error removing document: \(err)")
                 } else {
-                    print("hello")
                     for singlePost in (QuerySnapshot?.documents)!{
                         print(singlePost)
                         postID = singlePost.documentID

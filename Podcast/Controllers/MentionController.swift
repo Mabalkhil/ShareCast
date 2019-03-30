@@ -6,7 +6,6 @@ class MentionController: UITableViewController{
     let dbs = DBService.shared
     var mentionedPost = [Post]()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchMentionedEpisodes()
@@ -14,8 +13,6 @@ class MentionController: UITableViewController{
         tableView.dataSource = self
       
     }
-    
-    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -36,6 +33,14 @@ class MentionController: UITableViewController{
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let postId = self.mentionedPost[indexPath.row].post_id
+        self.dbs.deleteMention(postId: postId!)
+        tableView.reloadData()
+        viewDidLoad()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+    }
+    
     func fetchMentionedEpisodes(){
         dbs.getMentionedEpisodes(completionHandler: { (post) in
             self.mentionedPost = post
@@ -43,6 +48,5 @@ class MentionController: UITableViewController{
                 self.tableView.reloadData()
             }
         })
-
     }
 }
