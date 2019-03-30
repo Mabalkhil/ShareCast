@@ -439,6 +439,11 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
 
         dbs.getFollowers2 { (result) in
             self.followers = result
+            
+            DispatchQueue.main.async {
+                self.blackView.setNeedsLayout()
+                self.blackView.layoutIfNeeded()
+            }
         }
     }
     
