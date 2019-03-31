@@ -28,7 +28,10 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     let dbs = DBService.shared
     @IBOutlet var writePost: UIView!
     @IBOutlet weak var postContentTV: UITextView!
-    @IBOutlet weak var commentContentTF: UITextField!
+    
+    @IBOutlet weak var playButton: UIButton!
+    
+    var postType: String = ""
     
     var comments = [CommentObj]()
     let cellId = "cellId"
@@ -84,7 +87,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     //Comment button
     @IBOutlet weak var commentButton: UIButton!{
         didSet{
-            commentButton.addTarget(self, action: #selector(addNewComment), for: .touchUpInside)
+            commentButton.addTarget(self, action: #selector(repostHandler), for: .touchUpInside)
         }
     }
     
@@ -117,6 +120,9 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         setUpDatabases()
         setAttributes()
         setUpComments()
+        
+        self.playButton.layer.cornerRadius = playButton.layer.frame.size.width/2
+        self.view.addSubview(self.playButton)
         
         playlistsCV.delegate = self
         playlistsCV.dataSource = self
@@ -218,6 +224,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }, completion: nil)
     }
     
+    
     @objc func recommendToUser(){
         
         
@@ -313,7 +320,14 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     //MARK:- Post handeler
     @objc func createNewPost(){
-        self.addNewPost()
+        
+        if postType == "repost" {
+            self.addNewPost()
+            
+        } else {
+            self.addNewComment()
+        }
+        
         self.hidePostView()
     }
     
@@ -329,6 +343,8 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             alertUser("Not Register", "You have to register to get this feature")
             return
         }
+        
+        postType = sender.currentTitle!
         
         blackView.backgroundColor = UIColor.black
         blackView.alpha = 0

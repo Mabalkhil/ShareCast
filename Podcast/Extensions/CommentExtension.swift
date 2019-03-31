@@ -108,10 +108,10 @@ extension EpisodeViewController{
         realName: person?.name ?? "",
         username: self.username!,
         img: userImage ?? "" ,
-        com: commentContentTF.text!)
+        com: postContentTV.text!)
         
-        commentContentTF.placeholder = "Comment here"
-        commentContentTF.text = ""
+    
+        postContentTV.text = ""
         
         self.dbs.postComment(episode: self.episode, comment: comment) {commentID in
             

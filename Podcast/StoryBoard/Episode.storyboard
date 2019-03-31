@@ -38,7 +38,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUm-m7-tZK">
                                                             <rect key="frame" x="0.0" y="310" width="364" height="30"/>
                                                             <color key="backgroundColor" red="0.92549019607843142" green="0.38431372549019605" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <state key="normal" title="  Play Episode">
+                                                            <state key="normal" title="   Write Comment">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <connections>
@@ -208,39 +208,6 @@
                                 <constraint firstItem="BLP-cc-G4o" firstAttribute="leading" secondItem="HOa-rd-9tj" secondAttribute="leading" id="xVo-Pd-yJf"/>
                             </constraints>
                         </view>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="KQS-BI-3AJ" userLabel="Footer">
-                            <rect key="frame" x="0.0" y="785" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment here.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3ic-y4-taC">
-                                    <rect key="frame" x="8" y="7" width="356" height="30"/>
-                                    <color key="backgroundColor" red="0.32028031350000002" green="0.32054913039999999" blue="0.32032194730000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KgR-a5-hoi">
-                                    <rect key="frame" x="374" y="7" width="30" height="30"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="30" id="R0D-X8-oAn"/>
-                                        <constraint firstAttribute="height" constant="30" id="iia-M8-seC"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <state key="normal" title="Post">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" red="0.15684521200000001" green="0.1568739116" blue="0.1568388939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="KgR-a5-hoi" secondAttribute="trailing" constant="10" id="7Uz-yH-G2g"/>
-                                <constraint firstItem="3ic-y4-taC" firstAttribute="top" secondItem="KQS-BI-3AJ" secondAttribute="top" constant="7" id="f57-Bw-Gh1"/>
-                                <constraint firstItem="KgR-a5-hoi" firstAttribute="leading" secondItem="3ic-y4-taC" secondAttribute="trailing" constant="8" id="fDq-ol-BZa"/>
-                                <constraint firstItem="KgR-a5-hoi" firstAttribute="baseline" secondItem="3ic-y4-taC" secondAttribute="baseline" id="lT3-sh-mZ8"/>
-                                <constraint firstAttribute="bottom" secondItem="3ic-y4-taC" secondAttribute="bottom" constant="7" id="nJb-QA-2ep"/>
-                                <constraint firstItem="3ic-y4-taC" firstAttribute="leading" secondItem="KQS-BI-3AJ" secondAttribute="leading" constant="8" id="zuj-BT-q4J"/>
-                            </constraints>
-                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Comment" rowHeight="115" id="bBW-yS-hhT" customClass="CommentCell" customModule="Podcast" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="670" width="414" height="115"/>
@@ -307,8 +274,7 @@
                     <connections>
                         <outlet property="addToPlaylistButton" destination="sxg-X6-kHf" id="xbW-G2-EUv"/>
                         <outlet property="bookmarkButton" destination="dJ0-mM-P6j" id="ciS-rK-1EN"/>
-                        <outlet property="commentButton" destination="KgR-a5-hoi" id="gAn-P5-uJX"/>
-                        <outlet property="commentContentTF" destination="3ic-y4-taC" id="eUR-Hj-3hL"/>
+                        <outlet property="commentButton" destination="wUm-m7-tZK" id="hRx-A4-yfc"/>
                         <outlet property="createPostButton" destination="jNy-W4-2mG" id="I5p-uh-PXI"/>
                         <outlet property="descriptionLabel" destination="saY-iS-7Z9" id="6x4-fh-3Rb"/>
                         <outlet property="downloadButton" destination="nhE-GC-yra" id="bh5-h5-qGL"/>
