@@ -15,6 +15,7 @@
 		29140E44220352500060522E /* SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29140E43220352500060522E /* SearchDelegate.swift */; };
 		292111C322008B0E00B28DE2 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292111C222008B0E00B28DE2 /* CategoryCell.swift */; };
 		292111C522008D3A00B28DE2 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292111C422008D3A00B28DE2 /* Category.swift */; };
+		2947ECEF225160C00018FA09 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947ECEE225160C00018FA09 /* ToastView.swift */; };
 		2969218E224D24CF00CB4B07 /* LinkCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2969218D224D24CF00CB4B07 /* LinkCollectionReusableView.swift */; };
 		2980CBE22208D89200AC2C11 /* PlayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2980CBE12208D89200AC2C11 /* PlayerExtension.swift */; };
 		2992ACBF223FFFCD00CE5C44 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2992ACBE223FFFCD00CE5C44 /* DBService.swift */; };
@@ -112,6 +113,7 @@
 		29140E43220352500060522E /* SearchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDelegate.swift; sourceTree = "<group>"; };
 		292111C222008B0E00B28DE2 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		292111C422008D3A00B28DE2 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		2947ECEE225160C00018FA09 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		2969218D224D24CF00CB4B07 /* LinkCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkCollectionReusableView.swift; sourceTree = "<group>"; };
 		2980CBE12208D89200AC2C11 /* PlayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerExtension.swift; sourceTree = "<group>"; };
 		2992ACBE223FFFCD00CE5C44 /* DBService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				29140E43220352500060522E /* SearchDelegate.swift */,
 				2980CBE12208D89200AC2C11 /* PlayerExtension.swift */,
 				500607FC222715DF00C6F720 /* UIImage.swift */,
+				2947ECEE225160C00018FA09 /* ToastView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -625,6 +628,7 @@
 			files = (
 				502484B021FCED3D00CA84F1 /* EditProfileViewController.swift in Sources */,
 				FA49932A218DCD3E0021CFA3 /* PodcastSearchController.swift in Sources */,
+				2947ECEF225160C00018FA09 /* ToastView.swift in Sources */,
 				29140E44220352500060522E /* SearchDelegate.swift in Sources */,
 				2F3E975422456EA400CBDB13 /* followersMentionCellCVC.swift in Sources */,
 				FA397ED72195E66D00D33617 /* SearchResults.swift in Sources */,

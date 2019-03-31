@@ -117,7 +117,11 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpDatabases()
+        
+        if (Auth.auth().currentUser?.uid) != nil {
+            setUpDatabases()
+        }
+        
         setAttributes()
         setUpComments()
         
@@ -179,6 +183,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         
     }
     
+    //MARK:- DOWNLOAD
     @objc func downloadHandler(){
         UserDefaults.standard.downloadEpisode(episode: episode.self)
         APIService.shared.downloadEpisode(episode: episode.self)
@@ -202,6 +207,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     @objc func addToPlaylist(){
+        
         blackView.backgroundColor = UIColor.black
         blackView.alpha = 0
         
@@ -227,6 +233,11 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     @objc func recommendToUser(){
         
+        guard (Auth.auth().currentUser?.uid) != nil else {
+            self.copyLinkToClipboard()
+            self.view.showToast(toastMessage: "Link Copied Seccessfully", duration: 1.1)
+            return
+        }
         
         blackView.backgroundColor = UIColor.black
         blackView.alpha = 0
@@ -256,8 +267,9 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         
     }
     
-    
+    //MARK:- BOOKMARK
     @objc func bookmarkAddingHandler(){
+    
         // Checking if the button has highlighted image or not to run the correct operation
         if bookmarkButton.currentImage.hashValue == UIImage(named: "bookmark").hashValue{
             UserDefaults.standard.addBookmark(episode: episode)
@@ -267,13 +279,12 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             bookmarkButton.setImage(UIImage(named: "bookmark"), for: .normal)
         }
     }
+    
+    //MARK:- LIKE
     @IBAction func likePressed(_ sender: Any) {
         // check if the user register
-        guard let uid = Auth.auth().currentUser?.uid else {
-            let alert = UIAlertController(title: "Not Register", message: "You have to register to get this feature", preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alert.addAction(alertAction)
-            present(alert,animated: true,completion: nil)
+        guard (Auth.auth().currentUser?.uid) != nil else {
+            self.alertUser("Not Register", "You have to register to get this feature")
             return
         }
         
