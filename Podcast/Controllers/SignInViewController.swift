@@ -9,7 +9,9 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
-class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate{
+class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate, GIDSignInDelegate{
+    
+    
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -65,6 +67,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
     @IBAction func SignInWithGoogle(_ sender: Any) {
         handleCustomGoogleSign()
         
+
     }
     
     @objc func handleCustomGoogleSign() {
@@ -128,6 +131,42 @@ class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
                 self.present(alertController,animated: true)
             }
         }
+    }
+    
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let err = error {
+            print("Failed to log into Google: ", err)
+            return
+        }
+        
+        print("Successfully logged into Google", user)
+        
+        guard let idToken = user.authentication.idToken else { return }
+        guard let accessToken = user.authentication.accessToken else { return }
+        let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+        
+        Auth.auth().signIn(with: credentials, completion: { (user, error) in
+            if let err = error {
+                print("Failed to create a Firebase User with Google account: ", err)
+                return
+            }
+            
+            guard let uid = user?.uid else { return }
+            var dictionary : [String:Any]{
+                return [
+                    "email": user?.email,
+                    "profileImageURL": user?.photoURL?.absoluteString,
+                    "firstName": user?.displayName,
+                    "lastName":"",
+                    "username":"@\(user?.uid)"
+                ]
+            }
+            DBService.shared.singup(person: Person(dictionary: dictionary)!, uid: uid, completionHandler: { (alert) in
+                print(dictionary)
+            })
+            print("Successfully logged into Firebase with Google", uid)
+        })
     }
 
 }

@@ -15,7 +15,7 @@ let primaryColor = UIColor(red: 60/255, green: 133/255, blue: 198/255, alpha: 1)
 let secondaryColor = UIColor(red: 168/255, green: 153/255, blue: 153/255, alpha: 1)
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate{
     
     
 
@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         FirebaseApp.configure()
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
         
 //        TWTRTwitter.sharedInstance().start(withConsumerKey: AuthService.twitterKey, consumerSecret: AuthService.twitterSecret)
         
@@ -61,40 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 //        return TWTRTwitter.sharedInstance().application(app, open: url, options: options)
 //    }
     
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let err = error {
-            print("Failed to log into Google: ", err)
-            return
-        }
-        
-        print("Successfully logged into Google", user)
-        
-        guard let idToken = user.authentication.idToken else { return }
-        guard let accessToken = user.authentication.accessToken else { return }
-        let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-        
-        Auth.auth().signIn(with: credentials, completion: { (user, error) in
-            if let err = error {
-                print("Failed to create a Firebase User with Google account: ", err)
-                return
-            }
-            
-            guard let uid = user?.uid else { return }
-            var dictionary : [String:Any]{
-                return [
-                    "email": user?.email,
-                    "profileImageURL": user?.photoURL?.absoluteString,
-                    "firstName": user?.displayName,
-                    "lastName":"",
-                    "username":"@\(user?.uid)"
-                ]
-            }
-            DBService.shared.singup(person: Person(dictionary: dictionary)!, uid: uid, completionHandler: { (alert) in
-                print(dictionary)
-            })
-            print("Successfully logged into Firebase with Google", uid)
-        })
-    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
