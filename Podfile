@@ -15,5 +15,8 @@ target 'Podcast' do
     pod 'Firebase/Storage'
     pod 'Firebase/Auth'
     pod 'Firebase/Firestore'
+    pod 'TwitterKit'
+    pod 'FBSDKLoginKit'
+    pod 'GoogleSignIn'
 
 end
