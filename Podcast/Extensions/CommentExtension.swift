@@ -37,7 +37,14 @@ extension EpisodeViewController{
                            "episode_link" : episode.fileUrl,
                            "episode_img_link" : episode.imageUrl,
                            "episode_name" : episode.title,
-                           "episode_desc" : episode.describtion] as [String : Any]
+                           "episode_desc" : episode.describtion,
+                           "episode_Date" : episode.pubDate,
+                           "episode_FileUrl" : episode.fileUrl,
+                           "episode_timeStamps" : episode.timeStamps,
+                           "episode_timeStampLables" : episode.timeStampLables,
+                           "episode_streamURL" : episode.streamURL,
+                           "episode_author" : episode.author,
+                           "episode_time" : episode.time] as [String : Any]
         
         ref = self.fireStoreDatabaseRef.collection("Posts").addDocument(data: postDetails){
             error in
@@ -61,6 +68,13 @@ extension EpisodeViewController{
                        "episode_img_link" : episode.imageUrl,
                        "episode_name" : episode.title,
                        "episode_desc" : episode.describtion,
+                       "episode_Date" : episode.pubDate,
+                       "episode_FileUrl" : episode.fileUrl,
+                       "episode_timeStamps" : episode.timeStamps,
+                       "episode_timeStampLables" : episode.timeStampLables,
+                       "episode_streamURL" : episode.streamURL,
+                       "episode_author" : episode.author,
+                       "episode_time" : episode.time,
                        "post_id" : currentPostID] as [String : Any]
         ref = self.fireStoreDatabaseRef
             .collection("general_timelines")

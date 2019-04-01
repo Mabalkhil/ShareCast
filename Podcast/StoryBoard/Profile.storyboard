@@ -286,6 +286,7 @@
                                             <outlet property="episode_name" destination="SHZ-Qn-geZ" id="Yb2-9E-dsk"/>
                                             <outlet property="userImage" destination="F3R-eu-KKw" id="kta-8g-wBc"/>
                                             <outlet property="usernameLabel" destination="Uus-5J-aGu" id="bWz-Nw-rfl"/>
+                                            <segue destination="Gee-KS-wrp" kind="show" identifier="showEpisodeDetails" id="fSs-T8-DTL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -587,6 +588,14 @@
                 <exit id="fPX-Dd-jF5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3026.811594202899" y="125.54347826086958"/>
+        </scene>
+        <!--Episode-->
+        <scene sceneID="vp1-gT-W4c">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Episode" id="Gee-KS-wrp" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MAu-fV-5bU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2032" y="602"/>
         </scene>
     </scenes>
     <resources>

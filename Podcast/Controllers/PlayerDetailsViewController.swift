@@ -15,7 +15,7 @@ import MediaPlayer
 var right: Float = 100
 var left: Float = 100
 
-class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate {
+class PlayerDetailsViewController: UIViewController, MYAudioTabProcessorDelegate {
 
      var tapProcessor: MYAudioTapProcessor!
     // create instance of the same class to make it singlton, we just need to add a private constructer to avoid ceating a new object
@@ -67,10 +67,12 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
         return img
     }()
     
-    struct Mark {
-        var time:String
-        var desc:String
-    }
+//    struct Mark {
+//        var time:String
+//        var desc:String
+//    }
+    
+    //let Mark:Mark!
     
     var marks: [Mark] = []
     var episode:Episode!
@@ -354,12 +356,17 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
                     let title = episode.timeStampLables![i]
                     if episode.timeStamps!.count > i {
                         let time  = episode.timeStamps![i]
-                        self.marks.append(Mark.init(time: time, desc: title))
+                        //var mark = Mark(time: time, desc: title)
+                        var mark = Mark(time: time, desc: title)
+                        print("time",time)
+                        //mark.time = time
+                        //mark.desc = title
+                        self.marks.append(mark)
                     }
                 }
                 setTable()
                 print("time mark here")
-                print(marks)
+                print("time mark here", marks)
                 pageControl.numberOfPages = 3
                 scrollView.isScrollEnabled = true
                 
@@ -389,14 +396,16 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
             smartSpeedToggle == false
             self.episode = episode
             self.marks.removeAll() // remove all time marks from before
+            print(self.marks)
             smartSpeedToggle = false
             episodeName?.text = episode.title
             channelName?.text = episode.author
             let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
             episodeImg.sd_setImage(with: url)
-            self.episode.timeStampLables = ["a","b"]
+            //self.episode.timeStampLables = ["a","b"]
             app?.maximizePlayerDetails()
             setScrollView()
+            self.handleTimeMark()
             smallPlayerPlay.setImage(#imageLiteral(resourceName: "PauseButton"), for: .normal)
             playPauseButton.setImage(#imageLiteral(resourceName: "PauseButton"), for: .normal)
             var tracked = UserDefaults.standard.trackedEpisodes()
@@ -433,24 +442,26 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
         smallPlayerImg.clipsToBounds = true
         
         // swipe to remove the player
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(dismissSmallPlayer))
-        swipeLeft.direction = .left
-        smallPlayer.addGestureRecognizer(swipeLeft)
-        //(UISwipeGestureRecognizer(target: self, action: #selector(dismissSmallPlayer)).direction = .left)
+        //let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(dismissSmallPlayer))
+        //swipeLeft.direction = .left
+        //smallPlayer.addGestureRecognizer(swipeLeft)
+       // (UISwipeGestureRecognizer(target: self, action: #selector(dismissSmallPlayer)).direction = .left)
     }
     
 
-    @objc func dismissSmallPlayer() {
-        let offScreen = -smallPlayer.frame.width
-        let y = smallPlayer.frame.minX
-        let width = smallPlayer.frame.width
-        let height = smallPlayer.frame.height
-        
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.smallPlayer.frame = CGRect(x: offScreen, y: y, width: width, height: height)
-            self.player.pause()
-        }, completion: nil)
-    }
+//    @objc func dismissSmallPlayer() {
+//        let offScreen = -smallPlayer.frame.width
+//        let y = smallPlayer.frame.minX
+//        let width = smallPlayer.frame.width
+//        let height = smallPlayer.frame.height
+//        self.view.sendSubviewToBack(self.smallPlayer)
+//
+//        //[view insertSubview:aView atIndex:[view.subviews count]]
+//        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+//            self.smallPlayer.frame = CGRect(x: offScreen, y: y, width: width, height: height)
+//            self.player.pause()
+//        }, completion: nil)
+//    }
     
     func addBlurEffect(img: UIImageView)
     {
@@ -544,6 +555,14 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
                 }
            }
     }
+    
+    
+    
+    
+    
+    
+
+    
     
     
 }

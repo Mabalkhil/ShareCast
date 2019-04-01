@@ -275,6 +275,7 @@
                                     <outlet property="episode_name" destination="qJb-Ec-kHA" id="seJ-Rx-kx2"/>
                                     <outlet property="userImage" destination="hrK-Iw-LIZ" id="GVi-qw-q63"/>
                                     <outlet property="usernameLabel" destination="lkO-31-bEe" id="8SE-qK-zfH"/>
+                                    <segue destination="1QK-OH-gS6" kind="show" identifier="showEpisodeDetails" id="OQh-FY-G3s"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

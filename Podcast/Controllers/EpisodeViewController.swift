@@ -427,13 +427,22 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             let user = followers[indexPath.row].uid
 
             var mentionDetails = ["uid" : userID,
-                           "author": username,
-                           "author_img":userImage,
-                           "Date" : Date(),
-                           "episode_link" : episode.fileUrl,
-                           "episode_img_link" : episode.imageUrl,
-                           "episode_name" : episode.title,
-                           "episode_desc" : episode.describtion] as [String : Any]
+                                  "author": username,
+                                  "author_img":userImage,
+                                  "content" : postContentTV.text,
+                                  "Date" : Date(),
+                                  "episode_link" : episode.fileUrl,
+                                  "episode_img_link" : episode.imageUrl,
+                                  "episode_name" : episode.title,
+                                  "episode_desc" : episode.describtion,
+                                  "episode_Date" : episode.pubDate,
+                                  "episode_FileUrl" : episode.fileUrl,
+                                  "episode_timeStamps" : episode.timeStamps,
+                                  "episode_timeStampLables" : episode.timeStampLables,
+                                  "episode_streamURL" : episode.streamURL,
+                                  "episode_author" : episode.author,
+                                  "episode_time" : episode.time
+                ] as [String : Any]
             
             ref = self.fireStoreDatabaseRef
                 .collection("mentions")
@@ -457,11 +466,12 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     func setUpDatabases(){
         self.userID = Auth.auth().currentUser?.uid
-        self.dbs.getPerson(uid: userID!) {(person) in
-            self.person = person
-            self.username = person.username
-            self.userImage = person.profileImageURL
-        }
+        if self.userID != nil {
+            self.dbs.getPerson(uid: userID!) {(person) in
+                self.person = person
+                self.username = person.username
+                self.userImage = person.profileImageURL
+            }
 
         dbs.getFollowers2 { (result) in
             self.followers = result

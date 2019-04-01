@@ -50,6 +50,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         
         // to dismiss the keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:  #selector(SignInViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false // wait 
         view.addGestureRecognizer(tap)
         
        // let tap = UITapGestureRecognizer(target: self, action: #selector(backTomain))

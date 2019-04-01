@@ -157,7 +157,6 @@ class DBService {
     }
     
     func getFollowersIDs(completionHandler: @escaping ([String]) -> ()){
-
         self.db
             .collection("usersInfo")
             .document(uid)
@@ -351,11 +350,24 @@ class DBService {
                                  ep_name: $0.data()["episode_name"] as! String,
                                  ep_img: $0.data()["episode_img_link"] as! String,
                                  ep_desc: $0.data()["episode_desc"] as! String,
+                                 episode_Date: $0.data()["episode_Date"] as! Date,
+                                 episode_FileUrl: $0.data()["episode_FileUrl"] as! String,
+                                 episode_timeStamps: $0.data()["episode_timeStamps"] as! [String],
+                                 episode_timeStampLables: $0.data()["episode_timeStampLables"] as! [String],
+                                 episode_streamURL: $0.data()["episode_streamURL"] as! String,
+                                 episode_author: $0.data()["episode_author"] as! String,
+                                 episode_time: $0.data()["episode_time"] as! Double,
                                  postID: $0.documentID as! String)}))!
                     completionHandler(posts)
                 }
         }
     }
+    
+
+    
+    
+    
+    
     
     //MARK:- Profile Queries
     
@@ -411,6 +423,13 @@ class DBService {
                                  ep_name: $0.data()["episode_name"] as! String,
                                  ep_img: $0.data()["episode_img_link"] as! String,
                                  ep_desc: $0.data()["episode_desc"] as! String,
+                                 episode_Date: $0.data()["episode_Date"] as! Date,
+                                 episode_FileUrl: $0.data()["episode_FileUrl"] as! String,
+                                 episode_timeStamps: $0.data()["episode_timeStamps"] as! [String],
+                                 episode_timeStampLables: $0.data()["episode_timeStampLables"] as! [String],
+                                 episode_streamURL: $0.data()["episode_streamURL"] as! String,
+                                 episode_author: $0.data()["episode_author"] as! String,
+                                 episode_time: $0.data()["episode_time"] as! Double,
                                  postID: $0.data()["post_id"] as! String)}))!
                     completionHandler(posts)
                 }
@@ -440,6 +459,13 @@ class DBService {
                                 ep_name: DocumentChange.document.data()["episode_name"] as! String,
                                 ep_img: DocumentChange.document.data()["episode_img_link"] as! String,
                                 ep_desc: DocumentChange.document.data()["episode_desc"] as! String,
+                                episode_Date: DocumentChange.document.data()["episode_Date"] as! Date,
+                                episode_FileUrl: DocumentChange.document.data()["episode_FileUrl"] as! String,
+                                episode_timeStamps: DocumentChange.document.data()["episode_timeStamps"] as! [String],
+                                episode_timeStampLables: DocumentChange.document.data()["episode_timeStampLables"] as! [String],
+                                episode_streamURL: DocumentChange.document.data()["episode_streamURL"] as! String,
+                                episode_author: DocumentChange.document.data()["episode_author"] as! String,
+                                episode_time: DocumentChange.document.data()["episode_time"] as! Double,
                                 postID: DocumentChange.document.data()["post_id"] as! String), at: 0)
                             if(snapshot.documentChanges.count == counter){
                                 completionHandler(posts)

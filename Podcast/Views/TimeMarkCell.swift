@@ -68,6 +68,15 @@ class TimeMarkCell: UITableViewCell {
         
     }
     
+    func setTimeMark(mark: Mark ){
+        //self.time = mark.time
+        self.desc = mark.desc
+    }
+    
+    
+    
+    
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

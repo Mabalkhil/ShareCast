@@ -141,6 +141,7 @@
                                             <outlet property="episode_name" destination="bOl-d0-k53" id="PoU-0g-b3z"/>
                                             <outlet property="userImage" destination="dZL-SS-h52" id="jzz-uJ-VoT"/>
                                             <outlet property="usernameLabel" destination="xiT-kD-LYu" id="ysE-gx-Vnr"/>
+                                            <segue destination="Gbn-6S-ZtL" kind="show" identifier="showEpisodeDetails" id="EpI-os-ZWw"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -162,6 +163,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mr3-YM-Bxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="150" y="-50"/>
+        </scene>
+        <!--Episode-->
+        <scene sceneID="Mxx-tD-ul8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Episode" id="Gbn-6S-ZtL" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WXV-7F-kIJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="912" y="-150"/>
         </scene>
     </scenes>
     <resources>

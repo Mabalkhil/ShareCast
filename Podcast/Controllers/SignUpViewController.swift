@@ -58,7 +58,9 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
         passwordText.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:  #selector(SignUpViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false // wait 
         view.addGestureRecognizer(tap)
+        //tap.cancelsTouchesInView = false // wait for it ??
         
       //  let tap = UITapGestureRecognizer(target: self, action: #selector(backTomain))
 //        back.isUserInteractionEnabled= true
