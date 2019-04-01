@@ -19,14 +19,14 @@
                         <color key="backgroundColor" red="0.32028031350000002" green="0.32054913039999999" blue="0.32032194730000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <stackView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" id="dbq-tp-DIY">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJu-QZ-4wg" userLabel="Channels">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMO-6T-Lvt">
-                                            <rect key="frame" x="70" y="10" width="318" height="30.5"/>
+                                            <rect key="frame" x="70" y="10" width="318" height="30"/>
                                             <state key="normal" title="Channels">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
@@ -35,7 +35,7 @@
                                             </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radio" translatesAutoresizingMaskIntoConstraints="NO" id="10O-uO-fM6">
-                                            <rect key="frame" x="15" y="5" width="40" height="40.5"/>
+                                            <rect key="frame" x="15" y="5" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="UTb-of-86s"/>
                                                 <constraint firstAttribute="width" constant="40" id="hc5-4X-dV9"/>
@@ -54,7 +54,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="riF-Pk-trz" userLabel="Channels">
-                                    <rect key="frame" x="0.0" y="55.5" width="414" height="50"/>
+                                    <rect key="frame" x="0.0" y="55" width="414" height="50"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Xc-7P-oD5">
                                             <rect key="frame" x="70" y="10" width="318" height="30"/>
@@ -85,7 +85,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwI-yl-Nh5" userLabel="Playlists">
-                                    <rect key="frame" x="0.0" y="110.5" width="414" height="50"/>
+                                    <rect key="frame" x="0.0" y="110" width="414" height="50"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXc-0o-sPs">
                                             <rect key="frame" x="70" y="10" width="318" height="30"/>
@@ -116,7 +116,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7E1-dl-7Kx" userLabel="Bookmark">
-                                    <rect key="frame" x="0.0" y="165.5" width="414" height="50"/>
+                                    <rect key="frame" x="0.0" y="165" width="414" height="50"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpV-6I-eVN">
                                             <rect key="frame" x="70" y="10" width="318" height="30"/>
@@ -148,7 +148,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ivg-gS-iN1" userLabel="Bell">
-                                    <rect key="frame" x="0.0" y="220.5" width="414" height="50"/>
+                                    <rect key="frame" x="0.0" y="220" width="414" height="50"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDW-K2-NyV" userLabel="Bell">
                                             <rect key="frame" x="70" y="10" width="318" height="30"/>
@@ -180,7 +180,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mentions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLc-tg-ArA">
-                                    <rect key="frame" x="0.0" y="275.5" width="414" height="21.5"/>
+                                    <rect key="frame" x="0.0" y="275" width="414" height="25"/>
                                     <color key="backgroundColor" red="0.92456585170000005" green="0.38482528919999998" blue="0.3745569587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -190,7 +190,7 @@
                         </stackView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="200" id="NHC-au-nFa" customClass="TimelineTVC" customModule="Podcast" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="278" width="414" height="200"/>
+                                <rect key="frame" x="0.0" y="328" width="414" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NHC-au-nFa" id="Fya-Na-q9E">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="199.5"/>
