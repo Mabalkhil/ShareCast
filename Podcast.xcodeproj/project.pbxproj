@@ -15,6 +15,8 @@
 		29140E44220352500060522E /* SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29140E43220352500060522E /* SearchDelegate.swift */; };
 		292111C322008B0E00B28DE2 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292111C222008B0E00B28DE2 /* CategoryCell.swift */; };
 		292111C522008D3A00B28DE2 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292111C422008D3A00B28DE2 /* Category.swift */; };
+		2947ECEF225160C00018FA09 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947ECEE225160C00018FA09 /* ToastView.swift */; };
+		2969218E224D24CF00CB4B07 /* LinkCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2969218D224D24CF00CB4B07 /* LinkCollectionReusableView.swift */; };
 		2980CBE22208D89200AC2C11 /* PlayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2980CBE12208D89200AC2C11 /* PlayerExtension.swift */; };
 		2992ACBF223FFFCD00CE5C44 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2992ACBE223FFFCD00CE5C44 /* DBService.swift */; };
 		2992ACC2223FFFD900CE5C44 /* CommentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2992ACC0223FFFD800CE5C44 /* CommentExtension.swift */; };
@@ -113,6 +115,8 @@
 		29140E43220352500060522E /* SearchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDelegate.swift; sourceTree = "<group>"; };
 		292111C222008B0E00B28DE2 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		292111C422008D3A00B28DE2 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		2947ECEE225160C00018FA09 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		2969218D224D24CF00CB4B07 /* LinkCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkCollectionReusableView.swift; sourceTree = "<group>"; };
 		2980CBE12208D89200AC2C11 /* PlayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerExtension.swift; sourceTree = "<group>"; };
 		2992ACBE223FFFCD00CE5C44 /* DBService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
 		2992ACC0223FFFD800CE5C44 /* CommentExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentExtension.swift; sourceTree = "<group>"; };
@@ -249,6 +253,7 @@
 				29140E43220352500060522E /* SearchDelegate.swift */,
 				2980CBE12208D89200AC2C11 /* PlayerExtension.swift */,
 				500607FC222715DF00C6F720 /* UIImage.swift */,
+				2947ECEE225160C00018FA09 /* ToastView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 				505B6C2E21F6571E002E392D /* TimeMarkCell.swift */,
 				2F3E975322456EA400CBDB13 /* followersMentionCellCVC.swift */,
 				372B8F72224D282B00382E89 /* BellCell.swift */,
+				2969218D224D24CF00CB4B07 /* LinkCollectionReusableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -481,6 +487,9 @@
 							com.apple.InterAppAudio = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
 						};
 					};
 					FAFF82FF218CEB6D00882A6A = {
@@ -625,6 +634,7 @@
 			files = (
 				502484B021FCED3D00CA84F1 /* EditProfileViewController.swift in Sources */,
 				FA49932A218DCD3E0021CFA3 /* PodcastSearchController.swift in Sources */,
+				2947ECEF225160C00018FA09 /* ToastView.swift in Sources */,
 				29140E44220352500060522E /* SearchDelegate.swift in Sources */,
 				2F3E975422456EA400CBDB13 /* followersMentionCellCVC.swift in Sources */,
 				FA397ED72195E66D00D33617 /* SearchResults.swift in Sources */,
@@ -644,6 +654,7 @@
 				3723A1F521A9C66400D5FAE9 /* EpisodeCell.swift in Sources */,
 				500607FD222715DF00C6F720 /* UIImage.swift in Sources */,
 				290E0C4A223044210000E7DF /* PeopleCell.swift in Sources */,
+				2969218E224D24CF00CB4B07 /* LinkCollectionReusableView.swift in Sources */,
 				372023AE220373A300D0C555 /* PlaylistCell.swift in Sources */,
 				505B6C3121F6571E002E392D /* TimeMarkCell.swift in Sources */,
 				2FF0D74622175C7700F40025 /* playlistCellAddingCVC.swift in Sources */,
@@ -862,7 +873,7 @@
 				CODE_SIGN_ENTITLEMENTS = Podcast/Podcast.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WF36QP22R7;
+				DEVELOPMENT_TEAM = WNQXTPYNXK;
 				INFOPLIST_FILE = Podcast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -889,7 +900,7 @@
 				CODE_SIGN_ENTITLEMENTS = Podcast/Podcast.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WF36QP22R7;
+				DEVELOPMENT_TEAM = WNQXTPYNXK;
 				INFOPLIST_FILE = Podcast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (

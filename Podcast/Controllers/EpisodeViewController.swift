@@ -20,7 +20,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet var playlistsCV: UICollectionView!
     @IBOutlet var followerCV: UICollectionView!
-    
+
 
     
     //Repost/Comment View
@@ -28,7 +28,10 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     let dbs = DBService.shared
     @IBOutlet var writePost: UIView!
     @IBOutlet weak var postContentTV: UITextView!
-    @IBOutlet weak var commentContentTF: UITextField!
+    
+    @IBOutlet weak var playButton: UIButton!
+    
+    var postType: String = ""
     
     var comments = [CommentObj]()
     let cellId = "cellId"
@@ -84,7 +87,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     //Comment button
     @IBOutlet weak var commentButton: UIButton!{
         didSet{
-            commentButton.addTarget(self, action: #selector(addNewComment), for: .touchUpInside)
+            commentButton.addTarget(self, action: #selector(repostHandler), for: .touchUpInside)
         }
     }
     
@@ -110,13 +113,21 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
-        setUpDatabases()
+        if (Auth.auth().currentUser?.uid) != nil {
+            setUpDatabases()
+        }
+        
         setAttributes()
         setUpComments()
+        
+        self.playButton.layer.cornerRadius = playButton.layer.frame.size.width/2
+        self.view.addSubview(self.playButton)
         
         playlistsCV.delegate = self
         playlistsCV.dataSource = self
@@ -173,6 +184,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         
     }
     
+    //MARK:- DOWNLOAD
     @objc func downloadHandler(){
         UserDefaults.standard.downloadEpisode(episode: episode.self)
         APIService.shared.downloadEpisode(episode: episode.self)
@@ -196,6 +208,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     @objc func addToPlaylist(){
+        
         blackView.backgroundColor = UIColor.black
         blackView.alpha = 0
         
@@ -218,12 +231,20 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }, completion: nil)
     }
     
+    
     @objc func recommendToUser(){
+        
+        guard (Auth.auth().currentUser?.uid) != nil else {
+            self.copyLinkToClipboard()
+            self.view.showToast(toastMessage: "Link Copied Seccessfully", duration: 1.1)
+            return
+        }
         
         blackView.backgroundColor = UIColor.black
         blackView.alpha = 0
         
         blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handelDismiss)))
+        
         
         self.view.addSubview(blackView)
         self.view.addSubview(followerCV)
@@ -233,8 +254,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         if followers.isEmpty{
             followers = dbs.followers
         }
-        
-        
         let cvHeight = CGFloat(50 * followers.count) + (self.tabBarController?.tabBar.frame.height)!
         let y = self.view.frame.height - cvHeight
         followerCV.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: cvHeight)
@@ -247,10 +266,12 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             self.tabBarController?.tabBar.isHidden = true
             PlayerDetailsViewController.shared.view.isHidden = true
         }, completion: nil)
+        
     }
     
-    
+    //MARK:- BOOKMARK
     @objc func bookmarkAddingHandler(){
+    
         // Checking if the button has highlighted image or not to run the correct operation
         if bookmarkButton.currentImage.hashValue == UIImage(named: "bookmark").hashValue{
             UserDefaults.standard.addBookmark(episode: episode)
@@ -260,13 +281,12 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             bookmarkButton.setImage(UIImage(named: "bookmark"), for: .normal)
         }
     }
+    
+    //MARK:- LIKE
     @IBAction func likePressed(_ sender: Any) {
         // check if the user register
-        guard let uid = Auth.auth().currentUser?.uid else {
-            let alert = UIAlertController(title: "Not Register", message: "You have to register to get this feature", preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alert.addAction(alertAction)
-            present(alert,animated: true,completion: nil)
+        guard (Auth.auth().currentUser?.uid) != nil else {
+            self.alertUser("Not Register", "You have to register to get this feature")
             return
         }
         
@@ -313,7 +333,14 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     //MARK:- Post handeler
     @objc func createNewPost(){
-        self.addNewPost()
+        
+        if postType == "repost" {
+            self.addNewPost()
+            
+        } else {
+            self.addNewComment()
+        }
+        
         self.hidePostView()
     }
     
@@ -329,6 +356,8 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             alertUser("Not Register", "You have to register to get this feature")
             return
         }
+        
+        postType = sender.currentTitle!
         
         blackView.backgroundColor = UIColor.black
         blackView.alpha = 0
@@ -382,7 +411,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             return cell
         }else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "follower", for: indexPath) as! followersMentionCellCVC
-            print(followers[indexPath.row])
             cell.setAttributes(person: followers[indexPath.row])
             return cell
         }
@@ -397,7 +425,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }else {
             var ref:DocumentReference? = nil
             let user = followers[indexPath.row].uid
-            print(followers[indexPath.row].uid)
+
             var mentionDetails = ["uid" : userID,
                            "author": username,
                            "author_img":userImage,
@@ -428,7 +456,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     }
     
     func setUpDatabases(){
-        print("1111")        
         self.userID = Auth.auth().currentUser?.uid
         self.dbs.getPerson(uid: userID!) {(person) in
             self.person = person

@@ -38,7 +38,7 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
         guard let feedURL = podcast?.feedUrl else {
             return
         }
-        print("looooooooooook heeeeerrrr\(feedURL)")
+        
         APIService.shared.fetchEpisodes(feedUrl: feedURL) { (episodes) in
             self.episodes = episodes
             DispatchQueue.main.async {
@@ -144,8 +144,6 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
                 let destination = segue.destination as! EpisodeViewController
                 // dont assign value directly because the destinition view visual component not created yet
                 destination.episode = episodes[indexPath.row]
-                print(destination.episode.title)
-                
             }
         }
     }

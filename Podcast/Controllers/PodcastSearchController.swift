@@ -36,6 +36,10 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
     var people = [Person]()
     
     
+    //for the link
+    var selectedscope: String?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,7 +63,7 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
         //adding scope buttons to the search
-        searchController.searchBar.scopeButtonTitles = ["Channels", "People"]
+        searchController.searchBar.scopeButtonTitles = ["Channels", "People", "Link"]
     }
     
     // executes whenever the text in the search bar changes
@@ -83,7 +87,6 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
 
             Database.database().reference().child("usersInfo").queryOrdered(byChild: "searchName").queryStarting(atValue: searchText.lowercased()).queryEnding(atValue: searchText.lowercased() + "\u{f8ff}").observe(.childAdded) {
                     (snapshot) in
-                    print(snapshot)
                     if let dict = snapshot.value as? [String: AnyObject]{
 
                         let person = Person(uid: snapshot.key, dictionary: dict)
@@ -91,7 +94,6 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
 
                         self.searchDelegate.updatePeople(people: self.people)
                         self.resultTableView.reloadData()
-                        print(self.people.count)
                 }
             }
         }
@@ -113,11 +115,44 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        self.searchDelegate.searchScope = searchBar.scopeButtonTitles! [selectedScope]
-        self.resultTableView.reloadData()
-        print(searchBar.scopeButtonTitles! [selectedScope])
-        
-        
+        if searchBar.scopeButtonTitles! [selectedScope] != "Link" {
+            self.searchDelegate.searchScope = searchBar.scopeButtonTitles! [selectedScope]
+            self.resultTableView.reloadData()
+        }
+        self.selectedscope = searchBar.scopeButtonTitles! [selectedScope]
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if selectedscope == "Link" {
+            let link = searchBar.text ?? ""
+            let start = link.range(of: "Chennel:")?.upperBound
+            let mid = link.range(of: ":Episode:")?.lowerBound
+            let end = link.range(of: ":Episode:")?.upperBound
+            
+            APIService.shared.fetchEpisodes(feedUrl: String(link[start!..<mid!])) { (Episodes) in
+                var ep: Episode?
+                for episode in Episodes{
+                    
+                    if episode.streamURL ==  link[end!...] {
+                        ep = episode
+                        break
+                    }
+                   
+                }
+                
+                DispatchQueue.main.async {
+                    let episodeStoryboard = UIStoryboard(name: "Episode", bundle: Bundle.main)
+                    guard let destinationViewController = episodeStoryboard.instantiateInitialViewController() as?
+                        EpisodeViewController else {
+                            return
+                    }
+                    destinationViewController.episode = (ep ?? nil)!
+                    self.navigationController?.pushViewController(destinationViewController, animated: true)
+                }
+
+            }
+
+        }
     }
     
     
@@ -181,9 +216,6 @@ extension PodcastSearchController: UICollectionViewDelegate, UICollectionViewDat
             self.categories = categories
             self.tableView.reloadData()
         
-        }
-        for c in self.categories {
-            print("CAT="+c.title)
         }
     
         self.definesPresentationContext = true // This will add navigation header for every controller you move to

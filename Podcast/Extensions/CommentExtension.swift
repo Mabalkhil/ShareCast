@@ -74,10 +74,9 @@ extension EpisodeViewController{
                     print("Document inserted successfully with ID: \(ref!.documentID)")
                 }
         }
-        
-        print(self.followersIDs)
+
         for userUID in self.followersIDs{
-            print(userUID)
+
             ref = self.fireStoreDatabaseRef
                 .collection("general_timelines")
                 .document(userUID)
@@ -112,16 +111,15 @@ extension EpisodeViewController{
         realName: person?.name ?? "",
         username: self.username!,
         img: userImage ?? "" ,
-        com: commentContentTF.text!)
+        com: postContentTV.text!)
         
-        commentContentTF.placeholder = "Comment here"
-        commentContentTF.text = ""
+    
+        postContentTV.text = ""
         
         self.dbs.postComment(episode: self.episode, comment: comment) {commentID in
             
             DispatchQueue.main.async {
                 comment.commentID = commentID
-                print(commentID)
                 self.comments.append(comment)
                 self.tableView.reloadData()
             }
@@ -151,19 +149,16 @@ extension EpisodeViewController{
             return
         }
         
-        print("Starting deletion")
         let comment = self.comments[indexPath.row]
         
         if comment.userName != self.username {
             alertUser("Sorry", "You are not authorized to delete this comment!!")
             
         } else {
-            print("In else statement")
             self.dbs.deleteComment(episode: self.episode, commentID: comment.commentID!) {
                 
                 DispatchQueue.main.async {
                     self.comments.remove(at: indexPath.row)
-                    print("Cell removed from list !!!!")
                     self.tableView.reloadData()
                 }
             }
@@ -182,6 +177,24 @@ extension EpisodeViewController{
        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style:.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+        
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if (kind == UICollectionView.elementKindSectionHeader) {
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCollectionReusableView", for: indexPath) as! LinkCollectionReusableView
+            headerView.copyLinkButton.addTarget(self, action: #selector(copyLinkToClipboard), for: .touchUpInside)
+            return headerView
+        }
+        fatalError()
+    }
+    
+    
+    @objc func copyLinkToClipboard(){
+        UIPasteboard.general.string = "Chennel:\(episode.channelURL!):Episode:\(episode.streamURL)"
+        self.view.showToast(toastMessage: "Link Copied Seccessfully", duration: 1.1)
+        handelDismiss()
     }
     
 }
