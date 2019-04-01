@@ -21,7 +21,7 @@
                                 <rect key="frame" x="47.666666666666657" y="208" width="280" height="231"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Share_cast_logo" translatesAutoresizingMaskIntoConstraints="NO" id="mfe-bf-BRc">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="160"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="160.00000000000091"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="160" id="8gA-6G-tIs"/>
                                             <constraint firstAttribute="width" constant="280" id="eDF-Ci-AE2"/>
@@ -339,7 +339,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k2b-Tb-ZW0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3004" y="479.55665024630542"/>
+            <point key="canvasLocation" x="3004" y="490"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="oLg-Dm-v63">
@@ -429,14 +429,32 @@
                                     </segue>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvc-MU-mK2" customClass="RoundedWhiteButton" customModule="Podcast" customModuleProvider="target">
+                                <rect key="frame" x="62.666666666666657" y="448" width="249.99999999999997" height="50"/>
+                                <color key="backgroundColor" red="0.86666666670000003" green="0.4205085039" blue="0.38821679349999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="EVT-zh-ECm"/>
+                                    <constraint firstAttribute="height" constant="50" id="KuV-yS-OC2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <state key="normal" title="Sign in with Google ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="SignInWithGoogle:" destination="7KT-5j-to2" eventType="touchUpInside" id="bgM-13-rAR"/>
+                                    <segue destination="uYb-Xq-7Bb" kind="show" id="Dls-2u-EIM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.30196529626846313" green="0.30195263028144836" blue="0.30196121335029602" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="M6e-Kg-5k8" firstAttribute="top" secondItem="T2U-5F-rNQ" secondAttribute="top" constant="40" id="1L1-MW-k3p"/>
+                            <constraint firstItem="Lvc-MU-mK2" firstAttribute="centerX" secondItem="SGK-KC-H4C" secondAttribute="centerX" id="GIV-Qg-GkT"/>
                             <constraint firstItem="M6e-Kg-5k8" firstAttribute="centerX" secondItem="SGK-KC-H4C" secondAttribute="centerX" id="HCi-R3-mpw"/>
                             <constraint firstItem="T2U-5F-rNQ" firstAttribute="trailing" secondItem="YqC-xu-acM" secondAttribute="trailing" constant="47.5" id="M6R-Sq-Bgh"/>
                             <constraint firstItem="YqC-xu-acM" firstAttribute="leading" secondItem="T2U-5F-rNQ" secondAttribute="leading" constant="47.5" id="MwT-cl-bX0"/>
                             <constraint firstItem="YqC-xu-acM" firstAttribute="top" secondItem="M6e-Kg-5k8" secondAttribute="bottom" constant="50" id="U52-Lh-MTS"/>
+                            <constraint firstItem="Lvc-MU-mK2" firstAttribute="top" secondItem="olD-Ri-Vez" secondAttribute="bottom" constant="33" id="ZCc-uj-EBH"/>
                             <constraint firstItem="olD-Ri-Vez" firstAttribute="top" secondItem="YqC-xu-acM" secondAttribute="bottom" constant="30" id="a2S-ol-BDp"/>
                             <constraint firstItem="olD-Ri-Vez" firstAttribute="centerX" secondItem="SGK-KC-H4C" secondAttribute="centerX" id="o2b-q1-nDC"/>
                         </constraints>
@@ -613,4 +631,7 @@
         <image name="Share_cast_logo" width="3962" height="3873"/>
         <image name="close" width="16" height="16"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Dls-2u-EIM"/>
+    </inferredMetricsTieBreakers>
 </document>

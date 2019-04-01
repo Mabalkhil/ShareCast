@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 import Firebase
-import TwitterKit
 import FBSDKCoreKit
 import GoogleSignIn
 let primaryColor = UIColor(red: 60/255, green: 133/255, blue: 198/255, alpha: 1)

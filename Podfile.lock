@@ -156,9 +156,6 @@ PODS:
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
-  - TwitterCore (3.2.0)
-  - TwitterKit (3.4.2):
-    - TwitterCore (>= 3.2.0)
 
 DEPENDENCIES:
   - ACBAVPlayer
@@ -172,7 +169,6 @@ DEPENDENCIES:
   - Firebase/Storage
   - GoogleSignIn
   - SDWebImage (~> 4.0)
-  - TwitterKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -206,8 +202,6 @@ SPEC REPOS:
     - nanopb
     - Protobuf
     - SDWebImage
-    - TwitterCore
-    - TwitterKit
 
 SPEC CHECKSUMS:
   ACBAVPlayer: 1886a0d4484fa2eba023a369a3cbd5c95aa0017e
@@ -240,9 +234,7 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
-  TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
-  TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: 7ed328f92832ed7d3e1ba37d131c073b46f8d114
+PODFILE CHECKSUM: 184be83cff1a25be34685e67cc886bd3aa4036d1
 
 COCOAPODS: 1.5.3

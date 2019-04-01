@@ -18,6 +18,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
     var continueButton:RoundedWhiteButton!
     var activityView:UIActivityIndicatorView!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -57,24 +58,13 @@ class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
        // back.isUserInteractionEnabled=true
         //back.addGestureRecognizer(tap)
         //back.ta
-        setupGoogleButtons()
+        
+        // google configration
+         GIDSignIn.sharedInstance().uiDelegate = self
     }
-    fileprivate func setupGoogleButtons() {
-        //add google sign in button
-        let googleButton = GIDSignInButton()
-        googleButton.frame = CGRect(x: 16, y: 116 + 300, width: view.frame.width - 32, height: 50)
-        view.addSubview(googleButton)
+    @IBAction func SignInWithGoogle(_ sender: Any) {
+        handleCustomGoogleSign()
         
-        let customButton = UIButton(type: .system)
-        customButton.frame = CGRect(x: 16, y: 116 + 300 + 66, width: view.frame.width - 32, height: 50)
-        customButton.backgroundColor = .orange
-        customButton.setTitle("Custom Google Sign In", for: .normal)
-        customButton.addTarget(self, action: #selector(handleCustomGoogleSign), for: .touchUpInside)
-        customButton.setTitleColor(.white, for: .normal)
-        customButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        view.addSubview(customButton)
-        
-        GIDSignIn.sharedInstance().uiDelegate = self
     }
     
     @objc func handleCustomGoogleSign() {
