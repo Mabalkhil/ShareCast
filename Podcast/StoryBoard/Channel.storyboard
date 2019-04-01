@@ -61,7 +61,10 @@
                                                 <constraint firstAttribute="height" constant="25" id="T2F-7d-xK9"/>
                                             </constraints>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <state key="normal" image="alarm"/>
+                                            <state key="normal" title="Bell" image="alarm"/>
+                                            <connections>
+                                                <action selector="BellButton:" destination="cXx-ja-GBT" eventType="touchUpInside" id="duG-uD-stc"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PCx-VY-4IN" userLabel="name Label">
                                             <rect key="frame" x="14" y="283" width="171" height="30"/>

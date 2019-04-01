@@ -112,6 +112,8 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
         setUpDatabases()
         setAttributes()
         setUpComments()
@@ -218,7 +220,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     
     @objc func recommendToUser(){
         
-        
         blackView.backgroundColor = UIColor.black
         blackView.alpha = 0
         
@@ -227,11 +228,13 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         self.view.addSubview(blackView)
         self.view.addSubview(followerCV)
         
+        print("------------------------")
+        print(followers)
         if followers.isEmpty{
             followers = dbs.followers
         }
         
-        print(followers)
+        
         let cvHeight = CGFloat(50 * followers.count) + (self.tabBarController?.tabBar.frame.height)!
         let y = self.view.frame.height - cvHeight
         followerCV.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: cvHeight)
@@ -435,6 +438,11 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
 
         dbs.getFollowers2 { (result) in
             self.followers = result
+            
+            DispatchQueue.main.async {
+                self.blackView.setNeedsLayout()
+                self.blackView.layoutIfNeeded()
+            }
         }
     }
     

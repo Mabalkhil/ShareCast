@@ -20,6 +20,7 @@ class BookmarkController: UITableViewController {
     override func viewDidLoad() {
         bookmarks.delegate = self
         bookmarks.dataSource = self
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
         if (bookedMarked.count == 0){
             bookmarks.backgroundView = emptyView
         }else {

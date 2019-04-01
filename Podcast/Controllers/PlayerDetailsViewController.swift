@@ -114,7 +114,10 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
         }
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBar.isHidden = true
+        
     }
+    
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -133,6 +136,11 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
     static func getPlayer() -> PlayerDetailsViewController {
         return shared
     }
+    
+    
+    
+  
+    
     
     
     //MARK:- Showing Progress
@@ -194,6 +202,8 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
             trueLocation.appendPathComponent(fileName)
            let playerItem = AVPlayerItem(url: trueLocation)
             playerItem.addObserver(self, forKeyPath: "tracks", options: NSKeyValueObservingOptions.new, context:  nil);
+            playerItem.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: nil)
+            playerItem.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: nil)
             player.isMeteringEnabled = true
             player.replaceCurrentItem(with: playerItem)
             player.play()
@@ -461,7 +471,19 @@ class PlayerDetailsViewController: UIViewController,MYAudioTabProcessorDelegate 
                     tapProcessor.delegate = self
                 }
             }
+        }else if (object as? AVPlayerItem == player.currentItem && keyPath == "playbackBufferEmpty"){
+            if player.currentItem!.isPlaybackBufferEmpty {
+                print("no buffer")
+                self.player.play()
+            }
+        }else if (object as? AVPlayerItem == player.currentItem && keyPath == "playbackLikelyToKeepUp"){
+            if player.currentItem!.isPlaybackLikelyToKeepUp {
+                self.player.play()
+            }
         }
+        
+        
+        
     }
 
     func audioTabProcessor(_ audioTabProcessor: MYAudioTapProcessor!, hasNewLeftChannelValue leftChannelValue:Float, rightChannelValue: Float) {

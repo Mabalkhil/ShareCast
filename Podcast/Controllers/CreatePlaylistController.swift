@@ -31,6 +31,7 @@ class CreatePlaylistController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         createPlaylistTable.delegate = self
         createPlaylistTable.dataSource = self
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
         if (playlists.count == 0){
             createPlaylistTable.backgroundView = emptyView
         }else {

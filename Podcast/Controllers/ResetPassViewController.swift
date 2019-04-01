@@ -30,8 +30,7 @@ class ResetPassViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
- 
+
     }
 
     @IBAction func resetPass(sender: UIButton){

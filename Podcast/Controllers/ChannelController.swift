@@ -9,6 +9,10 @@
 import UIKit
 import Firebase
 
+
+
+
+
 class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDataSource{
     
     // Outlets
@@ -58,7 +62,25 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
             }
         }
 
-
+    }
+    
+    
+    func checkUserBell(){
+        guard let uid = firebaseReff?.uid else {
+            headerView.BellButton.setTitle("Bell", for: .normal)
+            return
+        }
+        
+        self.dbs.checkBell(podcast: podcast!) {
+            (exists) in
+            if exists {
+                self.headerView.BellButton.setTitle("Unbell", for: .normal)
+                self.headerView.BellButton.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
+            } else {
+                self.headerView.BellButton.setTitle("Bell", for: .normal)
+                self.headerView.BellButton.tintColor = UIColor.white
+            }
+        }
     }
     
     
@@ -66,6 +88,7 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -76,9 +99,10 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         
-    
+        
          //Configure the table view
          checkUserSubscriptions()
+         checkUserBell()
 
       
         guard let url = URL(string : podcast?.artworkUrl600 ?? "") else {return}
@@ -94,6 +118,7 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
         headerView.SubButton.layer.borderColor = UIColor.white.cgColor
         headerView.SubButton.layer.cornerRadius = 5
         headerView.SubButton.clipsToBounds = true
+        
     }
     
      func numberOfSections(in tableView: UITableView) -> Int {
@@ -101,10 +126,9 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
     }
 
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return episodes.count
-      
     }
+    
         // Filling the TableViewCell
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChennelTableViewCell
@@ -155,6 +179,43 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
         }
         
     }
+    
+    
+    @IBAction func BellButton(_ sender: Any) {
+        
+        // unregister user
+        guard  let uid = firebaseReff?.uid else {
+            self.alert = UIAlertController(title: "Not Register", message: "You have to register to get this feature", preferredStyle: .alert)
+            self.alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            self.alert.addAction( self.alertAction)
+            present(self.alert,animated: true,completion: nil)
+            return
+        }
+        
+        if headerView.BellButton.currentTitle == "Bell" {
+            dbs.bellAChannel(podcast: podcast!)
+            headerView.BellButton.setTitle("Unbell", for: .normal)
+            self.headerView.BellButton.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
+        }else {
+            self.alert = UIAlertController(title: "Are you sure you want to unbell", message: "", preferredStyle: .alert)
+            let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                self.dbs.unBellAChannel(podcast: self.podcast!)
+                self.headerView.BellButton.setTitle("Bell", for: .normal)
+                self.headerView.BellButton.tintColor = UIColor.white
+                return
+            })
+            self.alertAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+            self.alert.addAction(self.alertAction)
+            self.alert.addAction(yesAction)
+            present(self.alert,animated: true,completion: nil)
+            return
+
+        }
+    }
+    
+    
+    
+    
     
     
     

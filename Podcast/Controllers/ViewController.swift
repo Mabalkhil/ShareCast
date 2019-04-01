@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         view.backgroundColor = UIColor(red: 82/255, green: 82/255, blue: 82/255, alpha: 1.0)
-        
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
         imageView.image = image
         imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         imageView.center = self.view.center

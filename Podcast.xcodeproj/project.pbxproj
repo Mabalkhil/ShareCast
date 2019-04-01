@@ -39,6 +39,8 @@
 		3723A1F921A9CDD100D5FAE9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A1F821A9CDD100D5FAE9 /* String.swift */; };
 		3723A1FB21A9D18400D5FAE9 /* RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A1FA21A9D18400D5FAE9 /* RSSFeed.swift */; };
 		3723A20521AB373A00D5FAE9 /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723A20421AB373A00D5FAE9 /* CMTime.swift */; };
+		372B8F71224D24BD00382E89 /* BellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372B8F70224D24BD00382E89 /* BellController.swift */; };
+		372B8F73224D282B00382E89 /* BellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372B8F72224D282B00382E89 /* BellCell.swift */; };
 		375DD44C2201ECA700C2D698 /* CreatePlaylistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375DD44B2201ECA700C2D698 /* CreatePlaylistController.swift */; };
 		375DD44E2201ED8C00C2D698 /* PlaylistsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375DD44D2201ED8C00C2D698 /* PlaylistsCell.swift */; };
 		375DD4502201F27D00C2D698 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375DD44F2201F27D00C2D698 /* Playlist.swift */; };
@@ -141,6 +143,8 @@
 		3723A1F821A9CDD100D5FAE9 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		3723A1FA21A9D18400D5FAE9 /* RSSFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeed.swift; sourceTree = "<group>"; };
 		3723A20421AB373A00D5FAE9 /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
+		372B8F70224D24BD00382E89 /* BellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellController.swift; sourceTree = "<group>"; };
+		372B8F72224D282B00382E89 /* BellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellCell.swift; sourceTree = "<group>"; };
 		375DD44B2201ECA700C2D698 /* CreatePlaylistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistController.swift; sourceTree = "<group>"; };
 		375DD44D2201ED8C00C2D698 /* PlaylistsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsCell.swift; sourceTree = "<group>"; };
 		375DD44F2201F27D00C2D698 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
@@ -308,6 +312,7 @@
 				2F9AD7A922245638000D00BA /* TimelineTVC.swift */,
 				505B6C2E21F6571E002E392D /* TimeMarkCell.swift */,
 				2F3E975322456EA400CBDB13 /* followersMentionCellCVC.swift */,
+				372B8F72224D282B00382E89 /* BellCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 				2F9AD7A722245331000D00BA /* TimelineViewController.swift */,
 				290E0C4F223065C90000E7DF /* UsersProfileController.swift */,
 				FAFF82EE218CEB6400882A6A /* ViewController.swift */,
+				372B8F70224D24BD00382E89 /* BellController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -641,9 +647,11 @@
 				372023AE220373A300D0C555 /* PlaylistCell.swift in Sources */,
 				505B6C3121F6571E002E392D /* TimeMarkCell.swift in Sources */,
 				2FF0D74622175C7700F40025 /* playlistCellAddingCVC.swift in Sources */,
+				372B8F73224D282B00382E89 /* BellCell.swift in Sources */,
 				FA397ED92195E68E00D33617 /* Episode.swift in Sources */,
 				3701CEDE220D294000684E18 /* MYAudioTapProcessor.m in Sources */,
 				506217DA21FB26C20003F99F /* ProfileView.swift in Sources */,
+				372B8F71224D24BD00382E89 /* BellController.swift in Sources */,
 				2FE5C9992201FAEF00FCEE4E /* BookmarkCell.swift in Sources */,
 				2FC15E982201F4A600DF1FD4 /* BookmarkController.swift in Sources */,
 				2980CBE22208D89200AC2C11 /* PlayerExtension.swift in Sources */,

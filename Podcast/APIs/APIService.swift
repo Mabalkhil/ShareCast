@@ -79,7 +79,6 @@ class APIService {
         
         
        self.request = Alamofire.download(episode.streamURL, to: downloadRequest).downloadProgress { (progress) in
-            print(progress.fractionCompleted)
             self.downloadProgress = progress.fractionCompleted
             NotificationCenter.default.post(name: .downloadProgress, object: nil, userInfo: ["title": episode.title, "progress": progress.fractionCompleted ])
             
