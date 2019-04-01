@@ -15,7 +15,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var timeline: UITableView!
     var posts = [Post]()
     var db = Firestore.firestore()
-    
+    let refreshControl = UIRefreshControl()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
@@ -24,7 +25,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         
         loadData()
         checkForUpdate()
-        // Do any additional setup after loading the view.
+        
+        timeline.refreshControl = self.refreshControl
+        self.refreshControl.addTarget(self, action: "refreshHandler", for: UIControl.Event.valueChanged)
     }
 
     
@@ -105,19 +108,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    
-    
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
@@ -126,6 +116,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = timeline.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! TimelineTVC
         cell.setAttributes(post: posts[indexPath.row])
         return cell
+    }
+    
+    @objc func refreshHandler() {
+        loadData()
+        checkForUpdate()
+        self.refreshControl.endRefreshing()
     }
     
     

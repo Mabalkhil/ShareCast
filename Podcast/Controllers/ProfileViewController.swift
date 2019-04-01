@@ -28,6 +28,8 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     let chache = NSCache<NSString,UIImage>()
     let dbs = DBService.shared
     
+    let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if uid != nil {
@@ -38,6 +40,9 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         privateTimeline.dataSource = self
         loadData()
         checkForUpdate()
+        
+        privateTimeline.refreshControl = self.refreshControl
+        self.refreshControl.addTarget(self, action: "refreshHandler", for: UIControl.Event.valueChanged)
     }
     
     func setUpProfilePic(){
@@ -176,8 +181,11 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
          picker.dismiss(animated: true, completion: nil)
     }
     
-    
-    
+    @objc func refreshHandler() {
+        loadData()
+        checkForUpdate()
+        self.refreshControl.endRefreshing()
+    }
     
     // when a segue triggred  and before the visual transition occure
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
