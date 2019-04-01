@@ -301,6 +301,9 @@
                     </view>
                     <connections>
                         <outlet property="ProfileImage" destination="jaA-KG-YLP" id="ovo-6U-cA1"/>
+                        <outlet property="followersLabel" destination="FI7-Wt-diG" id="vmo-ha-foq"/>
+                        <outlet property="followingLabel" destination="tfl-sm-VPi" id="XRE-Oi-UaI"/>
+                        <outlet property="postsLabel" destination="jet-Kh-Jls" id="2p3-wk-Gaz"/>
                         <outlet property="privateTimeline" destination="nkK-Nw-VAa" id="h4A-hh-Ezt"/>
                     </connections>
                 </viewController>

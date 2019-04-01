@@ -13,9 +13,15 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     
     @IBOutlet weak var privateTimeline: UITableView!
     @IBOutlet weak var ProfileImage: UIImageView!
+    @IBOutlet weak var postsLabel: UIButton!
+    @IBOutlet weak var followingLabel: UIButton!
+    @IBOutlet weak var followersLabel: UIButton!
+    
 
     // variables
     var profileInfo : ProfileView!
+    var followersIDs = [String]()
+    var followingIDs = [String]()
     let reffStor = Storage.storage().reference(forURL: "gs://sharecast-c780f.appspot.com").child("profile_Image")
     let uid = Auth.auth().currentUser?.uid
     var posts = [Post]()
@@ -61,11 +67,21 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         dbs.loadProfilePosts {
             (posts) in
             self.posts = posts
+            self.postsLabel.setTitle("\(self.posts.count)", for: UIControl.State.normal)
             DispatchQueue.main.async {
                 self.privateTimeline.reloadData()
             }
         }
-
+        
+        dbs.getFollowersIDs { (result) in
+            self.followersIDs = result
+            self.followersLabel.setTitle("\(self.followersIDs.count)", for: UIControl.State.normal)
+        }
+        
+        dbs.getFollowingIDs { (result) in
+            self.followingIDs = result
+            self.followingLabel.setTitle("\(self.followingIDs.count)", for: UIControl.State.normal)
+        }
     }
     
     func checkForUpdate() {
