@@ -153,6 +153,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         }
     }
     
+
     
    
     override func viewDidLayoutSubviews() {
@@ -464,6 +465,16 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         return 0
     }
     
+    //MARK:- Comments
+    func setUpComments(){
+        dbs.getComments(episode: self.episode) { (comments) in
+            DispatchQueue.main.async {
+                self.comments = comments
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     func setUpDatabases(){
         self.userID = Auth.auth().currentUser?.uid
         if self.userID != nil {
@@ -487,14 +498,10 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         postContentTV.text = ""
     }
     
-    //MARK:- Comments
-    func setUpComments(){
-        dbs.getComments(episode: self.episode) { (comments) in
-            DispatchQueue.main.async {
-                self.comments = comments
-                self.tableView.reloadData()
-            }
-        }
-    }
+   
+
+
 }
 
+
+}
