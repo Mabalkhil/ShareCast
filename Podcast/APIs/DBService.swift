@@ -97,6 +97,30 @@ class DBService {
         }
     }
     
+    func personExists(uid: String , completionHandler: @escaping (Bool) -> ()){
+        
+        self.db
+            .collection("usersInfo")
+            .document(uid)
+            .getDocument {
+                (snapshot, err) in
+                if let err = err {
+                    print("FIRESTORE: Error getting  Person with id \(uid) : \(err)")
+                    completionHandler(false)
+                } else {
+                    if let personDic = snapshot?.data() {
+                        let person = Person(uid: uid, dictionary: personDic)!
+                        completionHandler(true)
+                    }
+                    else {
+                        print("FIRESTORE: Error parsing  Person with id \(uid)")
+                        completionHandler(false)
+                    }
+                    
+                }
+        }
+    }
+    
     func getPersons(uids : [String], completionHandler: @escaping ([Person]) -> ()){
         var count = 0
         var persons = [Person]()

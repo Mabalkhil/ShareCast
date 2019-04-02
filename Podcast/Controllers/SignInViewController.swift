@@ -65,7 +65,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
         //add google sign in button
         let googleButton = GIDSignInButton()
         googleButton.frame = CGRect(x: 16, y: 116 + 300, width: view.frame.width - 32, height: 50)
-        view.addSubview(googleButton)
+//        view.addSubview(googleButton)
         
         let customButton = UIButton(type: .system)
         customButton.frame = CGRect(x: 16, y: 116 + 300 + 66, width: view.frame.width - 32, height: 50)
@@ -161,21 +161,36 @@ class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
                 print("Failed to create a Firebase User with Google account: ", err)
                 return
             }
-            
-            guard let uid = user?.uid else { return }
-            var dictionary : [String:Any]{
-                return [
-                    "email": user?.email,
-                    "profileImageURL": user?.photoURL?.absoluteString,
-                    "firstName": user?.displayName,
-                    "lastName":"",
-                    "username":"@\(user?.uid)"
-                ]
-            }
-            DBService.shared.singup(person: Person(dictionary: dictionary)!, uid: uid, completionHandler: { (alert) in
-                print(dictionary)
+            DBService.shared.personExists(uid: user!.uid, completionHandler: {
+                (exists) in
+                
+                if(!exists){
+                    guard let uid = user?.uid else { return }
+                    var dictionary : [String:Any]{
+                        return [
+                            "email": user?.email ?? "",
+                            "profileImageURL": user?.photoURL?.absoluteString ?? "",
+                            "firstName": user?.displayName ?? "",
+                            "username": user?.displayName?.trimmingCharacters(in: .whitespaces)
+                        ]
+                    }
+                    
+                    
+                    let person = Person(dictionary: dictionary)!
+                    DBService.shared.singup(person: person, uid: uid, completionHandler: { (alert) in
+                        
+                    })
+                    
+                }
+                else{
+                    
+                }
+                let mainView = MainTabBarController()
+                self.present(mainView,animated: true,completion: nil)
+
             })
-            print("Successfully logged into Firebase with Google", uid)
+            
+            print("Successfully logged into Firebase with Google", user!.uid)
         })
     }
 
