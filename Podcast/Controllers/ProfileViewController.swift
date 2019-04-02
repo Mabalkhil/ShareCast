@@ -38,8 +38,8 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         
         privateTimeline.delegate = self
         privateTimeline.dataSource = self
-        loadData()
         checkForUpdate()
+        loadData()
         
         privateTimeline.refreshControl = self.refreshControl
         self.refreshControl.addTarget(self, action: "refreshHandler", for: UIControl.Event.valueChanged)
@@ -112,8 +112,10 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let postId = self.posts[indexPath.row].post_id
         self.dbs.deletePost(postId: postId!)
+        posts.remove(at: indexPath.row)
+        privateTimeline.deleteRows(at: [indexPath], with: .automatic)
+        //viewDidLoad()
         privateTimeline.reloadData()
-        viewDidLoad()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     
@@ -183,7 +185,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     
     @objc func refreshHandler() {
         loadData()
-        checkForUpdate()
+        //checkForUpdate()
         self.refreshControl.endRefreshing()
     }
     

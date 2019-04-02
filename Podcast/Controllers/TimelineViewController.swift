@@ -23,8 +23,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         timeline.delegate = self
         timeline.dataSource = self
         
-        loadData()
         checkForUpdate()
+        loadData()
         
         timeline.refreshControl = self.refreshControl
         self.refreshControl.addTarget(self, action: "refreshHandler", for: UIControl.Event.valueChanged)
@@ -119,8 +119,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func refreshHandler() {
+       // checkForUpdate()
         loadData()
-        checkForUpdate()
         self.refreshControl.endRefreshing()
     }
     
