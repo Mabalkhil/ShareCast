@@ -7,16 +7,22 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
-class SignInViewController: UIViewController, UITextFieldDelegate{
+class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate, GIDSignInDelegate{
+    
+    
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
- //   @IBOutlet weak var back: UILabel!
-    
+ 
+    //   @IBOutlet weak var back: UILabel!
     var continueButton:RoundedWhiteButton!
     var activityView:UIActivityIndicatorView!
     
+    var person:Person?
+    var uid:String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
@@ -52,13 +58,18 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:  #selector(SignInViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false // wait 
         view.addGestureRecognizer(tap)
-        
-       // let tap = UITapGestureRecognizer(target: self, action: #selector(backTomain))
-       // back.isUserInteractionEnabled=true
-        //back.addGestureRecognizer(tap)
-        //back.ta
-        
+
+        // google configration
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance()?.delegate = self
     }
+    
+    @IBAction func SignInWithGoogle(_ sender: Any) {
+         GIDSignIn.sharedInstance().signIn()
+    }
+    
+  
+
     
     //Calls this function when the tap is recognized.
     @objc func dismissKeyboard() {
@@ -117,5 +128,59 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
             }
         }
     }
-
+    
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+       
+        if let err = error {
+            print("Failed to log into Google: ", err)
+            return
+        }
+        
+        print("Successfully logged into Google", user)
+        guard let idToken = user.authentication.idToken else { return }
+        guard let accessToken = user.authentication.accessToken else { return }
+        let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+        
+        Auth.auth().signInAndRetrieveData(with: credentials) { (auth, error) in
+            if let err = error {
+                let errorMsg = error!.localizedDescription
+                let alertController = UIAlertController(title: errorMsg, message: "", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Back", style: .cancel, handler: nil)
+                alertController.addAction(okAction)
+                self.present(alertController,animated: true)
+                return
+            }
+            if !(auth?.additionalUserInfo!.isNewUser)! {
+                
+               
+                let mainView = MainTabBarController()
+                self.present(mainView,animated: true,completion: nil)
+                
+            }else{
+            var dictionary : [String:Any]{
+                return [
+                    "email": auth?.user.email ?? "",
+                    "profileImageURL": "",
+                    "firstName": auth?.user.displayName ?? "" ,
+                    "lastName":"",
+                    "username":"@"
+                ]
+            }
+            self.uid = auth?.user.uid
+            self.person = Person(dictionary: dictionary)!
+            self.performSegue(withIdentifier: "googleSignUp", sender: nil)
+            }
+        }
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {}
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "googleSignUp" {
+             let destination = segue.destination as! googleSignUpController
+                destination.person =  self.person
+                destination.uid = self.uid
+        }
+    }
 }

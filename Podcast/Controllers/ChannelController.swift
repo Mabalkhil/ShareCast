@@ -38,7 +38,7 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
         guard let feedURL = podcast?.feedUrl else {
             return
         }
-        
+
         APIService.shared.fetchEpisodes(feedUrl: feedURL) { (episodes) in
             self.episodes = episodes
             DispatchQueue.main.async {

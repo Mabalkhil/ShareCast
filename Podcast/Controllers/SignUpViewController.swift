@@ -21,13 +21,14 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     
     var continueButton:RoundedWhiteButton!
     var activityView:UIActivityIndicatorView!
-
     let ref = Database.database().reference(fromURL: "https://sharecast-c780f.firebaseio.com/")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         self.navigationController?.navigationBar.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
+
         // add background gardian color
         //view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
         
@@ -62,9 +63,6 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
         view.addGestureRecognizer(tap)
         //tap.cancelsTouchesInView = false // wait for it ??
         
-      //  let tap = UITapGestureRecognizer(target: self, action: #selector(backTomain))
-//        back.isUserInteractionEnabled= true
-//        back.addGestureRecognizer(tap)
         
     }
     

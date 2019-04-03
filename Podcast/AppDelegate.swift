@@ -9,22 +9,26 @@
 import UIKit
 import CoreData
 import Firebase
-
+import FBSDKCoreKit
+import GoogleSignIn
 let primaryColor = UIColor(red: 60/255, green: 133/255, blue: 198/255, alpha: 1)
 let secondaryColor = UIColor(red: 168/255, green: 153/255, blue: 153/255, alpha: 1)
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate{
+    
+    
 
     var window: UIWindow?
 
     //configurations: Firebase - customization
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // firebase Configuration
         FirebaseApp.configure()
-//        window = UIWindow()
-//        window?.makeKeyAndVisible()
-//        window?.rootViewController = MainTabBarController()
+        
+        // google API configuration
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         
         UIApplication.shared.statusBarStyle = .lightContent
         let navigationBarAppearace = UINavigationBar.appearance()
@@ -34,7 +38,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+        
+        GIDSignIn.sharedInstance().handle(url,
+                                          sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String!,
+                                          annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+        
+        return handled
+    }
 
+//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+//        return TWTRTwitter.sharedInstance().application(app, open: url, options: options)
+//    }
+    
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -51,6 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -105,4 +127,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
+
 

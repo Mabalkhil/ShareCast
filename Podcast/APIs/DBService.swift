@@ -9,7 +9,7 @@
 
 import Firebase
 import UIKit
-
+import GoogleSignIn
 class DBService {
    //Singleton Object
     static let shared = DBService()
@@ -40,6 +40,25 @@ class DBService {
                 }
             
         }
+//        func(user : User, uid: String, completionHandler: @escaping (UIAlertController) -> ())do {
+//            var person : Person
+//        
+//            var dictionary : [String:Any]{
+//                return [
+//                    "email": user.,
+//                    "profileImageURL": "profileImageURL",
+//                    "firstName":"firstName",
+//                    "lastName":"lastName",
+//                    "username":"@\()"
+//                ]
+//            }
+//            person = Person(dictionary: dictionary)
+//        
+//            self.singup(person: person, uid: uid, completionHandler: { (alert) in
+//                completionHandler(alert)
+//            })
+//        
+//        }
         
                 //POST STUFF
         let postDetails = ["username" : person.username]
