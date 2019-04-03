@@ -23,17 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
 
     //configurations: Firebase - customization
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // firebase Configuration
         FirebaseApp.configure()
         
+        // google API configuration
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        
-//        TWTRTwitter.sharedInstance().start(withConsumerKey: AuthService.twitterKey, consumerSecret: AuthService.twitterSecret)
-        
-        
-//        window = UIWindow()
-//        window?.makeKeyAndVisible()
-//        window?.rootViewController = MainTabBarController()
         
         UIApplication.shared.statusBarStyle = .lightContent
         let navigationBarAppearace = UINavigationBar.appearance()

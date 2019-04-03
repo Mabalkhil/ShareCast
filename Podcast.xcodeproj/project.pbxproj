@@ -65,6 +65,7 @@
 		505B6C3F21FA06D9002E392D /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 505B6C3E21FA06D9002E392D /* Profile.storyboard */; };
 		505B6C4121FA09D3002E392D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B6C4021FA09D3002E392D /* ProfileViewController.swift */; };
 		506217DA21FB26C20003F99F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506217D921FB26C20003F99F /* ProfileView.swift */; };
+		50684A75225545C4000BD3C2 /* googleSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50684A74225545C4000BD3C2 /* googleSignUpController.swift */; };
 		5082A5E122478C0F00FE3EE1 /* DownloadEpisodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5082A5E022478C0F00FE3EE1 /* DownloadEpisodes.swift */; };
 		5082A5E322479B8100FE3EE1 /* MentionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5082A5E222479B8100FE3EE1 /* MentionController.swift */; };
 		5092F02E2206EEDE00B3F376 /* ResetPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */; };
@@ -168,6 +169,7 @@
 		505B6C3E21FA06D9002E392D /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		505B6C4021FA09D3002E392D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		506217D921FB26C20003F99F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		50684A74225545C4000BD3C2 /* googleSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = googleSignUpController.swift; sourceTree = "<group>"; };
 		5082A5E022478C0F00FE3EE1 /* DownloadEpisodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadEpisodes.swift; sourceTree = "<group>"; };
 		5082A5E222479B8100FE3EE1 /* MentionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionController.swift; sourceTree = "<group>"; };
 		5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassViewController.swift; sourceTree = "<group>"; };
@@ -317,6 +319,9 @@
 		FA499328218DCD0D0021CFA3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				50684A74225545C4000BD3C2 /* googleSignUpController.swift */,
+				50420FA121A12AF30030CDB4 /* SignInViewController.swift */,
+				50420F7821A089170030CDB4 /* SignUpViewController.swift */,
 				372023AF220374E900D0C555 /* addEpisodeToPlaylist.swift */,
 				2FC15E972201F4A600DF1FD4 /* BookmarkController.swift */,
 				50092B9B22109BA800A05D06 /* ChannelController.swift */,
@@ -331,8 +336,6 @@
 				FA499329218DCD3D0021CFA3 /* PodcastSearchController.swift */,
 				505B6C4021FA09D3002E392D /* ProfileViewController.swift */,
 				5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */,
-				50420FA121A12AF30030CDB4 /* SignInViewController.swift */,
-				50420F7821A089170030CDB4 /* SignUpViewController.swift */,
 				50A43E5C221809560074B70A /* SubscriptionsViewController.swift */,
 				2F9AD7A722245331000D00BA /* TimelineViewController.swift */,
 				290E0C4F223065C90000E7DF /* UsersProfileController.swift */,
@@ -705,6 +708,7 @@
 				375DD44E2201ED8C00C2D698 /* PlaylistsCell.swift in Sources */,
 				3723A20521AB373A00D5FAE9 /* CMTime.swift in Sources */,
 				290E0C50223065C90000E7DF /* UsersProfileController.swift in Sources */,
+				50684A75225545C4000BD3C2 /* googleSignUpController.swift in Sources */,
 				50420F9F21A122040030CDB4 /* RoundedWhiteButton.swift in Sources */,
 				5082A5E322479B8100FE3EE1 /* MentionController.swift in Sources */,
 				292111C322008B0E00B28DE2 /* CategoryCell.swift in Sources */,

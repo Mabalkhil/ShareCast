@@ -15,11 +15,13 @@ class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
- //   @IBOutlet weak var back: UILabel!
-    
+ 
+    //   @IBOutlet weak var back: UILabel!
     var continueButton:RoundedWhiteButton!
     var activityView:UIActivityIndicatorView!
     
+    var person:Person?
+    var uid:String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,24 +57,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
         // to dismiss the keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:  #selector(SignInViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-        
-       // let tap = UITapGestureRecognizer(target: self, action: #selector(backTomain))
-       // back.isUserInteractionEnabled=true
-        //back.addGestureRecognizer(tap)
-        //back.ta
-        
-        // google configration
-         GIDSignIn.sharedInstance().uiDelegate = self
-    }
-    @IBAction func SignInWithGoogle(_ sender: Any) {
-        handleCustomGoogleSign()
-        
 
+        // google configration
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance()?.delegate = self
     }
     
-    @objc func handleCustomGoogleSign() {
-        GIDSignIn.sharedInstance().signIn()
+    @IBAction func SignInWithGoogle(_ sender: Any) {
+         GIDSignIn.sharedInstance().signIn()
     }
+    
+  
 
     
     //Calls this function when the tap is recognized.
@@ -135,38 +130,56 @@ class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
     
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+       
         if let err = error {
             print("Failed to log into Google: ", err)
             return
         }
         
         print("Successfully logged into Google", user)
-        
         guard let idToken = user.authentication.idToken else { return }
         guard let accessToken = user.authentication.accessToken else { return }
         let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
         
-        Auth.auth().signIn(with: credentials, completion: { (user, error) in
+        Auth.auth().signInAndRetrieveData(with: credentials) { (auth, error) in
             if let err = error {
-                print("Failed to create a Firebase User with Google account: ", err)
+                let errorMsg = error!.localizedDescription
+                let alertController = UIAlertController(title: errorMsg, message: "", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Back", style: .cancel, handler: nil)
+                alertController.addAction(okAction)
+                self.present(alertController,animated: true)
                 return
             }
-            
-            guard let uid = user?.uid else { return }
+            if !(auth?.additionalUserInfo!.isNewUser)! {
+                
+               
+                let mainView = MainTabBarController()
+                self.present(mainView,animated: true,completion: nil)
+                
+            }else{
             var dictionary : [String:Any]{
                 return [
-                    "email": user?.email,
-                    "profileImageURL": user?.photoURL?.absoluteString,
-                    "firstName": user?.displayName,
+                    "email": auth?.user.email ?? "",
+                    "profileImageURL": "",
+                    "firstName": auth?.user.displayName ?? "" ,
                     "lastName":"",
-                    "username":"@\(user?.uid)"
+                    "username":"@"
                 ]
             }
-            DBService.shared.singup(person: Person(dictionary: dictionary)!, uid: uid, completionHandler: { (alert) in
-                print(dictionary)
-            })
-            print("Successfully logged into Firebase with Google", uid)
-        })
+            self.uid = auth?.user.uid
+            self.person = Person(dictionary: dictionary)!
+            self.performSegue(withIdentifier: "googleSignUp", sender: nil)
+            }
+        }
     }
-
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {}
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "googleSignUp" {
+             let destination = segue.destination as! googleSignUpController
+                destination.person =  self.person
+                destination.uid = self.uid
+        }
+    }
 }

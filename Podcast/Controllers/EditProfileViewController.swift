@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+import GoogleSignIn
 class EditProfileViewController: UITableViewController {
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var lastNameText: UITextField!
@@ -68,6 +68,15 @@ class EditProfileViewController: UITableViewController {
     }
     @IBAction func logout(_ sender: Any) {
         do {
+            if let providerData = Auth.auth().currentUser?.providerData {
+                let userInfo = providerData[0]
+                switch userInfo.providerID {
+                case "google.com" :
+                    GIDSignIn.sharedInstance()?.signOut()
+                default:
+                    break
+                }
+            }
             try Auth.auth().signOut()
         } catch  {
             let alertView = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
