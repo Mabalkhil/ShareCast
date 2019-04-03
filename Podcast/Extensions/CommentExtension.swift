@@ -90,7 +90,8 @@ extension EpisodeViewController{
         }
         //------------------
         for userUID in self.followersIDs{
-
+            print("-------------------------")
+            print(followers)
             ref = self.fireStoreDatabaseRef
                 .collection("general_timelines")
                 .document(userUID)
