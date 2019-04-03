@@ -88,7 +88,7 @@ extension EpisodeViewController{
                     print("Document inserted successfully with ID: \(ref!.documentID)")
                 }
         }
-
+        //------------------
         for userUID in self.followersIDs{
 
             ref = self.fireStoreDatabaseRef

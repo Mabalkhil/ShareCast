@@ -204,8 +204,6 @@ class PlayerDetailsViewController: UIViewController, MYAudioTabProcessorDelegate
             trueLocation.appendPathComponent(fileName)
            let playerItem = AVPlayerItem(url: trueLocation)
             playerItem.addObserver(self, forKeyPath: "tracks", options: NSKeyValueObservingOptions.new, context:  nil);
-            playerItem.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: nil)
-            playerItem.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: nil)
             player.isMeteringEnabled = true
             player.replaceCurrentItem(with: playerItem)
             player.play()
@@ -216,6 +214,8 @@ class PlayerDetailsViewController: UIViewController, MYAudioTabProcessorDelegate
         } else{
             guard let url = URL(string: episode.streamURL) else { return }
             let playerItem = AVPlayerItem(url: url)
+            playerItem.addObserver(self, forKeyPath: "playbackBufferEmpty", options: NSKeyValueObservingOptions.new, context: nil)
+            playerItem.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: NSKeyValueObservingOptions.new, context: nil)
             player.isMeteringEnabled = true
             player.replaceCurrentItem(with: playerItem)
             player.play()
@@ -483,14 +483,13 @@ class PlayerDetailsViewController: UIViewController, MYAudioTabProcessorDelegate
                     tapProcessor.delegate = self
                 }
             }
-        }else if (object as? AVPlayerItem == player.currentItem && keyPath == "playbackBufferEmpty"){
+        }else if (object as? AVPlayerItem == self.player.currentItem && keyPath == "playbackBufferEmpty"){
             if player.currentItem!.isPlaybackBufferEmpty {
-                print("no buffer")
                 self.player.play()
             }
-        }else if (object as? AVPlayerItem == player.currentItem && keyPath == "playbackLikelyToKeepUp"){
+        }else if (object as? AVPlayerItem == self.player.currentItem && keyPath == "playbackLikelyToKeepUp"){
             if player.currentItem!.isPlaybackLikelyToKeepUp {
-                self.player.play()
+                print("playbackLikelyToKeepUp")
             }
         }
         
