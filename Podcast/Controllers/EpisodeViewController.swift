@@ -254,6 +254,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         print(followers)
         if followers.isEmpty{
             followers = dbs.followers
+            //followersIDs = followers.userID
         }
         let cvHeight = CGFloat(50 * followers.count) + (self.tabBarController?.tabBar.frame.height)!
         let y = self.view.frame.height - cvHeight
@@ -492,6 +493,10 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
                 self.blackView.layoutIfNeeded()
             }
         }
+            
+        dbs.getFollowersIDs { (followersIDs) in
+                self.followersIDs = followersIDs
+            }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

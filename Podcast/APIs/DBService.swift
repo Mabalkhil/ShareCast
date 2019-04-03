@@ -17,6 +17,7 @@ class DBService {
     let reffStor = Storage.storage().reference(forURL: "gs://sharecast-c780f.appspot.com").child("profile_Image")
     var uid = Auth.auth().currentUser?.uid ?? ""
     var followers = [Person]()
+    var followers_ids = [String]()
 
     
     
@@ -511,11 +512,8 @@ class DBService {
     
     func deletePost(postId: String) {
         var postID:String?
-        var followers_ids = [String]()
         
-        self.getFollowersIDs{ (result) in
-            followers_ids = result
-        }
+        
         
         self.db.collection("general_timelines")
             .document(uid)
@@ -540,32 +538,40 @@ class DBService {
                 }
         }
         
-        for follower in followers_ids{
-            self.db.collection("general_timelines")
-                .document(follower)
-                .collection("timeline").whereField("post_id", isEqualTo: postId).getDocuments{
-                    QuerySnapshot,err  in
-                    if let err = err {
-                        print("Error removing document: \(err)")
-                    } else {
-                        print("hello")
-                        for singlePost in (QuerySnapshot?.documents)!{
-                            print(singlePost)
-                            postID = singlePost.documentID
-                            self.db.collection("general_timelines")
-                                .document(self.uid)
-                                .collection("timeline").document(postID!).delete() {
-                                    err in
-                                    if let err = err {
-                                        print("Error removing document: \(err)")
-                                    } else {
-                                        print("FIRESTORE: Post successfully removed from \(follower) general_timelines")
+        self.getFollowersIDs{ (result) in
+            self.followers_ids = result
+            DispatchQueue.main.async {
+                
+                for follower in self.followers_ids{
+                    self.db.collection("general_timelines")
+                        .document(follower)
+                        .collection("timeline").whereField("post_id", isEqualTo: postId).getDocuments{
+                            QuerySnapshot,err  in
+                            if let err = err {
+                                print("Error removing document: \(err)")
+                            } else {
+                                for singlePost in (QuerySnapshot?.documents)!{
+                                    print(singlePost)
+                                    postID = singlePost.documentID
+                                    self.db.collection("general_timelines")
+                                        .document(follower)
+                                        .collection("timeline").document(postID!).delete() {
+                                            err in
+                                            if let err = err {
+                                                print("Error removing document: \(err)")
+                                            } else {
+                                                print("FIRESTORE: Post successfully removed from \(follower) general_timelines")
+                                            }
                                     }
+                                }
                             }
-                        }
                     }
+                }
+                
+                
             }
         }
+      
         
         
         self.db.collection("private_timelines")
