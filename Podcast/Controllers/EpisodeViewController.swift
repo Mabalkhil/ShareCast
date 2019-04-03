@@ -493,6 +493,10 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
                 self.blackView.layoutIfNeeded()
             }
         }
+            
+        dbs.getFollowersIDs { (followersIDs) in
+                self.followersIDs = followersIDs
+            }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

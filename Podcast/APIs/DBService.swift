@@ -522,6 +522,8 @@ class DBService {
         }
         
         for follower in followers_ids{
+            print("----------------")
+            print(follower)
             self.db.collection("general_timelines")
                 .document(follower)
                 .collection("timeline").whereField("post_id", isEqualTo: postId).getDocuments{
@@ -529,12 +531,11 @@ class DBService {
                     if let err = err {
                         print("Error removing document: \(err)")
                     } else {
-                        print("hello")
                         for singlePost in (QuerySnapshot?.documents)!{
                             print(singlePost)
                             postID = singlePost.documentID
                             self.db.collection("general_timelines")
-                                .document(self.uid)
+                                .document(follower)
                                 .collection("timeline").document(postID!).delete() {
                                     err in
                                     if let err = err {
