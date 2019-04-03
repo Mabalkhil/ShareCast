@@ -348,7 +348,7 @@ class PlayerDetailsViewController: UIViewController, MYAudioTabProcessorDelegate
     
     
     //MARK:- Time Mark
-    //only handle if there is a time marks in an episode(Show table or don't)
+    //only handle if there is a time marks in an episode(Show table or don't)    //MARK:- Time Mark
     @objc func handleTimeMark(){
         if episode != nil {
             if (episode.timeStampLables!.count-1 > 0 ) {
@@ -358,7 +358,7 @@ class PlayerDetailsViewController: UIViewController, MYAudioTabProcessorDelegate
                         let time  = episode.timeStamps![i]
                         //var mark = Mark(time: time, desc: title)
                         var mark = Mark(time: time, desc: title)
-                        print("time",time)
+                        //print("time",time)
                         //mark.time = time
                         //mark.desc = title
                         self.marks.append(mark)
@@ -372,7 +372,7 @@ class PlayerDetailsViewController: UIViewController, MYAudioTabProcessorDelegate
                 
             }
             else {
-                //scrollView.isScrollEnabled = false
+                scrollView.isScrollEnabled = false
                 pageControl.numberOfPages = 1
                 print("No time marks")
             }
@@ -405,7 +405,7 @@ class PlayerDetailsViewController: UIViewController, MYAudioTabProcessorDelegate
             //self.episode.timeStampLables = ["a","b"]
             app?.maximizePlayerDetails()
             setScrollView()
-            self.handleTimeMark()
+            //self.handleTimeMark()
             smallPlayerPlay.setImage(#imageLiteral(resourceName: "PauseButton"), for: .normal)
             playPauseButton.setImage(#imageLiteral(resourceName: "PauseButton"), for: .normal)
             var tracked = UserDefaults.standard.trackedEpisodes()

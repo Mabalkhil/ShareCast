@@ -96,8 +96,7 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
     }
     
     
-    //MARK:- Table view functions
-    
+    //MARK:- Table view function
     func setTable() {
         scrollView.contentSize = CGSize(width: self.view.frame.width * 2, height: scrollView.frame.size.height)
         frame.origin.x = self.view.frame.width
@@ -109,29 +108,35 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
         myTableView.backgroundView = copyedView
         myTableView.delegate = self
         myTableView.dataSource = self
+        myTableView.reloadData()
         myTableView.register(TimeMarkCell.self, forCellReuseIdentifier: "TimeMarkCell")
-        
         scrollView.addSubview(myTableView)
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10//self.marks.count
+        return self.marks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TimeMarkCell", for: indexPath) //as! TimeMarkCell
-//        let tm = self.marks[indexPath.row]
-//        cell.time = tm.time
-//        cell.desc = tm.desc
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TimeMarkCell", for: indexPath) as! TimeMarkCell
+        
         cell.textLabel?.textColor = .white
         cell.detailTextLabel?.textColor = .white
-        cell.textLabel?.text = "tm.time"
-        cell.detailTextLabel?.text = "tm.desc"
+        var x = indexPath.row-1
+        if (marks.count-1 == 0 ) {
+            
+        }
+        if  x >= marks.count-1 {
+            print("index", indexPath.row  , "count ", marks.count )
+        }
+        else {
+            print("index", indexPath.row  , "count ", marks.count )
+            cell.setTimeMark(mark: self.marks[indexPath.row])
+        }
         return cell
     }
-    
     
     
     
