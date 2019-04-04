@@ -289,6 +289,9 @@
                         </prototypes>
                     </tableView>
                     <nil key="simulatedTopBarMetrics"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="oZ9-KQ-uj7">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                 </tableViewController>
                 <view contentMode="scaleToFill" id="gv7-Cs-dkK" userLabel="emptyView">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="500"/>
