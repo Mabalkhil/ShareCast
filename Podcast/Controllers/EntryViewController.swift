@@ -11,6 +11,13 @@ import  Firebase
 
 class EntryViewController: UIViewController {
     
+    
+    let signInWithTwitterButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        button.addTarget(self, action: #selector(hanndleTwitterLogIn), for: .touchUpOutside)
+        return button
+    }()
 
     
     override func viewDidLoad() {
@@ -27,6 +34,10 @@ class EntryViewController: UIViewController {
         let MainViewController = MainTabBarController()
         self.dismiss(animated: true, completion: nil)
         self.present(MainViewController,animated: true,completion: nil)
+    }
+    
+    @objc func hanndleTwitterLogIn(){
+        
     }
     
   

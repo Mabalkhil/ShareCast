@@ -28,6 +28,7 @@ class TimelineTVC: UITableViewCell {
         // Configure the view for the selected state
     }
     
+ 
     func setAttributes(post:Post){
 
         usernameLabel.text = post.username

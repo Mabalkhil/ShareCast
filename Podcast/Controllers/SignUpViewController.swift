@@ -21,7 +21,6 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     
     var continueButton:RoundedWhiteButton!
     var activityView:UIActivityIndicatorView!
-
     let ref = Database.database().reference(fromURL: "https://sharecast-c780f.firebaseio.com/")
     
     override func viewDidLoad() {
@@ -62,9 +61,6 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
         view.addGestureRecognizer(tap)
         //tap.cancelsTouchesInView = false // wait for it ??
         
-      //  let tap = UITapGestureRecognizer(target: self, action: #selector(backTomain))
-//        back.isUserInteractionEnabled= true
-//        back.addGestureRecognizer(tap)
         
     }
     
