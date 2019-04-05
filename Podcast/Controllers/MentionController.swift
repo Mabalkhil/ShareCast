@@ -77,6 +77,16 @@ class MentionController: UITableViewController{
                 destination.episode = episode
                 
             }
+        }else if segue.identifier == "bellID" {
+            guard (Auth.auth().currentUser?.uid) != nil else {
+                alertUser("Not Register", "You have to register to get this feature")
+                return
+            }
+        }else if segue.identifier == "channelID"{
+            guard (Auth.auth().currentUser?.uid) != nil else {
+                alertUser("Not Register", "You have to register to get this feature")
+                return
+            }
         }
     }
     
@@ -87,6 +97,14 @@ class MentionController: UITableViewController{
        fetchMentionedEpisodes()
         self.refreshControl!.endRefreshing()
     }
+    
+    func alertUser(_ title: String, _ msg: String){
+        
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style:.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     
     

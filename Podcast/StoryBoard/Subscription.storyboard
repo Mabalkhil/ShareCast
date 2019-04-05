@@ -39,7 +39,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
-                                                <segue destination="axQ-p6-UpI" kind="show" id="ZJh-8B-KVX"/>
+                                                <segue destination="axQ-p6-UpI" kind="show" identifier="channelID" id="ZJh-8B-KVX"/>
                                             </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radio" translatesAutoresizingMaskIntoConstraints="NO" id="10O-uO-fM6">
@@ -164,7 +164,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
-                                                <segue destination="h8n-PS-JMk" kind="show" id="rTE-kJ-Q7T"/>
+                                                <segue destination="h8n-PS-JMk" kind="show" identifier="bellID" id="rTE-kJ-Q7T"/>
                                             </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alarm" translatesAutoresizingMaskIntoConstraints="NO" id="jgC-DP-dkv" userLabel="Bell">
@@ -290,6 +290,7 @@
                     </tableView>
                     <nil key="simulatedTopBarMetrics"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="oZ9-KQ-uj7">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                 </tableViewController>
