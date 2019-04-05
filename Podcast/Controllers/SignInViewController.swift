@@ -115,6 +115,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
             if error == nil && user != nil {
                 let mainView = MainTabBarController()
                 DBService.shared.uid = (Auth.auth().currentUser?.uid)!
+                self.dismiss(animated: true, completion: nil)
                 self.present(mainView,animated: true,completion: nil)
             } else {
                 let errorMsg = error!.localizedDescription

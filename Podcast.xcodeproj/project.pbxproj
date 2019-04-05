@@ -90,7 +90,9 @@
 		FAFF82F7218CEB6C00882A6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAFF82F6218CEB6C00882A6A /* Assets.xcassets */; };
 		FAFF82FA218CEB6C00882A6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFF82F8218CEB6C00882A6A /* LaunchScreen.storyboard */; };
 		FAFF831E218CEC4300882A6A /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF831D218CEC4300882A6A /* MainTabController.swift */; };
+/* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
 		FAFF8301218CEB6D00882A6A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FAFF82E1218CEB6400882A6A /* Project object */;
@@ -105,7 +107,9 @@
 			remoteGlobalIDString = FAFF82E8218CEB6400882A6A;
 			remoteInfo = Podcast;
 		};
+/* End PBXContainerItemProxy section */
 
+/* Begin PBXFileReference section */
 		290E0C49223044210000E7DF /* PeopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCell.swift; sourceTree = "<group>"; };
 		290E0C4B223063D90000E7DF /* UsersProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UsersProfile.storyboard; sourceTree = "<group>"; };
 		290E0C4F223065C90000E7DF /* UsersProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersProfileController.swift; sourceTree = "<group>"; };
@@ -573,7 +577,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ACBAVPlayer/ACBAVPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
@@ -618,7 +622,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B63DFE4A157A8CB5DB82AF75 /* [CP] Copy Pods Resources */ = {
@@ -627,7 +631,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Podcast/Pods-Podcast-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -636,7 +640,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Podcast/Pods-Podcast-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6B23A841E5CD2B417D2ECBE /* [CP] Check Pods Manifest.lock */ = {
