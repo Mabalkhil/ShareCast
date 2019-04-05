@@ -6,6 +6,7 @@ class MentionController: UITableViewController{
     let dbs = DBService.shared
     var mentionedPost = [Post]()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if Auth.auth().currentUser?.uid != nil {
@@ -14,6 +15,8 @@ class MentionController: UITableViewController{
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        self.refreshControl!.addTarget(self, action: Selector("refreshHandler"), for: UIControl.Event.valueChanged)
       
     }
     
@@ -79,7 +82,11 @@ class MentionController: UITableViewController{
     
     
     
-    
+    @objc func refreshHandler() {
+        // checkForUpdate()
+       fetchMentionedEpisodes()
+        self.refreshControl!.endRefreshing()
+    }
     
     
     
