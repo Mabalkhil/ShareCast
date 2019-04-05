@@ -498,15 +498,12 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
                 self.followersIDs = followersIDs
             }
     }
+
+}
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         postContentTV.text = ""
     }
-    
-   
-
-
-}
 
 
 }
