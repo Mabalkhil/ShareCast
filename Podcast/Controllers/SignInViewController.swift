@@ -171,7 +171,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
                             "email": user?.email ?? "",
                             "profileImageURL": user?.photoURL?.absoluteString ?? "",
                             "firstName": user?.displayName ?? "",
-                            "username": user?.displayName?.trimmingCharacters(in: .whitespaces)
+                            "username": "@\(user?.displayName?.trimmingCharacters(in: .whitespaces))",
+//                            "lastName": GIDSignIn.sharedInstance()?.currentUser.profile.givenName
                         ]
                     }
                     
