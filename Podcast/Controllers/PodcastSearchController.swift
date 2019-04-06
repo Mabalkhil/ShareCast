@@ -70,11 +70,7 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         APIService.shared.fetchPodcast(searchText: searchText) { (podcasts) in
-//            for p in podcasts{
-//                if p.feedUrl == nil{
-//                    podcasts.filter(){$0 != "chimps"}
-//                }
-//            }
+
             self.podcasts = podcasts
             self.searchDelegate.updatePodcasts(podcasts: self.podcasts)
             self.resultTableView.reloadData()
