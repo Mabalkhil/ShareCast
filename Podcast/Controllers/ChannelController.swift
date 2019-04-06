@@ -52,7 +52,7 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
             self.headerView.SubButton.setTitle("Subscribe", for: .normal)
             return
         }
-
+        if podcast?.feedUrl != nil{
         self.dbs.checkSubscribestion(podcast: podcast!) {
             (exists) in
             if exists {
@@ -61,7 +61,7 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
                 self.headerView.SubButton.setTitle("Subscribe", for: .normal)
             }
         }
-
+        }
     }
     
     
@@ -70,7 +70,7 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
             headerView.BellButton.setTitle("Bell", for: .normal)
             return
         }
-        
+         if podcast?.feedUrl != nil{
         self.dbs.checkBell(podcast: podcast!) {
             (exists) in
             if exists {
@@ -81,6 +81,7 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
                 self.headerView.BellButton.tintColor = UIColor.white
             }
         }
+    }
     }
     
     
@@ -118,7 +119,7 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
         headerView.SubButton.layer.borderColor = UIColor.white.cgColor
         headerView.SubButton.layer.cornerRadius = 5
         headerView.SubButton.clipsToBounds = true
-        
+          
     }
     
      func numberOfSections(in tableView: UITableView) -> Int {
@@ -157,24 +158,26 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
            present(self.alert,animated: true,completion: nil)
             return
         }
-
-        if headerView.SubButton.currentTitle! == "Subscribe" {
-            dbs.subscribeToChannel(podcast: podcast!)
-            headerView.SubButton.setTitle("Unsubscribe", for: .normal)
-        }else {
-            self.alert = UIAlertController(title: "Are you sure you want to Unsubscribe", message: "", preferredStyle: .alert)
-            let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-                self.dbs.unsubscribeToChannel(podcast: self.podcast!)
-                self.headerView.SubButton.setTitle("Subscribe", for: .normal)
+        if podcast?.feedUrl != nil{
+            if headerView.SubButton.currentTitle! == "Subscribe" && podcast?.feedUrl != nil {
+                dbs.subscribeToChannel(podcast: podcast!)
+                headerView.SubButton.setTitle("Unsubscribe", for: .normal)
+            }else {
+                self.alert = UIAlertController(title: "Are you sure you want to Unsubscribe", message: "", preferredStyle: .alert)
+                let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                    self.dbs.unsubscribeToChannel(podcast: self.podcast!)
+                    self.headerView.SubButton.setTitle("Subscribe", for: .normal)
+                    return
+                })
+                self.alertAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+                self.alert.addAction(self.alertAction)
+                 self.alert.addAction(yesAction)
+                present(self.alert,animated: true,completion: nil)
                 return
-            })
-            self.alertAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
-            self.alert.addAction(self.alertAction)
-             self.alert.addAction(yesAction)
-            present(self.alert,animated: true,completion: nil)
-            return
 
+            }
         }
+        
         
     }
     
@@ -190,30 +193,31 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
             return
         }
         
-        if headerView.BellButton.currentTitle == "Bell" {
-            dbs.bellAChannel(podcast: podcast!)
-            headerView.BellButton.setTitle("Unbell", for: .normal)
-            self.headerView.BellButton.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
-        }else {
-            self.alert = UIAlertController(title: "Are you sure you want to unbell", message: "", preferredStyle: .alert)
-            let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-                self.dbs.unBellAChannel(podcast: self.podcast!)
-                self.headerView.BellButton.setTitle("Bell", for: .normal)
-                self.headerView.BellButton.tintColor = UIColor.white
+        if podcast?.feedUrl != nil{
+        
+            if headerView.BellButton.currentTitle == "Bell" {
+                dbs.bellAChannel(podcast: podcast!)
+                headerView.BellButton.setTitle("Unbell", for: .normal)
+                self.headerView.BellButton.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
+            }else {
+                self.alert = UIAlertController(title: "Are you sure you want to unbell", message: "", preferredStyle: .alert)
+                let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                    self.dbs.unBellAChannel(podcast: self.podcast!)
+                    self.headerView.BellButton.setTitle("Bell", for: .normal)
+                    self.headerView.BellButton.tintColor = UIColor.white
+                    return
+                })
+                self.alertAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+                self.alert.addAction(self.alertAction)
+                self.alert.addAction(yesAction)
+                present(self.alert,animated: true,completion: nil)
                 return
-            })
-            self.alertAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
-            self.alert.addAction(self.alertAction)
-            self.alert.addAction(yesAction)
-            present(self.alert,animated: true,completion: nil)
-            return
 
+            }
+            
+            
         }
     }
-    
-    
-    
-    
     
     
     

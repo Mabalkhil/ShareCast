@@ -75,7 +75,6 @@
 		5082A5E322479B8100FE3EE1 /* MentionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5082A5E222479B8100FE3EE1 /* MentionController.swift */; };
 		5092F02E2206EEDE00B3F376 /* ResetPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */; };
 		50A43E5D221809560074B70A /* SubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A43E5C221809560074B70A /* SubscriptionsViewController.swift */; };
-		8FC75C842223B83000F07375 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FC75C832223B83000F07375 /* AudioToolbox.framework */; };
 		9C44940753D94BD0785C9298 /* Pods_Podcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96503F0C3DF9B89F68700CAB /* Pods_Podcast.framework */; };
 		FA1AEC8E219414BD000B0882 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1AEC8D219414BD000B0882 /* PodcastCell.xib */; };
 		FA397ED72195E66D00D33617 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA397ED62195E66D00D33617 /* SearchResults.swift */; };
@@ -185,7 +184,6 @@
 		5092F02D2206EEDE00B3F376 /* ResetPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassViewController.swift; sourceTree = "<group>"; };
 		50A43E5C221809560074B70A /* SubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewController.swift; sourceTree = "<group>"; };
 		6847BD8DB3712F94D9BA0552 /* Pods-Podcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Podcast/Pods-Podcast.debug.xcconfig"; sourceTree = "<group>"; };
-		8FC75C832223B83000F07375 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		8FC75C852223B83000F07375 /* Podcast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Podcast.entitlements; sourceTree = "<group>"; };
 		9190023BC87AACCDD01077AB /* Pods_PodcastUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PodcastUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96503F0C3DF9B89F68700CAB /* Pods_Podcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Podcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,7 +211,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C44940753D94BD0785C9298 /* Pods_Podcast.framework in Frameworks */,
-				8FC75C842223B83000F07375 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +289,6 @@
 		50B99E38725A014450D57A4E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8FC75C832223B83000F07375 /* AudioToolbox.framework */,
 				96503F0C3DF9B89F68700CAB /* Pods_Podcast.framework */,
 				DAB8A7A7632E63EB4EA43316 /* Pods_PodcastTests.framework */,
 				9190023BC87AACCDD01077AB /* Pods_PodcastUITests.framework */,
@@ -495,7 +491,7 @@
 								enabled = 0;
 							};
 							com.apple.InterAppAudio = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.SafariKeychain = {
 								enabled = 1;
@@ -912,14 +908,14 @@
 				CODE_SIGN_ENTITLEMENTS = Podcast/Podcast.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WNQXTPYNXK;
+				DEVELOPMENT_TEAM = WF36QP22R7;
 				INFOPLIST_FILE = Podcast/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fm.sharecast.Podcast121110;
+				PRODUCT_BUNDLE_IDENTIFIER = fm.sharecast.Podcast121119;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
@@ -939,14 +935,14 @@
 				CODE_SIGN_ENTITLEMENTS = Podcast/Podcast.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WNQXTPYNXK;
+				DEVELOPMENT_TEAM = WF36QP22R7;
 				INFOPLIST_FILE = Podcast/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fm.sharecast.Podcast121110;
+				PRODUCT_BUNDLE_IDENTIFIER = fm.sharecast.Podcast121119;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
