@@ -13,11 +13,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
     
     
 
+    @IBOutlet weak var continueButton: RoundedWhiteButton!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
  
-    //   @IBOutlet weak var back: UILabel!
-    var continueButton:RoundedWhiteButton!
     var activityView:UIActivityIndicatorView!
     
     var person:Person?
@@ -28,16 +27,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
         self.navigationController?.navigationBar.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
         // add background gardian color
         //view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
-        
-        continueButton = RoundedWhiteButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        continueButton.setTitleColor(.white, for: .normal)
-        continueButton.setTitle("Sign in", for: .normal)
-        continueButton.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: UIFont.Weight.bold)
-        continueButton.center = CGPoint(x: view.center.x, y: view.frame.height - continueButton.frame.height - 24)
+
         continueButton.backgroundColor = UIColor(red: 236/255, green: 98/277, blue: 95/255, alpha: 1.0)
         continueButton.addTarget(self, action: #selector(handleSignIn), for: .touchUpInside)
         continueButton.alpha = 0.5
-        view.addSubview(continueButton)
+      
+        
         setContinueButton(enabled: false)
         
         activityView = UIActivityIndicatorView(style: .gray)
@@ -49,8 +44,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
         
         emailField.delegate = self
         passwordField.delegate = self
-
-        
         emailField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         passwordField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         

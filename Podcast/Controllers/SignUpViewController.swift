@@ -17,9 +17,9 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     @IBOutlet weak var firstNameText: UITextField!
     @IBOutlet weak var lastnameText: UITextField!
     @IBOutlet weak var confirmPass: UITextField!
-   // @IBOutlet weak var back: UILabel!
+    @IBOutlet weak var continueButton: RoundedWhiteButton!
     
-    var continueButton:RoundedWhiteButton!
+ 
     var activityView:UIActivityIndicatorView!
     let ref = Database.database().reference(fromURL: "https://sharecast-c780f.firebaseio.com/")
     
@@ -27,16 +27,8 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
-        // add background gardian color
-        //view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
-        
-        continueButton = RoundedWhiteButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        continueButton.setTitleColor(.white, for: .normal)
-        continueButton.setTitle("Sing Up", for: .normal)
-        continueButton.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: UIFont.Weight.bold)
-        continueButton.center=CGPoint(x: view.center.x, y: view.frame.height - continueButton.frame.height - 24)
-        continueButton.backgroundColor = UIColor(red: 236/255, green: 98/277, blue: 95/255, alpha: 1.0)
-        continueButton.defaultColor = UIColor.white
+    
+  
         continueButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         view.addSubview(continueButton)
         setContinueButton(enabled: false)
