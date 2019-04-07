@@ -63,7 +63,7 @@
                                             <constraint firstAttribute="width" constant="250" id="lPD-Ks-n1u"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                        <state key="normal" title="Sign In">
+                                        <state key="normal" title="SIGN IN">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -78,7 +78,7 @@
                                             <constraint firstAttribute="width" constant="250" id="unL-QB-bwO"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                        <state key="normal" title="Sign Up">
+                                        <state key="normal" title="SIGN UP">
                                             <color key="titleColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -132,8 +132,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="99g-MT-GqT">
-                                <rect key="frame" x="47.666666666666657" y="202" width="280" height="444"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="99g-MT-GqT">
+                                <rect key="frame" x="47.666666666666657" y="172" width="280" height="419"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Ish-KC-D2L">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="49"/>
@@ -165,7 +165,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ZFo-s9-nWN">
-                                        <rect key="frame" x="0.0" y="79" width="280" height="49"/>
+                                        <rect key="frame" x="0.0" y="74" width="280" height="49"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="acG-Lw-Rnb">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="49"/>
@@ -194,7 +194,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="AV7-sa-Nc5">
-                                        <rect key="frame" x="0.0" y="158" width="280" height="49"/>
+                                        <rect key="frame" x="0.0" y="148" width="280" height="49"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="0mW-An-huv">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="49"/>
@@ -223,7 +223,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="LqD-UF-kuL">
-                                        <rect key="frame" x="0.0" y="237" width="280" height="49"/>
+                                        <rect key="frame" x="0.0" y="222" width="280" height="49"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="qxL-R8-h5D">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="49"/>
@@ -252,7 +252,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="b8f-zt-pFB">
-                                        <rect key="frame" x="0.0" y="316" width="280" height="49"/>
+                                        <rect key="frame" x="0.0" y="296" width="280" height="49"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="fLY-2x-cPU">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="49"/>
@@ -281,7 +281,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ka5-6S-unA">
-                                        <rect key="frame" x="0.0" y="395" width="280" height="49"/>
+                                        <rect key="frame" x="0.0" y="370" width="280" height="49"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="AeN-3h-shy">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="49"/>
@@ -317,19 +317,34 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYa-Xv-W15" customClass="RoundedWhiteButton" customModule="Podcast" customModuleProvider="target">
+                                <rect key="frame" x="87.666666666666686" y="698" width="200" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.34509803919999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="akO-fw-j5j"/>
+                                    <constraint firstAttribute="width" constant="200" id="tzn-lF-M3V"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="SIGN UP">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.30196529630000002" green="0.30195263030000002" blue="0.30196121339999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="dYa-Xv-W15" firstAttribute="centerX" secondItem="n4g-DD-P9u" secondAttribute="centerX" id="1id-tt-Yq1"/>
                             <constraint firstItem="aLp-Ml-a9a" firstAttribute="trailing" secondItem="99g-MT-GqT" secondAttribute="trailing" constant="47.329999999999998" id="438-H7-Knn"/>
                             <constraint firstItem="99g-MT-GqT" firstAttribute="leading" secondItem="aLp-Ml-a9a" secondAttribute="leading" constant="47.670000000000002" id="Ttg-WW-4yH"/>
                             <constraint firstItem="1fC-rh-N4U" firstAttribute="centerX" secondItem="n4g-DD-P9u" secondAttribute="centerX" id="c9R-qU-YqW"/>
                             <constraint firstItem="1fC-rh-N4U" firstAttribute="top" secondItem="aLp-Ml-a9a" secondAttribute="top" constant="40" id="e6P-qC-4s1"/>
-                            <constraint firstItem="99g-MT-GqT" firstAttribute="top" secondItem="1fC-rh-N4U" secondAttribute="bottom" constant="50" id="tai-w2-BEd"/>
+                            <constraint firstItem="aLp-Ml-a9a" firstAttribute="bottom" secondItem="dYa-Xv-W15" secondAttribute="bottom" constant="30" id="p4q-SK-Q9f"/>
+                            <constraint firstItem="99g-MT-GqT" firstAttribute="top" secondItem="1fC-rh-N4U" secondAttribute="bottom" constant="20" id="tai-w2-BEd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aLp-Ml-a9a"/>
                     </view>
                     <connections>
                         <outlet property="confirmPass" destination="WRu-p4-zSI" id="ZYi-es-ldJ"/>
+                        <outlet property="continueButton" destination="dYa-Xv-W15" id="48g-AD-poC"/>
                         <outlet property="emailText" destination="bgR-Ce-1xT" id="Mbg-ct-FSk"/>
                         <outlet property="firstNameText" destination="BYP-qe-akd" id="99x-Vc-ngQ"/>
                         <outlet property="lastnameText" destination="IiQ-1f-fZ6" id="TQy-gQ-2pD"/>
@@ -429,30 +444,47 @@
                                     </segue>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYW-4f-Dzt" customClass="RoundedWhiteButton" customModule="Podcast" customModuleProvider="target">
-                                <rect key="frame" x="60" y="695" width="255" height="55"/>
-                                <color key="backgroundColor" red="0.82745098039999998" green="0.28235294119999998" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="255" id="ivU-RT-BuJ"/>
-                                    <constraint firstAttribute="height" constant="55" id="vVK-bv-r9b"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="  SIGN IN WITH GOOGLE" image="google">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="imageLeftPadding">
-                                        <real key="value" value="-10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="SignInWithGoogle:" destination="7KT-5j-to2" eventType="touchUpInside" id="H3o-OY-cle"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9Pc-zd-G6o">
+                                <rect key="frame" x="77.666666666666686" y="628" width="220" height="120"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYW-4f-Dzt" customClass="RoundedWhiteButton" customModule="Podcast" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="220" height="50"/>
+                                        <color key="backgroundColor" red="0.82745098039999998" green="0.28235294119999998" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="UfI-vF-AlG"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="a9t-5Z-b5k"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="  SIGN IN WITH GOOGLE" image="google">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="imageLeftPadding">
+                                                <real key="value" value="-10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="SignInWithGoogle:" destination="7KT-5j-to2" eventType="touchUpInside" id="H3o-OY-cle"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jma-6a-QD4" customClass="RoundedWhiteButton" customModule="Podcast" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="70" width="220" height="50"/>
+                                        <color key="backgroundColor" red="1" green="0.34509803919999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="Bbb-UH-lhB"/>
+                                            <constraint firstAttribute="height" constant="50" id="mtE-79-ras"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="SIGN IN">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.30196529626846313" green="0.30195263028144836" blue="0.30196121335029602" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -460,15 +492,16 @@
                             <constraint firstItem="M6e-Kg-5k8" firstAttribute="centerX" secondItem="SGK-KC-H4C" secondAttribute="centerX" id="HCi-R3-mpw"/>
                             <constraint firstItem="T2U-5F-rNQ" firstAttribute="trailing" secondItem="YqC-xu-acM" secondAttribute="trailing" constant="47.5" id="M6R-Sq-Bgh"/>
                             <constraint firstItem="YqC-xu-acM" firstAttribute="leading" secondItem="T2U-5F-rNQ" secondAttribute="leading" constant="47.5" id="MwT-cl-bX0"/>
-                            <constraint firstItem="KYW-4f-Dzt" firstAttribute="centerX" secondItem="SGK-KC-H4C" secondAttribute="centerX" id="Nxv-pq-wsX"/>
                             <constraint firstItem="YqC-xu-acM" firstAttribute="top" secondItem="M6e-Kg-5k8" secondAttribute="bottom" constant="50" id="U52-Lh-MTS"/>
                             <constraint firstItem="olD-Ri-Vez" firstAttribute="top" secondItem="YqC-xu-acM" secondAttribute="bottom" constant="30" id="a2S-ol-BDp"/>
-                            <constraint firstItem="KYW-4f-Dzt" firstAttribute="top" secondItem="olD-Ri-Vez" secondAttribute="bottom" constant="280" id="bsD-tH-19f"/>
+                            <constraint firstItem="9Pc-zd-G6o" firstAttribute="centerX" secondItem="SGK-KC-H4C" secondAttribute="centerX" id="nSH-1g-YUu"/>
+                            <constraint firstItem="T2U-5F-rNQ" firstAttribute="bottom" secondItem="9Pc-zd-G6o" secondAttribute="bottom" constant="30" id="noA-AE-y4C"/>
                             <constraint firstItem="olD-Ri-Vez" firstAttribute="centerX" secondItem="SGK-KC-H4C" secondAttribute="centerX" id="o2b-q1-nDC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="T2U-5F-rNQ"/>
                     </view>
                     <connections>
+                        <outlet property="continueButton" destination="Jma-6a-QD4" id="aej-LT-lD7"/>
                         <outlet property="emailField" destination="Rf6-Fk-zgc" id="82u-jY-oQP"/>
                         <outlet property="passwordField" destination="NFO-K1-yly" id="k01-ee-7fU"/>
                         <segue destination="UYa-g9-BJN" kind="show" identifier="googleSignUp" id="Ozd-n3-htv"/>
@@ -589,27 +622,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To take full advantage of the features of ShareCaste Please signing in" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4l-qc-dfj">
-                                <rect key="frame" x="37.666666666666657" y="317" width="300" height="43"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To take full advantage of the features of ShareCaste Please signing in" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="A4l-qc-dfj">
+                                <rect key="frame" x="10" y="381" width="355" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="h6h-fV-R9V"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="jKT-vX-SGc">
-                                <rect key="frame" x="47.666666666666657" y="118" width="280" height="160"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="a64-Zz-0fK"/>
-                                    <constraint firstAttribute="height" constant="160" id="kAw-UL-ose"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zWu-pt-LZo" customClass="RoundedWhiteButton" customModule="Podcast" customModuleProvider="target">
-                                <rect key="frame" x="71.333333333333314" y="564.33333333333337" width="233" height="41"/>
+                                <rect key="frame" x="87.666666666666686" y="698" width="200" height="50"/>
                                 <color key="backgroundColor" red="0.86666666670000003" green="0.4205085039" blue="0.38821679349999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="233" id="Jck-Lz-lyr"/>
+                                    <constraint firstAttribute="width" constant="200" id="mAn-Cw-cTe"/>
+                                    <constraint firstAttribute="height" constant="50" id="qU0-Pl-ae7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <state key="normal" title="Sign In">
+                                <state key="normal" title="SIGN IN">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -619,13 +649,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.32152998449999998" green="0.32159090039999999" blue="0.32152614000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="A4l-qc-dfj" firstAttribute="top" secondItem="jKT-vX-SGc" secondAttribute="bottom" constant="39" id="0n2-sN-d9b"/>
-                            <constraint firstItem="zWu-pt-LZo" firstAttribute="centerX" secondItem="A4l-qc-dfj" secondAttribute="centerX" id="C4Q-0J-9km"/>
-                            <constraint firstItem="3yv-sX-8SS" firstAttribute="trailing" secondItem="A4l-qc-dfj" secondAttribute="trailing" constant="37.329999999999998" id="D5Z-fH-PLd"/>
-                            <constraint firstItem="jKT-vX-SGc" firstAttribute="top" secondItem="3yv-sX-8SS" secondAttribute="top" constant="74" id="Gy5-io-4Gg"/>
-                            <constraint firstItem="A4l-qc-dfj" firstAttribute="leading" secondItem="3yv-sX-8SS" secondAttribute="leading" constant="37.670000000000002" id="VrT-hj-buU"/>
-                            <constraint firstItem="jKT-vX-SGc" firstAttribute="centerX" secondItem="0cT-3H-bUQ" secondAttribute="centerX" id="ZIl-Kg-DPQ"/>
-                            <constraint firstItem="zWu-pt-LZo" firstAttribute="top" secondItem="A4l-qc-dfj" secondAttribute="bottom" constant="204.33333333333331" id="aZz-hp-vDL"/>
+                            <constraint firstItem="A4l-qc-dfj" firstAttribute="leading" secondItem="0cT-3H-bUQ" secondAttribute="leading" constant="10" id="EN8-Td-SzB"/>
+                            <constraint firstItem="3yv-sX-8SS" firstAttribute="bottom" secondItem="zWu-pt-LZo" secondAttribute="bottom" constant="30" id="byT-tG-bMW"/>
+                            <constraint firstItem="A4l-qc-dfj" firstAttribute="centerY" secondItem="0cT-3H-bUQ" secondAttribute="centerY" id="d01-Nj-S8y"/>
+                            <constraint firstItem="zWu-pt-LZo" firstAttribute="centerX" secondItem="0cT-3H-bUQ" secondAttribute="centerX" id="iYf-U7-QGe"/>
+                            <constraint firstAttribute="trailing" secondItem="A4l-qc-dfj" secondAttribute="trailing" constant="10" id="vs2-EX-kpZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3yv-sX-8SS"/>
                     </view>
@@ -793,7 +821,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="1000" height="1000"/>
         <image name="Share_cast_logo" width="3962" height="3873"/>
         <image name="close" width="16" height="16"/>
         <image name="google" width="21" height="21"/>
