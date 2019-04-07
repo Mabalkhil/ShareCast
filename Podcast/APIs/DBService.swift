@@ -597,6 +597,19 @@ class DBService {
                     }
                 }
         }
+        
+        
+        
+        self.db.collection("Posts").document(postId)
+            .delete() {
+                err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("FIRESTORE: mention successfully removed post ID = \(postId)")
+                }
+        }
+             
     }
     
     func setProfileImage(uploadData: Data){
