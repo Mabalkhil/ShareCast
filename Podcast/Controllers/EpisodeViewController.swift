@@ -250,8 +250,6 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
         self.view.addSubview(blackView)
         self.view.addSubview(followerCV)
         
-        print("------------------------")
-        print(followers)
         if followers.isEmpty{
             followers = dbs.followers
             //followersIDs = followers.userID

@@ -27,6 +27,10 @@ extension EpisodeViewController{
     //Adding new post to Firebase
     func addNewPost() {
         
+        if episode.time == nil{
+            episode.time = 0.0
+        }
+        
         var ref:DocumentReference? = nil
         var currentPostID:String?;
         var postDetails = ["uid" : userID,
