@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CUz-87-V0H">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CUz-87-V0H">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -166,7 +167,7 @@
                                     </connections>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="300" id="0E5-Y8-gRs" customClass="TimelineTVC" customModule="Podcast" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="postCell" rowHeight="300" id="0E5-Y8-gRs" customClass="TimelineTVC" customModule="Podcast" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="269" width="414" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0E5-Y8-gRs" id="Aa4-NM-YJc">
@@ -601,9 +602,9 @@
     <resources>
         <image name="1400x1400-eagles_podcast-logo" width="1400" height="1400"/>
         <image name="close" width="16" height="16"/>
-        <image name="facebook" width="326.2301025390625" height="326.2301025390625"/>
-        <image name="instagram" width="438.85714721679688" height="438.85714721679688"/>
+        <image name="facebook" width="512" height="512"/>
+        <image name="instagram" width="512" height="512"/>
         <image name="save" width="20" height="20"/>
-        <image name="twitter" width="409.60000610351562" height="409.60000610351562"/>
+        <image name="twitter" width="512" height="512"/>
     </resources>
 </document>
