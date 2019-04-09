@@ -13,6 +13,7 @@ import Firebase
 class ProfileView: UIView {
    
     let dbs = DBService.shared
+    let userid = Auth.auth().currentUser?.uid
     
     @IBOutlet weak var editProfile:UIButton!
     
@@ -35,6 +36,16 @@ class ProfileView: UIView {
     }
     
     
-
+    override func didMoveToWindow() {
+        
+        if checkUpdatedProfile == true {
+            self.dbs.getPerson(uid: self.userid!, completionHandler: { (Person) in
+                self.name.text = "\(Person.firstName) \(Person.lastName)"
+                self.username.text = "@\(Person.username)"
+            })
+            checkUpdatedProfile = false
+        }
+    }
+    
     
 }

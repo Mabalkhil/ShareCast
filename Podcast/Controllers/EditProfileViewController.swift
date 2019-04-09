@@ -9,7 +9,11 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+
+public var checkUpdatedProfile = false
+
 class EditProfileViewController: UITableViewController {
+    
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var lastNameText: UITextField!
     @IBOutlet weak var firstNameText: UITextField!
@@ -60,6 +64,7 @@ class EditProfileViewController: UITableViewController {
             updatedUserInfo["lastName"] = lastName
             }
         self.dbs.updateUserInfo(updatedInfo: updatedUserInfo)
+        checkUpdatedProfile = true
         self.dismiss(animated: true, completion: nil)
   
     }
