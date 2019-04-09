@@ -21,6 +21,7 @@ extension EpisodeViewController{
             self.tabBarController?.tabBar.isHidden = false
             PlayerDetailsViewController.shared.view.isHidden = false
         }, completion: nil)
+        self.view.endEditing(true)
     }
     
     
