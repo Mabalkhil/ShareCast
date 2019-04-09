@@ -124,6 +124,7 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
         
         cell.textLabel?.textColor = .white
         cell.detailTextLabel?.textColor = .white
+        cell.selectionStyle = .none
         var x = indexPath.row-1
         if (marks.count-1 == 0 ) {
             
