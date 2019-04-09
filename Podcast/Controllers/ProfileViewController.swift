@@ -23,7 +23,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     var followersIDs = [String]()
     var followingIDs = [String]()
     let reffStor = Storage.storage().reference(forURL: "gs://sharecast-c780f.appspot.com").child("profile_Image")
-    let uid = Auth.auth().currentUser?.uid
+    let uid = Auth.auth().currentUser?.uid ?? ""
     var posts = [Post]()
     let chache = NSCache<NSString,UIImage>()
     let dbs = DBService.shared
@@ -46,12 +46,12 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     }
     
     func setUpProfilePic(){
-        let chacheKey = reffStor.child("\(self.uid!).png").fullPath as NSString
+        let chacheKey = reffStor.child("\(self.uid).png").fullPath as NSString
         if let cachedImage = chache.object(forKey: chacheKey) {
             self.ProfileImage.image = cachedImage
         }else{
             
-            dbs.fetchProfileImage(targetID: self.uid!) { (image) in
+            dbs.fetchProfileImage(targetID: self.uid) { (image) in
                 DispatchQueue.main.async {
                 self.ProfileImage.image = image
                 }
@@ -69,7 +69,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     }
     
     func loadData() {
-        dbs.loadProfilePosts {
+        dbs.loadProfilePosts(targetID: uid) {
             (posts) in
             self.posts = posts
             self.postsLabel.setTitle("\(self.posts.count)", for: UIControl.State.normal)
@@ -78,12 +78,12 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
             }
         }
         
-        dbs.getFollowersIDs { (result) in
+        dbs.getFollowersIDs(userID: uid) { (result) in
             self.followersIDs = result
             self.followersLabel.setTitle("\(self.followersIDs.count)", for: UIControl.State.normal)
         }
         
-        dbs.getFollowingIDs { (result) in
+        dbs.getFollowingIDs(userID: uid) { (result) in
             self.followingIDs = result
             self.followingLabel.setTitle("\(self.followingIDs.count)", for: UIControl.State.normal)
         }
@@ -144,18 +144,18 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
             return
         }
         // cahching the image
-        let chacheKey = reffStor.child("\(self.uid!).png").fullPath as NSString
+        let chacheKey = reffStor.child("\(self.uid).png").fullPath as NSString
         //print(chacheKey)
         //print(compressedImage)
         chache.setObject(compressedImage!, forKey: chacheKey)
         dbs.setProfileImage(uploadData: uploadData)
 
-        reffStor.child("\(self.uid!).png").putData(uploadData, metadata: nil) { (metadata, error) in
+        reffStor.child("\(self.uid).png").putData(uploadData, metadata: nil) { (metadata, error) in
             if let err = error {
                 print(err)
                 return
             }
-            self.reffStor.child("\(self.uid!).png").downloadURL(completion: { (url, error) in
+            self.reffStor.child("\(self.uid).png").downloadURL(completion: { (url, error) in
                 if let err = error {
                     print(err)
                 }else{ // fireStire code should be here 
