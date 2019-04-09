@@ -156,10 +156,10 @@ class DBService {
                 completionHandler(snapshot?.exists ?? false)
         }
     }
-    func getFollowingIDs(completionHandler: @escaping ([String]) -> ()){
+    func getFollowingIDs(userID: String, completionHandler: @escaping ([String]) -> ()){
         self.db
             .collection("usersInfo")
-            .document(uid)
+            .document(userID)
             .collection("Following")
             .getDocuments {
                 (snapshot, err) in
@@ -176,10 +176,10 @@ class DBService {
         }
     }
     
-    func getFollowersIDs(completionHandler: @escaping ([String]) -> ()){
+    func getFollowersIDs(userID: String, completionHandler: @escaping ([String]) -> ()){
         self.db
             .collection("usersInfo")
-            .document(uid)
+            .document(userID)
             .collection("Followers")
             .getDocuments {
                 (snapshot, err) in
@@ -199,7 +199,7 @@ class DBService {
 
     
     func getFollowers(completionHandler: @escaping ([Person]) -> ()){
-        self.getFollowersIDs { (uids) in
+        self.getFollowersIDs(userID: uid) { (uids) in
             self.getPersons(uids: uids, completionHandler: { (followers) in
                 completionHandler(followers)
             })
@@ -207,7 +207,7 @@ class DBService {
     }
     
     func getFollowing(completionHandler: @escaping ([Person]) -> ()){
-        self.getFollowingIDs { (uids) in
+        self.getFollowingIDs(userID: uid) { (uids) in
             self.getPersons(uids: uids, completionHandler: { (followers) in
                 completionHandler(followers)
             })
@@ -423,10 +423,10 @@ class DBService {
         }
     }
     
-    func loadProfilePosts(completionHandler: @escaping ([Post]) -> ()) {
+    func loadProfilePosts(targetID: String, completionHandler: @escaping ([Post]) -> ()) {
         
         self.db.collection("private_timelines")
-            .document(uid)
+            .document(targetID)
             .collection("timeline")
             .order(by: "Date", descending: true)
             .getDocuments(){
@@ -538,7 +538,7 @@ class DBService {
                 }
         }
         
-        self.getFollowersIDs{ (result) in
+        self.getFollowersIDs(userID: uid){ (result) in
             self.followers_ids = result
             DispatchQueue.main.async {
                 

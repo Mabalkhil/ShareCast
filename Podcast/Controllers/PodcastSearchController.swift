@@ -126,11 +126,20 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if selectedscope == "Link" {
             let link = searchBar.text ?? ""
-            let start = link.range(of: "Chennel:")?.upperBound
+            guard let start = link.range(of: "Chennel:")?.upperBound else{ self.linkAlert()
+                return
+            }
             let mid = link.range(of: ":Episode:")?.lowerBound
             let end = link.range(of: ":Episode:")?.upperBound
             
-            APIService.shared.fetchEpisodes(feedUrl: String(link[start!..<mid!])) { (Episodes) in
+            APIService.shared.fetchEpisodes(feedUrl: String(link[start..<mid!])) { (Episodes) in
+                
+                if Episodes.isEmpty {
+                    self.linkAlert()
+                    return
+                }
+                
+                
                 var ep: Episode?
                 for episode in Episodes{
                     
@@ -139,6 +148,11 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
                         break
                     }
                    
+                }
+                
+                if ep == nil{
+                    self.linkAlert()
+                    return
                 }
                 
                 DispatchQueue.main.async {
@@ -154,6 +168,13 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
             }
 
         }
+    }
+    
+    
+    private func linkAlert(){
+        let alert = UIAlertController(title: "Wrong Link", message: "Please Enter a Correct Link", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style:.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     
