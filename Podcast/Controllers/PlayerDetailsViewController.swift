@@ -174,7 +174,10 @@ class PlayerDetailsViewController: UIViewController, MYAudioTabProcessorDelegate
         observePlayerCurrentTime()
         self.setupRemoteControl()
         self.setupAudioSession()
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handelTapMaximize)))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handelTapMaximize))
+        //self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handelTapMaximize)))
+        self.view.addGestureRecognizer(tap)
+        tap.cancelsTouchesInView = false
         let time = CMTimeMake(value: 1, timescale: 3)
         let times = [NSValue(time: time)]
         player.addBoundaryTimeObserver(forTimes: times, queue: .main){

@@ -159,7 +159,6 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let selectedTime = self.marks[indexPath.row].time
-        
         let timeInSecondsList = selectedTime!.split(whereSeparator: { $0 == ":" || $0 == " " })//.map { Double($0)!}
         var timeInSeconds:Double = 0
         if (timeInSecondsList.count == 3 ) {
