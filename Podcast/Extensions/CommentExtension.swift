@@ -210,9 +210,14 @@ extension EpisodeViewController{
     
     
     @objc func copyLinkToClipboard(){
+        if episode.channelURL == nil {
+            print("channelURL is nil")
+            handelDismiss()
+        }else{
         UIPasteboard.general.string = "Chennel:\(episode.channelURL!):Episode:\(episode.streamURL)"
         self.view.showToast(toastMessage: "Link Copied Seccessfully", duration: 1.1)
         handelDismiss()
+        }
     }
     
 }

@@ -124,6 +124,13 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let loadingalert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+        
         if selectedscope == "Link" {
             let link = searchBar.text ?? ""
             guard let start = link.range(of: "Chennel:")?.upperBound else{ self.linkAlert()
@@ -132,28 +139,33 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
             let mid = link.range(of: ":Episode:")?.lowerBound
             let end = link.range(of: ":Episode:")?.upperBound
             
+            loadingalert.view.addSubview(loadingIndicator)
+            self.present(loadingalert, animated: true, completion: nil)
             APIService.shared.fetchEpisodes(feedUrl: String(link[start..<mid!])) { (Episodes) in
                 
                 if Episodes.isEmpty {
+                    loadingalert.dismiss(animated: false, completion: nil)
                     self.linkAlert()
                     return
                 }
-                
                 
                 var ep: Episode?
                 for episode in Episodes{
                     
                     if episode.streamURL ==  link[end!...] {
                         ep = episode
+                        //loadingalert.dismiss(animated: false, completion: nil)
                         break
                     }
                    
                 }
                 
                 if ep == nil{
+                    loadingalert.dismiss(animated: false, completion: nil)
                     self.linkAlert()
                     return
                 }
+                
                 
                 DispatchQueue.main.async {
                     let episodeStoryboard = UIStoryboard(name: "Episode", bundle: Bundle.main)
@@ -163,6 +175,7 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
                     }
                     destinationViewController.episode = (ep ?? nil)!
                     self.navigationController?.pushViewController(destinationViewController, animated: true)
+                    loadingalert.dismiss(animated: false, completion: nil)
                 }
 
             }
