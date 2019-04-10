@@ -26,6 +26,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
     //Repost/Comment View
     let dispatch = DispatchGroup()
     let dbs = DBService.shared
+    let uid = Auth.auth().currentUser?.uid ?? ""
     @IBOutlet var writePost: UIView!
     @IBOutlet weak var postContentTV: UITextView!
     
@@ -254,7 +255,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             followers = dbs.followers
             //followersIDs = followers.userID
         }
-        let cvHeight = CGFloat(50 * followers.count) + (self.tabBarController?.tabBar.frame.height)!
+        let cvHeight = CGFloat(50 * followers.count) + (self.tabBarController?.tabBar.frame.height)! + 30
         let y = self.view.frame.height - cvHeight
         followerCV.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: cvHeight)
         blackView.frame = self.view.bounds
@@ -492,7 +493,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
             }
         }
             
-        dbs.getFollowersIDs { (followersIDs) in
+            dbs.getFollowersIDs(userID: uid) { (followersIDs) in
                 self.followersIDs = followersIDs
             }
     }

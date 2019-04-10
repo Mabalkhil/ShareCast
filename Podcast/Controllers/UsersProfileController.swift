@@ -9,14 +9,13 @@
 import UIKit
 import Firebase
 
-class UsersProfileController: UIViewController {
+class UsersProfileController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //MARK:- V
     var person: Person!
     var firebaseReff = Auth.auth().currentUser
     var dbs = DBService.shared
-    var alert: UIAlertController!
-    var alertAction: UIAlertAction!
+
     //MARK:- @IBOutlet
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var username: UILabel!
@@ -25,8 +24,10 @@ class UsersProfileController: UIViewController {
     @IBOutlet weak var followers: UIButton!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var profileTimeline: UITableView!
     
     
+    var postsList = [Post]()
     
     
     //MARK:-
@@ -35,6 +36,9 @@ class UsersProfileController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor(red: 222/255, green: 77/255, blue: 79/255, alpha: 1.0)
         setupProfile()
         setupProfileImage()
+        loadData()
+        profileTimeline.delegate = self
+        profileTimeline.dataSource = self
     }
     override func viewWillAppear(_ animated: Bool) {
         checkIfFollowed()
@@ -59,6 +63,25 @@ class UsersProfileController: UIViewController {
         profileImage.layer.masksToBounds = false
         profileImage.layer.cornerRadius = profileImage.frame.height/2
         profileImage.clipsToBounds = true
+    }
+    
+    func loadData() {
+        dbs.loadProfilePosts(targetID: person.uid) {
+            (posts) in
+            self.postsList = posts
+            self.posts.setTitle("\(posts.count)", for: UIControl.State.normal)
+            DispatchQueue.main.async {
+                self.profileTimeline.reloadData()
+            }
+        }
+        
+        dbs.getFollowersIDs(userID: person.uid) { (result) in
+            self.followers.setTitle("\(result.count)", for: UIControl.State.normal)
+        }
+        
+        dbs.getFollowingIDs(userID: person.uid) { (result) in
+            self.following.setTitle("\(result.count)", for: UIControl.State.normal)
+        }
     }
     
     //MARK:- Toggle Follow
@@ -108,6 +131,20 @@ class UsersProfileController: UIViewController {
             }
 
         }
+    }
+    
+    
+    
+    //MARK:- Timeline
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return postsList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = profileTimeline.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! TimelineTVC
+        cell.setAttributes(post: postsList[indexPath.row])
+        return cell
     }
 
 }
