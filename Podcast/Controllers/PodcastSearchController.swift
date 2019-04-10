@@ -154,7 +154,6 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
                     
                     if episode.streamURL ==  link[end!...] {
                         ep = episode
-                        //loadingalert.dismiss(animated: false, completion: nil)
                         break
                     }
                    
