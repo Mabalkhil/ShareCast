@@ -377,7 +377,8 @@ class DBService {
                                  episode_streamURL: $0.data()["episode_streamURL"] as! String,
                                  episode_author: $0.data()["episode_author"] as! String,
                                  episode_time: $0.data()["episode_time"] as! Double,
-                                 postID: $0.documentID as! String)}))!
+                                 postID: $0.documentID as! String,
+                                 channel_url: $0.data()["channel_url"] as! String)}))!
                     completionHandler(posts)
                 }
         }
@@ -450,7 +451,8 @@ class DBService {
                                  episode_streamURL: $0.data()["episode_streamURL"] as! String,
                                  episode_author: $0.data()["episode_author"] as! String,
                                  episode_time: $0.data()["episode_time"] as! Double,
-                                 postID: $0.data()["post_id"] as! String)}))!
+                                 postID: $0.data()["post_id"] as! String,
+                                 channel_url: $0.data()["channel_url"] as! String)}))!
                     completionHandler(posts)
                 }
         }
@@ -486,7 +488,8 @@ class DBService {
                                 episode_streamURL: DocumentChange.document.data()["episode_streamURL"] as! String,
                                 episode_author: DocumentChange.document.data()["episode_author"] as! String,
                                 episode_time: DocumentChange.document.data()["episode_time"] as! Double,
-                                postID: DocumentChange.document.data()["post_id"] as! String), at: 0)
+                                postID: DocumentChange.document.data()["post_id"] as! String,
+                                channel_url: DocumentChange.document.data()["channel_url"] as! String), at: 0)
                             if(snapshot.documentChanges.count == counter){
                                 completionHandler(posts)
                             }

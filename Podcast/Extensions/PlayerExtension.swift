@@ -79,6 +79,22 @@ extension PlayerDetailsViewController: UIScrollViewDelegate, UITableViewDelegate
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
     
+    func setupLockscreenDuration() {
+        guard let duration = player.currentItem?.duration else { return }
+        let durationSeconds = CMTimeGetSeconds(duration)
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyPlaybackDuration] = durationSeconds
+    }
+    
+    
+     func setupElapsedTime() {
+        let elapsedTime = CMTimeGetSeconds(player.currentTime())
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = elapsedTime
+    }
+    
+  
+    
+
+    
     //setting scroll view
     func setScrollView() {
         pageControl.numberOfPages = 1

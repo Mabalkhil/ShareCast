@@ -205,6 +205,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
                 episode.timeStampLables = posts[indexPath.row].episode_timeStampLables
                 episode.time =  posts[indexPath.row].episode_time
                 episode.timeStamps = posts[indexPath.row].episode_timeStamps
+                episode.channelURL = posts[indexPath.row].channel_url
                 
                 destination.episode = episode
                 print(self.posts[indexPath.row].episode_author)

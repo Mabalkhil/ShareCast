@@ -21,6 +21,7 @@ class Post: NSObject {
     var episode_timeStamps: [String]?
     let episode_author: String
     let episode_streamURL: String
+    let channel_url: String
     
     var episode_timeStampLables: [String]?
     var episode_time:Double?
@@ -28,7 +29,7 @@ class Post: NSObject {
     init(userName:String, content:String, img:String, ep_name:String, ep_img:String, ep_desc:String,
         episode_Date:  Date ,
         episode_FileUrl:String, episode_timeStamps: [String], episode_timeStampLables: [String],
-        episode_streamURL: String,  episode_author: String,  episode_time:Double ,postID:String ) {
+        episode_streamURL: String,  episode_author: String,  episode_time:Double ,postID:String, channel_url:String ) {
         self.username = userName
         self.postContent = content
         self.userImage = img
@@ -43,6 +44,7 @@ class Post: NSObject {
         self.episode_timeStamps = episode_timeStamps
         self.episode_timeStampLables = episode_timeStampLables
         self.episode_Date =  episode_Date
+        self.channel_url = channel_url
         
     }
 }
