@@ -124,12 +124,12 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let loadingalert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-        
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = UIActivityIndicatorView.Style.gray
-        loadingIndicator.startAnimating();
+//        let loadingalert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+//
+//        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+//        loadingIndicator.hidesWhenStopped = true
+//        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+//        loadingIndicator.startAnimating();
         
         if selectedscope == "Link" {
             let link = searchBar.text ?? ""
@@ -139,12 +139,12 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
             let mid = link.range(of: ":Episode:")?.lowerBound
             let end = link.range(of: ":Episode:")?.upperBound
             
-            loadingalert.view.addSubview(loadingIndicator)
-            self.present(loadingalert, animated: true, completion: nil)
+            //loadingalert.view.addSubview(loadingIndicator)
+            //self.present(loadingalert, animated: true, completion: nil)
             APIService.shared.fetchEpisodes(feedUrl: String(link[start..<mid!])) { (Episodes) in
                 
                 if Episodes.isEmpty {
-                    loadingalert.dismiss(animated: false, completion: nil)
+                    //loadingalert.dismiss(animated: false, completion: nil)
                     self.linkAlert()
                     return
                 }
@@ -160,7 +160,7 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
                 }
                 
                 if ep == nil{
-                    loadingalert.dismiss(animated: false, completion: nil)
+                   // loadingalert.dismiss(animated: false, completion: nil)
                     self.linkAlert()
                     return
                 }
@@ -174,7 +174,7 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate{
                     }
                     destinationViewController.episode = (ep ?? nil)!
                     self.navigationController?.pushViewController(destinationViewController, animated: true)
-                    loadingalert.dismiss(animated: false, completion: nil)
+                    //loadingalert.dismiss(animated: false, completion: nil)
                 }
 
             }
