@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -67,8 +66,8 @@
                                                 <action selector="BellButton:" destination="cXx-ja-GBT" eventType="touchUpInside" id="duG-uD-stc"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PCx-VY-4IN" userLabel="name Label">
-                                            <rect key="frame" x="14" y="283" width="171" height="30"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PCx-VY-4IN" userLabel="name Label">
+                                            <rect key="frame" x="14" y="283" width="253" height="30"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -98,7 +97,7 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="LlQ-Ya-hK8" secondAttribute="bottom" constant="8" id="Uyv-34-sm2"/>
                                         <constraint firstItem="A1L-dC-omw" firstAttribute="leading" secondItem="3Yc-H5-qqQ" secondAttribute="leading" id="Vuy-2T-ajA"/>
                                         <constraint firstItem="PCx-VY-4IN" firstAttribute="leading" secondItem="Ft8-Cd-BIX" secondAttribute="leading" id="ZEi-qb-qTJ"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PCx-VY-4IN" secondAttribute="trailing" constant="50" id="ZGo-ux-MvN"/>
+                                        <constraint firstItem="LlQ-Ya-hK8" firstAttribute="leading" secondItem="PCx-VY-4IN" secondAttribute="trailing" id="b02-ar-L4f"/>
                                         <constraint firstItem="A1L-dC-omw" firstAttribute="top" secondItem="3Yc-H5-qqQ" secondAttribute="top" id="dd8-UT-NKb"/>
                                         <constraint firstAttribute="bottom" secondItem="u97-rE-JLw" secondAttribute="bottom" id="gLE-gQ-PIZ"/>
                                         <constraint firstAttribute="bottom" secondItem="A1L-dC-omw" secondAttribute="bottom" id="gh8-Cs-g5Y"/>

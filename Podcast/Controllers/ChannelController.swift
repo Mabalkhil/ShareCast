@@ -163,7 +163,7 @@ class ChannelController:  UIViewController , UITableViewDelegate , UITableViewDa
                 dbs.subscribeToChannel(podcast: podcast!)
                 headerView.SubButton.setTitle("Unsubscribe", for: .normal)
             }else {
-                self.alert = UIAlertController(title: "Are you sure you want to Unsubscribe", message: "", preferredStyle: .alert)
+                self.alert = UIAlertController(title: "", message: "Are you sure you want to Unsubscribe", preferredStyle: .alert)
                 let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
                     self.dbs.unsubscribeToChannel(podcast: self.podcast!)
                     self.headerView.SubButton.setTitle("Subscribe", for: .normal)

@@ -275,7 +275,7 @@ class PlayerDetailsViewController: UIViewController, MYAudioTabProcessorDelegate
         let seekTimeInSeconds = Float64(percentage) * durationInSeconds
         let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1)
         self.player.seek(to: seekTime)
-        player.play()
+        //player.play()
     }
     
     //rewind button
