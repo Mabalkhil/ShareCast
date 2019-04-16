@@ -174,6 +174,8 @@ class PlayerDetailsViewController: UIViewController, MYAudioTabProcessorDelegate
         observePlayerCurrentTime()
         self.setupRemoteControl()
         self.setupAudioSession()
+        self.observePlayerCurrentTime()
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handelTapMaximize))
         //self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handelTapMaximize)))
         self.view.addGestureRecognizer(tap)

@@ -49,6 +49,7 @@ extension EpisodeViewController{
                            "episode_timeStampLables" : episode.timeStampLables,
                            "episode_streamURL" : episode.streamURL,
                            "episode_author" : episode.author,
+                           "channel_url" : episode.channelURL,
                            "episode_time" : episode.time] as [String : Any]
         
         ref = self.fireStoreDatabaseRef.collection("Posts").addDocument(data: postDetails){
@@ -79,6 +80,7 @@ extension EpisodeViewController{
                        "episode_timeStampLables" : episode.timeStampLables,
                        "episode_streamURL" : episode.streamURL,
                        "episode_author" : episode.author,
+                       "channel_url" : episode.channelURL,
                        "episode_time" : episode.time,
                        "post_id" : currentPostID] as [String : Any]
         ref = self.fireStoreDatabaseRef

@@ -56,7 +56,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                              episode_streamURL: $0.data()["episode_streamURL"] as! String,
                              episode_author: $0.data()["episode_author"] as! String,
                              episode_time: $0.data()["episode_time"] as! Double,
-                             postID: $0.data()["post_id"] as! String)}))!
+                             postID: $0.data()["post_id"] as! String,
+                             channel_url: $0.data()["channel_url"] as! String)}))!
                     DispatchQueue.main.async {
                         self.timeline.reloadData()
                     }
@@ -97,7 +98,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                                 episode_streamURL: DocumentChange.document.data()["episode_streamURL"] as! String,
                                 episode_author: DocumentChange.document.data()["episode_author"] as! String,
                                 episode_time: DocumentChange.document.data()["episode_time"] as! Double,
-                                postID: DocumentChange.document.data()["post_id"] as! String), at: 0)
+                                postID: DocumentChange.document.data()["post_id"] as! String,
+                                channel_url: DocumentChange.document.data()["channel_url"] as! String), at: 0)
                             DispatchQueue.main.async {
                                 self.timeline.reloadData()
                             }
@@ -141,6 +143,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 episode.timeStampLables = posts[indexPath.row].episode_timeStampLables
                 episode.time =  posts[indexPath.row].episode_time
                 episode.timeStamps = posts[indexPath.row].episode_timeStamps
+                episode.channelURL = posts[indexPath.row].channel_url
                 
                 destination.episode = episode
                 print(self.posts[indexPath.row].episode_author)

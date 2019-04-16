@@ -72,6 +72,7 @@ class MentionController: UITableViewController{
                 episode.timeStampLables = mentionedPost[indexPath.row].episode_timeStampLables
                 episode.time =  mentionedPost[indexPath.row].episode_time
                 episode.timeStamps = mentionedPost[indexPath.row].episode_timeStamps
+                episode.channelURL = mentionedPost[indexPath.row].channel_url
                 
                 destination.episode = episode
                 
