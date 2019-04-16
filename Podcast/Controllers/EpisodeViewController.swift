@@ -442,6 +442,7 @@ class EpisodeViewController: UITableViewController, UICollectionViewDelegate, UI
                                   "episode_timeStampLables" : episode.timeStampLables,
                                   "episode_streamURL" : episode.streamURL,
                                   "episode_author" : episode.author,
+                                   "channel_url" : episode.channelURL,
                                   "episode_time" : episode.time
                 ] as [String : Any]
             
